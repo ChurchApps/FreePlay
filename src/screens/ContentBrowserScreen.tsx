@@ -9,6 +9,7 @@ import {
   Text,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { SvgUri } from 'react-native-svg';
 import { DimensionHelper } from '../helpers/DimensionHelper';
 import {
   ContentItem,
@@ -177,6 +178,8 @@ export const ContentBrowserScreen = (props: Props) => {
 
   const getFolderCard = (folder: ContentFolder, index: number) => {
     const shouldFocus = !props.sidebarExpanded && index === 0 && !initialFocusSet.current;
+    const folderImage = folder.image || provider?.logos.dark;
+    const isSvg = folderImage?.toLowerCase().endsWith('.svg');
 
     return (
       <TouchableHighlight
@@ -186,16 +189,29 @@ export const ContentBrowserScreen = (props: Props) => {
         onFocus={() => { initialFocusSet.current = true; }}
         hasTVPreferredFocus={shouldFocus}>
         <View style={{ width: '100%' }}>
-          {folder.image ? (
-            <Image
-              style={{
+          {folderImage ? (
+            isSvg ? (
+              <View style={{
                 height: DimensionHelper.hp('28%'),
                 width: '100%',
                 borderRadius: 12,
-              }}
-              resizeMode="cover"
-              source={{ uri: folder.image }}
-            />
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: Colors.surface,
+              }}>
+                <SvgUri uri={folderImage} width="60%" height="60%" />
+              </View>
+            ) : (
+              <Image
+                style={{
+                  height: DimensionHelper.hp('28%'),
+                  width: '100%',
+                  borderRadius: 12,
+                }}
+                resizeMode="cover"
+                source={{ uri: folderImage }}
+              />
+            )
           ) : (
             <View
               style={{
@@ -226,7 +242,7 @@ export const ContentBrowserScreen = (props: Props) => {
               </Text>
             </View>
           )}
-          {folder.image && (
+          {folderImage && (
             <Text
               style={{
                 color: '#fff',
