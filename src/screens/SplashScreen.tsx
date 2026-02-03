@@ -6,7 +6,7 @@ import { getAvailableProviders } from "../providers";
 import SoundPlayer from "react-native-sound-player";
 import { FreePlayLogo } from "../components";
 
-type Props = { navigateTo(page: string): void; };
+type Props = { navigateTo(page: string, data?: any): void; };
 
 export const SplashScreen = (props: Props) => {
   const checkStorage = async () => {
@@ -31,8 +31,15 @@ export const SplashScreen = (props: Props) => {
     }
     CachedData.connectedProviders = connectedProviders;
 
-    // Navigate to providers screen by default
-    props.navigateTo("providers");
+    // If there are connected providers, navigate to the first one (same order as sidebar)
+    if (connectedProviders.length > 0) {
+      const firstProviderId = connectedProviders[0];
+      CachedData.activeProvider = firstProviderId;
+      props.navigateTo("contentBrowser", { providerId: firstProviderId, folderStack: [] });
+    } else {
+      // No connected providers, go to providers screen
+      props.navigateTo("providers");
+    }
   }
 
   React.useEffect(() => {
