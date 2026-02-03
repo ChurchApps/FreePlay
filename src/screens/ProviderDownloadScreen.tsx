@@ -1,0 +1,160 @@
+import React, { useEffect } from "react"
+import { View, Text, TouchableHighlight, BackHandler, ImageBackground } from "react-native"
+import { DimensionHelper } from "../helpers/DimensionHelper";
+import { CachedData, Styles } from "../helpers";
+import LinearGradient from "react-native-linear-gradient";
+import { ContentFolder } from "../interfaces";
+import { getProvider } from "../providers";
+import { SvgUri } from "react-native-svg";
+
+type Props = {
+  navigateTo(page: string, data?: any): void;
+  providerId: string;
+  coverImage?: string;
+  title?: string;
+  description?: string;
+  startIndex: number;
+  folderStack?: ContentFolder[];
+};
+
+export const ProviderDownloadScreen = (props: Props) => {
+  const [totalItems, setTotalItems] = React.useState(CachedData.totalCachableItems);
+  const [cachedItems, setCachedItems] = React.useState(CachedData.cachedItems);
+  const [currentFileProgress, setCurrentFileProgress] = React.useState(0);
+  const [ready, setReady] = React.useState(false);
+
+  const updateCounts = (cached: number, total: number): void => {
+    setCachedItems(cached);
+    setTotalItems(total);
+  }
+
+  const updateFileProgress = (progress: number): void => {
+    setCurrentFileProgress(progress);
+  }
+
+  const handleStart = () => {
+    props.navigateTo("player", {
+      providerId: props.providerId,
+      providerStartIndex: props.startIndex,
+    });
+  }
+
+  const getVersion = () => {
+    let pkg = require('../../package.json');
+    return <Text style={{ ...Styles.smallWhiteText, textAlign:"left", fontSize: 12, paddingBottom: 15, color: "#999999", paddingTop: 15 }}>Version: {pkg.version}</Text>
+  }
+
+  const getContent = () => {
+    if (ready && cachedItems === totalItems) {
+      return (<>
+        <Text style={Styles.H2}>{props.title || "Content"}</Text>
+        {props.description && (
+          <Text style={{...Styles.smallerWhiteText, color:"#CCCCCC" }}>{props.description}</Text>
+        )}
+        <TouchableHighlight style={{ ...Styles.smallMenuClickable, backgroundColor: "#C2185B", width: DimensionHelper.wp("18%"), marginTop: DimensionHelper.hp("1%"), borderRadius:5 }} underlayColor={"#E91E63"} onPress={() => { handleStart() }} hasTVPreferredFocus={true}>
+          <Text style={{ ...Styles.smallWhiteText, width: "100%" }} numberOfLines={1}>Start</Text>
+        </TouchableHighlight>
+        {getVersion()}
+      </>);
+    }
+    else {
+      // Calculate overall progress: completed files + current file progress
+      let progress = 0;
+      if (totalItems > 0) {
+        progress = ((cachedItems + currentFileProgress) / totalItems) * 100;
+      }
+      const buttonHeight = DimensionHelper.hp("6%");
+      return (
+        <>
+          <Text style={Styles.H2}>{props.title || "Content"}</Text>
+          {props.description && (
+            <Text style={{...Styles.smallerWhiteText, color:"#CCCCCC" }}>{props.description}</Text>
+          )}
+          <View style={{ width: DimensionHelper.wp("35%"), height: buttonHeight, marginTop: DimensionHelper.hp("1%"), borderRadius: 5, overflow: "hidden", backgroundColor: "#666666", position: "relative" }}>
+            <View style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${progress}%`, backgroundColor: "#C2185B", borderRadius: 5 }} />
+            <TouchableHighlight style={{ position: "absolute", left: 0, top: 0, right: 0, bottom: 0, justifyContent: "center", alignItems: "center" }} underlayColor={"rgba(255,255,255,0.1)"}>
+              <Text style={{ ...Styles.smallWhiteText }} numberOfLines={1}>Downloading item {cachedItems + 1} of {totalItems}</Text>
+            </TouchableHighlight>
+          </View>
+          {getVersion()}
+        </>
+      );
+    }
+  }
+
+  const startDownload = () => {
+    const files = CachedData.messageFiles;
+    if (files && files.length > 0) {
+      setReady(false);
+      CachedData.prefetch(files, updateCounts, updateFileProgress).then(() => {
+        setReady(true);
+      });
+    } else {
+      setReady(true);
+    }
+  }
+
+  const handleBack = () => {
+    props.navigateTo("contentBrowser", {
+      providerId: props.providerId,
+      folderStack: props.folderStack,
+    });
+  }
+
+  const init = () => {
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", () => { handleBack(); return true });
+    startDownload();
+    return () => {
+      backHandler.remove();
+    };
+  }
+
+  useEffect(init, [])
+
+  // Use cover image, fall back to provider logo
+  const getBackgroundImage = () => {
+    if (props.coverImage) return { uri: props.coverImage, isSvg: false };
+    const provider = getProvider(props.providerId);
+    const logo = provider?.logos?.dark || provider?.logos?.light;
+    if (logo) {
+      const isSvg = logo.toLowerCase().endsWith('.svg');
+      return { uri: logo, isSvg };
+    }
+    return undefined;
+  };
+  const background = getBackgroundImage();
+
+  const content = (
+    <LinearGradient colors={['rgba(0, 0, 0, 1)', 'rgba(0, 0, 0, 0)']} start={{x: 0, y: 1}} end={{x: 1, y: 0}} style={{flex:1}}>
+      <View style={{flex:9, justifyContent:"flex-end", flexDirection:"column"}}>
+        <View style={{justifyContent:"flex-start", flexDirection:"row", paddingLeft:DimensionHelper.wp("5%")}}>
+          <View style={{maxWidth:"60%"}}>
+            {getContent()}
+          </View>
+        </View>
+      </View>
+      <View style={{flex:1}}></View>
+    </LinearGradient>
+  );
+
+  return (
+    <View style={{...Styles.menuScreen, flex:1, flexDirection:"row" }}>
+      {background && !background.isSvg ? (
+        <ImageBackground source={{uri: background.uri}} resizeMode="contain" style={{flex:1, width:"100%"}}>
+          {content}
+        </ImageBackground>
+      ) : background?.isSvg ? (
+        <View style={{flex:1, width:"100%"}}>
+          <View style={{position: "absolute", top: 0, left: 0, right: 0, bottom: 0, justifyContent: "center", alignItems: "center", opacity: 0.3}}>
+            <SvgUri uri={background.uri} width="50%" height="50%" />
+          </View>
+          {content}
+        </View>
+      ) : (
+        <View style={{flex:1, width:"100%"}}>
+          {content}
+        </View>
+      )}
+    </View>
+  );
+}

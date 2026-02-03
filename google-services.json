@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "546357483506",
+    "project_id": "freeplay-1c57f",
+    "storage_bucket": "freeplay-1c57f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546357483506:android:2480a337c3f58b4cb53d6b",
+        "android_client_info": {
+          "package_name": "church.freeplay"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmj0MXd4HbmSPeRn1zVVHa1l-evpBGL1A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,52 @@
+{
+    "cli": {
+      "version": ">= 3.0.0",
+      "appVersionSource": "local"
+    },
+    "build": {
+      "development": {
+        "developmentClient": true,
+        "distribution": "internal"
+      },
+      "preview": {
+        "distribution": "internal"
+      },
+      "production": {
+        "android": {
+          "buildType": "app-bundle"
+        }
+      },
+      "amazon": {
+        "autoIncrement": false,
+        "environment": "production",
+        "android": {
+          "distribution": "internal",
+          "buildType": "apk"
+        },
+        "channel": "amazon"
+      },
+      "tvos-development": {
+        "developmentClient": true,
+        "distribution": "internal",
+        "env": {
+          "EXPO_TV": "1"
+        }
+      },
+      "tvos-preview": {
+        "distribution": "internal",
+        "env": {
+          "EXPO_TV": "1"
+        }
+      },
+      "tvos-production": {
+        "env": {
+          "EXPO_TV": "1"
+        }
+      }
+    },
+    "submit": {
+      "production": {},
+      "tvos-production": {}
+    }
+  }
+  
