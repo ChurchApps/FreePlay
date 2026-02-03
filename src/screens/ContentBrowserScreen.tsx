@@ -178,7 +178,8 @@ export const ContentBrowserScreen = (props: Props) => {
 
   const getFolderCard = (folder: ContentFolder, index: number) => {
     const shouldFocus = !props.sidebarExpanded && index === 0 && !initialFocusSet.current;
-    const folderImage = folder.image || provider?.logos.dark;
+    const folderImage = folder.image || currentFolder?.image || provider?.logos.dark;
+    const isFallbackImage = !folder.image;
     const isSvg = folderImage?.toLowerCase().endsWith('.svg');
 
     return (
@@ -200,6 +201,24 @@ export const ContentBrowserScreen = (props: Props) => {
                 backgroundColor: Colors.surface,
               }}>
                 <SvgUri uri={folderImage} width="60%" height="60%" />
+              </View>
+            ) : isFallbackImage ? (
+              <View style={{
+                height: DimensionHelper.hp('28%'),
+                width: '100%',
+                borderRadius: 12,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: Colors.surface,
+              }}>
+                <Image
+                  style={{
+                    height: '80%',
+                    width: '80%',
+                  }}
+                  resizeMode="contain"
+                  source={{ uri: folderImage }}
+                />
               </View>
             ) : (
               <Image

@@ -111,9 +111,16 @@ export const ProviderDownloadScreen = (props: Props) => {
 
   useEffect(init, [])
 
-  // Use cover image, fall back to provider logo
+  // Use cover image, fall back to parent folder image, then provider logo
   const getBackgroundImage = () => {
     if (props.coverImage) return { uri: props.coverImage, isSvg: false };
+    // Check parent folders for an image (most recent first)
+    if (props.folderStack) {
+      for (let i = props.folderStack.length - 1; i >= 0; i--) {
+        const folder = props.folderStack[i];
+        if (folder.image) return { uri: folder.image, isSvg: false };
+      }
+    }
     const provider = getProvider(props.providerId);
     const logo = provider?.logos?.dark || provider?.logos?.light;
     if (logo) {
