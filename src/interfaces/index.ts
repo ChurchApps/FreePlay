@@ -92,6 +92,7 @@ export interface LessonPlaylistFileInterface {
   sort?: number;
   loop?: boolean;
   loopVideo?: boolean;
+  image?: string;
 }
 
 export interface DeviceInterface {

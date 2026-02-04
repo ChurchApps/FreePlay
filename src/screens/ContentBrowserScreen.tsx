@@ -92,6 +92,7 @@ export const ContentBrowserScreen = (props: Props) => {
           fileType: f.mediaType,
           loopVideo: false,
           seconds: 0,
+          image: f.image,
         }));
 
         props.navigateTo('providerDownload', {
@@ -124,6 +125,7 @@ export const ContentBrowserScreen = (props: Props) => {
         fileType: f.mediaType,
         loopVideo: false,
         seconds: 0,
+        image: f.image,
       }));
 
       props.navigateTo('providerDownload', {
@@ -154,6 +156,7 @@ export const ContentBrowserScreen = (props: Props) => {
       fileType: f.mediaType,
       loopVideo: false,
       seconds: 0,
+      image: f.image,
     }));
 
     // Find selected file index
