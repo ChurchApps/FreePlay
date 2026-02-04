@@ -64,6 +64,7 @@ export const ProvidersScreen = (props: Props) => {
 
   const handleDisconnect = async (providerInfo: ProviderInfo) => {
     await ProviderAuthHelper.clearAuth(providerInfo.id);
+    await ProviderAuthHelper.setConnectionState(providerInfo.id, false);
     CachedData.connectedProviders = CachedData.connectedProviders.filter(id => id !== providerInfo.id);
     if (CachedData.activeProvider === providerInfo.id) {
       CachedData.activeProvider = null;
@@ -71,7 +72,8 @@ export const ProvidersScreen = (props: Props) => {
     setConnectedProviders(prev => prev.filter(id => id !== providerInfo.id));
   };
 
-  const connectAndNavigate = (providerId: string) => {
+  const connectAndNavigate = async (providerId: string) => {
+    await ProviderAuthHelper.setConnectionState(providerId, true);
     if (!CachedData.connectedProviders.includes(providerId)) {
       CachedData.connectedProviders.push(providerId);
     }
@@ -93,7 +95,9 @@ export const ProvidersScreen = (props: Props) => {
         `Are you sure you want to disconnect from ${providerInfo.name}?`,
         [
           { text: 'Cancel', style: 'cancel' },
-          { text: 'Disconnect', style: 'destructive', onPress: () => handleDisconnect(providerInfo) },
+          { text: 'Disconnect', style: 'destructive', onPress: async () => {
+            await handleDisconnect(providerInfo);
+          }},
         ]
       );
       return;
@@ -107,7 +111,7 @@ export const ProvidersScreen = (props: Props) => {
 
     // Provider-agnostic auth handling based on interface properties
     if (!provider.requiresAuth) {
-      connectAndNavigate(providerInfo.id);
+      await connectAndNavigate(providerInfo.id);
     } else if (provider.authTypes.includes('device_flow')) {
       props.navigateTo('providerDeviceAuth', { providerId: providerInfo.id });
     } else if (provider.authTypes.includes('form_login')) {
@@ -245,6 +249,7 @@ export const ProvidersScreen = (props: Props) => {
           numColumns={3}
           renderItem={getProviderCard}
           keyExtractor={item => item.id}
+          extraData={connectedProviders}
         />
       </View>
     );
