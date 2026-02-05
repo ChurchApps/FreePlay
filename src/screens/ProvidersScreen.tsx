@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import LinearGradient from 'react-native-linear-gradient';
 import { SvgUri } from 'react-native-svg';
 import { DimensionHelper } from '../helpers/DimensionHelper';
-import { Styles, CachedData, ProviderAuthHelper } from '../helpers';
+import { Styles, CachedData, ProviderAuthHelper, Colors } from '../helpers';
 import { MenuHeader } from '../components';
 import { getProvider, getAvailableProviders } from '../providers';
 import { ProviderInfo } from '../interfaces';
@@ -26,7 +26,10 @@ type Props = {
 export const ProvidersScreen = (props: Props) => {
   const [connectedProviders, setConnectedProviders] = React.useState<string[]>([]);
   const [providers, setProviders] = React.useState<ProviderInfo[]>([]);
+  const [focusedItemId, setFocusedItemId] = React.useState<string | null>(null);
   const initialFocusSet = React.useRef(false);
+  const focusedIndexRef = React.useRef<number>(0);
+  const screenKey = 'providers';
 
   const styles: any = {
     list: {
@@ -124,15 +127,22 @@ export const ProvidersScreen = (props: Props) => {
   const getProviderCard = (data: { item: ProviderInfo; index: number }) => {
     const providerInfo = data.item;
     const isConnected = connectedProviders.includes(providerInfo.id);
-    const shouldFocus = !props.sidebarExpanded && data.index === 0 && !initialFocusSet.current;
+    const savedIndex = CachedData.lastFocusedIndex[screenKey];
+    const shouldFocus = !props.sidebarExpanded && !initialFocusSet.current
+      && (savedIndex !== undefined ? data.index === savedIndex : data.index === 0);
     const logo = providerInfo.logos?.dark;
+    const isFocused = focusedItemId === providerInfo.id;
 
     return (
       <TouchableHighlight
-        style={{ ...styles.item }}
+        style={{
+          ...styles.item,
+          ...(isFocused ? { transform: [{ scale: 1.03 }] } : {}),
+        }}
         underlayColor={'rgba(233, 30, 99, 0.8)'}
-        onPress={() => handleSelectProvider(providerInfo)}
-        onFocus={() => { initialFocusSet.current = true; }}
+        onPress={() => { CachedData.lastFocusedIndex[screenKey] = data.index; handleSelectProvider(providerInfo); }}
+        onFocus={() => { initialFocusSet.current = true; focusedIndexRef.current = data.index; setFocusedItemId(providerInfo.id); }}
+        onBlur={() => { setFocusedItemId(prev => prev === providerInfo.id ? null : prev); }}
         hasTVPreferredFocus={shouldFocus}>
         <View style={{ width: '100%' }}>
           <LinearGradient
@@ -145,8 +155,8 @@ export const ProvidersScreen = (props: Props) => {
               borderRadius: 8,
               justifyContent: 'center',
               alignItems: 'center',
-              borderWidth: 1,
-              borderColor: providerInfo.implemented ? 'rgba(233,30,99,0.15)' : 'rgba(100,100,100,0.15)',
+              borderWidth: isFocused ? 2 : 1,
+              borderColor: isFocused ? Colors.primary : (providerInfo.implemented ? 'rgba(233,30,99,0.15)' : 'rgba(100,100,100,0.15)'),
             }}>
             {logo ? (
               <View
@@ -242,6 +252,9 @@ export const ProvidersScreen = (props: Props) => {
   };
 
   const getCards = () => {
+    const savedIndex = CachedData.lastFocusedIndex[screenKey];
+    const initialRow = savedIndex !== undefined ? Math.floor(savedIndex / 3) : undefined;
+
     return (
       <View style={styles.list}>
         <FlatList
@@ -249,7 +262,13 @@ export const ProvidersScreen = (props: Props) => {
           numColumns={3}
           renderItem={getProviderCard}
           keyExtractor={item => item.id}
-          extraData={connectedProviders}
+          extraData={[connectedProviders, focusedItemId]}
+          initialScrollIndex={initialRow}
+          getItemLayout={(_data, idx) => ({
+            length: DimensionHelper.hp('35%'),
+            offset: DimensionHelper.hp('35%') * idx,
+            index: idx,
+          })}
         />
       </View>
     );

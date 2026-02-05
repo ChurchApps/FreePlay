@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useCallback } from "react"
+import React, { useRef, useMemo, useCallback, useState } from "react"
 import { Styles, Colors } from "../helpers";
 import { View, Text, Image, FlatList, ListRenderItem, TouchableHighlight, StyleSheet } from "react-native";
 import { CachedData } from "../helpers";
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
 
 export const SelectMessage = (props: Props) => {
   const firstItemRef = useRef(null);
+  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
 
   const messages = useMemo(() => {
     if (!CachedData.messageFiles) return [];
@@ -73,16 +74,25 @@ export const SelectMessage = (props: Props) => {
     const thumbnail = data.item.fileType === "image" && data.item.url
       ? data.item.url
       : (data.item.image || undefined);
-    console.log("SelectMessage item:", data.item.name, "fileType:", data.item.fileType, "image:", data.item.image, "url:", data.item.url, "thumbnail:", thumbnail);
+    const isFocused = focusedIndex === data.item.index;
     return (
       <View style={styles.maincard}>
         <TouchableHighlight
-          style={styles.card}
+          style={[
+            styles.card,
+            isFocused ? {
+              borderWidth: 2,
+              borderColor: Colors.primary,
+              transform: [{ scale: 1.03 }],
+            } : { borderWidth: 2, borderColor: 'transparent' },
+          ]}
           hasTVPreferredFocus={data.index === 0}
           focusable={true}
           ref={data.index === 0 ? firstItemRef : null}
           underlayColor={Colors.pressedBackground}
           onPress={() => handleSelect(data.item.index)}
+          onFocus={() => setFocusedIndex(data.item.index)}
+          onBlur={() => setFocusedIndex(prev => prev === data.item.index ? null : prev)}
         >
           <View style={styles.cardInner}>
             {thumbnail ? (
@@ -103,7 +113,7 @@ export const SelectMessage = (props: Props) => {
         </TouchableHighlight>
       </View>
     );
-  }, [handleSelect]);
+  }, [handleSelect, focusedIndex]);
 
   return (
     <View style={Styles.menuScreen}>

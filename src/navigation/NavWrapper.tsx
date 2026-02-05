@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import React, {useEffect, useRef} from 'react';
-import {CachedData, Styles} from '../helpers';
+import {CachedData, Styles, Colors} from '../helpers';
 import {NavItem} from './NavItem';
 import {getProvider} from '../providers';
 import {FreePlayLogo} from '../components';
@@ -200,7 +200,17 @@ export const NavWrapper = (props: Props) => {
 
   const sidebarHidden = isFullScreenMode && !props.sidebarExpanded;
 
-  //#29235c
+  // Accent line opacity: visible when collapsed, hidden when expanded or fully hidden
+  const accentOpacity = useRef(new Animated.Value(props.sidebarExpanded ? 0 : 1)).current;
+
+  useEffect(() => {
+    Animated.timing(accentOpacity, {
+      toValue: props.sidebarExpanded || sidebarHidden ? 0 : 1,
+      duration: 200,
+      useNativeDriver: false,
+    }).start();
+  }, [props.sidebarExpanded, sidebarHidden]);
+
   return (
     <View style={{display: 'flex', flexDirection: 'row'}}>
       <Animated.View
@@ -212,6 +222,15 @@ export const NavWrapper = (props: Props) => {
         }}>
         {!sidebarHidden && getContent()}
       </Animated.View>
+      {/* Accent line indicating the sidebar is interactive */}
+      <Animated.View
+        style={{
+          width: 2,
+          height: DimensionHelper.hp('100%'),
+          backgroundColor: Colors.primary,
+          opacity: accentOpacity,
+        }}
+      />
       <View
         style={{
           flex: 1,
