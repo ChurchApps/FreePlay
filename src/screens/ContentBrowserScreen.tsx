@@ -213,7 +213,7 @@ export const ContentBrowserScreen = (props: Props) => {
           {folderImage ? (
             isSvg ? (
               <View style={{
-                height: DimensionHelper.hp('28%'),
+                height: DimensionHelper.hp('25%'),
                 width: '100%',
                 borderRadius: 12,
                 justifyContent: 'center',
@@ -224,7 +224,7 @@ export const ContentBrowserScreen = (props: Props) => {
               </View>
             ) : isFallbackImage ? (
               <View style={{
-                height: DimensionHelper.hp('28%'),
+                height: DimensionHelper.hp('25%'),
                 width: '100%',
                 borderRadius: 12,
                 justifyContent: 'center',
@@ -243,7 +243,7 @@ export const ContentBrowserScreen = (props: Props) => {
             ) : (
               <Image
                 style={{
-                  height: DimensionHelper.hp('28%'),
+                  height: DimensionHelper.hp('25%'),
                   width: '100%',
                   borderRadius: 12,
                 }}
@@ -254,7 +254,7 @@ export const ContentBrowserScreen = (props: Props) => {
           ) : (
             <View
               style={{
-                height: DimensionHelper.hp('28%'),
+                height: DimensionHelper.hp('25%'),
                 width: '100%',
                 borderRadius: 12,
                 justifyContent: 'center',
@@ -325,7 +325,7 @@ export const ContentBrowserScreen = (props: Props) => {
             {file.image ? (
               <Image
                 style={{
-                  height: DimensionHelper.hp('20%'),
+                  height: DimensionHelper.hp('25%'),
                   width: '100%',
                   borderRadius: 12,
                 }}
@@ -335,7 +335,7 @@ export const ContentBrowserScreen = (props: Props) => {
             ) : (
               <View
                 style={{
-                  height: DimensionHelper.hp('20%'),
+                  height: DimensionHelper.hp('25%'),
                   width: '100%',
                   borderRadius: 12,
                   backgroundColor: Colors.backgroundCard,

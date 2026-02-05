@@ -14,7 +14,7 @@ import {
 import { ApiHelper } from '../helpers/ApiHelper';
 import { DimensionHelper } from '../helpers/DimensionHelper';
 import { ChurchInterface } from '../interfaces';
-import {CachedData, Styles, Utilities} from '../helpers';
+import {CachedData, Styles, Utilities, Colors} from '../helpers';
 import {MenuHeader} from '../components';
 
 type Props = {
@@ -63,7 +63,7 @@ export const SelectChurchScreen = (props: Props) => {
     return (
       <TouchableHighlight
         style={Styles.menuClickable}
-        underlayColor={'rgba(233,30,99,0.12)'}
+        underlayColor={Colors.activeBackground}
         onPress={() => {
           handleSelect(church);
         }}>
@@ -175,7 +175,7 @@ export const SelectChurchScreen = (props: Props) => {
           autoCapitalize="none"
           autoCorrect={false}
           keyboardType="default"
-          selectionColor={'#E91E63'}
+          selectionColor={Colors.primary}
           value={searchText}
           onChangeText={text => setSearchText(text)}
           returnKeyType="search"

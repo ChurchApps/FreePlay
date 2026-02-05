@@ -139,7 +139,7 @@ export const ProvidersScreen = (props: Props) => {
           ...styles.item,
           ...(isFocused ? { transform: [{ scale: 1.03 }] } : {}),
         }}
-        underlayColor={'rgba(233, 30, 99, 0.8)'}
+        underlayColor={Colors.pressedBackground}
         onPress={() => { CachedData.lastFocusedIndex[screenKey] = data.index; handleSelectProvider(providerInfo); }}
         onFocus={() => { initialFocusSet.current = true; focusedIndexRef.current = data.index; setFocusedItemId(providerInfo.id); }}
         onBlur={() => { setFocusedItemId(prev => prev === providerInfo.id ? null : prev); }}
@@ -196,13 +196,13 @@ export const ProvidersScreen = (props: Props) => {
                 <Icon
                   name="extension"
                   size={DimensionHelper.wp('5%')}
-                  color={providerInfo.implemented ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.4)'}
+                  color={providerInfo.implemented ? Colors.textSubtle : Colors.textDimmed}
                 />
               </View>
             )}
             <Text
               style={{
-                color: providerInfo.implemented ? '#fff' : 'rgba(255,255,255,0.5)',
+                color: providerInfo.implemented ? Colors.textPrimary : Colors.textDimmed,
                 fontSize: DimensionHelper.wp('1.5%'),
                 textAlign: 'center',
                 paddingHorizontal: 12,
@@ -223,11 +223,11 @@ export const ProvidersScreen = (props: Props) => {
                 <Icon
                   name="check-circle"
                   size={DimensionHelper.wp('1.2%')}
-                  color="#4CAF50"
+                  color={Colors.success}
                 />
                 <Text
                   style={{
-                    color: '#4CAF50',
+                    color: Colors.success,
                     fontSize: DimensionHelper.wp('1%'),
                     marginLeft: 4,
                   }}>
@@ -238,7 +238,7 @@ export const ProvidersScreen = (props: Props) => {
             {!providerInfo.implemented && (
               <Text
                 style={{
-                  color: 'rgba(255,255,255,0.4)',
+                  color: Colors.textDimmed,
                   fontSize: DimensionHelper.wp('0.9%'),
                   marginTop: DimensionHelper.hp('0.5%'),
                 }}>

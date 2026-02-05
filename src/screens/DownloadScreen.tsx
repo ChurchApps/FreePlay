@@ -1,9 +1,10 @@
-import React, { useEffect } from "react"
-import { View, Text, TouchableHighlight, ActivityIndicator, BackHandler, ImageBackground } from "react-native"
+import React, { useEffect, useRef } from "react"
+import { View, Text, TouchableHighlight, ActivityIndicator, BackHandler, ImageBackground, Animated } from "react-native"
+import Icon from "react-native-vector-icons/MaterialIcons";
 import { ApiHelper } from "../helpers/ApiHelper";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { LessonPlaylistFileInterface, LessonPlaylistInterface } from "../interfaces";
-import { CachedData, Styles, Utilities } from "../helpers";
+import { CachedData, Styles, Utilities, Colors } from "../helpers";
 import LinearGradient from "react-native-linear-gradient";
 import { getProvider } from "../providers";
 
@@ -18,6 +19,7 @@ export const DownloadScreen = (props: Props) => {
   const [loadFailed, setLoadFailed] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
   const [offlineCheck, setOfflineCheck] = React.useState(false);
+  const buttonFadeAnim = useRef(new Animated.Value(0)).current;
   let refreshTimer: number = null;
 
   const updateCounts = (cached: number, total: number): void => {
@@ -38,12 +40,6 @@ export const DownloadScreen = (props: Props) => {
     props.navigateTo("player");
   }
 
-  const getVersion = () => {
-    let pkg = require('../../package.json');
-    return <Text style={{ ...Styles.smallWhiteText, textAlign:"left", fontSize: 12, paddingBottom: 15, color: "#999999", paddingTop: 15 }}>Version: {pkg.version}</Text>
-  }
-
-
   const getContent = () => {
     if (!playlist) return <ActivityIndicator size="small" color="gray" animating={true} />
     else {
@@ -51,11 +47,15 @@ export const DownloadScreen = (props: Props) => {
         return (<>
           <Text style={Styles.H2}>{playlist.lessonName}:</Text>
           <Text style={Styles.H3}>{playlist.lessonTitle}</Text>
-          <Text style={{...Styles.smallerWhiteText, color:"#CCCCCC" }}>{playlist.lessonDescription}</Text>
-          <TouchableHighlight style={{ ...Styles.smallMenuClickable, backgroundColor: "#C2185B", width: DimensionHelper.wp("18%"), marginTop: DimensionHelper.hp("1%"), borderRadius:5 }} underlayColor={"#E91E63"} onPress={() => { handleStart() }} hasTVPreferredFocus={true}>
-            <Text style={{ ...Styles.smallWhiteText, width: "100%" }} numberOfLines={1}>Start Lesson</Text>
-          </TouchableHighlight>
-          {getVersion()}
+          <Text style={{...Styles.smallerWhiteText, color: Colors.textLight }}>{playlist.lessonDescription}</Text>
+          <Animated.View style={{ opacity: buttonFadeAnim }}>
+            <TouchableHighlight style={{ backgroundColor: Colors.primaryDark, width: DimensionHelper.wp("18%"), height: DimensionHelper.hp("7%"), marginTop: DimensionHelper.hp("1%"), borderRadius: 12, justifyContent: "center", alignItems: "center" }} underlayColor={Colors.primary} onPress={() => { handleStart() }} hasTVPreferredFocus={true}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Icon name="play-arrow" size={DimensionHelper.wp("2.5%")} color="#fff" />
+                <Text style={{ ...Styles.smallWhiteText, marginLeft: 4 }} numberOfLines={1}>Start Lesson</Text>
+              </View>
+            </TouchableHighlight>
+          </Animated.View>
         </>);
 
       }
@@ -64,11 +64,10 @@ export const DownloadScreen = (props: Props) => {
           <>
             <Text style={Styles.H2}>{playlist.lessonName}:</Text>
             <Text style={Styles.H3}>{playlist.lessonTitle}</Text>
-            <Text style={{...Styles.smallerWhiteText, color:"#CCCCCC" }}>{playlist.lessonDescription}</Text>
-            <TouchableHighlight style={{ ...Styles.smallMenuClickable, backgroundColor: "#999999", width: DimensionHelper.wp("35%"), marginTop: DimensionHelper.hp("1%"), borderRadius:5 }} underlayColor={"#999999"}>
+            <Text style={{...Styles.smallerWhiteText, color: Colors.textLight }}>{playlist.lessonDescription}</Text>
+            <TouchableHighlight style={{ ...Styles.smallMenuClickable, backgroundColor: Colors.disabled, width: DimensionHelper.wp("35%"), marginTop: DimensionHelper.hp("1%"), borderRadius: 12 }} underlayColor={Colors.disabled}>
               <Text style={{ ...Styles.smallWhiteText, width: "100%" }} numberOfLines={1}>Downloading item {cachedItems} of {totalItems}</Text>
             </TouchableHighlight>
-            {getVersion()}
           </>
         );
       }
@@ -131,6 +130,15 @@ export const DownloadScreen = (props: Props) => {
   useEffect(init, [])
   useEffect(loadData, [refreshKey])
   useEffect(startDownload, [playlist])
+  useEffect(() => {
+    if (ready && cachedItems === totalItems && playlist) {
+      Animated.timing(buttonFadeAnim, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [ready, cachedItems, totalItems, playlist])
   useEffect(() => { if (offlineCheck && loading) props.navigateTo("offline"); }, [offlineCheck])
 
   // Use lesson image, fall back to provider logo
