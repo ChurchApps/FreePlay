@@ -95,8 +95,9 @@ export const ContentBrowserScreen = (props: Props) => {
           name: f.title,
           url: f.url,
           fileType: f.mediaType,
-          loopVideo: false,
-          seconds: 0,
+          loop: f.loop,
+          loopVideo: f.loopVideo,
+          seconds: f.seconds,
           image: f.image,
         }));
 
@@ -128,8 +129,9 @@ export const ContentBrowserScreen = (props: Props) => {
         name: f.title,
         url: f.url,
         fileType: f.mediaType,
-        loopVideo: false,
-        seconds: 0,
+        loop: f.loop,
+        loopVideo: f.loopVideo,
+        seconds: f.seconds,
         image: f.image,
       }));
 
@@ -159,8 +161,9 @@ export const ContentBrowserScreen = (props: Props) => {
       name: f.title,
       url: f.url,
       fileType: f.mediaType,
-      loopVideo: false,
-      seconds: 0,
+      loop: f.loop,
+      loopVideo: f.loopVideo,
+      seconds: f.seconds,
       image: f.image,
     }));
 
