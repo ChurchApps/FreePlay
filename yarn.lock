@@ -807,10 +807,9 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.28.5"
 
-"@churchapps/content-provider-helper@^0.0.7":
+"@churchapps/content-provider-helper@file:///d:/Code/ChurchApps/ContentProviderHelper":
   version "0.0.7"
-  resolved "https://registry.npmjs.org/@churchapps/content-provider-helper/-/content-provider-helper-0.0.7.tgz"
-  integrity sha512-KgL0XQ44xs4DsCOvsDnMaVxrdyiJd1B0+b/bn6HXJ6di8gXpiJEsvtygq1QVvHdJ7Iq47dd1+SEV1IBUm/EA0Q==
+  resolved "file:../ContentProviderHelper"
 
 "@churchapps/helpers@1.2.9":
   version "1.2.9"
