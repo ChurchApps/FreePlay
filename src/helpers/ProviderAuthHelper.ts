@@ -36,12 +36,41 @@ export class ProviderAuthHelper {
     }
   }
 
+  private static CONNECTION_STATE_KEY = 'provider_connection_states';
+
+  static async setConnectionState(providerId: string, connected: boolean): Promise<void> {
+    try {
+      const states = await this.getConnectionStates();
+      states[providerId] = connected;
+      await AsyncStorage.setItem(this.CONNECTION_STATE_KEY, JSON.stringify(states));
+    } catch (error) {
+      console.error(`Error setting connection state for provider ${providerId}:`, error);
+    }
+  }
+
+  static async getConnectionStates(): Promise<Record<string, boolean>> {
+    try {
+      const data = await AsyncStorage.getItem(this.CONNECTION_STATE_KEY);
+      return data ? JSON.parse(data) : {};
+    } catch (error) {
+      console.error('Error getting connection states:', error);
+      return {};
+    }
+  }
+
   static async isConnected(providerId: string): Promise<boolean> {
     const provider = getProvider(providerId);
     if (!provider) return false;
 
-    // If provider doesn't require auth, it's always "connected"
-    if (!provider.requiresAuth) return true;
+    const states = await this.getConnectionStates();
+
+    // Check if explicitly disconnected
+    if (states[providerId] === false) return false;
+
+    // If provider doesn't require auth, check if explicitly connected
+    if (!provider.requiresAuth) {
+      return states[providerId] === true;
+    }
 
     const auth = await this.getAuth(providerId);
     if (!auth) return false;

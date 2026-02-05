@@ -1,5 +1,4 @@
 export {
-  ContentProvider, // @deprecated - use IProvider instead
   getProvider,
   getAllProviders,
   registerProvider,

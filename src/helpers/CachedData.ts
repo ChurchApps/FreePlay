@@ -31,6 +31,9 @@ export class CachedData {
   static connectedProviders: string[] = [];
   static activeProvider: string | null = null;
 
+  // Focus memory: stores last focused item index per screen key
+  static lastFocusedIndex: { [screenKey: string]: number } = {};
+
   // Track active downloads for cleanup
   private static activeDownloads: Map<string, { jobId: number }> = new Map();
 

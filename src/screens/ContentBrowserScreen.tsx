@@ -4,11 +4,11 @@ import {
   View,
   FlatList,
   TouchableHighlight,
-  ActivityIndicator,
   BackHandler,
   Text,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { SvgUri } from 'react-native-svg';
 import { DimensionHelper } from '../helpers/DimensionHelper';
 import {
   ContentItem,
@@ -18,7 +18,7 @@ import {
   isContentFile,
 } from '../interfaces';
 import { Styles, CachedData, ProviderAuthHelper, Colors } from '../helpers';
-import { MenuHeader } from '../components';
+import { MenuHeader, SkeletonCard } from '../components';
 import { getProvider } from '../providers';
 
 type Props = {
@@ -33,11 +33,17 @@ type Props = {
 export const ContentBrowserScreen = (props: Props) => {
   const [items, setItems] = React.useState<ContentItem[]>([]);
   const [loading, setLoading] = React.useState(true);
+  const [focusedItemId, setFocusedItemId] = React.useState<string | null>(null);
   const initialFocusSet = React.useRef(false);
+  const focusedIndexRef = React.useRef<number>(0);
+  const listRef = React.useRef<FlatList>(null);
 
   const provider = getProvider(props.providerId);
   const folderStack = props.folderStack || [];
   const currentFolder = folderStack.length > 0 ? folderStack[folderStack.length - 1] : null;
+
+  // Build a unique key for focus memory based on provider + folder path
+  const screenKey = `contentBrowser_${props.providerId}_${currentFolder?.id || 'root'}`;
 
   const styles: any = {
     list: {
@@ -89,8 +95,10 @@ export const ContentBrowserScreen = (props: Props) => {
           name: f.title,
           url: f.url,
           fileType: f.mediaType,
-          loopVideo: false,
-          seconds: 0,
+          loop: f.loop,
+          loopVideo: f.loopVideo,
+          seconds: f.seconds,
+          image: f.image,
         }));
 
         props.navigateTo('providerDownload', {
@@ -121,8 +129,10 @@ export const ContentBrowserScreen = (props: Props) => {
         name: f.title,
         url: f.url,
         fileType: f.mediaType,
-        loopVideo: false,
-        seconds: 0,
+        loop: f.loop,
+        loopVideo: f.loopVideo,
+        seconds: f.seconds,
+        image: f.image,
       }));
 
       props.navigateTo('providerDownload', {
@@ -151,8 +161,10 @@ export const ContentBrowserScreen = (props: Props) => {
       name: f.title,
       url: f.url,
       fileType: f.mediaType,
-      loopVideo: false,
-      seconds: 0,
+      loop: f.loop,
+      loopVideo: f.loopVideo,
+      seconds: f.seconds,
+      image: f.image,
     }));
 
     // Find selected file index
@@ -176,30 +188,75 @@ export const ContentBrowserScreen = (props: Props) => {
   };
 
   const getFolderCard = (folder: ContentFolder, index: number) => {
-    const shouldFocus = !props.sidebarExpanded && index === 0 && !initialFocusSet.current;
+    const savedIndex = CachedData.lastFocusedIndex[screenKey];
+    const shouldFocus = !props.sidebarExpanded && !initialFocusSet.current
+      && (savedIndex !== undefined ? index === savedIndex : index === 0);
+    const folderImage = folder.image || currentFolder?.image || provider?.logos.dark;
+    const isLogoFallback = !folder.image && !currentFolder?.image;
+    const isSvg = folderImage?.toLowerCase().endsWith('.svg');
+    const isFocused = focusedItemId === folder.id;
 
     return (
       <TouchableHighlight
-        style={{ ...styles.item }}
+        style={{
+          ...styles.item,
+          ...(isFocused ? {
+            borderWidth: 2,
+            borderColor: Colors.primary,
+            transform: [{ scale: 1.03 }],
+          } : { borderWidth: 2, borderColor: 'transparent' }),
+        }}
         underlayColor={Colors.pressedBackground}
-        onPress={() => handleSelectFolder(folder)}
-        onFocus={() => { initialFocusSet.current = true; }}
+        onPress={() => { CachedData.lastFocusedIndex[screenKey] = index; handleSelectFolder(folder); }}
+        onFocus={() => { initialFocusSet.current = true; focusedIndexRef.current = index; setFocusedItemId(folder.id); }}
+        onBlur={() => { setFocusedItemId(prev => prev === folder.id ? null : prev); }}
         hasTVPreferredFocus={shouldFocus}>
         <View style={{ width: '100%' }}>
-          {folder.image ? (
-            <Image
-              style={{
-                height: DimensionHelper.hp('28%'),
+          {folderImage ? (
+            isSvg ? (
+              <View style={{
+                height: DimensionHelper.hp('25%'),
                 width: '100%',
                 borderRadius: 12,
-              }}
-              resizeMode="cover"
-              source={{ uri: folder.image }}
-            />
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: Colors.surface,
+              }}>
+                <SvgUri uri={folderImage} width="60%" height="60%" />
+              </View>
+            ) : isLogoFallback ? (
+              <View style={{
+                height: DimensionHelper.hp('25%'),
+                width: '100%',
+                borderRadius: 12,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: Colors.surface,
+              }}>
+                <Image
+                  style={{
+                    height: '80%',
+                    width: '80%',
+                  }}
+                  resizeMode="contain"
+                  source={{ uri: folderImage }}
+                />
+              </View>
+            ) : (
+              <Image
+                style={{
+                  height: DimensionHelper.hp('25%'),
+                  width: '100%',
+                  borderRadius: 12,
+                }}
+                resizeMode="cover"
+                source={{ uri: folderImage }}
+              />
+            )
           ) : (
             <View
               style={{
-                height: DimensionHelper.hp('28%'),
+                height: DimensionHelper.hp('25%'),
                 width: '100%',
                 borderRadius: 12,
                 justifyContent: 'center',
@@ -226,7 +283,7 @@ export const ContentBrowserScreen = (props: Props) => {
               </Text>
             </View>
           )}
-          {folder.image && (
+          {folderImage && (
             <Text
               style={{
                 color: '#fff',
@@ -245,21 +302,32 @@ export const ContentBrowserScreen = (props: Props) => {
 
   const getFileCard = (file: ContentFile, index: number) => {
     const isVideo = file.mediaType === 'video';
-    const shouldFocus = !props.sidebarExpanded && index === 0 && !initialFocusSet.current;
+    const savedIndex = CachedData.lastFocusedIndex[screenKey];
+    const shouldFocus = !props.sidebarExpanded && !initialFocusSet.current
+      && (savedIndex !== undefined ? index === savedIndex : index === 0);
+    const isFocused = focusedItemId === file.id;
 
     return (
       <TouchableHighlight
-        style={{ ...styles.item }}
+        style={{
+          ...styles.item,
+          ...(isFocused ? {
+            borderWidth: 2,
+            borderColor: Colors.primary,
+            transform: [{ scale: 1.03 }],
+          } : { borderWidth: 2, borderColor: 'transparent' }),
+        }}
         underlayColor={Colors.pressedBackground}
-        onPress={() => handleSelectFile(file)}
-        onFocus={() => { initialFocusSet.current = true; }}
+        onPress={() => { CachedData.lastFocusedIndex[screenKey] = index; handleSelectFile(file); }}
+        onFocus={() => { initialFocusSet.current = true; focusedIndexRef.current = index; setFocusedItemId(file.id); }}
+        onBlur={() => { setFocusedItemId(prev => prev === file.id ? null : prev); }}
         hasTVPreferredFocus={shouldFocus}>
         <View style={{ width: '100%' }}>
           <View style={{ position: 'relative' }}>
             {file.image ? (
               <Image
                 style={{
-                  height: DimensionHelper.hp('20%'),
+                  height: DimensionHelper.hp('25%'),
                   width: '100%',
                   borderRadius: 12,
                 }}
@@ -269,7 +337,7 @@ export const ContentBrowserScreen = (props: Props) => {
             ) : (
               <View
                 style={{
-                  height: DimensionHelper.hp('20%'),
+                  height: DimensionHelper.hp('25%'),
                   width: '100%',
                   borderRadius: 12,
                   backgroundColor: Colors.backgroundCard,
@@ -343,16 +411,19 @@ export const ContentBrowserScreen = (props: Props) => {
 
   const getCards = () => {
     if (loading) {
+      const skeletonData = Array.from({ length: 6 }, (_, i) => ({ id: `skeleton-${i}` }));
       return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <ActivityIndicator size="large" color={Colors.primary} />
-          <Text
-            style={{
-              color: 'rgba(255,255,255,0.6)',
-              marginTop: DimensionHelper.hp('2%'),
-            }}>
-            Loading content...
-          </Text>
+        <View style={styles.list}>
+          <FlatList
+            data={skeletonData}
+            numColumns={3}
+            keyExtractor={item => item.id}
+            renderItem={() => (
+              <View style={{ ...styles.item, padding: 10 }}>
+                <SkeletonCard width="100%" height={DimensionHelper.hp('25%')} />
+              </View>
+            )}
+          />
         </View>
       );
     }
@@ -367,13 +438,24 @@ export const ContentBrowserScreen = (props: Props) => {
       );
     }
 
+    const savedIndex = CachedData.lastFocusedIndex[screenKey];
+    // FlatList initialScrollIndex works on rows, so divide by numColumns
+    const initialRow = savedIndex !== undefined ? Math.floor(savedIndex / 3) : undefined;
+
     return (
       <View style={styles.list}>
         <FlatList
+          ref={listRef}
           data={items}
           numColumns={3}
           renderItem={getCard}
           keyExtractor={item => item.id}
+          initialScrollIndex={initialRow}
+          getItemLayout={(_data, idx) => ({
+            length: DimensionHelper.hp('35%'),
+            offset: DimensionHelper.hp('35%') * idx,
+            index: idx,
+          })}
         />
       </View>
     );

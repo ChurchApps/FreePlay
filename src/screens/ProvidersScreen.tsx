@@ -12,8 +12,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import LinearGradient from 'react-native-linear-gradient';
 import { SvgUri } from 'react-native-svg';
 import { DimensionHelper } from '../helpers/DimensionHelper';
-import { Styles, CachedData, ProviderAuthHelper } from '../helpers';
-import { MenuHeader } from '../components';
+import { Styles, CachedData, ProviderAuthHelper, Colors } from '../helpers';
+import { MenuHeader, SkeletonCard } from '../components';
 import { getProvider, getAvailableProviders } from '../providers';
 import { ProviderInfo } from '../interfaces';
 
@@ -26,7 +26,10 @@ type Props = {
 export const ProvidersScreen = (props: Props) => {
   const [connectedProviders, setConnectedProviders] = React.useState<string[]>([]);
   const [providers, setProviders] = React.useState<ProviderInfo[]>([]);
+  const [focusedItemId, setFocusedItemId] = React.useState<string | null>(null);
   const initialFocusSet = React.useRef(false);
+  const focusedIndexRef = React.useRef<number>(0);
+  const screenKey = 'providers';
 
   const styles: any = {
     list: {
@@ -64,6 +67,7 @@ export const ProvidersScreen = (props: Props) => {
 
   const handleDisconnect = async (providerInfo: ProviderInfo) => {
     await ProviderAuthHelper.clearAuth(providerInfo.id);
+    await ProviderAuthHelper.setConnectionState(providerInfo.id, false);
     CachedData.connectedProviders = CachedData.connectedProviders.filter(id => id !== providerInfo.id);
     if (CachedData.activeProvider === providerInfo.id) {
       CachedData.activeProvider = null;
@@ -71,7 +75,8 @@ export const ProvidersScreen = (props: Props) => {
     setConnectedProviders(prev => prev.filter(id => id !== providerInfo.id));
   };
 
-  const connectAndNavigate = (providerId: string) => {
+  const connectAndNavigate = async (providerId: string) => {
+    await ProviderAuthHelper.setConnectionState(providerId, true);
     if (!CachedData.connectedProviders.includes(providerId)) {
       CachedData.connectedProviders.push(providerId);
     }
@@ -93,7 +98,9 @@ export const ProvidersScreen = (props: Props) => {
         `Are you sure you want to disconnect from ${providerInfo.name}?`,
         [
           { text: 'Cancel', style: 'cancel' },
-          { text: 'Disconnect', style: 'destructive', onPress: () => handleDisconnect(providerInfo) },
+          { text: 'Disconnect', style: 'destructive', onPress: async () => {
+            await handleDisconnect(providerInfo);
+          }},
         ]
       );
       return;
@@ -107,7 +114,7 @@ export const ProvidersScreen = (props: Props) => {
 
     // Provider-agnostic auth handling based on interface properties
     if (!provider.requiresAuth) {
-      connectAndNavigate(providerInfo.id);
+      await connectAndNavigate(providerInfo.id);
     } else if (provider.authTypes.includes('device_flow')) {
       props.navigateTo('providerDeviceAuth', { providerId: providerInfo.id });
     } else if (provider.authTypes.includes('form_login')) {
@@ -120,15 +127,22 @@ export const ProvidersScreen = (props: Props) => {
   const getProviderCard = (data: { item: ProviderInfo; index: number }) => {
     const providerInfo = data.item;
     const isConnected = connectedProviders.includes(providerInfo.id);
-    const shouldFocus = !props.sidebarExpanded && data.index === 0 && !initialFocusSet.current;
+    const savedIndex = CachedData.lastFocusedIndex[screenKey];
+    const shouldFocus = !props.sidebarExpanded && !initialFocusSet.current
+      && (savedIndex !== undefined ? data.index === savedIndex : data.index === 0);
     const logo = providerInfo.logos?.dark;
+    const isFocused = focusedItemId === providerInfo.id;
 
     return (
       <TouchableHighlight
-        style={{ ...styles.item }}
-        underlayColor={'rgba(233, 30, 99, 0.8)'}
-        onPress={() => handleSelectProvider(providerInfo)}
-        onFocus={() => { initialFocusSet.current = true; }}
+        style={{
+          ...styles.item,
+          ...(isFocused ? { transform: [{ scale: 1.03 }] } : {}),
+        }}
+        underlayColor={Colors.pressedBackground}
+        onPress={() => { CachedData.lastFocusedIndex[screenKey] = data.index; handleSelectProvider(providerInfo); }}
+        onFocus={() => { initialFocusSet.current = true; focusedIndexRef.current = data.index; setFocusedItemId(providerInfo.id); }}
+        onBlur={() => { setFocusedItemId(prev => prev === providerInfo.id ? null : prev); }}
         hasTVPreferredFocus={shouldFocus}>
         <View style={{ width: '100%' }}>
           <LinearGradient
@@ -141,8 +155,8 @@ export const ProvidersScreen = (props: Props) => {
               borderRadius: 8,
               justifyContent: 'center',
               alignItems: 'center',
-              borderWidth: 1,
-              borderColor: providerInfo.implemented ? 'rgba(233,30,99,0.15)' : 'rgba(100,100,100,0.15)',
+              borderWidth: isFocused ? 2 : 1,
+              borderColor: isFocused ? Colors.primary : (providerInfo.implemented ? 'rgba(233,30,99,0.15)' : 'rgba(100,100,100,0.15)'),
             }}>
             {logo ? (
               <View
@@ -182,13 +196,13 @@ export const ProvidersScreen = (props: Props) => {
                 <Icon
                   name="extension"
                   size={DimensionHelper.wp('5%')}
-                  color={providerInfo.implemented ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.4)'}
+                  color={providerInfo.implemented ? Colors.textSubtle : Colors.textDimmed}
                 />
               </View>
             )}
             <Text
               style={{
-                color: providerInfo.implemented ? '#fff' : 'rgba(255,255,255,0.5)',
+                color: providerInfo.implemented ? Colors.textPrimary : Colors.textDimmed,
                 fontSize: DimensionHelper.wp('1.5%'),
                 textAlign: 'center',
                 paddingHorizontal: 12,
@@ -209,11 +223,11 @@ export const ProvidersScreen = (props: Props) => {
                 <Icon
                   name="check-circle"
                   size={DimensionHelper.wp('1.2%')}
-                  color="#4CAF50"
+                  color={Colors.success}
                 />
                 <Text
                   style={{
-                    color: '#4CAF50',
+                    color: Colors.success,
                     fontSize: DimensionHelper.wp('1%'),
                     marginLeft: 4,
                   }}>
@@ -224,7 +238,7 @@ export const ProvidersScreen = (props: Props) => {
             {!providerInfo.implemented && (
               <Text
                 style={{
-                  color: 'rgba(255,255,255,0.4)',
+                  color: Colors.textDimmed,
                   fontSize: DimensionHelper.wp('0.9%'),
                   marginTop: DimensionHelper.hp('0.5%'),
                 }}>
@@ -238,6 +252,27 @@ export const ProvidersScreen = (props: Props) => {
   };
 
   const getCards = () => {
+    if (providers.length === 0) {
+      const skeletonData = Array.from({ length: 6 }, (_, i) => ({ id: `skeleton-${i}` }));
+      return (
+        <View style={styles.list}>
+          <FlatList
+            data={skeletonData}
+            numColumns={3}
+            keyExtractor={item => item.id}
+            renderItem={() => (
+              <View style={{ ...styles.item, padding: 7 }}>
+                <SkeletonCard width="100%" height={DimensionHelper.hp('28%')} />
+              </View>
+            )}
+          />
+        </View>
+      );
+    }
+
+    const savedIndex = CachedData.lastFocusedIndex[screenKey];
+    const initialRow = savedIndex !== undefined ? Math.floor(savedIndex / 3) : undefined;
+
     return (
       <View style={styles.list}>
         <FlatList
@@ -245,6 +280,13 @@ export const ProvidersScreen = (props: Props) => {
           numColumns={3}
           renderItem={getProviderCard}
           keyExtractor={item => item.id}
+          extraData={[connectedProviders, focusedItemId]}
+          initialScrollIndex={initialRow}
+          getItemLayout={(_data, idx) => ({
+            length: DimensionHelper.hp('35%'),
+            offset: DimensionHelper.hp('35%') * idx,
+            index: idx,
+          })}
         />
       </View>
     );

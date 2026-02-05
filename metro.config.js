@@ -1,20 +1,15 @@
 // Learn more https://docs.expo.io/guides/customizing-metro
+const path = require('path');
 const { getDefaultConfig } = require('expo/metro-config');
 const { getSentryExpoConfig } = require('@sentry/react-native/metro');
-const path = require('path');
 
 const config = getSentryExpoConfig(__dirname);
 
-// Support for file:// linked packages (ContentProviderHelper)
-const contentProviderHelperPath = path.resolve(__dirname, '../ContentProviderHelper');
-config.watchFolders = [contentProviderHelperPath];
-config.resolver.nodeModulesPaths = [
-  path.resolve(__dirname, 'node_modules'),
-  path.resolve(contentProviderHelperPath, 'node_modules'),
-];
-config.resolver.extraNodeModules = {
-  '@churchapps/content-provider-helper': contentProviderHelperPath,
-};
+// Support local file:/// linked packages
+const contentProviderHelper = path.resolve(__dirname, '..', 'ContentProviderHelper');
+config.watchFolders = [contentProviderHelper];
+config.resolver.unstable_enableSymlinks = true;
+config.resolver.unstable_enablePackageExports = true;
 
 // When enabled, the optional code below will allow Metro to resolve
 // and bundle source files with TV-specific extensions

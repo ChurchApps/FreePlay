@@ -1,7 +1,8 @@
-import React, { useEffect } from "react"
-import { View, Text, TouchableHighlight, BackHandler, ImageBackground } from "react-native"
+import React, { useEffect, useRef } from "react"
+import { View, Text, TouchableHighlight, BackHandler, ImageBackground, Animated } from "react-native"
+import Icon from "react-native-vector-icons/MaterialIcons";
 import { DimensionHelper } from "../helpers/DimensionHelper";
-import { CachedData, Styles } from "../helpers";
+import { CachedData, Styles, Colors } from "../helpers";
 import LinearGradient from "react-native-linear-gradient";
 import { ContentFolder } from "../interfaces";
 import { getProvider } from "../providers";
@@ -22,6 +23,7 @@ export const ProviderDownloadScreen = (props: Props) => {
   const [cachedItems, setCachedItems] = React.useState(CachedData.cachedItems);
   const [currentFileProgress, setCurrentFileProgress] = React.useState(0);
   const [ready, setReady] = React.useState(false);
+  const buttonFadeAnim = useRef(new Animated.Value(0)).current;
 
   const updateCounts = (cached: number, total: number): void => {
     setCachedItems(cached);
@@ -39,26 +41,24 @@ export const ProviderDownloadScreen = (props: Props) => {
     });
   }
 
-  const getVersion = () => {
-    let pkg = require('../../package.json');
-    return <Text style={{ ...Styles.smallWhiteText, textAlign:"left", fontSize: 12, paddingBottom: 15, color: "#999999", paddingTop: 15 }}>Version: {pkg.version}</Text>
-  }
-
   const getContent = () => {
     if (ready && cachedItems === totalItems) {
       return (<>
         <Text style={Styles.H2}>{props.title || "Content"}</Text>
         {props.description && (
-          <Text style={{...Styles.smallerWhiteText, color:"#CCCCCC" }}>{props.description}</Text>
+          <Text style={{...Styles.smallerWhiteText, color: Colors.textLight }}>{props.description}</Text>
         )}
-        <TouchableHighlight style={{ ...Styles.smallMenuClickable, backgroundColor: "#C2185B", width: DimensionHelper.wp("18%"), marginTop: DimensionHelper.hp("1%"), borderRadius:5 }} underlayColor={"#E91E63"} onPress={() => { handleStart() }} hasTVPreferredFocus={true}>
-          <Text style={{ ...Styles.smallWhiteText, width: "100%" }} numberOfLines={1}>Start</Text>
-        </TouchableHighlight>
-        {getVersion()}
+        <Animated.View style={{ opacity: buttonFadeAnim }}>
+          <TouchableHighlight style={{ backgroundColor: Colors.primaryDark, width: DimensionHelper.wp("18%"), height: DimensionHelper.hp("7%"), marginTop: DimensionHelper.hp("1%"), borderRadius: 12, justifyContent: "center", alignItems: "center", flexDirection: "row" }} underlayColor={Colors.primary} onPress={() => { handleStart() }} hasTVPreferredFocus={true}>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Icon name="play-arrow" size={DimensionHelper.wp("2.5%")} color="#fff" />
+              <Text style={{ ...Styles.smallWhiteText, marginLeft: 4 }} numberOfLines={1}>Start</Text>
+            </View>
+          </TouchableHighlight>
+        </Animated.View>
       </>);
     }
     else {
-      // Calculate overall progress: completed files + current file progress
       let progress = 0;
       if (totalItems > 0) {
         progress = ((cachedItems + currentFileProgress) / totalItems) * 100;
@@ -68,15 +68,14 @@ export const ProviderDownloadScreen = (props: Props) => {
         <>
           <Text style={Styles.H2}>{props.title || "Content"}</Text>
           {props.description && (
-            <Text style={{...Styles.smallerWhiteText, color:"#CCCCCC" }}>{props.description}</Text>
+            <Text style={{...Styles.smallerWhiteText, color: Colors.textLight }}>{props.description}</Text>
           )}
-          <View style={{ width: DimensionHelper.wp("35%"), height: buttonHeight, marginTop: DimensionHelper.hp("1%"), borderRadius: 5, overflow: "hidden", backgroundColor: "#666666", position: "relative" }}>
-            <View style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${progress}%`, backgroundColor: "#C2185B", borderRadius: 5 }} />
+          <View style={{ width: DimensionHelper.wp("35%"), height: buttonHeight, marginTop: DimensionHelper.hp("1%"), borderRadius: 5, overflow: "hidden", backgroundColor: Colors.progressBackground, position: "relative" }}>
+            <View style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${progress}%`, backgroundColor: Colors.primaryDark, borderRadius: 5 }} />
             <TouchableHighlight style={{ position: "absolute", left: 0, top: 0, right: 0, bottom: 0, justifyContent: "center", alignItems: "center" }} underlayColor={"rgba(255,255,255,0.1)"}>
               <Text style={{ ...Styles.smallWhiteText }} numberOfLines={1}>Downloading item {cachedItems + 1} of {totalItems}</Text>
             </TouchableHighlight>
           </View>
-          {getVersion()}
         </>
       );
     }
@@ -110,10 +109,26 @@ export const ProviderDownloadScreen = (props: Props) => {
   }
 
   useEffect(init, [])
+  useEffect(() => {
+    if (ready && cachedItems === totalItems) {
+      Animated.timing(buttonFadeAnim, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [ready, cachedItems, totalItems])
 
-  // Use cover image, fall back to provider logo
+  // Use cover image, fall back to parent folder image, then provider logo
   const getBackgroundImage = () => {
     if (props.coverImage) return { uri: props.coverImage, isSvg: false };
+    // Check parent folders for an image (most recent first)
+    if (props.folderStack) {
+      for (let i = props.folderStack.length - 1; i >= 0; i--) {
+        const folder = props.folderStack[i];
+        if (folder.image) return { uri: folder.image, isSvg: false };
+      }
+    }
     const provider = getProvider(props.providerId);
     const logo = provider?.logos?.dark || provider?.logos?.light;
     if (logo) {

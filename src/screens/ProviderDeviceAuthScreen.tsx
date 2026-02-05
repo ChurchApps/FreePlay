@@ -8,7 +8,7 @@ import {
   Animated,
   Easing,
 } from 'react-native';
-import {Styles, CachedData, ProviderAuthHelper} from '../helpers';
+import {Styles, CachedData, ProviderAuthHelper, Colors} from '../helpers';
 import {DeviceAuthorizationResponse, DeviceFlowState, ContentProviderAuthData, DeviceFlowHelper} from '../interfaces';
 import {DimensionHelper} from '../helpers/DimensionHelper';
 import LinearGradient from 'react-native-linear-gradient';
@@ -208,20 +208,20 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
     <View
       key={index}
       style={{
-        backgroundColor: 'rgba(233, 30, 99, 0.08)',
+        backgroundColor: Colors.hoverBackground,
         borderRadius: DimensionHelper.wp('0.8%'),
         paddingVertical: DimensionHelper.hp('1.5%'),
         paddingHorizontal: DimensionHelper.wp('2%'),
         marginHorizontal: DimensionHelper.wp('0.3%'),
         borderWidth: 1,
-        borderColor: 'rgba(233, 30, 99, 0.2)',
+        borderColor: Colors.borderAccent,
       }}>
       <Text
         style={{
           fontSize: DimensionHelper.wp('5%'),
           fontWeight: '800',
           fontFamily: 'monospace',
-          color: '#E91E63',
+          color: Colors.primary,
           textShadowColor: 'rgba(233, 30, 99, 0.5)',
           textShadowOffset: {width: 0, height: 0},
           textShadowRadius: 20,
@@ -243,7 +243,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
             alignItems: 'center',
             justifyContent: 'center',
           }}>
-          <ActivityIndicator size="large" color="#E91E63" />
+          <ActivityIndicator size="large" color={Colors.primary} />
           <Text
             style={{
               color: 'rgba(255, 255, 255, 0.6)',
@@ -272,7 +272,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
           }}>
           <Text
             style={{
-              color: '#ff6b6b',
+              color: Colors.error,
               fontSize: DimensionHelper.wp('2%'),
               marginBottom: DimensionHelper.hp('4%'),
               textAlign: 'center',
@@ -282,17 +282,17 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
           </Text>
           <TouchableHighlight
             onPress={initDeviceFlow}
-            underlayColor="rgba(233, 30, 99, 0.8)"
+            underlayColor={Colors.pressedBackground}
             hasTVPreferredFocus={true}
             style={{
-              backgroundColor: '#E91E63',
+              backgroundColor: Colors.primary,
               paddingVertical: DimensionHelper.hp('2%'),
               paddingHorizontal: DimensionHelper.wp('5%'),
               borderRadius: 8,
             }}>
             <Text
               style={{
-                color: '#ffffff',
+                color: Colors.textPrimary,
                 fontSize: DimensionHelper.wp('2%'),
                 fontWeight: '600',
               }}>
@@ -318,7 +318,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
           }}>
           <Text
             style={{
-              color: '#4CAF50',
+              color: Colors.success,
               fontSize: DimensionHelper.wp('3%'),
               fontWeight: 'bold',
             }}>
@@ -377,7 +377,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
               paddingHorizontal: DimensionHelper.wp('10%'),
             }}>
             Scan the QR code with your phone, or visit{'\n'}
-            <Text style={{color: '#E91E63'}}>{deviceAuth.verification_uri}</Text>
+            <Text style={{color: Colors.primary}}>{deviceAuth.verification_uri}</Text>
             {'\n'}and enter the code below
           </Text>
 
@@ -440,7 +440,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
                 width: 8,
                 height: 8,
                 borderRadius: 4,
-                backgroundColor: '#E91E63',
+                backgroundColor: Colors.primary,
                 marginRight: DimensionHelper.wp('1%'),
               }}
             />

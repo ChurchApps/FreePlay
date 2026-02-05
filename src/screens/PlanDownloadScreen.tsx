@@ -67,15 +67,18 @@ export const PlanDownloadScreen = (props: Props) => {
   };
 
   // Recursively collect relatedIds from planItems in sorted order
-  // Returns array of { id, type } where type is 'action', 'item' (section), 'lessonSection', 'addOn', or other
   const collectRelatedIds = (items: PlanItemInterface[]): { id: string, itemType: string }[] => {
     const relatedIds: { id: string, itemType: string }[] = [];
     const sortedItems = [...items].sort((a, b) => (a.sort || 0) - (b.sort || 0));
 
     for (const item of sortedItems) {
-      // 'item' and 'lessonSection' reference a section, 'lessonAction' references an action, 'lessonAddOn' references an add-on
-      if (item.relatedId && (item.itemType === "lessonAction" || item.itemType === "item" || item.itemType === "lessonSection" || item.itemType === "lessonAddOn")) {
-        relatedIds.push({ id: item.relatedId, itemType: item.itemType });
+      const t = item.itemType;
+      // Sections: item, lessonSection, providerSection, section
+      // Actions: lessonAction, providerPresentation, action, lessonAddOn, providerFile
+      if (item.relatedId && (t === "lessonAction" || t === "item" || t === "lessonSection" || t === "lessonAddOn"
+        || t === "providerPresentation" || t === "providerSection" || t === "providerFile"
+        || t === "action" || t === "section")) {
+        relatedIds.push({ id: item.relatedId, itemType: t });
       }
       if (item.children && item.children.length > 0) {
         relatedIds.push(...collectRelatedIds(item.children));
@@ -136,17 +139,16 @@ export const PlanDownloadScreen = (props: Props) => {
         for (const { id, itemType } of relatedIds) {
           let files: LessonPlaylistFileInterface[] | undefined | null;
 
-          if (itemType === "item" || itemType === "lessonSection") {
-            // 'item' and 'lessonSection' types reference a section - get all play files from that section
+          if (itemType === "item" || itemType === "lessonSection" || itemType === "providerSection" || itemType === "section") {
+            // Section types - get all play files from that section
             files = sectionMap.get(id);
-          } else if (itemType === "lessonAction") {
-            // 'lessonAction' references a specific action
+          } else if (itemType === "lessonAction" || itemType === "providerPresentation" || itemType === "action") {
+            // Action types - get files for a specific action
             files = actionMap.get(id);
-          } else if (itemType === "lessonAddOn") {
-            // 'lessonAddOn' references an add-on - try actionMap first, then fetch from API
+          } else if (itemType === "lessonAddOn" || itemType === "providerFile") {
+            // Legacy add-on / file types - try actionMap first, then fetch from API
             files = actionMap.get(id);
             if (!files || files.length === 0) {
-              // Fetch the add-on directly from API
               files = await fetchAddOn(id);
             }
           }

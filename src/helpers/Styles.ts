@@ -34,6 +34,19 @@ export const Colors = {
   borderSubtle: 'rgba(255,255,255,0.06)',
   borderAccent: 'rgba(233,30,99,0.15)',
 
+  // Status colors
+  success: '#4CAF50',
+  error: '#ff6b6b',
+  disabled: '#999999',
+
+  // Additional text colors
+  textLight: '#CCCCCC',
+  textDimmed: 'rgba(255,255,255,0.4)',
+  textSubtle: 'rgba(255,255,255,0.7)',
+
+  // Additional background colors
+  progressBackground: '#666666',
+
   // Misc
   inactive: '#767577',
 };
