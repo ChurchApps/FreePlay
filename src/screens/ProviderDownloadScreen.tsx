@@ -59,7 +59,6 @@ export const ProviderDownloadScreen = (props: Props) => {
       </>);
     }
     else {
-      // Calculate overall progress: completed files + current file progress
       let progress = 0;
       if (totalItems > 0) {
         progress = ((cachedItems + currentFileProgress) / totalItems) * 100;

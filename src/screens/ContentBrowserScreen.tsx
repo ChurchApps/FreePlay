@@ -4,7 +4,6 @@ import {
   View,
   FlatList,
   TouchableHighlight,
-  ActivityIndicator,
   BackHandler,
   Text,
 } from 'react-native';
@@ -19,7 +18,7 @@ import {
   isContentFile,
 } from '../interfaces';
 import { Styles, CachedData, ProviderAuthHelper, Colors } from '../helpers';
-import { MenuHeader } from '../components';
+import { MenuHeader, SkeletonCard } from '../components';
 import { getProvider } from '../providers';
 
 type Props = {
@@ -190,7 +189,7 @@ export const ContentBrowserScreen = (props: Props) => {
     const shouldFocus = !props.sidebarExpanded && !initialFocusSet.current
       && (savedIndex !== undefined ? index === savedIndex : index === 0);
     const folderImage = folder.image || currentFolder?.image || provider?.logos.dark;
-    const isFallbackImage = !folder.image;
+    const isLogoFallback = !folder.image && !currentFolder?.image;
     const isSvg = folderImage?.toLowerCase().endsWith('.svg');
     const isFocused = focusedItemId === folder.id;
 
@@ -222,7 +221,7 @@ export const ContentBrowserScreen = (props: Props) => {
               }}>
                 <SvgUri uri={folderImage} width="60%" height="60%" />
               </View>
-            ) : isFallbackImage ? (
+            ) : isLogoFallback ? (
               <View style={{
                 height: DimensionHelper.hp('25%'),
                 width: '100%',
@@ -409,16 +408,19 @@ export const ContentBrowserScreen = (props: Props) => {
 
   const getCards = () => {
     if (loading) {
+      const skeletonData = Array.from({ length: 6 }, (_, i) => ({ id: `skeleton-${i}` }));
       return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <ActivityIndicator size="large" color={Colors.primary} />
-          <Text
-            style={{
-              color: 'rgba(255,255,255,0.6)',
-              marginTop: DimensionHelper.hp('2%'),
-            }}>
-            Loading content...
-          </Text>
+        <View style={styles.list}>
+          <FlatList
+            data={skeletonData}
+            numColumns={3}
+            keyExtractor={item => item.id}
+            renderItem={() => (
+              <View style={{ ...styles.item, padding: 10 }}>
+                <SkeletonCard width="100%" height={DimensionHelper.hp('25%')} />
+              </View>
+            )}
+          />
         </View>
       );
     }

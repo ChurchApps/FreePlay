@@ -13,7 +13,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { SvgUri } from 'react-native-svg';
 import { DimensionHelper } from '../helpers/DimensionHelper';
 import { Styles, CachedData, ProviderAuthHelper, Colors } from '../helpers';
-import { MenuHeader } from '../components';
+import { MenuHeader, SkeletonCard } from '../components';
 import { getProvider, getAvailableProviders } from '../providers';
 import { ProviderInfo } from '../interfaces';
 
@@ -252,6 +252,24 @@ export const ProvidersScreen = (props: Props) => {
   };
 
   const getCards = () => {
+    if (providers.length === 0) {
+      const skeletonData = Array.from({ length: 6 }, (_, i) => ({ id: `skeleton-${i}` }));
+      return (
+        <View style={styles.list}>
+          <FlatList
+            data={skeletonData}
+            numColumns={3}
+            keyExtractor={item => item.id}
+            renderItem={() => (
+              <View style={{ ...styles.item, padding: 7 }}>
+                <SkeletonCard width="100%" height={DimensionHelper.hp('28%')} />
+              </View>
+            )}
+          />
+        </View>
+      );
+    }
+
     const savedIndex = CachedData.lastFocusedIndex[screenKey];
     const initialRow = savedIndex !== undefined ? Math.floor(savedIndex / 3) : undefined;
 
