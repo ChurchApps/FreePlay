@@ -98,12 +98,12 @@ export const ContentBrowserScreen = (props: Props) => {
           loop: f.loop,
           loopVideo: f.loopVideo,
           seconds: f.seconds,
-          image: f.image,
+          image: f.thumbnail,
         }));
 
         props.navigateTo('providerDownload', {
           providerId: props.providerId,
-          coverImage: folder.image,
+          coverImage: folder.thumbnail,
           title: folder.title,
           startIndex: 0,
           folderStack: [...folderStack, folder],
@@ -132,12 +132,12 @@ export const ContentBrowserScreen = (props: Props) => {
         loop: f.loop,
         loopVideo: f.loopVideo,
         seconds: f.seconds,
-        image: f.image,
+        image: f.thumbnail,
       }));
 
       props.navigateTo('providerDownload', {
         providerId: props.providerId,
-        coverImage: folder.image,
+        coverImage: folder.thumbnail,
         title: folder.title,
         startIndex: 0,
         folderStack: [...folderStack, folder],
@@ -164,7 +164,7 @@ export const ContentBrowserScreen = (props: Props) => {
       loop: f.loop,
       loopVideo: f.loopVideo,
       seconds: f.seconds,
-      image: f.image,
+      image: f.thumbnail,
     }));
 
     // Find selected file index
@@ -172,7 +172,7 @@ export const ContentBrowserScreen = (props: Props) => {
 
     props.navigateTo('providerDownload', {
       providerId: props.providerId,
-      coverImage: file.image || currentFolder?.image,
+      coverImage: file.thumbnail || currentFolder?.thumbnail,
       title: currentFolder?.title || file.title,
       startIndex: startIndex >= 0 ? startIndex : 0,
       folderStack,
@@ -191,8 +191,8 @@ export const ContentBrowserScreen = (props: Props) => {
     const savedIndex = CachedData.lastFocusedIndex[screenKey];
     const shouldFocus = !props.sidebarExpanded && !initialFocusSet.current
       && (savedIndex !== undefined ? index === savedIndex : index === 0);
-    const folderImage = folder.image || currentFolder?.image || provider?.logos.dark;
-    const isLogoFallback = !folder.image && !currentFolder?.image;
+    const folderImage = folder.thumbnail || currentFolder?.thumbnail || provider?.logos.dark;
+    const isLogoFallback = !folder.thumbnail && !currentFolder?.thumbnail;
     const isSvg = folderImage?.toLowerCase().endsWith('.svg');
     const isFocused = focusedItemId === folder.id;
 
@@ -324,7 +324,7 @@ export const ContentBrowserScreen = (props: Props) => {
         hasTVPreferredFocus={shouldFocus}>
         <View style={{ width: '100%' }}>
           <View style={{ position: 'relative' }}>
-            {file.image ? (
+            {file.thumbnail ? (
               <Image
                 style={{
                   height: DimensionHelper.hp('25%'),
@@ -332,7 +332,7 @@ export const ContentBrowserScreen = (props: Props) => {
                   borderRadius: 12,
                 }}
                 resizeMode="cover"
-                source={{ uri: file.image }}
+                source={{ uri: file.thumbnail }}
               />
             ) : (
               <View
@@ -351,7 +351,7 @@ export const ContentBrowserScreen = (props: Props) => {
                 />
               </View>
             )}
-            {isVideo && file.image && (
+            {isVideo && file.thumbnail && (
               <View
                 style={{
                   position: 'absolute',

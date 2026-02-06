@@ -126,7 +126,7 @@ export const ProviderDownloadScreen = (props: Props) => {
     if (props.folderStack) {
       for (let i = props.folderStack.length - 1; i >= 0; i--) {
         const folder = props.folderStack[i];
-        if (folder.image) return { uri: folder.image, isSvg: false };
+        if (folder.thumbnail) return { uri: folder.thumbnail, isSvg: false };
       }
     }
     const provider = getProvider(props.providerId);
