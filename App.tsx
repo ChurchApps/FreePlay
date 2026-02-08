@@ -8,7 +8,7 @@ import * as Updates from "expo-updates";
 import * as Sentry from '@sentry/react-native';
 
 Sentry.init({
-  dsn: 'https://1aa5cbeb0f9e31f4c1c9e653feb74898@o4510432524107776.ingest.us.sentry.io/4510451567034368',
+  dsn: 'https://ac7ef4e2f5095b74c8e5bc623750fefe@o4510432524107776.ingest.us.sentry.io/4510848267190272',
 
   // Adds more context data to events (IP address, cookies, user, etc.)
   // For more information, visit: https://docs.sentry.io/platforms/react-native/data-management/data-collected/

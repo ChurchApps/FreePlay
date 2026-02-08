@@ -5,10 +5,6 @@ const { getSentryExpoConfig } = require('@sentry/react-native/metro');
 
 const config = getSentryExpoConfig(__dirname);
 
-// Support local file:/// linked packages
-const contentProviderHelper = path.resolve(__dirname, '..', 'ContentProviderHelper');
-config.watchFolders = [contentProviderHelper];
-config.resolver.unstable_enableSymlinks = true;
 config.resolver.unstable_enablePackageExports = true;
 
 // When enabled, the optional code below will allow Metro to resolve
