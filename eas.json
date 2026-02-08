@@ -4,6 +4,11 @@
       "appVersionSource": "local"
     },
     "build": {
+      "base": {
+        "android": {
+          "image": "latest"
+        }
+      },
       "development": {
         "developmentClient": true,
         "distribution": "internal"
@@ -17,10 +22,11 @@
         }
       },
       "amazon": {
+        "developmentClient": false,
+        "extends": "base",
         "autoIncrement": false,
         "environment": "production",
         "android": {
-          "distribution": "internal",
           "buildType": "apk"
         },
         "channel": "amazon"
