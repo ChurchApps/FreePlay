@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "FreePlay",
-    "slug": "FreePlay",
+    "slug": "freeplay",
     "version": "1.0.0",
     "orientation": "landscape",
     "icon": "./assets/images/icon.png",

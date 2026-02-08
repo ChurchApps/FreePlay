@@ -26,7 +26,7 @@ export const SplashScreen = (props: Props) => {
 
     // Check all registered providers for saved auth
     const connectedProviders: string[] = [];
-    for (const providerInfo of getAvailableProviders()) {
+    for (const providerInfo of getAvailableProviders(["signpresenter", "lessonschurch", "b1church", "bibleproject"])) {
       if (providerInfo.implemented) {
         const isConnected = await ProviderAuthHelper.isConnected(providerInfo.id);
         if (isConnected) {

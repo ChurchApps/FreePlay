@@ -47,13 +47,13 @@ export const ProvidersScreen = (props: Props) => {
   };
 
   const loadProviders = () => {
-    const availableProviders = getAvailableProviders();
+    const availableProviders = getAvailableProviders(["signpresenter", "lessonschurch", "b1church", "bibleproject"]);
     setProviders(availableProviders);
   };
 
   const checkConnections = async () => {
     const connected: string[] = [];
-    const availableProviders = getAvailableProviders();
+    const availableProviders = getAvailableProviders(["signpresenter", "lessonschurch", "b1church", "bibleproject"]);
     for (const providerInfo of availableProviders) {
       if (providerInfo.implemented) {
         const isConnected = await ProviderAuthHelper.isConnected(providerInfo.id);
