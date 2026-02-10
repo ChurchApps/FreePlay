@@ -64,7 +64,7 @@
     },
     "ios": {
       "bundleIdentifier": "church.freeplay",
-      "buildNumber": "2",
+      "buildNumber": "3",
       "googleServicesFile": "./GoogleService-Info.plist",
       "splash": {
         "image": "./assets/images/splash.png"
