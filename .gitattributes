@@ -1,0 +1,4 @@
+# Force shell scripts and shell-sourced files to use LF line endings
+*.sh text eol=lf
+.xcode.env text eol=lf
+.xcode.env.local text eol=lf

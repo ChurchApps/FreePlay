@@ -10,7 +10,7 @@
     "prebuild": "expo prebuild --clean",
     "build:android": "eas build --platform android --clear-cache",
     "build:amazon": "eas build --platform android --profile amazon --clear-cache",
-    "build:tvos": "eas build --platform ios --profile tvos-development",
+    "build:tvos": "eas build --platform ios --profile tvos-production",
     "update": "eas update --branch production"
   },
   "dependencies": {
