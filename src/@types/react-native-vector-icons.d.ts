@@ -1,6 +1,6 @@
-declare module 'react-native-vector-icons/MaterialIcons' {
-  import * as React from 'react';
-  import {TextProps} from 'react-native';
+declare module "react-native-vector-icons/MaterialIcons" {
+  import * as React from "react";
+  import { TextProps } from "react-native";
   export interface IconProps extends TextProps {
     name: string;
     size?: number;

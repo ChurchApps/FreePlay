@@ -1,6 +1,6 @@
-import {Styles, Colors} from '../helpers';
-import {View, Text, TouchableOpacity} from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Styles, Colors } from "../helpers";
+import { View, Text, TouchableOpacity } from "react-native";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 type Props = {
   headerText: string;
@@ -14,18 +14,18 @@ export const MenuHeader = (props: Props) => (
       <TouchableOpacity
         onPress={props.onpress}
         accessibilityLabel="Back"
-        style={{paddingRight: 16}}>
+        style={{ paddingRight: 16 }}>
         <View
           style={{
             width: 40,
             height: 40,
-            alignItems: 'center',
-            justifyContent: 'center',
+            alignItems: "center",
+            justifyContent: "center",
             borderRadius: 20,
-            backgroundColor: Colors.focusBackground,
+            backgroundColor: Colors.focusBackground
           }}>
           <MaterialIcons
-            name={'keyboard-arrow-left'}
+            name={"keyboard-arrow-left"}
             color={Colors.textPrimary}
             size={28}
           />
@@ -36,7 +36,7 @@ export const MenuHeader = (props: Props) => (
     <Text
       numberOfLines={1}
       ellipsizeMode="tail"
-      style={{...Styles.H2, flex: 1, color: Colors.textPrimary}}>
+      style={{ ...Styles.H2, flex: 1, color: Colors.textPrimary }}>
       {props.headerText}
     </Text>
   </View>

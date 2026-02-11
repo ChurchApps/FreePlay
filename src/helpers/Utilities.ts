@@ -1,4 +1,4 @@
-import analytics from '@react-native-firebase/analytics';
+import analytics from "@react-native-firebase/analytics";
 import { CachedData } from "./CachedData";
 
 export class Utilities {

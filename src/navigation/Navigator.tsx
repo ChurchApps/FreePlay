@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect } from "react";
 import { CachedData, Styles } from "../helpers";
 import { DownloadScreen, SelectChurchScreen, SelectRoomScreen, SplashScreen, PlayerScreen, SelectPairingModeScreen, PlanPairingScreen, PlanDownloadScreen, ContentBrowserScreen, ProviderDeviceAuthScreen, ProvidersScreen, ProviderFormLoginScreen, ProviderDownloadScreen } from "../screens";
 import { ProgramsScreen } from "../screens/ProgramsScreen";
@@ -21,13 +21,13 @@ export const Navigator = () => {
     if (data) setCurrentData(data); else setCurrentData(null);
     setCurrentScreen(page);
     CachedData.currentScreen = page;
-  }
+  };
 
   const sidebarState = (state: boolean = true) => {
     setSidebarState(state);
-  }
+  };
 
-  let screen = <></>
+  let screen = <></>;
   switch (currentScreen) {
     case "splash": screen = (<SplashScreen navigateTo={handleNavigate} />); break;
     case "selectPairingMode": screen = (<SelectPairingModeScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
@@ -53,7 +53,7 @@ export const Navigator = () => {
     case "PrivacyPolicy": screen = (<PrivacyPolicyScreen navigateTo={handleNavigate} /> ); break;
   }
 
-  let viewStyle = {};
+  const viewStyle = {};
 
   const init = () => {
     // Enable TV Menu key handling on tvOS so it triggers BackHandler instead of exiting the app
@@ -62,11 +62,11 @@ export const Navigator = () => {
     }
 
     DimensionHelper.listenOrientationChange(this, () => {
-      setDimensions(DimensionHelper.wp("100%") + "," + DimensionHelper.hp("100%"))
+      setDimensions(DimensionHelper.wp("100%") + "," + DimensionHelper.hp("100%"));
     });
 
     return destroy;
-  }
+  };
 
   const destroy = () => {
     if (Platform.isTV) {
@@ -74,23 +74,23 @@ export const Navigator = () => {
     }
     DimensionHelper.removeOrientationListener();
     //Dimensions.removeEventListener('change', () => {});
-  }
+  };
 
   useEffect(init, []);
-  if (dimensions!=="1,1") console.log(dimensions);
+  if (dimensions !== "1,1") console.log(dimensions);
 
   const fullScreenScreens = ["splash", "player", "download", "lessonDetails", "providerDownload"];
 
-  if (fullScreenScreens.indexOf(currentScreen)>-1) {
+  if (fullScreenScreens.indexOf(currentScreen) > -1) {
     return (<View style={Styles.splashMaincontainer}>
       <View style={[viewStyle]}>
         {screen}
       </View>
-    </View>)
+    </View>);
   } else {
     return (<View style={Styles.maincontainer}>
       <NavWrapper screen={screen} navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />
     </View>);
   }
 
-}
+};

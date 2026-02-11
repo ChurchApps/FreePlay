@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import { View, Animated, Easing } from 'react-native';
-import { Colors } from '../helpers';
+import React, { useEffect, useRef } from "react";
+import { Animated, Easing } from "react-native";
+import { Colors } from "../helpers";
 
 type Props = {
   width: number | string;
@@ -18,15 +18,15 @@ export const SkeletonCard = ({ width, height, borderRadius = 12 }: Props) => {
           toValue: 0.7,
           duration: 900,
           easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
+          useNativeDriver: true
         }),
         Animated.timing(pulseAnim, {
           toValue: 0.3,
           duration: 900,
           easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
-        }),
-      ]),
+          useNativeDriver: true
+        })
+      ])
     ).start();
   }, []);
 
@@ -37,7 +37,7 @@ export const SkeletonCard = ({ width, height, borderRadius = 12 }: Props) => {
         height,
         borderRadius,
         backgroundColor: Colors.surface,
-        opacity: pulseAnim,
+        opacity: pulseAnim
       }}
     />
   );

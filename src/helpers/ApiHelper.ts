@@ -46,8 +46,8 @@ class ApiHelperClass {
         data: {
           code,
           url: axiosError.config?.url,
-          status: axiosError.response?.status,
-        },
+          status: axiosError.response?.status
+        }
       });
 
       throw new ApiError(message, code, axiosError);
@@ -63,9 +63,7 @@ class ApiHelperClass {
   async get(path: string, keyName: string): Promise<any> {
     try {
       const config = this.getConfig(keyName);
-      const response = await axios.get(config.url + path, {
-        timeout: 30000, // 30 second timeout to prevent ANR
-      });
+      const response = await axios.get(config.url + path, { timeout: 30000 });  // 30 second timeout to prevent ANR
       return response.data;
     } catch (error) {
       this.handleError(error, `GET ${path}`);
@@ -75,9 +73,7 @@ class ApiHelperClass {
   async getAnonymous(path: string, keyName: string): Promise<any> {
     try {
       const config = this.getConfig(keyName);
-      const response = await axios.get(config.url + path, {
-        timeout: 30000, // 30 second timeout to prevent ANR
-      });
+      const response = await axios.get(config.url + path, { timeout: 30000 });  // 30 second timeout to prevent ANR
       return response.data;
     } catch (error) {
       this.handleError(error, `GET_ANON ${path}`);
@@ -89,9 +85,7 @@ class ApiHelperClass {
       const config = this.getConfig(keyName);
       const fullUrl = config.url + path;
       console.log("POST request to:", fullUrl);
-      const response = await axios.post(fullUrl, data, {
-        timeout: 30000, // 30 second timeout to prevent ANR
-      });
+      const response = await axios.post(fullUrl, data, { timeout: 30000 });  // 30 second timeout to prevent ANR
       return response.data;
     } catch (error) {
       this.handleError(error, `POST ${path}`);

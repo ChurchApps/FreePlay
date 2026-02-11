@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from "react"
-import { View, Text, TouchableHighlight, BackHandler, ImageBackground, Animated } from "react-native"
+import React, { useEffect, useRef } from "react";
+import { View, Text, TouchableHighlight, BackHandler, ImageBackground, Animated } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { CachedData, Styles, Colors } from "../helpers";
@@ -28,28 +28,28 @@ export const ProviderDownloadScreen = (props: Props) => {
   const updateCounts = (cached: number, total: number): void => {
     setCachedItems(cached);
     setTotalItems(total);
-  }
+  };
 
   const updateFileProgress = (progress: number): void => {
     setCurrentFileProgress(progress);
-  }
+  };
 
   const handleStart = () => {
     props.navigateTo("player", {
       providerId: props.providerId,
-      providerStartIndex: props.startIndex,
+      providerStartIndex: props.startIndex
     });
-  }
+  };
 
   const getContent = () => {
     if (ready && cachedItems === totalItems) {
       return (<>
         <Text style={Styles.H2}>{props.title || "Content"}</Text>
         {props.description && (
-          <Text style={{...Styles.smallerWhiteText, color: Colors.textLight }}>{props.description}</Text>
+          <Text style={{ ...Styles.smallerWhiteText, color: Colors.textLight }}>{props.description}</Text>
         )}
         <Animated.View style={{ opacity: buttonFadeAnim }}>
-          <TouchableHighlight style={{ backgroundColor: Colors.primaryDark, width: DimensionHelper.wp("18%"), height: DimensionHelper.hp("7%"), marginTop: DimensionHelper.hp("1%"), borderRadius: 12, justifyContent: "center", alignItems: "center", flexDirection: "row" }} underlayColor={Colors.primary} onPress={() => { handleStart() }} hasTVPreferredFocus={true}>
+          <TouchableHighlight style={{ backgroundColor: Colors.primaryDark, width: DimensionHelper.wp("18%"), height: DimensionHelper.hp("7%"), marginTop: DimensionHelper.hp("1%"), borderRadius: 12, justifyContent: "center", alignItems: "center", flexDirection: "row" }} underlayColor={Colors.primary} onPress={() => { handleStart(); }} hasTVPreferredFocus={true}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Icon name="play-arrow" size={DimensionHelper.wp("2.5%")} color="#fff" />
               <Text style={{ ...Styles.smallWhiteText, marginLeft: 4 }} numberOfLines={1}>Start</Text>
@@ -57,8 +57,7 @@ export const ProviderDownloadScreen = (props: Props) => {
           </TouchableHighlight>
         </Animated.View>
       </>);
-    }
-    else {
+    } else {
       let progress = 0;
       if (totalItems > 0) {
         progress = ((cachedItems + currentFileProgress) / totalItems) * 100;
@@ -68,7 +67,7 @@ export const ProviderDownloadScreen = (props: Props) => {
         <>
           <Text style={Styles.H2}>{props.title || "Content"}</Text>
           {props.description && (
-            <Text style={{...Styles.smallerWhiteText, color: Colors.textLight }}>{props.description}</Text>
+            <Text style={{ ...Styles.smallerWhiteText, color: Colors.textLight }}>{props.description}</Text>
           )}
           <View style={{ width: DimensionHelper.wp("35%"), height: buttonHeight, marginTop: DimensionHelper.hp("1%"), borderRadius: 5, overflow: "hidden", backgroundColor: Colors.progressBackground, position: "relative" }}>
             <View style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${progress}%`, backgroundColor: Colors.primaryDark, borderRadius: 5 }} />
@@ -79,7 +78,7 @@ export const ProviderDownloadScreen = (props: Props) => {
         </>
       );
     }
-  }
+  };
 
   const startDownload = () => {
     const files = CachedData.messageFiles;
@@ -91,33 +90,33 @@ export const ProviderDownloadScreen = (props: Props) => {
     } else {
       setReady(true);
     }
-  }
+  };
 
   const handleBack = () => {
     props.navigateTo("contentBrowser", {
       providerId: props.providerId,
-      folderStack: props.folderStack,
+      folderStack: props.folderStack
     });
-  }
+  };
 
   const init = () => {
-    const backHandler = BackHandler.addEventListener("hardwareBackPress", () => { handleBack(); return true });
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", () => { handleBack(); return true; });
     startDownload();
     return () => {
       backHandler.remove();
     };
-  }
+  };
 
-  useEffect(init, [])
+  useEffect(init, []);
   useEffect(() => {
     if (ready && cachedItems === totalItems) {
       Animated.timing(buttonFadeAnim, {
         toValue: 1,
         duration: 300,
-        useNativeDriver: true,
+        useNativeDriver: true
       }).start();
     }
-  }, [ready, cachedItems, totalItems])
+  }, [ready, cachedItems, totalItems]);
 
   // Use cover image, fall back to parent folder image, then provider logo
   const getBackgroundImage = () => {
@@ -132,7 +131,7 @@ export const ProviderDownloadScreen = (props: Props) => {
     const provider = getProvider(props.providerId);
     const logo = provider?.logos?.dark || provider?.logos?.light;
     if (logo) {
-      const isSvg = logo.toLowerCase().endsWith('.svg');
+      const isSvg = logo.toLowerCase().endsWith(".svg");
       return { uri: logo, isSvg };
     }
     return undefined;
@@ -140,36 +139,36 @@ export const ProviderDownloadScreen = (props: Props) => {
   const background = getBackgroundImage();
 
   const content = (
-    <LinearGradient colors={['rgba(0, 0, 0, 1)', 'rgba(0, 0, 0, 0)']} start={{x: 0, y: 1}} end={{x: 1, y: 0}} style={{flex:1}}>
-      <View style={{flex:9, justifyContent:"flex-end", flexDirection:"column"}}>
-        <View style={{justifyContent:"flex-start", flexDirection:"row", paddingLeft:DimensionHelper.wp("5%")}}>
-          <View style={{maxWidth:"60%"}}>
+    <LinearGradient colors={["rgba(0, 0, 0, 1)", "rgba(0, 0, 0, 0)"]} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={{ flex: 1 }}>
+      <View style={{ flex: 9, justifyContent: "flex-end", flexDirection: "column" }}>
+        <View style={{ justifyContent: "flex-start", flexDirection: "row", paddingLeft: DimensionHelper.wp("5%") }}>
+          <View style={{ maxWidth: "60%" }}>
             {getContent()}
           </View>
         </View>
       </View>
-      <View style={{flex:1}}></View>
+      <View style={{ flex: 1 }}></View>
     </LinearGradient>
   );
 
   return (
-    <View style={{...Styles.menuScreen, flex:1, flexDirection:"row" }}>
+    <View style={{ ...Styles.menuScreen, flex: 1, flexDirection: "row" }}>
       {background && !background.isSvg ? (
-        <ImageBackground source={{uri: background.uri}} resizeMode="contain" style={{flex:1, width:"100%"}}>
+        <ImageBackground source={{ uri: background.uri }} resizeMode="contain" style={{ flex: 1, width: "100%" }}>
           {content}
         </ImageBackground>
       ) : background?.isSvg ? (
-        <View style={{flex:1, width:"100%"}}>
-          <View style={{position: "absolute", top: 0, left: 0, right: 0, bottom: 0, justifyContent: "center", alignItems: "center", opacity: 0.3}}>
+        <View style={{ flex: 1, width: "100%" }}>
+          <View style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, justifyContent: "center", alignItems: "center", opacity: 0.3 }}>
             <SvgUri uri={background.uri} width="50%" height="50%" />
           </View>
           {content}
         </View>
       ) : (
-        <View style={{flex:1, width:"100%"}}>
+        <View style={{ flex: 1, width: "100%" }}>
           {content}
         </View>
       )}
     </View>
   );
-}
+};

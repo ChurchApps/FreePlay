@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { CachedData } from "../helpers";
 import { LessonPlaylistFileInterface } from "../interfaces";
 import { Image, View, Text, ActivityIndicator, StyleSheet } from "react-native";
@@ -60,7 +60,7 @@ export const Message = (props: Props) => {
   //   return result;
   // }
 
-  const getMessageType = (): 'image' | 'video' => {
+  const getMessageType = (): "image" | "video" => {
     // Check explicit fileType first
     if (props.file.fileType === "video") return "video";
 
@@ -103,14 +103,14 @@ export const Message = (props: Props) => {
       onEnd={props.file.loopVideo ? undefined : props.onEnd}
       controls={false}
       disableFocus={true}
-    />)
-  }
+    />);
+  };
 
   const getImage = () => {
     const localPath = decodeURIComponent(CachedData.getFilePath(props.file.url));
     const filePath = props.downloaded ? "file://" + localPath : props.file.url;
     return (<Image source={{ uri: filePath }} style={{ width: DimensionHelper.wp("100%"), height: DimensionHelper.hp("100%") }} />);
-  }
+  };
 
   const content = React.useMemo(() => {
     return getMessageType() === "video" ? getVideo() : getImage();
@@ -125,7 +125,7 @@ export const Message = (props: Props) => {
       </View>
       <View style={styles.progressBarContainer}>
         <View style={styles.progressBarTrack}>
-          <View style={[styles.progressBarFill, { width: '30%' }]} />
+          <View style={[styles.progressBarFill, { width: "30%" }]} />
         </View>
       </View>
     </View>
@@ -138,43 +138,39 @@ export const Message = (props: Props) => {
     </View>
   );
 
-}
+};
 
 const styles = StyleSheet.create({
   loadingOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: '#000',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#000",
+    justifyContent: "center",
+    alignItems: "center"
   },
   loadingTitle: {
     fontSize: 48,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginBottom: 10,
+    fontWeight: "bold",
+    color: "#fff",
+    marginBottom: 10
   },
   loadingSubtitle: {
     fontSize: 24,
-    color: '#CCCCCC',
-    marginBottom: 40,
+    color: "#CCCCCC",
+    marginBottom: 40
   },
-  loadingSpinnerRow: {
-    marginBottom: 30,
-  },
-  progressBarContainer: {
-    width: '40%',
-  },
+  loadingSpinnerRow: { marginBottom: 30 },
+  progressBarContainer: { width: "40%" },
   progressBarTrack: {
     height: 8,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
     borderRadius: 4,
-    overflow: 'hidden',
+    overflow: "hidden"
   },
   progressBarFill: {
-    height: '100%',
-    backgroundColor: '#C2185B',
-    borderRadius: 4,
-  },
+    height: "100%",
+    backgroundColor: "#C2185B",
+    borderRadius: 4
+  }
 });
 
 

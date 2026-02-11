@@ -1,5 +1,5 @@
 //import AsyncStorage from "@react-native-community/async-storage";
-import React, {useEffect} from 'react';
+import React, { useEffect } from "react";
 import {
   View,
   Text,
@@ -9,13 +9,13 @@ import {
   TextInput,
   ActivityIndicator,
   BackHandler,
-  useTVEventHandler,
-} from 'react-native';
-import { ApiHelper } from '../helpers/ApiHelper';
-import { DimensionHelper } from '../helpers/DimensionHelper';
-import { ChurchInterface } from '../interfaces';
-import {CachedData, Styles, Utilities, Colors} from '../helpers';
-import {MenuHeader} from '../components';
+  useTVEventHandler
+} from "react-native";
+import { ApiHelper } from "../helpers/ApiHelper";
+import { DimensionHelper } from "../helpers/DimensionHelper";
+import { ChurchInterface } from "../interfaces";
+import { CachedData, Styles, Utilities, Colors } from "../helpers";
+import { MenuHeader } from "../components";
 
 type Props = {
   navigateTo(page: string): void;
@@ -25,7 +25,7 @@ type Props = {
 
 export const SelectChurchScreen = (props: Props) => {
   const [churches, setChurches] = React.useState<ChurchInterface[]>([]);
-  const [searchText, setSearchText] = React.useState('');
+  const [searchText, setSearchText] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const [autoFocus, setAutoFocus] = React.useState(false);
 
@@ -39,8 +39,8 @@ export const SelectChurchScreen = (props: Props) => {
     } else {
       setLoading(true);
       ApiHelper.getAnonymous(
-        '/churches/search/?name=' + text + '&app=Lessons&include=logoSquare',
-        'MembershipApi',
+        "/churches/search/?name=" + text + "&app=Lessons&include=logoSquare",
+        "MembershipApi"
       ).then(data => {
         setLoading(false);
         setChurches(data);
@@ -53,8 +53,8 @@ export const SelectChurchScreen = (props: Props) => {
 
   const handleSelect = (church: ChurchInterface) => {
     CachedData.church = church;
-    CachedData.setAsyncStorage('church', church).then(() => {
-      props.navigateTo('selectRoom');
+    CachedData.setAsyncStorage("church", church).then(() => {
+      props.navigateTo("selectRoom");
     });
   };
 
@@ -67,7 +67,7 @@ export const SelectChurchScreen = (props: Props) => {
         onPress={() => {
           handleSelect(church);
         }}>
-        <Text style={{...Styles.smallWhiteText, paddingVertical: 6}}>
+        <Text style={{ ...Styles.smallWhiteText, paddingVertical: 6 }}>
           {church.name}
         </Text>
       </TouchableHighlight>
@@ -75,34 +75,34 @@ export const SelectChurchScreen = (props: Props) => {
   };
 
   const getNoResultsMessage = () => {
-    if (searchText.length < 4)
-      return 'Enter at least four letters of your church name to start searching.';
-    else
-      return 'No results found.  Search again or register your church at https://freeplay.church/.';
+    if (searchText.length < 4) return "Enter at least four letters of your church name to start searching.";
+    else return "No results found.  Search again or register your church at https://freeplay.church/.";
   };
 
   const getSearchResult = () => {
-    if (loading)
+    if (loading) {
       return (
         <ActivityIndicator size="small" color="gray" animating={loading} />
       );
+    }
     if (churches.length > 0) {
       return (
         <FlatList
           hasTVPreferredFocus={!props.sidebarExpanded && !isInputFocus}
           data={churches}
           renderItem={renderItem}
-          keyExtractor={item => item.id?.toString() || ''}
-          style={{width: DimensionHelper.wp('100%')}}></FlatList>
+          keyExtractor={item => item.id?.toString() || ""}
+          style={{ width: DimensionHelper.wp("100%") }}></FlatList>
       );
-    } else
+    } else {
       return (
         <>
-          <Text style={{...Styles.smallWhiteText, width: '100%'}}>
+          <Text style={{ ...Styles.smallWhiteText, width: "100%" }}>
             {getNoResultsMessage()}
           </Text>
         </>
       );
+    }
   };
 
   const handleBack = () => {
@@ -111,11 +111,12 @@ export const SelectChurchScreen = (props: Props) => {
   };
 
   const init = () => {
-    Utilities.trackEvent('Select Church Screen');
-    if (textRef.current && !props.sidebarExpanded)
+    Utilities.trackEvent("Select Church Screen");
+    if (textRef.current && !props.sidebarExpanded) {
       setTimeout(() => {
         setAutoFocus(true);
       }, 1000);
+    }
 
     const backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
       handleBack();
@@ -138,7 +139,7 @@ export const SelectChurchScreen = (props: Props) => {
   }, [props.sidebarExpanded]);
 
   const handleTVKeyPress = (evt: any) => {
-    if (evt.eventType === 'select' && !isInputFocus) {
+    if (evt.eventType === "select" && !isInputFocus) {
       textRef.current?.focus();
     }
   };
@@ -152,8 +153,8 @@ export const SelectChurchScreen = (props: Props) => {
         style={{
           ...Styles.menuWrapper,
           flex: 5,
-          alignItems: 'center',
-          justifyContent: 'center',
+          alignItems: "center",
+          justifyContent: "center"
         }}
         hasTVPreferredFocus={!props.sidebarExpanded}>
         <TextInput
@@ -166,12 +167,12 @@ export const SelectChurchScreen = (props: Props) => {
             Styles.textInputStyle,
             isInputFocus && Styles.textInputStyleFocus,
             {
-              marginTop: DimensionHelper.hp('2%'),
-              marginBottom: DimensionHelper.hp('2%'),
-            },
+              marginTop: DimensionHelper.hp("2%"),
+              marginBottom: DimensionHelper.hp("2%")
+            }
           ]}
-          placeholder={'Search church name'}
-          placeholderTextColor={'#7b8794'}
+          placeholder={"Search church name"}
+          placeholderTextColor={"#7b8794"}
           autoCapitalize="none"
           autoCorrect={false}
           keyboardType="default"
@@ -181,7 +182,7 @@ export const SelectChurchScreen = (props: Props) => {
           returnKeyType="search"
         />
       </View>
-      <View style={{...Styles.menuWrapper, flex: 20}}>{getSearchResult()}</View>
+      <View style={{ ...Styles.menuWrapper, flex: 20 }}>{getSearchResult()}</View>
     </View>
   );
 };

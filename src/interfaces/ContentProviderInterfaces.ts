@@ -22,5 +22,5 @@ export {
   MediaLicenseResult,
   type IProvider,
   TokenHelper,
-  DeviceFlowHelper,
-} from '@churchapps/content-provider-helper';
+  DeviceFlowHelper
+} from "@churchapps/content-provider-helper";

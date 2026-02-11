@@ -51,11 +51,11 @@ export const PlayerScreen = (props: Props) => {
 
   const init = () => {
     // Utilities.trackEvent("Player Screen");
-    const backHandler = BackHandler.addEventListener("hardwareBackPress", () => { handleBack(); return true });
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", () => { handleBack(); return true; });
     return () => {
       backHandler.remove();
-    }
-  }
+    };
+  };
 
   const handlePlayPause = () => {
     const newPausedState = !paused;
@@ -80,13 +80,13 @@ export const PlayerScreen = (props: Props) => {
       case "select":
       case "playPause": handlePlayPause(); break;
     }
-  }
+  };
 
   useTVEventHandler((evt: HWEvent) => { handleRemotePress(evt.eventType); });
 
-  const handleLeft = () => { stopTimer(); goBack(); startTimer(); }
-  const handleRight = () => { stopTimer(); goForward(); startTimer(); }
-  const handleUp = () => { if (!showSelectMessage) { stopTimer(); setShowSelectMessage(true); } }
+  const handleLeft = () => { stopTimer(); goBack(); startTimer(); };
+  const handleRight = () => { stopTimer(); goForward(); startTimer(); };
+  const handleUp = () => { if (!showSelectMessage) { stopTimer(); setShowSelectMessage(true); } };
 
   const handleBack = () => {
     if (!showSelectMessage) {
@@ -102,7 +102,7 @@ export const PlayerScreen = (props: Props) => {
         props.navigateTo("download");
       }
     }
-  }
+  };
 
   const goForward = () => {
     if (paused) setPaused(false);
@@ -111,10 +111,10 @@ export const PlayerScreen = (props: Props) => {
       handleBack();
       return;
     }
-    let idx = messageIndex + 1;
-    if (idx < CachedData.messageFiles.length) setMessageIndex(idx)
+    const idx = messageIndex + 1;
+    if (idx < CachedData.messageFiles.length) setMessageIndex(idx);
     else handleBack();
-  }
+  };
 
   const goBack = () => {
     if (paused) setPaused(false);
@@ -123,17 +123,17 @@ export const PlayerScreen = (props: Props) => {
       handleBack();
       return;
     }
-    let idx = messageIndex - 1;
-    if (idx >= 0) setMessageIndex(idx)
+    const idx = messageIndex - 1;
+    if (idx >= 0) setMessageIndex(idx);
     else handleBack();
-  }
+  };
 
   const stopTimer = () => {
     if (PlayerHelper.timer) {
       clearTimeout(PlayerHelper.timer);
       PlayerHelper.timer = null;
     }
-  }
+  };
 
   const startTimer = () => {
     if (PlayerHelper.timer) clearTimeout(PlayerHelper.timer);
@@ -151,20 +151,20 @@ export const PlayerScreen = (props: Props) => {
     setShowSelectMessage(false);
     setMessageIndex(index);
     startTimer();
-  }
+  };
 
   const handlePressablePress = () => {
     setTriggerPauseCheck(Math.random());
-  }
+  };
 
-  React.useEffect(init, [])
-  React.useEffect(startTimer, [messageIndex])
+  React.useEffect(init, []);
+  React.useEffect(startTimer, [messageIndex]);
   React.useEffect(() => { if (PlayerHelper.pendingPause !== paused) handlePlayPause(); }, [triggerPauseCheck]);
 
   const handleProgress = (data: { currentTime: number, playableDuration: number }) => {
     const { currentTime, playableDuration } = data;
     if (playableDuration > 0) setProgress(currentTime / playableDuration);
-  }
+  };
 
   // Check if we have valid files to play
   const hasValidFiles = CachedData.messageFiles && CachedData.messageFiles.length > 0 && CachedData.messageFiles[messageIndex];
@@ -215,13 +215,13 @@ export const PlayerScreen = (props: Props) => {
         />
         <TextInput autoFocus style={{ display: "none" }} showSoftInputOnFocus={false} returnKeyType="none" />
 
-        {currentFileType === 'video' && (
+        {currentFileType === "video" && (
           <Animated.View
             pointerEvents="none"
             style={[
               StyleSheet.absoluteFill,
               styles.overlayWrapper,
-              { backgroundColor: 'rgba(0,0,0,0.5)', opacity: feedbackAnim }
+              { backgroundColor: "rgba(0,0,0,0.5)", opacity: feedbackAnim }
             ]}
           >
             <Pressable style={styles.playPauseButton} onPress={handlePlayPause}>
@@ -235,18 +235,18 @@ export const PlayerScreen = (props: Props) => {
         )}
       </Pressable>
     </GestureRecognizer>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   overlayWrapper: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center"
   },
   playPauseButton: {
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center"
   },
   progressContainer: {
     position: "absolute",
@@ -255,11 +255,11 @@ const styles = StyleSheet.create({
     right: scaleWidth(40),
     height: scaleHeight(10),
     backgroundColor: "rgba(255,255,255,0.3)",
-    borderRadius: scaleHeight(5),
+    borderRadius: scaleHeight(5)
   },
   progressBar: {
     height: scaleHeight(10),
     backgroundColor: "#fff",
-    borderRadius: scaleHeight(5),
-  },
+    borderRadius: scaleHeight(5)
+  }
 });

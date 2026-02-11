@@ -1,6 +1,6 @@
 //import AsyncStorage from "@react-native-community/async-storage";
-import React, { useRef, useEffect } from "react"
-import { View, Animated, Easing } from "react-native"
+import React, { useRef, useEffect } from "react";
+import { View, Animated, Easing } from "react-native";
 import { CachedData, Styles, Colors } from "../helpers";
 import { ProviderAuthHelper } from "../helpers";
 import { getAvailableProviders } from "../providers";
@@ -45,10 +45,10 @@ export const SplashScreen = (props: Props) => {
       // No connected providers, go to providers screen
       props.navigateTo("providers");
     }
-  }
+  };
 
   useEffect(() => {
-    SoundPlayer.playSoundFile('launch', 'mp3')
+    SoundPlayer.playSoundFile("launch", "mp3");
 
     // Fade in + scale up the logo
     Animated.parallel([
@@ -56,14 +56,14 @@ export const SplashScreen = (props: Props) => {
         toValue: 1,
         duration: 800,
         easing: Easing.out(Easing.cubic),
-        useNativeDriver: true,
+        useNativeDriver: true
       }),
       Animated.timing(scaleAnim, {
         toValue: 1,
         duration: 800,
         easing: Easing.out(Easing.cubic),
-        useNativeDriver: true,
-      }),
+        useNativeDriver: true
+      })
     ]).start();
 
     // Show pulsing loading dot after 1 second
@@ -71,7 +71,7 @@ export const SplashScreen = (props: Props) => {
       Animated.timing(dotOpacity, {
         toValue: 1,
         duration: 300,
-        useNativeDriver: true,
+        useNativeDriver: true
       }).start(() => {
         Animated.loop(
           Animated.sequence([
@@ -79,15 +79,15 @@ export const SplashScreen = (props: Props) => {
               toValue: 0.3,
               duration: 800,
               easing: Easing.inOut(Easing.sin),
-              useNativeDriver: true,
+              useNativeDriver: true
             }),
             Animated.timing(dotOpacity, {
               toValue: 1,
               duration: 800,
               easing: Easing.inOut(Easing.sin),
-              useNativeDriver: true,
-            }),
-          ]),
+              useNativeDriver: true
+            })
+          ])
         ).start();
       });
     }, 1000);
@@ -97,14 +97,14 @@ export const SplashScreen = (props: Props) => {
     }, 2500);
 
     return () => clearTimeout(dotTimer);
-  }, [])
+  }, []);
 
   return (
     <View style={Styles.splashMaincontainer}>
       <Animated.View style={{
         opacity: fadeAnim,
         transform: [{ scale: scaleAnim }],
-        alignItems: 'center',
+        alignItems: "center"
       }}>
         <FreePlayLogo size="large" showText={true} />
         <Animated.View style={{
@@ -113,10 +113,10 @@ export const SplashScreen = (props: Props) => {
           width: 8,
           height: 8,
           borderRadius: 4,
-          backgroundColor: Colors.primary,
+          backgroundColor: Colors.primary
         }} />
       </Animated.View>
     </View>
-  )
+  );
 
-}
+};

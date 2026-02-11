@@ -36,7 +36,7 @@ export const SelectPairingModeScreen = (props: Props) => {
         style={{
           flex: 1,
           marginHorizontal: DimensionHelper.wp("2%"),
-          borderRadius: 12,
+          borderRadius: 12
         }}
         underlayColor={Colors.pressedBackground}
         onPress={onPress}
@@ -45,7 +45,7 @@ export const SelectPairingModeScreen = (props: Props) => {
         hasTVPreferredFocus={autoFocus && !props.sidebarExpanded}
       >
         <LinearGradient
-          colors={['#2d1f2d', '#1a1118']}
+          colors={["#2d1f2d", "#1a1118"]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={{
@@ -56,15 +56,15 @@ export const SelectPairingModeScreen = (props: Props) => {
             paddingVertical: DimensionHelper.hp("4%"),
             paddingHorizontal: DimensionHelper.wp("3%"),
             borderWidth: isFocused ? 2 : 1,
-            borderColor: isFocused ? Colors.primary : 'rgba(233,30,99,0.15)',
-            ...(isFocused ? { transform: [{ scale: 1.03 }] } : {}),
+            borderColor: isFocused ? Colors.primary : "rgba(233,30,99,0.15)",
+            ...(isFocused ? { transform: [{ scale: 1.03 }] } : {})
           }}
         >
           <View style={{
-            backgroundColor: 'rgba(255,255,255,0.08)',
+            backgroundColor: "rgba(255,255,255,0.08)",
             borderRadius: 40,
             padding: DimensionHelper.wp("2%"),
-            marginBottom: DimensionHelper.hp("2%"),
+            marginBottom: DimensionHelper.hp("2%")
           }}>
             <Icon name={icon} size={DimensionHelper.wp("5%")} color={Colors.textSubtle} />
           </View>
@@ -73,7 +73,7 @@ export const SelectPairingModeScreen = (props: Props) => {
             fontSize: DimensionHelper.wp("2%"),
             fontWeight: "600",
             marginBottom: DimensionHelper.hp("1%"),
-            textAlign: "center",
+            textAlign: "center"
           }}>
             {title}
           </Text>
@@ -81,7 +81,7 @@ export const SelectPairingModeScreen = (props: Props) => {
             color: Colors.textDimmed,
             fontSize: DimensionHelper.wp("1.3%"),
             textAlign: "center",
-            lineHeight: DimensionHelper.wp("2%"),
+            lineHeight: DimensionHelper.wp("2%")
           }}>
             {description}
           </Text>
@@ -99,7 +99,7 @@ export const SelectPairingModeScreen = (props: Props) => {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        paddingHorizontal: DimensionHelper.wp("10%"),
+        paddingHorizontal: DimensionHelper.wp("10%")
       }}>
         {getCard(
           "classroom",
@@ -107,7 +107,7 @@ export const SelectPairingModeScreen = (props: Props) => {
           "Pair to Classroom",
           "Connect to a specific classroom TV and display scheduled lessons automatically",
           () => props.navigateTo("selectChurch"),
-          true,
+          true
         )}
         {getCard(
           "plan",
@@ -115,7 +115,7 @@ export const SelectPairingModeScreen = (props: Props) => {
           "Pair to Plan",
           "Follow your church's weekly plan and browse content on demand",
           () => props.navigateTo("planPairing"),
-          false,
+          false
         )}
       </View>
     </View>

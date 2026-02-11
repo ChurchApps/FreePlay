@@ -30,14 +30,14 @@ export const PlanPairingScreen = (props: Props) => {
           toValue: 1,
           duration: 2000,
           easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
+          useNativeDriver: true
         }),
         Animated.timing(pulseAnim, {
           toValue: 0.3,
           duration: 2000,
           easing: Easing.inOut(Easing.sin),
-          useNativeDriver: true,
-        }),
+          useNativeDriver: true
+        })
       ])
     ).start();
   };
@@ -47,7 +47,7 @@ export const PlanPairingScreen = (props: Props) => {
       toValue: 1,
       duration: 600,
       easing: Easing.out(Easing.cubic),
-      useNativeDriver: true,
+      useNativeDriver: true
     }).start();
   };
 
@@ -163,7 +163,7 @@ export const PlanPairingScreen = (props: Props) => {
         paddingHorizontal: DimensionHelper.wp("3%"),
         marginHorizontal: DimensionHelper.wp("0.5%"),
         borderWidth: 1,
-        borderColor: "rgba(233, 30, 99, 0.2)",
+        borderColor: "rgba(233, 30, 99, 0.2)"
       }}
     >
       <Text
@@ -174,7 +174,7 @@ export const PlanPairingScreen = (props: Props) => {
           color: "#E91E63",
           textShadowColor: "rgba(233, 30, 99, 0.5)",
           textShadowOffset: { width: 0, height: 0 },
-          textShadowRadius: 20,
+          textShadowRadius: 20
         }}
       >
         {char}
@@ -196,7 +196,7 @@ export const PlanPairingScreen = (props: Props) => {
               color: "rgba(255, 255, 255, 0.6)",
               fontSize: DimensionHelper.wp("1.8%"),
               marginTop: DimensionHelper.hp("3%"),
-              letterSpacing: 1,
+              letterSpacing: 1
             }}
           >
             Generating pairing code...
@@ -220,7 +220,7 @@ export const PlanPairingScreen = (props: Props) => {
               fontSize: DimensionHelper.wp("2%"),
               marginBottom: DimensionHelper.hp("4%"),
               textAlign: "center",
-              paddingHorizontal: DimensionHelper.wp("10%"),
+              paddingHorizontal: DimensionHelper.wp("10%")
             }}
           >
             {error}
@@ -233,14 +233,14 @@ export const PlanPairingScreen = (props: Props) => {
               backgroundColor: "#E91E63",
               paddingVertical: DimensionHelper.hp("2%"),
               paddingHorizontal: DimensionHelper.wp("5%"),
-              borderRadius: 8,
+              borderRadius: 8
             }}
           >
             <Text
               style={{
                 color: "#ffffff",
                 fontSize: DimensionHelper.wp("2%"),
-                fontWeight: "600",
+                fontWeight: "600"
               }}
             >
               Try Again
@@ -264,7 +264,7 @@ export const PlanPairingScreen = (props: Props) => {
             alignItems: "center",
             justifyContent: "center",
             opacity: fadeAnim,
-            paddingBottom: DimensionHelper.hp("8%"),
+            paddingBottom: DimensionHelper.hp("8%")
           }}
         >
           {/* Instructional text - subtle and secondary */}
@@ -273,7 +273,7 @@ export const PlanPairingScreen = (props: Props) => {
               color: "rgba(255, 255, 255, 0.5)",
               fontSize: DimensionHelper.wp("1.6%"),
               letterSpacing: 0.5,
-              marginBottom: DimensionHelper.hp("2%"),
+              marginBottom: DimensionHelper.hp("2%")
             }}
           >
             Enter this code in the Plan Type section of B1Admin
@@ -290,7 +290,7 @@ export const PlanPairingScreen = (props: Props) => {
               marginTop: DimensionHelper.hp("5%"),
               flexDirection: "row",
               alignItems: "center",
-              opacity: pulseAnim,
+              opacity: pulseAnim
             }}
           >
             <View
@@ -299,14 +299,14 @@ export const PlanPairingScreen = (props: Props) => {
                 height: 8,
                 borderRadius: 4,
                 backgroundColor: "#E91E63",
-                marginRight: DimensionHelper.wp("1%"),
+                marginRight: DimensionHelper.wp("1%")
               }}
             />
             <Text
               style={{
                 color: "rgba(255, 255, 255, 0.4)",
                 fontSize: DimensionHelper.wp("1.4%"),
-                letterSpacing: 0.5,
+                letterSpacing: 0.5
               }}
             >
               Waiting for connection
@@ -321,7 +321,7 @@ export const PlanPairingScreen = (props: Props) => {
             bottom: DimensionHelper.hp("4%"),
             left: 0,
             right: 0,
-            alignItems: "center",
+            alignItems: "center"
           }}
         >
           <TouchableHighlight
@@ -331,14 +331,14 @@ export const PlanPairingScreen = (props: Props) => {
             style={{
               paddingVertical: DimensionHelper.hp("1%"),
               paddingHorizontal: DimensionHelper.wp("2%"),
-              borderRadius: 4,
+              borderRadius: 4
             }}
           >
             <Text
               style={{
                 color: "rgba(255, 255, 255, 0.35)",
                 fontSize: DimensionHelper.wp("1.2%"),
-                letterSpacing: 0.3,
+                letterSpacing: 0.3
               }}
             >
               or search by church name

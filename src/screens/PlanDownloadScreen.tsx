@@ -105,9 +105,8 @@ export const PlanDownloadScreen = (props: Props) => {
           seconds: data.video.seconds || 10,
           fileType: "video"
         });
-      }
-      // Otherwise check for a file (image)
-      else if (data.file) {
+      } else if (data.file) {
+        // Otherwise check for a file (image)
         files.push({
           id: data.file.id,
           name: data.name || "",
@@ -192,7 +191,7 @@ export const PlanDownloadScreen = (props: Props) => {
   };
 
   const getVersion = () => {
-    let pkg = require("../../package.json");
+    const pkg = require("../../package.json");
     return (
       <Text style={{ ...Styles.smallWhiteText, textAlign: "left", fontSize: 12, paddingBottom: 15, color: "#999999", paddingTop: 15 }}>
         Version: {pkg.version}

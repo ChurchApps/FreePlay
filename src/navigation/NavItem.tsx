@@ -1,9 +1,9 @@
-import {DimensionHelper} from '../helpers/DimensionHelper';
-import React, { useState, useRef } from 'react';
-import {Text, TouchableHighlight, View, Image} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import {SvgUri} from 'react-native-svg';
-import {Styles, Colors} from '../helpers';
+import { DimensionHelper } from "../helpers/DimensionHelper";
+import React, { useState, useRef } from "react";
+import { Text, TouchableHighlight, View, Image } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import { SvgUri } from "react-native-svg";
+import { Styles, Colors } from "../helpers";
 
 type Props = {
   icon: string;
@@ -17,7 +17,7 @@ type Props = {
   logoUrl?: string;
 };
 
-//eslint-disable-next-line
+
 export const NavItem = React.forwardRef((props: Props, ref) => {
   // Track if this is the initial mount - only use hasTVPreferredFocus on first render
   const isInitialMount = useRef(true);
@@ -35,12 +35,12 @@ export const NavItem = React.forwardRef((props: Props, ref) => {
     }
   };
 
-  let color = props.selected ? Colors.primary : Colors.textSecondary;
+  const color = props.selected ? Colors.primary : Colors.textSecondary;
 
   const iconContainer = {
-    width: DimensionHelper.wp('8%'),
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: DimensionHelper.wp("8%"),
+    alignItems: "center",
+    justifyContent: "center"
   } as any;
 
   return (
@@ -52,15 +52,15 @@ export const NavItem = React.forwardRef((props: Props, ref) => {
       }}
       // Add accent background when selected and slightly rounded corners
       style={{
-        marginTop: DimensionHelper.wp('1%'),
-        marginHorizontal: DimensionHelper.wp('1%'),
+        marginTop: DimensionHelper.wp("1%"),
+        marginHorizontal: DimensionHelper.wp("1%"),
         paddingVertical: 10,
         borderRadius: 10,
-        overflow: 'hidden',
-        alignSelf: 'stretch',
+        overflow: "hidden",
+        alignSelf: "stretch",
         backgroundColor: props.selected
           ? Colors.hoverBackground
-          : 'transparent',
+          : "transparent"
       }}
       hasTVPreferredFocus={isInitialMount.current && props.expanded && props.selected}
       onFocus={() => {
@@ -72,29 +72,29 @@ export const NavItem = React.forwardRef((props: Props, ref) => {
       ref={ref as any}
       {...({
         nextFocusDown: props.nextFocusDown,
-        nextFocusUp: props.nextFocusUp,
+        nextFocusUp: props.nextFocusUp
       } as any)}>
       <View
         style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center"
         }}>
         <View style={iconContainer}>
           {props.logoUrl ? (
-            props.logoUrl.toLowerCase().endsWith('.svg') ? (
+            props.logoUrl.toLowerCase().endsWith(".svg") ? (
               <SvgUri
                 uri={props.logoUrl}
-                width={DimensionHelper.hp('4%')}
-                height={DimensionHelper.hp('4%')}
+                width={DimensionHelper.hp("4%")}
+                height={DimensionHelper.hp("4%")}
               />
             ) : (
               <Image
-                source={{uri: props.logoUrl}}
+                source={{ uri: props.logoUrl }}
                 style={{
-                  width: DimensionHelper.hp('4%'),
-                  height: DimensionHelper.hp('4%'),
+                  width: DimensionHelper.hp("4%"),
+                  height: DimensionHelper.hp("4%")
                 }}
                 resizeMode="contain"
               />
@@ -103,7 +103,7 @@ export const NavItem = React.forwardRef((props: Props, ref) => {
             <Icon
               name={props.icon}
               color={color}
-              size={DimensionHelper.hp('4.2%')}
+              size={DimensionHelper.hp("4.2%")}
             />
           )}
         </View>
@@ -113,10 +113,10 @@ export const NavItem = React.forwardRef((props: Props, ref) => {
             ellipsizeMode="tail"
             style={{
               ...Styles.smallWhiteText,
-              fontSize: DimensionHelper.wp('1.4%'),
+              fontSize: DimensionHelper.wp("1.4%"),
               color: color,
               flex: 1,
-              textAlign: 'left',
+              textAlign: "left"
             }}>
             {props.text}
           </Text>

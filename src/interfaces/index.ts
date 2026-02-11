@@ -161,4 +161,4 @@ export interface FeedFileInterface {
   fileType?: string;
 }
 
-export * from './ContentProviderInterfaces';
+export * from "./ContentProviderInterfaces";

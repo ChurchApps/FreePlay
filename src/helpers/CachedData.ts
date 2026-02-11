@@ -47,7 +47,7 @@ export class CachedData {
       Sentry.addBreadcrumb({
         category: "storage",
         message: `Failed to get AsyncStorage key: ${key}`,
-        level: "error",
+        level: "error"
       });
       return null;
     }
@@ -61,7 +61,7 @@ export class CachedData {
       Sentry.addBreadcrumb({
         category: "storage",
         message: `Failed to set AsyncStorage key: ${key}`,
-        level: "error",
+        level: "error"
       });
     }
   }
@@ -101,7 +101,7 @@ export class CachedData {
           Sentry.addBreadcrumb({
             category: "download",
             message: `Download failed for ${f.url}: ${errorMessage}`,
-            level: "warning",
+            level: "warning"
           });
         }
       }
@@ -154,7 +154,7 @@ export class CachedData {
           fileProgressCallback(res.bytesWritten / res.contentLength);
         }
       },
-      progressDivider: 1, // Report progress frequently
+      progressDivider: 1 // Report progress frequently
     });
 
     // Track the download so it can be cancelled if needed

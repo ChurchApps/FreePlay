@@ -1,9 +1,9 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ContentProviderAuthData, getProvider, TokenHelper } from '@churchapps/content-provider-helper';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ContentProviderAuthData, getProvider, TokenHelper } from "@churchapps/content-provider-helper";
 
 const tokenHelper = new TokenHelper();
 
-const AUTH_KEY_PREFIX = 'provider_auth_';
+const AUTH_KEY_PREFIX = "provider_auth_";
 
 export class ProviderAuthHelper {
   static async getAuth(providerId: string): Promise<ContentProviderAuthData | null> {
@@ -36,7 +36,7 @@ export class ProviderAuthHelper {
     }
   }
 
-  private static CONNECTION_STATE_KEY = 'provider_connection_states';
+  private static CONNECTION_STATE_KEY = "provider_connection_states";
 
   static async setConnectionState(providerId: string, connected: boolean): Promise<void> {
     try {
@@ -53,7 +53,7 @@ export class ProviderAuthHelper {
       const data = await AsyncStorage.getItem(this.CONNECTION_STATE_KEY);
       return data ? JSON.parse(data) : {};
     } catch (error) {
-      console.error('Error getting connection states:', error);
+      console.error("Error getting connection states:", error);
       return {};
     }
   }

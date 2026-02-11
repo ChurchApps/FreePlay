@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useCallback, useState } from "react"
+import React, { useRef, useMemo, useCallback, useState } from "react";
 import { Styles, Colors } from "../helpers";
 import { View, Text, Image, FlatList, ListRenderItem, TouchableHighlight, StyleSheet } from "react-native";
 import { CachedData } from "../helpers";
@@ -11,43 +11,41 @@ type Props = { onSelect: (index: number) => void };
 type MessageItem = { index: number; name: string; image?: string; url?: string; fileType?: string };
 
 const styles = StyleSheet.create({
-  maincard: {
-    width: '33.33%',
-  },
+  maincard: { width: "33.33%" },
   card: {
     width: "100%",
     borderRadius: 12,
-    overflow: "hidden",
+    overflow: "hidden"
   },
   cardInner: {
     width: "100%",
     borderRadius: 12,
     padding: 8,
-    overflow: "hidden",
+    overflow: "hidden"
   },
   image: {
     width: "100%",
     aspectRatio: 16 / 9,
-    borderRadius: 8,
+    borderRadius: 8
   },
   textContainer: {
     borderRadius: 8,
     padding: 10,
     backgroundColor: Colors.backgroundCard,
-    alignItems: "center",
+    alignItems: "center"
   },
   title: {
     fontSize: 14,
     fontWeight: "bold",
     color: Colors.textPrimary,
-    textAlign: "center",
+    textAlign: "center"
   },
   imagePlaceholder: {
     backgroundColor: Colors.primary,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 8,
-  },
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 8
+  }
 });
 
 export const SelectMessage = (props: Props) => {
@@ -61,7 +59,7 @@ export const SelectMessage = (props: Props) => {
       name: m.name || "",
       image: m.image,
       url: m.url,
-      fileType: m.fileType,
+      fileType: m.fileType
     }));
   }, []);
 
@@ -83,8 +81,8 @@ export const SelectMessage = (props: Props) => {
             isFocused ? {
               borderWidth: 2,
               borderColor: Colors.primary,
-              transform: [{ scale: 1.03 }],
-            } : { borderWidth: 2, borderColor: 'transparent' },
+              transform: [{ scale: 1.03 }]
+            } : { borderWidth: 2, borderColor: "transparent" }
           ]}
           hasTVPreferredFocus={data.index === 0}
           focusable={true}
@@ -130,5 +128,5 @@ export const SelectMessage = (props: Props) => {
         />
       </View>
     </View>
-  )
-}
+  );
+};

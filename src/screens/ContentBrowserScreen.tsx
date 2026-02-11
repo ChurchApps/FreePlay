@@ -1,25 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   Image,
   View,
   FlatList,
   TouchableHighlight,
   BackHandler,
-  Text,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import { SvgUri } from 'react-native-svg';
-import { DimensionHelper } from '../helpers/DimensionHelper';
+  Text
+} from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import { SvgUri } from "react-native-svg";
+import { DimensionHelper } from "../helpers/DimensionHelper";
 import {
   ContentItem,
   ContentFolder,
   ContentFile,
   isContentFolder,
-  isContentFile,
-} from '../interfaces';
-import { Styles, CachedData, ProviderAuthHelper, Colors } from '../helpers';
-import { MenuHeader, SkeletonCard } from '../components';
-import { getProvider } from '../providers';
+  isContentFile
+} from "../interfaces";
+import { Styles, CachedData, ProviderAuthHelper, Colors } from "../helpers";
+import { MenuHeader, SkeletonCard } from "../components";
+import { getProvider } from "../providers";
 
 type Props = {
   navigateTo(page: string, data?: any): void;
@@ -43,22 +43,22 @@ export const ContentBrowserScreen = (props: Props) => {
   const currentFolder = folderStack.length > 0 ? folderStack[folderStack.length - 1] : null;
 
   // Build a unique key for focus memory based on provider + folder path
-  const screenKey = `contentBrowser_${props.providerId}_${currentFolder?.id || 'root'}`;
+  const screenKey = `contentBrowser_${props.providerId}_${currentFolder?.id || "root"}`;
 
   const styles: any = {
     list: {
       flex: 1,
-      marginHorizontal: 'auto',
-      width: '100%',
-      paddingHorizontal: DimensionHelper.wp('1%'),
+      marginHorizontal: "auto",
+      width: "100%",
+      paddingHorizontal: DimensionHelper.wp("1%")
     },
     item: {
       flex: 1,
-      maxWidth: '33%',
-      alignItems: 'center',
+      maxWidth: "33%",
+      alignItems: "center",
       padding: 10,
-      borderRadius: 12,
-    },
+      borderRadius: 12
+    }
   };
 
   const loadData = async () => {
@@ -98,21 +98,21 @@ export const ContentBrowserScreen = (props: Props) => {
           loop: f.loop,
           loopVideo: f.loopVideo,
           seconds: f.seconds,
-          image: f.thumbnail,
+          image: f.thumbnail
         }));
 
-        props.navigateTo('providerDownload', {
+        props.navigateTo("providerDownload", {
           providerId: props.providerId,
           coverImage: folder.thumbnail,
           title: folder.title,
           startIndex: 0,
-          folderStack: [...folderStack, folder],
+          folderStack: [...folderStack, folder]
         });
       } else {
         // No files in playlist - navigate into folder to show empty state
-        props.navigateTo('contentBrowser', {
+        props.navigateTo("contentBrowser", {
           providerId: props.providerId,
-          folderStack: [...folderStack, folder],
+          folderStack: [...folderStack, folder]
         });
       }
       return;
@@ -120,7 +120,7 @@ export const ContentBrowserScreen = (props: Props) => {
 
     // Non-leaf folder - fetch contents to check if it has files
     const contents = await provider.browse(folder.path, auth);
-    const files = contents.filter((item): item is ContentFile => item.type === 'file');
+    const files = contents.filter((item): item is ContentFile => item.type === "file");
 
     if (files.length > 0) {
       // Folder has files - go to download screen
@@ -132,28 +132,28 @@ export const ContentBrowserScreen = (props: Props) => {
         loop: f.loop,
         loopVideo: f.loopVideo,
         seconds: f.seconds,
-        image: f.thumbnail,
+        image: f.thumbnail
       }));
 
-      props.navigateTo('providerDownload', {
+      props.navigateTo("providerDownload", {
         providerId: props.providerId,
         coverImage: folder.thumbnail,
         title: folder.title,
         startIndex: 0,
-        folderStack: [...folderStack, folder],
+        folderStack: [...folderStack, folder]
       });
     } else {
       // Folder only has subfolders - navigate into it
-      props.navigateTo('contentBrowser', {
+      props.navigateTo("contentBrowser", {
         providerId: props.providerId,
-        folderStack: [...folderStack, folder],
+        folderStack: [...folderStack, folder]
       });
     }
   };
 
   const handleSelectFile = (file: ContentFile) => {
     // Get all files in current folder for playlist
-    const files = items.filter((item): item is ContentFile => item.type === 'file');
+    const files = items.filter((item): item is ContentFile => item.type === "file");
 
     // Convert to playlist format
     CachedData.messageFiles = files.map(f => ({
@@ -164,18 +164,18 @@ export const ContentBrowserScreen = (props: Props) => {
       loop: f.loop,
       loopVideo: f.loopVideo,
       seconds: f.seconds,
-      image: f.thumbnail,
+      image: f.thumbnail
     }));
 
     // Find selected file index
     const startIndex = files.findIndex(f => f.id === file.id);
 
-    props.navigateTo('providerDownload', {
+    props.navigateTo("providerDownload", {
       providerId: props.providerId,
       coverImage: file.thumbnail || currentFolder?.thumbnail,
       title: currentFolder?.title || file.title,
       startIndex: startIndex >= 0 ? startIndex : 0,
-      folderStack,
+      folderStack
     });
   };
 
@@ -193,7 +193,7 @@ export const ContentBrowserScreen = (props: Props) => {
       && (savedIndex !== undefined ? index === savedIndex : index === 0);
     const folderImage = folder.thumbnail || currentFolder?.thumbnail || provider?.logos.dark;
     const isLogoFallback = !folder.thumbnail && !currentFolder?.thumbnail;
-    const isSvg = folderImage?.toLowerCase().endsWith('.svg');
+    const isSvg = folderImage?.toLowerCase().endsWith(".svg");
     const isFocused = focusedItemId === folder.id;
 
     return (
@@ -203,40 +203,40 @@ export const ContentBrowserScreen = (props: Props) => {
           ...(isFocused ? {
             borderWidth: 2,
             borderColor: Colors.primary,
-            transform: [{ scale: 1.03 }],
-          } : { borderWidth: 2, borderColor: 'transparent' }),
+            transform: [{ scale: 1.03 }]
+          } : { borderWidth: 2, borderColor: "transparent" })
         }}
         underlayColor={Colors.pressedBackground}
         onPress={() => { CachedData.lastFocusedIndex[screenKey] = index; handleSelectFolder(folder); }}
         onFocus={() => { initialFocusSet.current = true; focusedIndexRef.current = index; setFocusedItemId(folder.id); }}
         onBlur={() => { setFocusedItemId(prev => prev === folder.id ? null : prev); }}
         hasTVPreferredFocus={shouldFocus}>
-        <View style={{ width: '100%' }}>
+        <View style={{ width: "100%" }}>
           {folderImage ? (
             isSvg ? (
               <View style={{
-                height: DimensionHelper.hp('25%'),
-                width: '100%',
+                height: DimensionHelper.hp("25%"),
+                width: "100%",
                 borderRadius: 12,
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: Colors.surface,
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: Colors.surface
               }}>
                 <SvgUri uri={folderImage} width="60%" height="60%" />
               </View>
             ) : isLogoFallback ? (
               <View style={{
-                height: DimensionHelper.hp('25%'),
-                width: '100%',
+                height: DimensionHelper.hp("25%"),
+                width: "100%",
                 borderRadius: 12,
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: Colors.surface,
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: Colors.surface
               }}>
                 <Image
                   style={{
-                    height: '80%',
-                    width: '80%',
+                    height: "80%",
+                    width: "80%"
                   }}
                   resizeMode="contain"
                   source={{ uri: folderImage }}
@@ -245,9 +245,9 @@ export const ContentBrowserScreen = (props: Props) => {
             ) : (
               <Image
                 style={{
-                  height: DimensionHelper.hp('25%'),
-                  width: '100%',
-                  borderRadius: 12,
+                  height: DimensionHelper.hp("25%"),
+                  width: "100%",
+                  borderRadius: 12
                 }}
                 resizeMode="cover"
                 source={{ uri: folderImage }}
@@ -256,27 +256,27 @@ export const ContentBrowserScreen = (props: Props) => {
           ) : (
             <View
               style={{
-                height: DimensionHelper.hp('25%'),
-                width: '100%',
+                height: DimensionHelper.hp("25%"),
+                width: "100%",
                 borderRadius: 12,
-                justifyContent: 'center',
-                alignItems: 'center',
+                justifyContent: "center",
+                alignItems: "center",
                 backgroundColor: Colors.surface,
                 borderWidth: 1,
-                borderColor: Colors.borderSubtle,
+                borderColor: Colors.borderSubtle
               }}>
               <Icon
                 name="folder"
-                size={DimensionHelper.wp('8%')}
+                size={DimensionHelper.wp("8%")}
                 color="rgba(255,255,255,0.4)"
               />
               <Text
                 style={{
-                  color: 'rgba(255,255,255,0.7)',
-                  fontSize: DimensionHelper.wp('1.5%'),
-                  textAlign: 'center',
+                  color: "rgba(255,255,255,0.7)",
+                  fontSize: DimensionHelper.wp("1.5%"),
+                  textAlign: "center",
                   paddingHorizontal: 12,
-                  marginTop: DimensionHelper.hp('1.5%'),
+                  marginTop: DimensionHelper.hp("1.5%")
                 }}
                 numberOfLines={2}>
                 {folder.title}
@@ -286,10 +286,10 @@ export const ContentBrowserScreen = (props: Props) => {
           {folderImage && (
             <Text
               style={{
-                color: '#fff',
-                fontSize: DimensionHelper.wp('1.2%'),
-                marginTop: DimensionHelper.hp('1%'),
-                textAlign: 'center',
+                color: "#fff",
+                fontSize: DimensionHelper.wp("1.2%"),
+                marginTop: DimensionHelper.hp("1%"),
+                textAlign: "center"
               }}
               numberOfLines={2}>
               {folder.title}
@@ -301,7 +301,7 @@ export const ContentBrowserScreen = (props: Props) => {
   };
 
   const getFileCard = (file: ContentFile, index: number) => {
-    const isVideo = file.mediaType === 'video';
+    const isVideo = file.mediaType === "video";
     const savedIndex = CachedData.lastFocusedIndex[screenKey];
     const shouldFocus = !props.sidebarExpanded && !initialFocusSet.current
       && (savedIndex !== undefined ? index === savedIndex : index === 0);
@@ -314,22 +314,22 @@ export const ContentBrowserScreen = (props: Props) => {
           ...(isFocused ? {
             borderWidth: 2,
             borderColor: Colors.primary,
-            transform: [{ scale: 1.03 }],
-          } : { borderWidth: 2, borderColor: 'transparent' }),
+            transform: [{ scale: 1.03 }]
+          } : { borderWidth: 2, borderColor: "transparent" })
         }}
         underlayColor={Colors.pressedBackground}
         onPress={() => { CachedData.lastFocusedIndex[screenKey] = index; handleSelectFile(file); }}
         onFocus={() => { initialFocusSet.current = true; focusedIndexRef.current = index; setFocusedItemId(file.id); }}
         onBlur={() => { setFocusedItemId(prev => prev === file.id ? null : prev); }}
         hasTVPreferredFocus={shouldFocus}>
-        <View style={{ width: '100%' }}>
-          <View style={{ position: 'relative' }}>
+        <View style={{ width: "100%" }}>
+          <View style={{ position: "relative" }}>
             {file.thumbnail ? (
               <Image
                 style={{
-                  height: DimensionHelper.hp('25%'),
-                  width: '100%',
-                  borderRadius: 12,
+                  height: DimensionHelper.hp("25%"),
+                  width: "100%",
+                  borderRadius: 12
                 }}
                 resizeMode="cover"
                 source={{ uri: file.thumbnail }}
@@ -337,16 +337,16 @@ export const ContentBrowserScreen = (props: Props) => {
             ) : (
               <View
                 style={{
-                  height: DimensionHelper.hp('25%'),
-                  width: '100%',
+                  height: DimensionHelper.hp("25%"),
+                  width: "100%",
                   borderRadius: 12,
                   backgroundColor: Colors.backgroundCard,
-                  justifyContent: 'center',
-                  alignItems: 'center',
+                  justifyContent: "center",
+                  alignItems: "center"
                 }}>
                 <Icon
-                  name={isVideo ? 'play-circle-outline' : 'image'}
-                  size={DimensionHelper.wp('4%')}
+                  name={isVideo ? "play-circle-outline" : "image"}
+                  size={DimensionHelper.wp("4%")}
                   color="rgba(255,255,255,0.5)"
                 />
               </View>
@@ -354,23 +354,23 @@ export const ContentBrowserScreen = (props: Props) => {
             {isVideo && file.thumbnail && (
               <View
                 style={{
-                  position: 'absolute',
+                  position: "absolute",
                   top: 0,
                   left: 0,
                   right: 0,
                   bottom: 0,
-                  justifyContent: 'center',
-                  alignItems: 'center',
+                  justifyContent: "center",
+                  alignItems: "center"
                 }}>
                 <View
                   style={{
-                    backgroundColor: 'rgba(0,0,0,0.5)',
+                    backgroundColor: "rgba(0,0,0,0.5)",
                     borderRadius: 30,
-                    padding: 8,
+                    padding: 8
                   }}>
                   <Icon
                     name="play-arrow"
-                    size={DimensionHelper.wp('3%')}
+                    size={DimensionHelper.wp("3%")}
                     color="#fff"
                   />
                 </View>
@@ -379,21 +379,21 @@ export const ContentBrowserScreen = (props: Props) => {
           </View>
           <Text
             style={{
-              color: '#fff',
-              fontSize: DimensionHelper.wp('1.1%'),
-              marginTop: DimensionHelper.hp('1%'),
-              textAlign: 'center',
+              color: "#fff",
+              fontSize: DimensionHelper.wp("1.1%"),
+              marginTop: DimensionHelper.hp("1%"),
+              textAlign: "center"
             }}
             numberOfLines={2}>
             {file.title}
           </Text>
           <Text
             style={{
-              color: 'rgba(255,255,255,0.5)',
-              fontSize: DimensionHelper.wp('0.9%'),
-              textAlign: 'center',
+              color: "rgba(255,255,255,0.5)",
+              fontSize: DimensionHelper.wp("0.9%"),
+              textAlign: "center"
             }}>
-            {isVideo ? 'Video' : 'Image'}
+            {isVideo ? "Video" : "Image"}
           </Text>
         </View>
       </TouchableHighlight>
@@ -420,7 +420,7 @@ export const ContentBrowserScreen = (props: Props) => {
             keyExtractor={item => item.id}
             renderItem={() => (
               <View style={{ ...styles.item, padding: 10 }}>
-                <SkeletonCard width="100%" height={DimensionHelper.hp('25%')} />
+                <SkeletonCard width="100%" height={DimensionHelper.hp("25%")} />
               </View>
             )}
           />
@@ -430,8 +430,8 @@ export const ContentBrowserScreen = (props: Props) => {
 
     if (items.length === 0) {
       return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={{ color: 'rgba(255,255,255,0.6)' }}>
+        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+          <Text style={{ color: "rgba(255,255,255,0.6)" }}>
             No content available
           </Text>
         </View>
@@ -452,9 +452,9 @@ export const ContentBrowserScreen = (props: Props) => {
           keyExtractor={item => item.id}
           initialScrollIndex={initialRow}
           getItemLayout={(_data, idx) => ({
-            length: DimensionHelper.hp('35%'),
-            offset: DimensionHelper.hp('35%') * idx,
-            index: idx,
+            length: DimensionHelper.hp("35%"),
+            offset: DimensionHelper.hp("35%") * idx,
+            index: idx
           })}
         />
       </View>
@@ -467,14 +467,14 @@ export const ContentBrowserScreen = (props: Props) => {
       const newStack = folderStack.slice(0, -1);
       if (newStack.length === 0) {
         // Return to root
-        props.navigateTo('contentBrowser', {
+        props.navigateTo("contentBrowser", {
           providerId: props.providerId,
-          folderStack: [],
+          folderStack: []
         });
       } else {
-        props.navigateTo('contentBrowser', {
+        props.navigateTo("contentBrowser", {
           providerId: props.providerId,
-          folderStack: newStack,
+          folderStack: newStack
         });
       }
     } else {
@@ -490,7 +490,7 @@ export const ContentBrowserScreen = (props: Props) => {
     CachedData.preventSidebarExpand = true;
     props.sidebarState(false);
     loadData();
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
       handleBack();
       return true;
     });
@@ -500,7 +500,7 @@ export const ContentBrowserScreen = (props: Props) => {
   useEffect(init, [currentFolder?.id, props.providerId]);
 
   // Determine header text
-  let headerText = provider?.name || 'Browse Content';
+  let headerText = provider?.name || "Browse Content";
   if (currentFolder) {
     headerText = currentFolder.title;
   }

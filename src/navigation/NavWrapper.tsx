@@ -1,17 +1,17 @@
-import {DimensionHelper} from '../helpers/DimensionHelper';
+import { DimensionHelper } from "../helpers/DimensionHelper";
 import {
   Animated,
   Easing,
   View,
   findNodeHandle,
-  useTVEventHandler,
-} from 'react-native';
+  useTVEventHandler
+} from "react-native";
 
-import React, {useEffect, useRef} from 'react';
-import {CachedData, Styles, Colors} from '../helpers';
-import {NavItem} from './NavItem';
-import {getProvider} from '../providers';
-import {FreePlayLogo} from '../components';
+import React, { useEffect, useRef } from "react";
+import { CachedData, Styles, Colors } from "../helpers";
+import { NavItem } from "./NavItem";
+import { getProvider } from "../providers";
+import { FreePlayLogo } from "../components";
 
 type Props = {
   screen: React.JSX.Element;
@@ -27,7 +27,7 @@ export const NavWrapper = (props: Props) => {
   const recentlyCollapsed = useRef(false);
 
   // Screens where sidebar fully hides when collapsed
-  const fullScreenModeScreens = ['planDownload'];
+  const fullScreenModeScreens = ["planDownload"];
   const isFullScreenMode = fullScreenModeScreens.includes(CachedData.currentScreen);
 
   const getTargetWidth = () => {
@@ -36,12 +36,12 @@ export const NavWrapper = (props: Props) => {
   };
 
   const animatedWidth = useRef(
-    new Animated.Value(getTargetWidth()),
+    new Animated.Value(getTargetWidth())
   ).current;
 
   const animatedWidthPercent = animatedWidth.interpolate({
     inputRange: [0, 8, 22],
-    outputRange: ['0%', '8%', '22%'],
+    outputRange: ["0%", "8%", "22%"]
   });
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export const NavWrapper = (props: Props) => {
       toValue: getTargetWidth(),
       duration: 240,
       easing: Easing.out(Easing.cubic),
-      useNativeDriver: false,
+      useNativeDriver: false
     }).start();
   }, [props.sidebarExpanded, CachedData.currentScreen]);
 
@@ -67,7 +67,7 @@ export const NavWrapper = (props: Props) => {
     if (state && (
       recentlyCollapsed.current ||
       CachedData.preventSidebarExpand ||
-      CachedData.currentScreen === 'contentBrowser'
+      CachedData.currentScreen === "contentBrowser"
     )) return;
     props.sidebarState(state);
   };
@@ -78,19 +78,19 @@ export const NavWrapper = (props: Props) => {
 
   const handleChurchClick = () => {
     // If paired to a plan, go directly to plan download screen
-    if (CachedData.planTypeId) handleClick('planDownload');
+    if (CachedData.planTypeId) handleClick("planDownload");
     // If paired to a classroom, show room selection
-    else if (CachedData.church) handleClick('selectRoom');
+    else if (CachedData.church) handleClick("selectRoom");
     // Not paired at all, go to church search
-    else handleClick('selectChurch');
+    else handleClick("selectChurch");
   };
 
   // TV-specific: useTVEventHandler catches DPAD events reliably on TV platforms
   const tvEventHandler = (evt: any) => {
     const eventType = evt && (evt.eventType || evt.eventName || evt.type);
     const keyCode = evt && (evt.keyCode || evt.which);
-    const isRight = eventType === 'right' || keyCode === 22;
-    const isLeft = eventType === 'left' || keyCode === 21;
+    const isRight = eventType === "right" || keyCode === 22;
+    const isLeft = eventType === "left" || keyCode === 21;
 
     if (isRight && props.sidebarExpanded) {
       props.sidebarState(false);
@@ -102,24 +102,24 @@ export const NavWrapper = (props: Props) => {
   };
   useTVEventHandler(tvEventHandler as any);
 
-  const logoSize = props.sidebarExpanded ? 'medium' : 'small';
+  const logoSize = props.sidebarExpanded ? "medium" : "small";
   const showLogoText = props.sidebarExpanded;
 
-  let highlightedItem = 'browse';
+  let highlightedItem = "browse";
   const highlightTab = (tab: string) => {
     switch (tab) {
-      case 'selectRoom':
-      case 'selectChurch':
-      case 'download':
-      case 'planDownload':
-      case 'player':
-        highlightedItem = 'church';
+      case "selectRoom":
+      case "selectChurch":
+      case "download":
+      case "planDownload":
+      case "player":
+        highlightedItem = "church";
         break;
-      case 'providers':
-        highlightedItem = 'providers';
+      case "providers":
+        highlightedItem = "providers";
         break;
-      case 'contentBrowser':
-        highlightedItem = CachedData.activeProvider || 'provider';
+      case "contentBrowser":
+        highlightedItem = CachedData.activeProvider || "provider";
         break;
     }
   };
@@ -131,20 +131,20 @@ export const NavWrapper = (props: Props) => {
   const getContent = () => (
     <View
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: DimensionHelper.hp('100%'),
-        width: '100%',
+        display: "flex",
+        flexDirection: "column",
+        height: DimensionHelper.hp("100%"),
+        width: "100%"
       }}
       accessible={true}>
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <View
           style={{
-            height: DimensionHelper.hp('8%'),
-            maxWidth: '90%',
-            alignSelf: 'center',
-            marginTop: DimensionHelper.hp('1%'),
-            justifyContent: 'center',
+            height: DimensionHelper.hp("8%"),
+            maxWidth: "90%",
+            alignSelf: "center",
+            marginTop: DimensionHelper.hp("1%"),
+            justifyContent: "center"
           }}>
           <FreePlayLogo size={logoSize} showText={showLogoText} />
         </View>
@@ -160,7 +160,7 @@ export const NavWrapper = (props: Props) => {
           return (
             <NavItem
               key={providerId}
-              icon={'play-circle-outline'}
+              icon={"play-circle-outline"}
               text={provider.name}
               logoUrl={provider.logos?.dark}
               expanded={props.sidebarExpanded}
@@ -168,7 +168,7 @@ export const NavWrapper = (props: Props) => {
               selected={highlightedItem === providerId}
               onPress={() => {
                 CachedData.activeProvider = providerId;
-                props.navigateTo('contentBrowser', {providerId, folderStack: []});
+                props.navigateTo("contentBrowser", { providerId, folderStack: [] });
               }}
               ref={(el: any) => { providerRefs.current[providerId] = el; }}
               nextFocusUp={prevRef ? findNodeHandle(prevRef) : undefined}
@@ -177,15 +177,15 @@ export const NavWrapper = (props: Props) => {
           );
         })}
       </View>
-      <View style={{marginBottom: DimensionHelper.hp('2%')}}>
+      <View style={{ marginBottom: DimensionHelper.hp("2%") }}>
         <NavItem
-          icon={'extension'}
-          text={'Providers'}
+          icon={"extension"}
+          text={"Providers"}
           expanded={props.sidebarExpanded}
           setExpanded={handleSidebarExpand}
-          selected={highlightedItem === 'providers'}
+          selected={highlightedItem === "providers"}
           onPress={() => {
-            handleClick('providers');
+            handleClick("providers");
           }}
           ref={providersRef}
           nextFocusUp={
@@ -207,18 +207,18 @@ export const NavWrapper = (props: Props) => {
     Animated.timing(accentOpacity, {
       toValue: props.sidebarExpanded || sidebarHidden ? 0 : 1,
       duration: 200,
-      useNativeDriver: false,
+      useNativeDriver: false
     }).start();
   }, [props.sidebarExpanded, sidebarHidden]);
 
   return (
-    <View style={{display: 'flex', flexDirection: 'row'}}>
+    <View style={{ display: "flex", flexDirection: "row" }}>
       <Animated.View
         style={{
           width: animatedWidthPercent,
-          paddingTop: DimensionHelper.hp('0.5%'),
+          paddingTop: DimensionHelper.hp("0.5%"),
           backgroundColor: Styles.navAccent.backgroundColor,
-          overflow: 'hidden',
+          overflow: "hidden"
         }}>
         {!sidebarHidden && getContent()}
       </Animated.View>
@@ -226,22 +226,22 @@ export const NavWrapper = (props: Props) => {
       <Animated.View
         style={{
           width: 2,
-          height: DimensionHelper.hp('100%'),
+          height: DimensionHelper.hp("100%"),
           backgroundColor: Colors.primary,
-          opacity: accentOpacity,
+          opacity: accentOpacity
         }}
       />
       <View
         style={{
           flex: 1,
-          alignItems: 'flex-start',
-          height: DimensionHelper.hp('100%'),
+          alignItems: "flex-start",
+          height: DimensionHelper.hp("100%")
         }}>
         <View
           style={{
-            width: sidebarHidden ? DimensionHelper.wp('100%') : DimensionHelper.wp('92%'),
-            height: DimensionHelper.hp('100%'),
-            backgroundColor: 'transparent',
+            width: sidebarHidden ? DimensionHelper.wp("100%") : DimensionHelper.wp("92%"),
+            height: DimensionHelper.hp("100%"),
+            backgroundColor: "transparent"
           }}>
           {props.screen}
         </View>

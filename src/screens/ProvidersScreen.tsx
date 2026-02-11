@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   View,
   FlatList,
@@ -6,16 +6,16 @@ import {
   BackHandler,
   Text,
   Alert,
-  Image,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import LinearGradient from 'react-native-linear-gradient';
-import { SvgUri } from 'react-native-svg';
-import { DimensionHelper } from '../helpers/DimensionHelper';
-import { Styles, CachedData, ProviderAuthHelper, Colors } from '../helpers';
-import { MenuHeader, SkeletonCard } from '../components';
-import { getProvider, getAvailableProviders } from '../providers';
-import { ProviderInfo } from '../interfaces';
+  Image
+} from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import LinearGradient from "react-native-linear-gradient";
+import { SvgUri } from "react-native-svg";
+import { DimensionHelper } from "../helpers/DimensionHelper";
+import { Styles, CachedData, ProviderAuthHelper, Colors } from "../helpers";
+import { MenuHeader, SkeletonCard } from "../components";
+import { getProvider, getAvailableProviders } from "../providers";
+import { ProviderInfo } from "../interfaces";
 
 type Props = {
   navigateTo(page: string, data?: any): void;
@@ -29,21 +29,21 @@ export const ProvidersScreen = (props: Props) => {
   const [focusedItemId, setFocusedItemId] = React.useState<string | null>(null);
   const initialFocusSet = React.useRef(false);
   const focusedIndexRef = React.useRef<number>(0);
-  const screenKey = 'providers';
+  const screenKey = "providers";
 
   const styles: any = {
     list: {
       flex: 1,
-      marginHorizontal: 'auto',
-      width: '100%',
+      marginHorizontal: "auto",
+      width: "100%"
     },
     item: {
       flex: 1,
-      maxWidth: '33%',
-      alignItems: 'center',
+      maxWidth: "33%",
+      alignItems: "center",
       padding: 7,
-      borderRadius: 10,
-    },
+      borderRadius: 10
+    }
   };
 
   const loadProviders = () => {
@@ -81,12 +81,12 @@ export const ProvidersScreen = (props: Props) => {
       CachedData.connectedProviders.push(providerId);
     }
     CachedData.activeProvider = providerId;
-    props.navigateTo('contentBrowser', { providerId, folderStack: [] });
+    props.navigateTo("contentBrowser", { providerId, folderStack: [] });
   };
 
   const handleSelectProvider = async (providerInfo: ProviderInfo) => {
     if (!providerInfo.implemented) {
-      Alert.alert('Coming Soon', `${providerInfo.name} is not yet available.`);
+      Alert.alert("Coming Soon", `${providerInfo.name} is not yet available.`);
       return;
     }
 
@@ -94,13 +94,17 @@ export const ProvidersScreen = (props: Props) => {
 
     if (isConnected) {
       Alert.alert(
-        'Disconnect Provider',
+        "Disconnect Provider",
         `Are you sure you want to disconnect from ${providerInfo.name}?`,
         [
-          { text: 'Cancel', style: 'cancel' },
-          { text: 'Disconnect', style: 'destructive', onPress: async () => {
-            await handleDisconnect(providerInfo);
-          }},
+          { text: "Cancel", style: "cancel" },
+          {
+            text: "Disconnect",
+            style: "destructive",
+            onPress: async () => {
+              await handleDisconnect(providerInfo);
+            }
+          }
         ]
       );
       return;
@@ -108,19 +112,19 @@ export const ProvidersScreen = (props: Props) => {
 
     const provider = getProvider(providerInfo.id);
     if (!provider) {
-      Alert.alert('Error', `Provider ${providerInfo.name} not found.`);
+      Alert.alert("Error", `Provider ${providerInfo.name} not found.`);
       return;
     }
 
     // Provider-agnostic auth handling based on interface properties
     if (!provider.requiresAuth) {
       await connectAndNavigate(providerInfo.id);
-    } else if (provider.authTypes.includes('device_flow')) {
-      props.navigateTo('providerDeviceAuth', { providerId: providerInfo.id });
-    } else if (provider.authTypes.includes('form_login')) {
-      props.navigateTo('providerFormLogin', { providerId: providerInfo.id });
+    } else if (provider.authTypes.includes("device_flow")) {
+      props.navigateTo("providerDeviceAuth", { providerId: providerInfo.id });
+    } else if (provider.authTypes.includes("form_login")) {
+      props.navigateTo("providerFormLogin", { providerId: providerInfo.id });
     } else {
-      Alert.alert('Not Supported', `${providerInfo.name} authentication is not yet supported.`);
+      Alert.alert("Not Supported", `${providerInfo.name} authentication is not yet supported.`);
     }
   };
 
@@ -137,38 +141,38 @@ export const ProvidersScreen = (props: Props) => {
       <TouchableHighlight
         style={{
           ...styles.item,
-          ...(isFocused ? { transform: [{ scale: 1.03 }] } : {}),
+          ...(isFocused ? { transform: [{ scale: 1.03 }] } : {})
         }}
         underlayColor={Colors.pressedBackground}
         onPress={() => { CachedData.lastFocusedIndex[screenKey] = data.index; handleSelectProvider(providerInfo); }}
         onFocus={() => { initialFocusSet.current = true; focusedIndexRef.current = data.index; setFocusedItemId(providerInfo.id); }}
         onBlur={() => { setFocusedItemId(prev => prev === providerInfo.id ? null : prev); }}
         hasTVPreferredFocus={shouldFocus}>
-        <View style={{ width: '100%' }}>
+        <View style={{ width: "100%" }}>
           <LinearGradient
-            colors={providerInfo.implemented ? ['#2d1f2d', '#1a1118'] : ['#2a2a2a', '#1a1a1a']}
+            colors={providerInfo.implemented ? ["#2d1f2d", "#1a1118"] : ["#2a2a2a", "#1a1a1a"]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={{
-              height: DimensionHelper.hp('28%'),
-              width: '100%',
+              height: DimensionHelper.hp("28%"),
+              width: "100%",
               borderRadius: 8,
-              justifyContent: 'center',
-              alignItems: 'center',
+              justifyContent: "center",
+              alignItems: "center",
               borderWidth: isFocused ? 2 : 1,
-              borderColor: isFocused ? Colors.primary : (providerInfo.implemented ? 'rgba(233,30,99,0.15)' : 'rgba(100,100,100,0.15)'),
+              borderColor: isFocused ? Colors.primary : (providerInfo.implemented ? "rgba(233,30,99,0.15)" : "rgba(100,100,100,0.15)")
             }}>
             {logo ? (
               <View
                 style={{
-                  width: '80%',
-                  height: DimensionHelper.hp('12%'),
-                  marginBottom: DimensionHelper.hp('1%'),
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  opacity: providerInfo.implemented ? 1 : 0.5,
+                  width: "80%",
+                  height: DimensionHelper.hp("12%"),
+                  marginBottom: DimensionHelper.hp("1%"),
+                  justifyContent: "center",
+                  alignItems: "center",
+                  opacity: providerInfo.implemented ? 1 : 0.5
                 }}>
-                {logo.toLowerCase().endsWith('.svg') ? (
+                {logo.toLowerCase().endsWith(".svg") ? (
                   <SvgUri
                     uri={logo}
                     width="100%"
@@ -178,8 +182,8 @@ export const ProvidersScreen = (props: Props) => {
                   <Image
                     source={{ uri: logo }}
                     style={{
-                      width: '100%',
-                      height: '100%',
+                      width: "100%",
+                      height: "100%"
                     }}
                     resizeMode="contain"
                   />
@@ -188,14 +192,14 @@ export const ProvidersScreen = (props: Props) => {
             ) : (
               <View
                 style={{
-                  backgroundColor: 'rgba(255,255,255,0.08)',
+                  backgroundColor: "rgba(255,255,255,0.08)",
                   borderRadius: 40,
-                  padding: DimensionHelper.wp('2%'),
-                  marginBottom: DimensionHelper.hp('1%'),
+                  padding: DimensionHelper.wp("2%"),
+                  marginBottom: DimensionHelper.hp("1%")
                 }}>
                 <Icon
                   name="extension"
-                  size={DimensionHelper.wp('5%')}
+                  size={DimensionHelper.wp("5%")}
                   color={providerInfo.implemented ? Colors.textSubtle : Colors.textDimmed}
                 />
               </View>
@@ -203,12 +207,12 @@ export const ProvidersScreen = (props: Props) => {
             <Text
               style={{
                 color: providerInfo.implemented ? Colors.textPrimary : Colors.textDimmed,
-                fontSize: DimensionHelper.wp('1.5%'),
-                textAlign: 'center',
+                fontSize: DimensionHelper.wp("1.5%"),
+                textAlign: "center",
                 paddingHorizontal: 12,
-                textShadowColor: 'rgba(0,0,0,0.3)',
+                textShadowColor: "rgba(0,0,0,0.3)",
                 textShadowOffset: { width: 0, height: 1 },
-                textShadowRadius: 2,
+                textShadowRadius: 2
               }}
               numberOfLines={2}>
               {providerInfo.name}
@@ -216,20 +220,20 @@ export const ProvidersScreen = (props: Props) => {
             {isConnected && (
               <View
                 style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginTop: DimensionHelper.hp('1%'),
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginTop: DimensionHelper.hp("1%")
                 }}>
                 <Icon
                   name="check-circle"
-                  size={DimensionHelper.wp('1.2%')}
+                  size={DimensionHelper.wp("1.2%")}
                   color={Colors.success}
                 />
                 <Text
                   style={{
                     color: Colors.success,
-                    fontSize: DimensionHelper.wp('1%'),
-                    marginLeft: 4,
+                    fontSize: DimensionHelper.wp("1%"),
+                    marginLeft: 4
                   }}>
                   Connected
                 </Text>
@@ -239,8 +243,8 @@ export const ProvidersScreen = (props: Props) => {
               <Text
                 style={{
                   color: Colors.textDimmed,
-                  fontSize: DimensionHelper.wp('0.9%'),
-                  marginTop: DimensionHelper.hp('0.5%'),
+                  fontSize: DimensionHelper.wp("0.9%"),
+                  marginTop: DimensionHelper.hp("0.5%")
                 }}>
                 Coming Soon
               </Text>
@@ -262,7 +266,7 @@ export const ProvidersScreen = (props: Props) => {
             keyExtractor={item => item.id}
             renderItem={() => (
               <View style={{ ...styles.item, padding: 7 }}>
-                <SkeletonCard width="100%" height={DimensionHelper.hp('28%')} />
+                <SkeletonCard width="100%" height={DimensionHelper.hp("28%")} />
               </View>
             )}
           />
@@ -283,9 +287,9 @@ export const ProvidersScreen = (props: Props) => {
           extraData={[connectedProviders, focusedItemId]}
           initialScrollIndex={initialRow}
           getItemLayout={(_data, idx) => ({
-            length: DimensionHelper.hp('35%'),
-            offset: DimensionHelper.hp('35%') * idx,
-            index: idx,
+            length: DimensionHelper.hp("35%"),
+            offset: DimensionHelper.hp("35%") * idx,
+            index: idx
           })}
         />
       </View>
@@ -301,7 +305,7 @@ export const ProvidersScreen = (props: Props) => {
     initialFocusSet.current = false;
     loadProviders();
     checkConnections();
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', handleBack);
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", handleBack);
     return () => backHandler.remove();
   };
 

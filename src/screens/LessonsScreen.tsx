@@ -1,10 +1,10 @@
 
-import React, { useEffect } from "react"
-import { Image, View, Text, FlatList, TouchableHighlight, ActivityIndicator, BackHandler } from "react-native"
+import React, { useEffect } from "react";
+import { Image, View, Text, FlatList, TouchableHighlight, ActivityIndicator, BackHandler } from "react-native";
 import { ApiHelper } from "../helpers/ApiHelper";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { LessonInterface, ProgramInterface, StudyInterface } from "../interfaces";
-import { Styles, Utilities } from "../helpers";
+import { Styles } from "../helpers";
 import { MenuHeader } from "../components";
 
 type Props = { navigateTo(page: string, data?:any): void; program: ProgramInterface, study: StudyInterface };
@@ -26,39 +26,39 @@ export const LessonsScreen = (props: Props) => {
       maxWidth: "33%",
       alignItems: "center",
       padding: 7,
-      borderRadius: 10,
+      borderRadius: 10
     }
   };
 
   const loadData = () => {
     ApiHelper.get("/lessons/public/study/" + props.study.id, "LessonsApi").then(data => { setLessons(data); setLoading(false); });
-  }
+  };
 
   const handleSelect = (lesson: LessonInterface) => {
-    props.navigateTo("lessonDetails", {program: props.program, study: props.study, lesson: lesson});
-  }
+    props.navigateTo("lessonDetails", { program: props.program, study: props.study, lesson: lesson });
+  };
 
   const getCard = (data:any) => {
     const lesson = data.item as LessonInterface;
 
     return (
-      <TouchableHighlight style={{ ...styles.item }} underlayColor={"rgba(233, 30, 99, 0.8)"} onPress={() => { handleSelect(lesson)  }}onFocus={() => setFocusedId(data.id)} hasTVPreferredFocus={data.index === 0 && focusedId !== data.id}>
-        <View style={{width:"100%"}}>
+      <TouchableHighlight style={{ ...styles.item }} underlayColor={"rgba(233, 30, 99, 0.8)"} onPress={() => { handleSelect(lesson); }}onFocus={() => setFocusedId(data.id)} hasTVPreferredFocus={data.index === 0 && focusedId !== data.id}>
+        <View style={{ width: "100%" }}>
           {lesson.image ? (
-            <Image style={{ height:DimensionHelper.hp("33%"), width:"100%", borderRadius: 8 }} resizeMode="cover" source={{ uri: lesson.image }} />
+            <Image style={{ height: DimensionHelper.hp("33%"), width: "100%", borderRadius: 8 }} resizeMode="cover" source={{ uri: lesson.image }} />
           ) : (
-            <View style={{ height:DimensionHelper.hp("33%"), width:"100%", borderRadius: 8, backgroundColor: '#2d1f2d' }} />
+            <View style={{ height: DimensionHelper.hp("33%"), width: "100%", borderRadius: 8, backgroundColor: "#2d1f2d" }} />
           )}
           <Text style={{ ...Styles.smallWhiteText, alignSelf: "center" }}>{lesson.title}</Text>
         </View>
       </TouchableHighlight>
-    )
-  }
+    );
+  };
 
   const getCards = () => {
-    if (loading) return <ActivityIndicator size="small" color="gray" animating={loading} />
+    if (loading) return <ActivityIndicator size="small" color="gray" animating={loading} />;
     else {
-      return(
+      return (
         <View style={styles.list}>
           <FlatList
             data={lessons}
@@ -67,22 +67,22 @@ export const LessonsScreen = (props: Props) => {
             keyExtractor={(item) => item.id}
           />
         </View>
-      )
+      );
     }
-  }
+  };
 
   const handleBack = () => {
-    props.navigateTo("studies", {program: props.program});
-  }
+    props.navigateTo("studies", { program: props.program });
+  };
 
   const init = () => {
     // Utilities.trackEvent("Lessons Screen");
     loadData();
-    const backHandler = BackHandler.addEventListener("hardwareBackPress", () => { handleBack(); return true });
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", () => { handleBack(); return true; });
     return () => backHandler.remove();
-  }
+  };
 
-  useEffect(init, [])
+  useEffect(init, []);
 
   return (
     <View style={Styles.menuScreen}>
@@ -93,6 +93,6 @@ export const LessonsScreen = (props: Props) => {
       </View>
 
     </View>
-  )
+  );
 
-}
+};

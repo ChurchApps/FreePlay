@@ -11,7 +11,8 @@
     "build:android": "eas build --platform android --clear-cache",
     "build:amazon": "eas build --platform android --profile amazon --clear-cache",
     "build:tvos": "eas build --platform ios --profile tvos-production --clear-cache",
-    "update": "eas update --branch production"
+    "update": "eas update --branch production",
+    "lint": "eslint --fix src/"
   },
   "dependencies": {
     "@churchapps/content-provider-helper": "^0.1.0",
@@ -25,6 +26,7 @@
     "@sentry/react-native": "~7.2.0",
     "axios": "^1.13.2",
     "expo": "^54.0.20",
+    "expo-build-properties": "^1.0.10",
     "expo-crypto": "^15.0.8",
     "expo-device": "~8.0.9",
     "expo-splash-screen": "~31.0.10",
@@ -55,6 +57,10 @@
     "@types/react": "~19.1.10",
     "@types/styled-components-react-native": "^5.2.5",
     "@types/styled-system": "^5.1.25",
+    "@typescript-eslint/eslint-plugin": "^8.55.0",
+    "@typescript-eslint/parser": "^8.55.0",
+    "eslint": "^10.0.0",
+    "eslint-plugin-unused-imports": "^4.4.1",
     "react-native-dotenv": "^3.4.11",
     "typescript": "~5.9.2"
   },
