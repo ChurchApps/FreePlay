@@ -48,15 +48,11 @@
     "react-native-swipe-gestures": "^1.0.5",
     "react-native-vector-icons": "^10.3.0",
     "react-native-video": "^6.18.0",
-    "react-native-web": "^0.21.0",
-    "styled-components": "^6.1.19",
-    "styled-system": "^5.1.5"
+    "react-native-web": "^0.21.0"
   },
   "devDependencies": {
     "@react-native-tvos/config-tv": "^0.1.4",
     "@types/react": "~19.1.10",
-    "@types/styled-components-react-native": "^5.2.5",
-    "@types/styled-system": "^5.1.25",
     "@typescript-eslint/eslint-plugin": "^8.55.0",
     "@typescript-eslint/parser": "^8.55.0",
     "eslint": "^10.0.0",
