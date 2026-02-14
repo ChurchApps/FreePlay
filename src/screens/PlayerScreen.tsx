@@ -6,7 +6,7 @@ import { CachedData } from "../helpers";
 import { PlayerHelper } from "../helpers/PlayerHelper";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { useKeepAwake } from "expo-keep-awake";
-import { Message, SelectMessage } from "../components";
+import { Message, SelectMessage, MessageHandle } from "../components";
 
 type Props = {
   navigateTo(page: string, data?: any): void;
@@ -33,6 +33,18 @@ export const PlayerScreen = (props: Props) => {
 
   // Check if we're playing provider media (from content browser)
   const isProviderMedia = !!props.providerId && !props.lesson;
+
+  const messageRef = useRef<MessageHandle>(null);
+  const currentTimeRef = useRef(0);
+  const durationRef = useRef(0);
+
+  const isVideoFile = (file: any) => {
+    if (!file || !file.url) return false;
+    if (file.fileType === "video") return true;
+    const parts = file.url.split("?")[0].split(".");
+    const ext = parts[parts.length - 1].toLowerCase();
+    return ext === "webm" || ext === "mp4" || file.url.includes("externalVideos") || file.url.includes("stream.mux.com");
+  };
 
   const feedbackAnim = useRef(new Animated.Value(0)).current;
   const showFeedback = () => {
@@ -84,8 +96,24 @@ export const PlayerScreen = (props: Props) => {
 
   useTVEventHandler((evt: HWEvent) => { handleRemotePress(evt.eventType); });
 
-  const handleLeft = () => { stopTimer(); goBack(); startTimer(); };
-  const handleRight = () => { stopTimer(); goForward(); startTimer(); };
+  const handleLeft = () => {
+    const currentFile = CachedData.messageFiles?.[messageIndex];
+    if (isVideoFile(currentFile)) {
+      const newTime = Math.max(0, currentTimeRef.current - 10);
+      messageRef.current?.seek(newTime);
+    } else {
+      stopTimer(); goBack(); startTimer();
+    }
+  };
+  const handleRight = () => {
+    const currentFile = CachedData.messageFiles?.[messageIndex];
+    if (isVideoFile(currentFile)) {
+      const newTime = Math.min(durationRef.current, currentTimeRef.current + 10);
+      messageRef.current?.seek(newTime);
+    } else {
+      stopTimer(); goForward(); startTimer();
+    }
+  };
   const handleUp = () => { if (!showSelectMessage) { stopTimer(); setShowSelectMessage(true); } };
 
   const handleBack = () => {
@@ -106,6 +134,7 @@ export const PlayerScreen = (props: Props) => {
 
   const goForward = () => {
     if (paused) setPaused(false);
+    feedbackAnim.setValue(0);
     // Guard against null/undefined messageFiles
     if (!CachedData.messageFiles || CachedData.messageFiles.length === 0) {
       handleBack();
@@ -118,6 +147,7 @@ export const PlayerScreen = (props: Props) => {
 
   const goBack = () => {
     if (paused) setPaused(false);
+    feedbackAnim.setValue(0);
     // Guard against null/undefined messageFiles
     if (!CachedData.messageFiles || CachedData.messageFiles.length === 0) {
       handleBack();
@@ -148,6 +178,7 @@ export const PlayerScreen = (props: Props) => {
 
   const handleMessageSelect = (index: number) => {
     if (paused) setPaused(false);
+    feedbackAnim.setValue(0);
     setShowSelectMessage(false);
     setMessageIndex(index);
     startTimer();
@@ -163,6 +194,8 @@ export const PlayerScreen = (props: Props) => {
 
   const handleProgress = (data: { currentTime: number, playableDuration: number }) => {
     const { currentTime, playableDuration } = data;
+    currentTimeRef.current = currentTime;
+    durationRef.current = playableDuration;
     if (playableDuration > 0) setProgress(currentTime / playableDuration);
   };
 
@@ -207,6 +240,7 @@ export const PlayerScreen = (props: Props) => {
     <GestureRecognizer onSwipeLeft={handleRight} onSwipeRight={handleLeft} onSwipeDown={handleUp} onSwipeUp={handleBack} config={config} style={{ flex: 1 }}>
       <Pressable onPress={handlePressablePress} style={{ flex: 1 }}>
         <Message
+          ref={messageRef}
           file={currentFile}
           downloaded={!props.lesson}
           paused={paused}

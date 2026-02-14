@@ -13,13 +13,21 @@ type Props = {
   onEnd?: () => void
 };
 
+export type MessageHandle = {
+  seek: (time: number) => void;
+};
 
-export const Message = (props: Props) => {
+export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
 
+  const videoRef = React.useRef<any>(null);
   const [internalPaused, setInternalPaused] = React.useState(props.paused);
   const [hasError, setHasError] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
   const [showLoadingOverlay, setShowLoadingOverlay] = React.useState(false);
+
+  React.useImperativeHandle(ref, () => ({
+    seek: (time: number) => { videoRef.current?.seek(time); }
+  }));
 
   React.useEffect(() => {
     setInternalPaused(props.paused);
@@ -90,6 +98,7 @@ export const Message = (props: Props) => {
     const localPath = decodeURIComponent(CachedData.getFilePath(props.file.url));
     const filePath = props.downloaded ? "file://" + localPath : props.file.url;
     return (<Video
+      ref={videoRef}
       source={{ uri: filePath }}
       repeat={props.file.loopVideo}
       resizeMode="cover"
@@ -138,7 +147,7 @@ export const Message = (props: Props) => {
     </View>
   );
 
-};
+});
 
 const styles = StyleSheet.create({
   loadingOverlay: {
