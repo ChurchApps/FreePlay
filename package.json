@@ -8,9 +8,11 @@
     "tvos": "expo run:ios --device \"Living Room\"",
     "web": "expo start --web",
     "prebuild": "expo prebuild --clean",
+    "prebuild:tvos": "node scripts/prebuild-tvos.js",
     "build:android": "eas build --platform android --clear-cache",
     "build:amazon": "eas build --platform android --profile amazon --clear-cache",
-    "build:tvos": "eas build --platform ios --profile tvos-production --clear-cache",
+    "build:tvos": "npm run prebuild:tvos && eas build --platform ios --profile tvos-production --clear-cache",
+    "submit:tvos": "eas submit --platform ios --profile tvos-production --latest",
     "update": "eas update --branch production",
     "lint": "eslint --fix src/"
   },
