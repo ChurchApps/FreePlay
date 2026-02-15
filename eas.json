@@ -52,7 +52,12 @@
     },
     "submit": {
       "production": {},
-      "tvos-production": {}
+      "tvos-production": {
+        "ios": {
+          "ascAppId": "6758970546",
+          "appleTeamId": "84A55Q9H5B"
+        }
+      }
     }
   }
   
