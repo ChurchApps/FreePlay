@@ -13,6 +13,7 @@
         "@react-native-tvos/config-tv",
         {
           "androidTVBanner": "./assets/images/tv_banner.png",
+          "androidTVIcon": "./assets/images/tv_icon.png",
           "appleTVImages": {
             "icon": "./assets/images/icon-1280x768.png",
             "iconSmall": "./assets/images/icon-400x240.png",
@@ -45,7 +46,7 @@
     "android": {
       "package": "church.freeplay",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 3,
+      "versionCode": 4,
       "permissions": [
         "android.permission.INTERNET",
         "android.permission.READ_EXTERNAL_STORAGE",
