@@ -123,6 +123,8 @@ export const ProvidersScreen = (props: Props) => {
       props.navigateTo("providerDeviceAuth", { providerId: providerInfo.id });
     } else if (provider.authTypes.includes("form_login")) {
       props.navigateTo("providerFormLogin", { providerId: providerInfo.id });
+    } else if (provider.authTypes.includes("oauth_pkce")) {
+      props.navigateTo("providerOAuth", { providerId: providerInfo.id });
     } else {
       Alert.alert("Not Supported", `${providerInfo.name} authentication is not yet supported.`);
     }
