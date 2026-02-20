@@ -51,6 +51,29 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
     return () => { if (timer) clearTimeout(timer); };
   }, [isLoading]);
 
+  const handleVideoError = (error: any) => {
+    console.log("Video load error, advancing to next:", props.file?.url, error);
+    setIsLoading(false);
+    if (props.onEnd) props.onEnd();
+  };
+
+  // Safety timeout: if video hasn't loaded within 15 seconds, auto-advance
+  React.useEffect(() => {
+    if (!isLoading) return;
+    const isVideo = props.file.fileType === "video"
+      || /\.(mp4|webm)$/i.test((props.file.url || "").split("?")[0])
+      || (props.file.url || "").includes("externalVideos");
+    if (!isVideo) return;
+
+    const safetyTimer = setTimeout(() => {
+      console.log("Video load timeout, advancing to next:", props.file?.url);
+      setIsLoading(false);
+      if (props.onEnd) props.onEnd();
+    }, 15000);
+
+    return () => clearTimeout(safetyTimer);
+  }, [isLoading, props.file]);
+
   // const getMessageType = () => {
   //   const parts = props.file.url.split("?")[0].split(".");
   //   const ext = parts[parts.length - 1];
@@ -110,6 +133,7 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
       onLoad={() => setIsLoading(false)}
       onBuffer={({ isBuffering }) => setIsLoading(isBuffering)}
       onEnd={props.file.loopVideo ? undefined : props.onEnd}
+      onError={handleVideoError}
       controls={false}
       disableFocus={true}
     />);
