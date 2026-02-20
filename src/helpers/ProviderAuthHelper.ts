@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ContentProviderAuthData, getProvider, TokenHelper } from "@churchapps/content-provider-helper";
+import { ContentProviderAuthData, getProvider, TokenHelper } from "@churchapps/content-providers";
 
 const tokenHelper = new TokenHelper();
 

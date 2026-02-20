@@ -23,4 +23,4 @@ export {
   type IProvider,
   TokenHelper,
   DeviceFlowHelper
-} from "@churchapps/content-provider-helper";
+} from "@churchapps/content-providers";

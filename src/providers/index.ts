@@ -5,4 +5,4 @@ export {
   getProviderConfig,
   getAvailableProviders,
   type IProvider
-} from "@churchapps/content-provider-helper";
+} from "@churchapps/content-providers";
