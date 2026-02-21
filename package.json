@@ -14,7 +14,8 @@
     "build:tvos": "npm run prebuild:tvos && cross-env EXPO_TV=1 eas build --platform ios --profile tvos-production",
     "submit:tvos": "eas submit --platform ios --profile tvos-production --latest",
     "update": "eas update --branch production",
-    "lint": "eslint --fix src/"
+    "lint": "eslint --fix src/",
+    "reset-provisioning": "cross-env EXPO_TV=1 eas credentials --platform ios"
   },
   "dependencies": {
     "@churchapps/content-providers": "^0.1.1",
