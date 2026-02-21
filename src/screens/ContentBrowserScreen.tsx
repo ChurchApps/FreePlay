@@ -18,7 +18,7 @@ import {
   isContentFile
 } from "../interfaces";
 import { Styles, CachedData, ProviderAuthHelper, Colors } from "../helpers";
-import { MenuHeader, SkeletonCard } from "../components";
+import { MenuHeader, SkeletonCard, EmptyState } from "../components";
 import { getProvider } from "../providers";
 
 type Props = {
@@ -289,7 +289,8 @@ export const ContentBrowserScreen = (props: Props) => {
                   paddingHorizontal: 12,
                   marginTop: DimensionHelper.hp("1.5%")
                 }}
-                numberOfLines={2}>
+                numberOfLines={2}
+                ellipsizeMode="tail">
                 {folder.title}
               </Text>
             </View>
@@ -395,7 +396,8 @@ export const ContentBrowserScreen = (props: Props) => {
               marginTop: DimensionHelper.hp("1%"),
               textAlign: "center"
             }}
-            numberOfLines={2}>
+            numberOfLines={2}
+            ellipsizeMode="tail">
             {file.title}
           </Text>
           <Text
@@ -440,13 +442,7 @@ export const ContentBrowserScreen = (props: Props) => {
     }
 
     if (items.length === 0) {
-      return (
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-          <Text style={{ color: "rgba(255,255,255,0.6)" }}>
-            No content available
-          </Text>
-        </View>
-      );
+      return <EmptyState icon="folder-open" message="No content available" subMessage="Try navigating to a different folder" />;
     }
 
     const savedIndex = CachedData.lastFocusedIndex[screenKey];

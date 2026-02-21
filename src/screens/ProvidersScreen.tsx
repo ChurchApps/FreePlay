@@ -69,6 +69,7 @@ export const ProvidersScreen = (props: Props) => {
     await ProviderAuthHelper.clearAuth(providerInfo.id);
     await ProviderAuthHelper.setConnectionState(providerInfo.id, false);
     CachedData.connectedProviders = CachedData.connectedProviders.filter(id => id !== providerInfo.id);
+    CachedData.clearFocusMemory(`contentBrowser_${providerInfo.id}`);
     if (CachedData.activeProvider === providerInfo.id) {
       CachedData.activeProvider = null;
     }
@@ -161,8 +162,8 @@ export const ProvidersScreen = (props: Props) => {
               borderRadius: 8,
               justifyContent: "center",
               alignItems: "center",
-              borderWidth: isFocused ? 2 : 1,
-              borderColor: isFocused ? Colors.primary : (providerInfo.implemented ? "rgba(233,30,99,0.15)" : "rgba(100,100,100,0.15)")
+              borderWidth: 2,
+              borderColor: isFocused ? Colors.primary : (providerInfo.implemented ? Colors.borderAccent : "rgba(100,100,100,0.15)")
             }}>
             {logo ? (
               <View
@@ -216,7 +217,8 @@ export const ProvidersScreen = (props: Props) => {
                 textShadowOffset: { width: 0, height: 1 },
                 textShadowRadius: 2
               }}
-              numberOfLines={2}>
+              numberOfLines={2}
+              ellipsizeMode="tail">
               {providerInfo.name}
             </Text>
             {isConnected && (

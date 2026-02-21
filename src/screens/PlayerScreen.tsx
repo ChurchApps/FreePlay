@@ -4,6 +4,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import { LessonInterface, ProgramInterface, StudyInterface } from "../interfaces";
 import { CachedData } from "../helpers";
 import { PlayerHelper } from "../helpers/PlayerHelper";
+import { SoundHelper } from "../helpers/SoundHelper";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { useKeepAwake } from "expo-keep-awake";
 import { Message, SelectMessage, MessageHandle } from "../components";
@@ -71,6 +72,7 @@ export const PlayerScreen = (props: Props) => {
   };
 
   const handlePlayPause = () => {
+    SoundHelper.playClick();
     const newPausedState = !paused;
     setPaused(newPausedState);
     PlayerHelper.pendingPause = newPausedState;

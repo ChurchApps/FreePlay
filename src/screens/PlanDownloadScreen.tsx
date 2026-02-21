@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { View, Text, TouchableHighlight, ActivityIndicator, BackHandler, ImageBackground } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
 import { ApiHelper, CachedData, Styles } from "../helpers";
+import { Colors } from "../helpers/Styles";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { PlanInterface, FeedVenueInterface, LessonPlaylistFileInterface, PlanItemInterface } from "../interfaces";
 import LinearGradient from "react-native-linear-gradient";
@@ -382,13 +384,22 @@ export const PlanDownloadScreen = (props: Props) => {
 
   if (loadFailed) {
     return (
-      <View style={{ ...Styles.menuScreen, flex: 1, width: DimensionHelper.wp("100%"), flexDirection: "column" }}>
-        <Text style={{ ...Styles.bigWhiteText, flex: 1, verticalAlign: "bottom" }}>
+      <View style={{ ...Styles.menuScreen, flex: 1, width: DimensionHelper.wp("100%"), justifyContent: "center", alignItems: "center" }}>
+        <Icon name="error-outline" size={DimensionHelper.wp("4%")} color={Colors.error} />
+        <Text style={{ ...Styles.bigWhiteText, marginTop: DimensionHelper.hp("2%") }}>
           The plan could not be loaded.
         </Text>
-        <Text style={{ ...Styles.whiteText, flex: 1 }}>
+        <Text style={{ ...Styles.whiteText, marginTop: DimensionHelper.hp("1%") }}>
           Make sure a plan is scheduled for this plan type.
         </Text>
+        <TouchableHighlight
+          style={{ backgroundColor: Colors.primaryDark, paddingVertical: DimensionHelper.hp("1.5%"), paddingHorizontal: DimensionHelper.wp("3%"), marginTop: DimensionHelper.hp("3%"), borderRadius: 12 }}
+          underlayColor={Colors.primary}
+          onPress={() => { setLoadFailed(false); setRefreshKey(new Date().getTime().toString()); }}
+          hasTVPreferredFocus={true}
+        >
+          <Text style={Styles.smallWhiteText}>Try Again</Text>
+        </TouchableHighlight>
       </View>
     );
   }

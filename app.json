@@ -41,7 +41,8 @@
             "useFrameworks": "static"
           }
         }
-      ]
+      ],
+      "./plugins/withSoundAssets"
     ],
     "android": {
       "package": "church.freeplay",

@@ -34,6 +34,19 @@ export class CachedData {
   // Focus memory: stores last focused item index per screen key
   static lastFocusedIndex: { [screenKey: string]: number } = {};
 
+  // Clear focus memory for a specific screen or all screens matching a prefix
+  static clearFocusMemory(screenKeyOrPrefix?: string) {
+    if (!screenKeyOrPrefix) {
+      this.lastFocusedIndex = {};
+    } else {
+      for (const key of Object.keys(this.lastFocusedIndex)) {
+        if (key === screenKeyOrPrefix || key.startsWith(screenKeyOrPrefix + "_")) {
+          delete this.lastFocusedIndex[key];
+        }
+      }
+    }
+  }
+
   // Track active downloads for cleanup
   private static activeDownloads: Map<string, { jobId: number }> = new Map();
 

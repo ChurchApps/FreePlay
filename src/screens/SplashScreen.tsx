@@ -14,17 +14,14 @@ export const SplashScreen = (props: Props) => {
   const scaleAnim = useRef(new Animated.Value(0.95)).current;
   const dotOpacity = useRef(new Animated.Value(0)).current;
 
-  const checkStorage = async () => {
-    // Utilities.trackEvent("Splash Screen");
+  const loadData = async () => {
     CachedData.church = await CachedData.getAsyncStorage("church");
     CachedData.room = await CachedData.getAsyncStorage("room");
     CachedData.resolution = await CachedData.getAsyncStorage("resolution") || "720";
 
-    // Check for plan pairing
     CachedData.planTypeId = await CachedData.getAsyncStorage("planTypeId");
     CachedData.pairedChurchId = await CachedData.getAsyncStorage("pairedChurchId");
 
-    // Check all registered providers for saved auth
     const connectedProviders: string[] = [];
     for (const providerInfo of getAvailableProviders(["signpresenter", "lessonschurch", "b1church", "bibleproject"])) {
       if (providerInfo.implemented) {
@@ -35,14 +32,15 @@ export const SplashScreen = (props: Props) => {
       }
     }
     CachedData.connectedProviders = connectedProviders;
+    return connectedProviders;
+  };
 
-    // If there are connected providers, navigate to the first one (same order as sidebar)
+  const navigate = (connectedProviders: string[]) => {
     if (connectedProviders.length > 0) {
       const firstProviderId = connectedProviders[0];
       CachedData.activeProvider = firstProviderId;
       props.navigateTo("contentBrowser", { providerId: firstProviderId, folderStack: [] });
     } else {
-      // No connected providers, go to providers screen
       props.navigateTo("providers");
     }
   };
@@ -92,11 +90,13 @@ export const SplashScreen = (props: Props) => {
       });
     }, 1000);
 
-    const storageTimer = setTimeout(() => {
-      checkStorage();
-    }, 2500);
+    // Navigate as soon as data loads, but ensure minimum 1.2s display for branding
+    const minDisplayTime = new Promise<void>(resolve => setTimeout(resolve, 1200));
+    Promise.all([minDisplayTime, loadData()]).then(([, connectedProviders]) => {
+      navigate(connectedProviders);
+    });
 
-    return () => { clearTimeout(dotTimer); clearTimeout(storageTimer); };
+    return () => { clearTimeout(dotTimer); };
   }, []);
 
   return (

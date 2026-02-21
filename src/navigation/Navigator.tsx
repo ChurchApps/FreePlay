@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { CachedData, Styles } from "../helpers";
 import { DownloadScreen, SelectChurchScreen, SelectRoomScreen, SplashScreen, PlayerScreen, SelectPairingModeScreen, PlanPairingScreen, PlanDownloadScreen, ContentBrowserScreen, ProviderDeviceAuthScreen, ProvidersScreen, ProviderFormLoginScreen, ProviderOAuthScreen, ProviderDownloadScreen } from "../screens";
 import { ProgramsScreen } from "../screens/ProgramsScreen";
@@ -6,7 +6,7 @@ import { StudiesScreen } from "../screens/StudiesScreen";
 import { LessonsScreen } from "../screens/LessonsScreen";
 import { LessonDetailsScreen } from "../screens/LessonDetailsScreen";
 import { DimensionHelper } from "../helpers/DimensionHelper";
-import { View, Platform, TVEventControl } from "react-native";
+import { View, Platform, TVEventControl, Animated } from "react-native";
 import { NavWrapper } from "./NavWrapper";
 import { OfflineScreen } from "../screens/OfflineScreen";
 import PrivacyPolicyScreen from "../screens/PrivacyPolicyScreen";
@@ -16,11 +16,23 @@ export const Navigator = () => {
   const [currentData, setCurrentData] = React.useState<any>(null);
   const [dimensions, setDimensions] = React.useState("1,1");
   const [sidebarExpanded, setSidebarState] = React.useState(false);
+  const fadeAnim = useRef(new Animated.Value(1)).current;
 
   const handleNavigate = (page: string, data?:any) => {
-    if (data) setCurrentData(data); else setCurrentData(null);
-    setCurrentScreen(page);
-    CachedData.currentScreen = page;
+    // Skip fade for splash -> first screen (already has its own animation)
+    if (currentScreen === "splash") {
+      if (data) setCurrentData(data); else setCurrentData(null);
+      setCurrentScreen(page);
+      CachedData.currentScreen = page;
+      return;
+    }
+    // Fade out, swap screen, fade in
+    Animated.timing(fadeAnim, { toValue: 0, duration: 100, useNativeDriver: true }).start(() => {
+      if (data) setCurrentData(data); else setCurrentData(null);
+      setCurrentScreen(page);
+      CachedData.currentScreen = page;
+      Animated.timing(fadeAnim, { toValue: 1, duration: 150, useNativeDriver: true }).start();
+    });
   };
 
   const sidebarState = (state: boolean = true) => {
@@ -84,13 +96,15 @@ export const Navigator = () => {
 
   if (fullScreenScreens.indexOf(currentScreen) > -1) {
     return (<View style={Styles.splashMaincontainer}>
-      <View style={[viewStyle]}>
+      <Animated.View style={[viewStyle, { opacity: fadeAnim, flex: 1 }]}>
         {screen}
-      </View>
+      </Animated.View>
     </View>);
   } else {
     return (<View style={Styles.maincontainer}>
-      <NavWrapper screen={screen} navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />
+      <Animated.View style={{ opacity: fadeAnim, flex: 1, width: "100%" }}>
+        <NavWrapper screen={screen} navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />
+      </Animated.View>
     </View>);
   }
 

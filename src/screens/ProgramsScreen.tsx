@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { Image, View, FlatList, TouchableHighlight, ActivityIndicator, BackHandler } from "react-native";
+import { Image, View, FlatList, TouchableHighlight, BackHandler } from "react-native";
 import { ApiHelper } from "../helpers/ApiHelper";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { ProgramInterface } from "../interfaces";
 import { Styles, Colors } from "../helpers";
-import { MenuHeader } from "../components";
+import { MenuHeader, EmptyState, SkeletonCard } from "../components";
 
 type Props = { navigateTo(page: string, data?:any): void; sidebarState: (state: boolean) => void; sidebarExpanded?: boolean; };
 
@@ -56,9 +56,9 @@ export const ProgramsScreen = (props: Props) => {
           width: "100%",
           borderRadius: 12,
           overflow: "hidden",
-          borderWidth: isFocused ? 3 : 0,
-          borderColor: Colors.primary,
-          transform: isFocused ? [{ scale: 1.02 }] : [{ scale: 1 }]
+          borderWidth: 2,
+          borderColor: isFocused ? Colors.primary : "transparent",
+          transform: isFocused ? [{ scale: 1.03 }] : [{ scale: 1 }]
         }}>
           {program.image ? (
             <Image
@@ -75,19 +75,29 @@ export const ProgramsScreen = (props: Props) => {
   };
 
   const getCards = () => {
-    if (loading) return <ActivityIndicator size="small" color="gray" animating={loading} />;
-    else {
+    if (loading) {
+      const skeletonData = Array.from({ length: 6 }, (_, i) => ({ id: `skeleton-${i}` }));
       return (
         <View style={styles.list}>
-          <FlatList
-            data={programs}
-            numColumns={3}
-            renderItem={getCard}
-            keyExtractor={(item) => item.id}
-          />
+          <FlatList data={skeletonData} numColumns={3} keyExtractor={item => item.id} renderItem={() => (
+            <View style={{ ...styles.item, padding: 10 }}>
+              <SkeletonCard width="100%" height={DimensionHelper.hp("33%")} />
+            </View>
+          )} />
         </View>
       );
     }
+    if (programs.length === 0) return <EmptyState icon="library-books" message="No programs available" />;
+    return (
+      <View style={styles.list}>
+        <FlatList
+          data={programs}
+          numColumns={3}
+          renderItem={getCard}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
+    );
   };
 
 

@@ -105,7 +105,7 @@ export const SelectMessage = (props: Props) => {
               </View>
             )}
             <View style={styles.textContainer}>
-              <Text style={styles.title} numberOfLines={2}>{data.item.name}</Text>
+              <Text style={styles.title} numberOfLines={2} ellipsizeMode="tail">{data.item.name}</Text>
             </View>
           </View>
         </TouchableHighlight>

@@ -14,6 +14,7 @@ export const DownloadScreen = (props: Props) => {
   const [playlist, setPlaylist] = React.useState<LessonPlaylistInterface>(null);
   const [totalItems, setTotalItems] = React.useState(CachedData.totalCachableItems);
   const [cachedItems, setCachedItems] = React.useState(CachedData.cachedItems);
+  const [currentFileProgress, setCurrentFileProgress] = React.useState(0);
   const [ready, setReady] = React.useState(false);
   const [refreshKey, setRefreshKey] = React.useState("");
   const [loadFailed, setLoadFailed] = React.useState(false);
@@ -23,6 +24,9 @@ export const DownloadScreen = (props: Props) => {
   const updateCounts = (cached: number, total: number): void => {
     setCachedItems(cached);
     setTotalItems(total);
+  };
+  const updateFileProgress = (progress: number): void => {
+    setCurrentFileProgress(progress);
   };
 
   const getFiles = () => {
@@ -62,9 +66,12 @@ export const DownloadScreen = (props: Props) => {
             <Text style={Styles.H2}>{playlist.lessonName}:</Text>
             <Text style={Styles.H3}>{playlist.lessonTitle}</Text>
             <Text style={{ ...Styles.smallerWhiteText, color: Colors.textLight }}>{playlist.lessonDescription}</Text>
-            <TouchableHighlight style={{ ...Styles.smallMenuClickable, backgroundColor: Colors.disabled, width: DimensionHelper.wp("35%"), marginTop: DimensionHelper.hp("1%"), borderRadius: 12 }} underlayColor={Colors.disabled}>
-              <Text style={{ ...Styles.smallWhiteText, width: "100%" }} numberOfLines={1}>Downloading item {cachedItems} of {totalItems}</Text>
-            </TouchableHighlight>
+            <View style={{ width: DimensionHelper.wp("35%"), height: DimensionHelper.hp("6%"), marginTop: DimensionHelper.hp("1%"), borderRadius: 12, overflow: "hidden", backgroundColor: Colors.progressBackground, position: "relative" }}>
+              <View style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${totalItems > 0 ? ((cachedItems + currentFileProgress) / totalItems) * 100 : 0}%`, backgroundColor: Colors.primaryDark, borderRadius: 12 }} />
+              <View style={{ position: "absolute", left: 0, top: 0, right: 0, bottom: 0, justifyContent: "center", alignItems: "center" }}>
+                <Text style={{ ...Styles.smallWhiteText }} numberOfLines={1}>Downloading item {cachedItems + 1} of {totalItems}</Text>
+              </View>
+            </View>
           </>
         );
       }
@@ -101,7 +108,7 @@ export const DownloadScreen = (props: Props) => {
       CachedData.messageFiles = files;
       CachedData.setAsyncStorage("messageFiles", files);
       setReady(false);
-      CachedData.prefetch(files, updateCounts).then(() => {
+      CachedData.prefetch(files, updateCounts, updateFileProgress).then(() => {
         setReady(true);
       });
     }
@@ -151,9 +158,18 @@ export const DownloadScreen = (props: Props) => {
   const background = getBackgroundImage();
 
   if (loadFailed) {
-    return (<View style={{ ...Styles.menuScreen, flex: 1, width: DimensionHelper.wp("100%"), flexDirection: "column" }}>
-      <Text style={{ ...Styles.bigWhiteText, flex: 1, verticalAlign: "bottom" }}>The schedule could not be loaded.</Text>
-      <Text style={{ ...Styles.whiteText, flex: 1 }}>Make sure a lesson is scheduled for this class.</Text>
+    return (<View style={{ ...Styles.menuScreen, flex: 1, width: DimensionHelper.wp("100%"), justifyContent: "center", alignItems: "center" }}>
+      <Icon name="error-outline" size={DimensionHelper.wp("4%")} color={Colors.error} />
+      <Text style={{ ...Styles.bigWhiteText, marginTop: DimensionHelper.hp("2%") }}>The schedule could not be loaded.</Text>
+      <Text style={{ ...Styles.whiteText, marginTop: DimensionHelper.hp("1%") }}>Make sure a lesson is scheduled for this class.</Text>
+      <TouchableHighlight
+        style={{ backgroundColor: Colors.primaryDark, paddingVertical: DimensionHelper.hp("1.5%"), paddingHorizontal: DimensionHelper.wp("3%"), marginTop: DimensionHelper.hp("3%"), borderRadius: 12 }}
+        underlayColor={Colors.primary}
+        onPress={() => { setLoadFailed(false); setRefreshKey(new Date().getTime().toString()); }}
+        hasTVPreferredFocus={true}
+      >
+        <Text style={Styles.smallWhiteText}>Try Again</Text>
+      </TouchableHighlight>
     </View>);
 
   } else {
