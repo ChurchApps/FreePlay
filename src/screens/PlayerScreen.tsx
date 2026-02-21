@@ -15,6 +15,7 @@ type Props = {
   lesson?: LessonInterface;
   providerId?: string;
   providerStartIndex?: number;
+  streaming?: boolean;
 };
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
@@ -242,7 +243,7 @@ export const PlayerScreen = (props: Props) => {
         <Message
           ref={messageRef}
           file={currentFile}
-          downloaded={!props.lesson}
+          downloaded={!props.lesson && !props.streaming}
           paused={paused}
           onProgress={handleProgress}
           onEnd={handleVideoEnd}

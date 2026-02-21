@@ -23,6 +23,8 @@ export const ProviderDownloadScreen = (props: Props) => {
   const [cachedItems, setCachedItems] = React.useState(CachedData.cachedItems);
   const [currentFileProgress, setCurrentFileProgress] = React.useState(0);
   const [ready, setReady] = React.useState(false);
+  const [mode, setMode] = React.useState<"choosing" | "downloading" | "ready">("choosing");
+  const [focusedBtn, setFocusedBtn] = React.useState<"download" | "stream">("download");
   const buttonFadeAnim = useRef(new Animated.Value(0)).current;
 
   const updateCounts = (cached: number, total: number): void => {
@@ -41,8 +43,41 @@ export const ProviderDownloadScreen = (props: Props) => {
     });
   };
 
+  const handleStream = () => {
+    props.navigateTo("player", {
+      providerId: props.providerId,
+      providerStartIndex: props.startIndex,
+      streaming: true
+    });
+  };
+
+  const handleDownload = () => {
+    setMode("downloading");
+    startDownload();
+  };
+
   const getContent = () => {
-    if (ready && cachedItems === totalItems) {
+    if (mode === "choosing") {
+      const btnBase = { width: DimensionHelper.wp("18%"), height: DimensionHelper.hp("7%"), borderRadius: 12, justifyContent: "center" as const, alignItems: "center" as const, borderWidth: 2 };
+      const focusedStyle = { backgroundColor: Colors.primaryDark, borderColor: Colors.primary };
+      const unfocusedStyle = { backgroundColor: Colors.surface, borderColor: Colors.borderSubtle };
+      return (<>
+        <Text style={Styles.H2}>{props.title || "Content"}</Text>
+        {props.description && (
+          <Text style={{ ...Styles.smallerWhiteText, color: Colors.textLight }}>{props.description}</Text>
+        )}
+        <View style={{ flexDirection: "row", marginTop: DimensionHelper.hp("1%"), gap: DimensionHelper.wp("1%") }}>
+          <TouchableHighlight style={{ ...btnBase, ...(focusedBtn === "download" ? focusedStyle : unfocusedStyle) }} underlayColor={Colors.primary} onPress={handleDownload} onFocus={() => setFocusedBtn("download")} hasTVPreferredFocus={true}>
+            <Text style={Styles.smallWhiteText} numberOfLines={1}>Download</Text>
+          </TouchableHighlight>
+          <TouchableHighlight style={{ ...btnBase, ...(focusedBtn === "stream" ? focusedStyle : unfocusedStyle) }} underlayColor={Colors.primary} onPress={handleStream} onFocus={() => setFocusedBtn("stream")}>
+            <Text style={Styles.smallWhiteText} numberOfLines={1}>Stream</Text>
+          </TouchableHighlight>
+        </View>
+      </>);
+    }
+
+    if (mode === "ready") {
       return (<>
         <Text style={Styles.H2}>{props.title || "Content"}</Text>
         {props.description && (
@@ -57,27 +92,28 @@ export const ProviderDownloadScreen = (props: Props) => {
           </TouchableHighlight>
         </Animated.View>
       </>);
-    } else {
-      let progress = 0;
-      if (totalItems > 0) {
-        progress = ((cachedItems + currentFileProgress) / totalItems) * 100;
-      }
-      const buttonHeight = DimensionHelper.hp("6%");
-      return (
-        <>
-          <Text style={Styles.H2}>{props.title || "Content"}</Text>
-          {props.description && (
-            <Text style={{ ...Styles.smallerWhiteText, color: Colors.textLight }}>{props.description}</Text>
-          )}
-          <View style={{ width: DimensionHelper.wp("35%"), height: buttonHeight, marginTop: DimensionHelper.hp("1%"), borderRadius: 5, overflow: "hidden", backgroundColor: Colors.progressBackground, position: "relative" }}>
-            <View style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${progress}%`, backgroundColor: Colors.primaryDark, borderRadius: 5 }} />
-            <TouchableHighlight style={{ position: "absolute", left: 0, top: 0, right: 0, bottom: 0, justifyContent: "center", alignItems: "center" }} underlayColor={"rgba(255,255,255,0.1)"}>
-              <Text style={{ ...Styles.smallWhiteText }} numberOfLines={1}>Downloading item {cachedItems + 1} of {totalItems}</Text>
-            </TouchableHighlight>
-          </View>
-        </>
-      );
     }
+
+    // mode === "downloading"
+    let progress = 0;
+    if (totalItems > 0) {
+      progress = ((cachedItems + currentFileProgress) / totalItems) * 100;
+    }
+    const buttonHeight = DimensionHelper.hp("6%");
+    return (
+      <>
+        <Text style={Styles.H2}>{props.title || "Content"}</Text>
+        {props.description && (
+          <Text style={{ ...Styles.smallerWhiteText, color: Colors.textLight }}>{props.description}</Text>
+        )}
+        <View style={{ width: DimensionHelper.wp("35%"), height: buttonHeight, marginTop: DimensionHelper.hp("1%"), borderRadius: 5, overflow: "hidden", backgroundColor: Colors.progressBackground, position: "relative" }}>
+          <View style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${progress}%`, backgroundColor: Colors.primaryDark, borderRadius: 5 }} />
+          <TouchableHighlight style={{ position: "absolute", left: 0, top: 0, right: 0, bottom: 0, justifyContent: "center", alignItems: "center" }} underlayColor={"rgba(255,255,255,0.1)"}>
+            <Text style={{ ...Styles.smallWhiteText }} numberOfLines={1}>Downloading item {cachedItems + 1} of {totalItems}</Text>
+          </TouchableHighlight>
+        </View>
+      </>
+    );
   };
 
   const startDownload = () => {
@@ -93,6 +129,7 @@ export const ProviderDownloadScreen = (props: Props) => {
   };
 
   const handleBack = () => {
+    CachedData.cancelAllDownloads();
     props.navigateTo("contentBrowser", {
       providerId: props.providerId,
       folderStack: props.folderStack
@@ -101,22 +138,46 @@ export const ProviderDownloadScreen = (props: Props) => {
 
   const init = () => {
     const backHandler = BackHandler.addEventListener("hardwareBackPress", () => { handleBack(); return true; });
-    startDownload();
+
+    // Skip choice screen if all files are already cached
+    const files = CachedData.messageFiles;
+    if (files && files.length > 0) {
+      CachedData.allFilesCached(files).then(allCached => {
+        if (allCached) {
+          setCachedItems(files.length);
+          setTotalItems(files.length);
+          setReady(true);
+          setMode("ready");
+        }
+      });
+    }
+
     return () => {
       backHandler.remove();
+      CachedData.cancelAllDownloads();
     };
   };
 
   useEffect(init, []);
   useEffect(() => {
-    if (ready && cachedItems === totalItems) {
+    if (ready && cachedItems === totalItems && mode === "downloading") {
+      setMode("ready");
       Animated.timing(buttonFadeAnim, {
         toValue: 1,
         duration: 300,
         useNativeDriver: true
       }).start();
     }
-  }, [ready, cachedItems, totalItems]);
+  }, [ready, cachedItems, totalItems, mode]);
+  useEffect(() => {
+    if (mode === "ready") {
+      Animated.timing(buttonFadeAnim, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true
+      }).start();
+    }
+  }, [mode]);
 
   // Use cover image, fall back to parent folder image, then provider logo
   const getBackgroundImage = () => {

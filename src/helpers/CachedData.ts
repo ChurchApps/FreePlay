@@ -172,6 +172,16 @@ export class CachedData {
     }
   }
 
+  static async allFilesCached(files: LessonPlaylistFileInterface[]): Promise<boolean> {
+    for (const f of files) {
+      if (!f.url || f.url.trim() === "") continue;
+      let fullPath = this.getFilePath(f.url);
+      fullPath = decodeURIComponent(fullPath);
+      if (!await RNFS.exists(fullPath)) return false;
+    }
+    return true;
+  }
+
   // Cancel all active downloads (useful when navigating away)
   static cancelAllDownloads() {
     this.activeDownloads.forEach((download, url) => {
