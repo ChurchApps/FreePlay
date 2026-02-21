@@ -6,7 +6,7 @@ import { Image, View, Text, ActivityIndicator, StyleSheet } from "react-native";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import Video from "react-native-video";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import RNFS from "react-native-fs";
+
 
 type Props = {
   file: LessonPlaylistFileInterface,
@@ -56,10 +56,7 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
     return () => { if (timer) clearTimeout(timer); };
   }, [isLoading, hasError]);
 
-  const handleVideoError = (error: any) => {
-    const localPath = decodeURIComponent(CachedData.getFilePath(props.file?.url));
-    const filePath = props.downloaded ? "file://" + localPath : props.file?.url;
-    console.log("[Player] VIDEO ERROR - url:", props.file?.url, "filePath:", filePath, "downloaded:", props.downloaded, "fileType:", props.file?.fileType, "error:", JSON.stringify(error));
+  const handleVideoError = (_error: any) => {
     setIsLoading(false);
     setHasError(true);
     setShowError(true);
@@ -133,17 +130,6 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   const getVideo = () => {
     const localPath = decodeURIComponent(CachedData.getFilePath(props.file.url));
     const filePath = props.downloaded ? "file://" + localPath : props.file.url;
-    console.log("[Player] Loading video - downloaded:", props.downloaded, "filePath:", filePath, "originalUrl:", props.file.url, "fileType:", props.file.fileType);
-    if (props.downloaded) {
-      RNFS.exists(localPath).then(exists => {
-        console.log("[Player] Local video file exists:", exists, "path:", localPath);
-        if (exists) {
-          RNFS.stat(localPath).then(stat => {
-            console.log("[Player] Local video file size:", stat.size);
-          });
-        }
-      });
-    }
     return (<Video
       ref={videoRef}
       source={{ uri: filePath }}

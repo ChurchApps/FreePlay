@@ -128,7 +128,13 @@ export class CachedData {
     if (!url) return "";
     const parts = url.split("?")[0].split("/");
     parts.splice(0, 3);
-    const fullPath = RNFS.CachesDirectoryPath + "/" + parts.join("/");
+    let fullPath = RNFS.CachesDirectoryPath + "/" + parts.join("/");
+    // External video URLs from lessons.church have no file extension (e.g. /externalVideos/download/9DgTnt_fXPu).
+    // iOS AVFoundation needs a file extension to detect the media format, so append .mp4.
+    const lastSegment = parts[parts.length - 1] || "";
+    if (url.includes("externalVideos") && !/\.(mp4|mov|webm|m4v)$/i.test(lastSegment)) {
+      fullPath += ".mp4";
+    }
     return fullPath;
   }
 
@@ -136,14 +142,9 @@ export class CachedData {
     if (!file.url) return;
     let fullPath = this.getFilePath(file.url);
     fullPath = decodeURIComponent(fullPath);
-    console.log("[Cache] Loading file - url:", file.url, "localPath:", fullPath, "fileType:", file.fileType);
     const exists = await RNFS.exists(fullPath);
     if (!exists) {
-      console.log("[Cache] File not cached, downloading:", file.url);
       await this.download(file, fullPath, fileProgressCallback);
-    } else {
-      const stat = await RNFS.stat(fullPath);
-      console.log("[Cache] File already cached - size:", stat.size, "path:", fullPath);
     }
   }
 
@@ -183,27 +184,8 @@ export class CachedData {
 
     try {
       const result = await downloadResponse.promise;
-      console.log("[Cache] Download complete - url:", file.url, "statusCode:", result.statusCode, "bytesWritten:", result.bytesWritten);
-      // Check if download was successful
       if (result.statusCode !== 200) {
         throw new Error(`Download failed with status ${result.statusCode}`);
-      }
-      // Verify the downloaded file exists and has content
-      if (await RNFS.exists(diskPath)) {
-        const stat = await RNFS.stat(diskPath);
-        console.log("[Cache] Downloaded file verified - size:", stat.size, "path:", diskPath);
-        if (stat.size === 0) {
-          console.warn("[Cache] WARNING: Downloaded file is empty (0 bytes):", diskPath);
-        }
-        // Read first few bytes to check if it's an HTML error page instead of a video
-        if (file.fileType === "video" && stat.size > 0 && stat.size < 1000) {
-          try {
-            const content = await RNFS.readFile(diskPath, "utf8");
-            console.warn("[Cache] WARNING: Video file is suspiciously small. Content:", content.substring(0, 200));
-          } catch (_) { /* binary file, expected */ }
-        }
-      } else {
-        console.warn("[Cache] WARNING: File not found after download:", diskPath);
       }
     } finally {
       // Clean up tracking
