@@ -58,8 +58,13 @@ function withSoundAssets(config) {
         const dest = path.join(targetDir, file);
         fs.copyFileSync(src, dest);
         // Add to Xcode project resources if not already present
-        if (!project.hasFile(file)) {
-          project.addResourceFile(file, { target: project.getFirstTarget().uuid });
+        const firstTarget = project.getFirstTarget();
+        if (!project.hasFile(file) && firstTarget) {
+          try {
+            project.addResourceFile(file, { target: firstTarget.uuid });
+          } catch {
+            // tvOS projects may lack a Resources group; file is still copied
+          }
         }
       }
     }

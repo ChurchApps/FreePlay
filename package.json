@@ -5,7 +5,7 @@
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "tvos": "expo run:ios --device \"Living Room\"",
+    "tvos": "LANG=en_US.UTF-8 EXPO_TV=1 expo run:ios --device \"Living Room\"",
     "web": "expo start --web",
     "prebuild": "expo prebuild --clean",
     "prebuild:tvos": "node scripts/prebuild-tvos.js",
