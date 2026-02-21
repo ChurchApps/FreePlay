@@ -136,7 +136,15 @@ export class CachedData {
     if (!file.url) return;
     let fullPath = this.getFilePath(file.url);
     fullPath = decodeURIComponent(fullPath);
-    if (!await RNFS.exists(fullPath)) await this.download(file, fullPath, fileProgressCallback);
+    console.log("[Cache] Loading file - url:", file.url, "localPath:", fullPath, "fileType:", file.fileType);
+    const exists = await RNFS.exists(fullPath);
+    if (!exists) {
+      console.log("[Cache] File not cached, downloading:", file.url);
+      await this.download(file, fullPath, fileProgressCallback);
+    } else {
+      const stat = await RNFS.stat(fullPath);
+      console.log("[Cache] File already cached - size:", stat.size, "path:", fullPath);
+    }
   }
 
   private static async download(
@@ -175,9 +183,27 @@ export class CachedData {
 
     try {
       const result = await downloadResponse.promise;
+      console.log("[Cache] Download complete - url:", file.url, "statusCode:", result.statusCode, "bytesWritten:", result.bytesWritten);
       // Check if download was successful
       if (result.statusCode !== 200) {
         throw new Error(`Download failed with status ${result.statusCode}`);
+      }
+      // Verify the downloaded file exists and has content
+      if (await RNFS.exists(diskPath)) {
+        const stat = await RNFS.stat(diskPath);
+        console.log("[Cache] Downloaded file verified - size:", stat.size, "path:", diskPath);
+        if (stat.size === 0) {
+          console.warn("[Cache] WARNING: Downloaded file is empty (0 bytes):", diskPath);
+        }
+        // Read first few bytes to check if it's an HTML error page instead of a video
+        if (file.fileType === "video" && stat.size > 0 && stat.size < 1000) {
+          try {
+            const content = await RNFS.readFile(diskPath, "utf8");
+            console.warn("[Cache] WARNING: Video file is suspiciously small. Content:", content.substring(0, 200));
+          } catch (_) { /* binary file, expected */ }
+        }
+      } else {
+        console.warn("[Cache] WARNING: File not found after download:", diskPath);
       }
     } finally {
       // Clean up tracking

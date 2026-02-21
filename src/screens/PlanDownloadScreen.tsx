@@ -93,21 +93,26 @@ export const PlanDownloadScreen = (props: Props) => {
   // Fetch add-on data directly from API
   const fetchAddOn = async (addOnId: string): Promise<LessonPlaylistFileInterface[] | null> => {
     try {
+      console.log("[AddOn] Fetching add-on:", addOnId);
       const data = await ApiHelper.getAnonymous(`/addOns/public/${addOnId}`, "LessonsApi");
-      if (!data) return null;
+      console.log("[AddOn] API response:", JSON.stringify(data, null, 2));
+      if (!data) { console.log("[AddOn] No data returned for:", addOnId); return null; }
 
       const files: LessonPlaylistFileInterface[] = [];
 
       // Check if add-on has a video
       if (data.video) {
+        const videoUrl = `https://api.lessons.church/externalVideos/download/${data.video.id}`;
+        console.log("[AddOn] Video found - id:", data.video.id, "url:", videoUrl, "seconds:", data.video.seconds);
         files.push({
           id: data.video.id,
           name: data.name || "",
-          url: `https://api.lessons.church/externalVideos/download/${data.video.id}`,
+          url: videoUrl,
           seconds: data.video.seconds || 10,
           fileType: "video"
         });
       } else if (data.file) {
+        console.log("[AddOn] File found - id:", data.file.id, "contentPath:", data.file.contentPath, "fileType:", data.file.fileType);
         // Otherwise check for a file (image)
         files.push({
           id: data.file.id,
@@ -116,10 +121,13 @@ export const PlanDownloadScreen = (props: Props) => {
           seconds: 10,
           fileType: data.file.fileType
         });
+      } else {
+        console.log("[AddOn] No video or file in add-on data:", addOnId);
       }
 
       return files.length > 0 ? files : null;
     } catch (err) {
+      console.error("[AddOn] Error fetching add-on:", addOnId, err);
       return null;
     }
   };
