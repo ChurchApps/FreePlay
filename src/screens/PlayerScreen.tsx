@@ -81,6 +81,7 @@ export const PlayerScreen = (props: Props) => {
   };
 
   const handleRemotePress = async (pendingKey: string) => {
+    if (showSelectMessage) return;
     switch (pendingKey) {
       case "right":
       case "fastForward": handleRight(); break;
