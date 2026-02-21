@@ -20,8 +20,6 @@ export const DownloadScreen = (props: Props) => {
   const [loading, setLoading] = React.useState(true);
   const [offlineCheck, setOfflineCheck] = React.useState(false);
   const buttonFadeAnim = useRef(new Animated.Value(0)).current;
-  const refreshTimer: number = null;
-
   const updateCounts = (cached: number, total: number): void => {
     setCachedItems(cached);
     setTotalItems(total);
@@ -80,9 +78,9 @@ export const DownloadScreen = (props: Props) => {
     }).catch((err) => console.error("Failed to load cached playlist:", err));
 
     const date = new Date();
-    let playlistUrl = "/classrooms/playlist/" + CachedData.room.id;
+    let playlistUrl = "/classrooms/playlist/" + CachedData.room?.id;
     playlistUrl += "?resolution=" + CachedData.resolution;
-    playlistUrl += "?date=" + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+    playlistUrl += "&date=" + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
     //console.log("Playlist URL: " + playlistUrl);
     ApiHelper.get(playlistUrl, "LessonsApi").then(data => {
       if (!playlist || JSON.stringify(playlist) !== JSON.stringify(data)) {
@@ -138,7 +136,7 @@ export const DownloadScreen = (props: Props) => {
       }).start();
     }
   }, [ready, cachedItems, totalItems, playlist]);
-  useEffect(() => { if (offlineCheck && loading) props.navigateTo("offline"); }, [offlineCheck]);
+  useEffect(() => { if (offlineCheck && loading) props.navigateTo("offline"); }, [offlineCheck, loading]);
 
   // Use lesson image, fall back to provider logo
   const getBackgroundImage = () => {

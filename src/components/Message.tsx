@@ -95,10 +95,11 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
     // Check explicit fileType first
     if (props.file.fileType === "video") return "video";
 
-    const parts = props.file.url.split("?")[0].split(".");
+    const url = props.file.url || "";
+    const parts = url.split("?")[0].split(".");
     const ext = parts[parts.length - 1].toLowerCase();
     // Detect video by: extension, externalVideos download URL, or /externalVideos/download/ pattern
-    if (ext === "webm" || ext === "mp4" || props.file.url.includes("externalVideos")) {
+    if (ext === "webm" || ext === "mp4" || url.includes("externalVideos")) {
       return "video";
     }
     return "image";

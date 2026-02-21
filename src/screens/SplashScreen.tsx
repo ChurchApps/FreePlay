@@ -92,11 +92,11 @@ export const SplashScreen = (props: Props) => {
       });
     }, 1000);
 
-    setTimeout(() => {
+    const storageTimer = setTimeout(() => {
       checkStorage();
     }, 2500);
 
-    return () => clearTimeout(dotTimer);
+    return () => { clearTimeout(dotTimer); clearTimeout(storageTimer); };
   }, []);
 
   return (

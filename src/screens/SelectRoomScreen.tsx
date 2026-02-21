@@ -27,7 +27,6 @@ export const SelectRoomScreen = (props: Props) => {
 
   const renderItem: ListRenderItem<ClassroomInterface> = (data) => {
     const room = data.item;
-    data.index;
     return (
       <TouchableHighlight style={Styles.menuClickable} underlayColor={"#E91E63"} onPress={() => { handleSelect(room); }} hasTVPreferredFocus={data.index === 0}>
         <Text style={Styles.whiteText}>{room.name}</Text>
@@ -56,7 +55,7 @@ export const SelectRoomScreen = (props: Props) => {
     setLoading(true);
 
     try {
-      const data = await ApiHelper.get("/classrooms/public/church/" + CachedData.church.id, "LessonsApi");
+      const data = await ApiHelper.get("/classrooms/public/church/" + CachedData.church?.id, "LessonsApi");
       setRooms(data);
       CachedData.setAsyncStorage("rooms", data);
     } catch (ex) {
@@ -81,7 +80,7 @@ export const SelectRoomScreen = (props: Props) => {
   };
 
   useEffect(init, []);
-  useEffect(() => { if (offlineCheck && loading) props.navigateTo("offline"); }, [offlineCheck] );
+  useEffect(() => { if (offlineCheck && loading) props.navigateTo("offline"); }, [offlineCheck, loading] );
 
   return (
     <View style={Styles.menuScreen}>

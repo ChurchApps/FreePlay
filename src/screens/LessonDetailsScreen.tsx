@@ -20,6 +20,8 @@ export const LessonDetailsScreen = (props: Props) => {
       CachedData.messageFiles = getFiles(data);
       CachedData.setAsyncStorage("messageFiles", CachedData.messageFiles);
       props.navigateTo("player", { program: props.program, study: props.study, lesson: props.lesson });
+    }).catch((ex) => {
+      console.error("Failed to load playlist:", ex);
     });
   };
 
@@ -40,6 +42,8 @@ export const LessonDetailsScreen = (props: Props) => {
   const loadData = () => {
     ApiHelper.get("/venues/public/lesson/" + props.lesson.id, "LessonsApi").then(data => {
       setVenues(data);
+    }).catch((ex) => {
+      console.error("Failed to load venues:", ex);
     });
   };
 
