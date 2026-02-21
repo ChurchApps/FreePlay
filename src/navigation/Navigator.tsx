@@ -19,20 +19,15 @@ export const Navigator = () => {
   const fadeAnim = useRef(new Animated.Value(1)).current;
 
   const handleNavigate = (page: string, data?:any) => {
-    // Skip fade for splash -> first screen (already has its own animation)
-    if (currentScreen === "splash") {
-      if (data) setCurrentData(data); else setCurrentData(null);
-      setCurrentScreen(page);
-      CachedData.currentScreen = page;
-      return;
+    if (data) setCurrentData(data); else setCurrentData(null);
+    setCurrentScreen(page);
+    CachedData.currentScreen = page;
+
+    // Quick fade-in for screen transitions (skip for splash which has its own animation)
+    if (currentScreen !== "splash") {
+      fadeAnim.setValue(0);
+      Animated.timing(fadeAnim, { toValue: 1, duration: 200, useNativeDriver: true }).start();
     }
-    // Fade out, swap screen, fade in
-    Animated.timing(fadeAnim, { toValue: 0, duration: 100, useNativeDriver: true }).start(() => {
-      if (data) setCurrentData(data); else setCurrentData(null);
-      setCurrentScreen(page);
-      CachedData.currentScreen = page;
-      Animated.timing(fadeAnim, { toValue: 1, duration: 150, useNativeDriver: true }).start();
-    });
   };
 
   const sidebarState = (state: boolean = true) => {
