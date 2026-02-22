@@ -1,9 +1,12 @@
 import React from "react";
 import { CachedData } from "../helpers";
+import { Colors } from "../helpers/Styles";
 import { LessonPlaylistFileInterface } from "../interfaces";
 import { Image, View, Text, ActivityIndicator, StyleSheet } from "react-native";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import Video from "react-native-video";
+import Icon from "react-native-vector-icons/MaterialIcons";
+
 
 type Props = {
   file: LessonPlaylistFileInterface,
@@ -22,6 +25,7 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   const videoRef = React.useRef<any>(null);
   const [internalPaused, setInternalPaused] = React.useState(props.paused);
   const [hasError, setHasError] = React.useState(false);
+  const [showError, setShowError] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
   const [showLoadingOverlay, setShowLoadingOverlay] = React.useState(false);
 
@@ -35,21 +39,49 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
 
   React.useEffect(() => {
     setInternalPaused(props.paused);
-    setHasError(false); // Reset error state when file changes
-    setIsLoading(true); // Reset loading state when file changes
-    setShowLoadingOverlay(false); // Reset overlay immediately on file change
+    setHasError(false);
+    setShowError(false);
+    setIsLoading(true);
+    setShowLoadingOverlay(false);
   }, [props.file]);
 
   // Delay showing loading overlay by 1 second to avoid flashing on quick transitions
   React.useEffect(() => {
     let timer: NodeJS.Timeout | null = null;
-    if (isLoading) {
+    if (isLoading && !hasError) {
       timer = setTimeout(() => setShowLoadingOverlay(true), 1000);
     } else {
       setShowLoadingOverlay(false);
     }
     return () => { if (timer) clearTimeout(timer); };
-  }, [isLoading]);
+  }, [isLoading, hasError]);
+
+  const handleVideoError = (_error: any) => {
+    setIsLoading(false);
+    setHasError(true);
+    setShowError(true);
+    // Show error briefly, then auto-advance
+    setTimeout(() => {
+      setShowError(false);
+      if (props.onEnd) props.onEnd();
+    }, 3000);
+  };
+
+  // Safety timeout: if video hasn't loaded within 15 seconds, auto-advance
+  React.useEffect(() => {
+    if (!isLoading || hasError) return;
+    const isVideo = props.file.fileType === "video"
+      || /\.(mp4|webm)$/i.test((props.file.url || "").split("?")[0])
+      || (props.file.url || "").includes("externalVideos");
+    if (!isVideo) return;
+
+    const safetyTimer = setTimeout(() => {
+      console.log("Video load timeout, advancing to next:", props.file?.url);
+      handleVideoError({ error: "timeout" });
+    }, 15000);
+
+    return () => clearTimeout(safetyTimer);
+  }, [isLoading, hasError, props.file]);
 
   // const getMessageType = () => {
   //   const parts = props.file.url.split("?")[0].split(".");
@@ -72,10 +104,11 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
     // Check explicit fileType first
     if (props.file.fileType === "video") return "video";
 
-    const parts = props.file.url.split("?")[0].split(".");
+    const url = props.file.url || "";
+    const parts = url.split("?")[0].split(".");
     const ext = parts[parts.length - 1].toLowerCase();
     // Detect video by: extension, externalVideos download URL, or /externalVideos/download/ pattern
-    if (ext === "webm" || ext === "mp4" || props.file.url.includes("externalVideos")) {
+    if (ext === "webm" || ext === "mp4" || url.includes("externalVideos")) {
       return "video";
     }
     return "image";
@@ -110,6 +143,7 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
       onLoad={() => setIsLoading(false)}
       onBuffer={({ isBuffering }) => setIsLoading(isBuffering)}
       onEnd={props.file.loopVideo ? undefined : props.onEnd}
+      onError={handleVideoError}
       controls={false}
       disableFocus={true}
     />);
@@ -127,16 +161,16 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
 
   const loadingOverlay = (
     <View style={styles.loadingOverlay}>
-      <Text style={styles.loadingTitle}>Loading</Text>
-      <Text style={styles.loadingSubtitle}>Preparing video content...</Text>
-      <View style={styles.loadingSpinnerRow}>
-        <ActivityIndicator size="large" color="#C2185B" />
-      </View>
-      <View style={styles.progressBarContainer}>
-        <View style={styles.progressBarTrack}>
-          <View style={[styles.progressBarFill, { width: "30%" }]} />
-        </View>
-      </View>
+      <ActivityIndicator size="large" color={Colors.primary} />
+      <Text style={styles.loadingSubtitle}>Loading video...</Text>
+    </View>
+  );
+
+  const errorOverlay = (
+    <View style={styles.errorOverlay}>
+      <Icon name="error-outline" size={48} color={Colors.error} />
+      <Text style={styles.errorTitle}>Video failed to load</Text>
+      <Text style={styles.errorSubtitle}>Skipping to next item...</Text>
     </View>
   );
 
@@ -144,6 +178,7 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
     <View style={{ flex: 1 }}>
       {content}
       {showLoadingOverlay && getMessageType() === "video" && loadingOverlay}
+      {showError && errorOverlay}
     </View>
   );
 
@@ -152,33 +187,31 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
 const styles = StyleSheet.create({
   loadingOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "#000",
+    backgroundColor: "rgba(0,0,0,0.85)",
     justifyContent: "center",
     alignItems: "center"
   },
-  loadingTitle: {
-    fontSize: 48,
-    fontWeight: "bold",
-    color: "#fff",
-    marginBottom: 10
-  },
   loadingSubtitle: {
-    fontSize: 24,
-    color: "#CCCCCC",
-    marginBottom: 40
+    fontSize: 20,
+    color: Colors.textLight,
+    marginTop: 16
   },
-  loadingSpinnerRow: { marginBottom: 30 },
-  progressBarContainer: { width: "40%" },
-  progressBarTrack: {
-    height: 8,
-    backgroundColor: "rgba(255, 255, 255, 0.2)",
-    borderRadius: 4,
-    overflow: "hidden"
+  errorOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0,0,0,0.9)",
+    justifyContent: "center",
+    alignItems: "center"
   },
-  progressBarFill: {
-    height: "100%",
-    backgroundColor: "#C2185B",
-    borderRadius: 4
+  errorTitle: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: Colors.error,
+    marginTop: 12
+  },
+  errorSubtitle: {
+    fontSize: 18,
+    color: Colors.textLight,
+    marginTop: 8
   }
 });
 

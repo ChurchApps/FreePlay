@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import { View, Text, TouchableHighlight, BackHandler, ActivityIndicator, Animated, Easing } from "react-native";
 import { ApiHelper, CachedData, DeviceHelper, Styles } from "../helpers";
 import { DeviceInterface } from "../interfaces";
@@ -280,9 +280,11 @@ export const PlanPairingScreen = (props: Props) => {
           </Text>
 
           {/* Hero pairing code */}
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            {pairingCode.split("").map((char, index) => renderCodeCharacter(char, index))}
-          </View>
+          {useMemo(() => (
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              {pairingCode.split("").map((char, index) => renderCodeCharacter(char, index))}
+            </View>
+          ), [pairingCode])}
 
           {/* Waiting indicator with pulsing animation */}
           <Animated.View

@@ -9,5 +9,6 @@ export { PlanDownloadScreen } from "./PlanDownloadScreen";
 export { ContentBrowserScreen } from "./ContentBrowserScreen";
 export { ProviderDeviceAuthScreen } from "./ProviderDeviceAuthScreen";
 export { ProviderFormLoginScreen } from "./ProviderFormLoginScreen";
+export { ProviderOAuthScreen } from "./ProviderOAuthScreen";
 export { ProvidersScreen } from "./ProvidersScreen";
 export { ProviderDownloadScreen } from "./ProviderDownloadScreen";

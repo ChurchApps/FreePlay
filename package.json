@@ -1,23 +1,24 @@
 {
   "name": "freeplay",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scripts": {
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "tvos": "expo run:ios --device \"Living Room\"",
+    "tvos": "cross-env LANG=en_US.UTF-8 EXPO_TV=1 expo run:ios --device \"Living Room\"",
     "web": "expo start --web",
     "prebuild": "expo prebuild --clean",
     "prebuild:tvos": "node scripts/prebuild-tvos.js",
     "build:android": "eas build --platform android --clear-cache",
     "build:amazon": "eas build --platform android --profile amazon --clear-cache",
-    "build:tvos": "eas build --platform ios --profile tvos-production --clear-cache",
+    "build:tvos": "npm run prebuild:tvos && cross-env EXPO_TV=1 eas build --platform ios --profile tvos-production",
     "submit:tvos": "eas submit --platform ios --profile tvos-production --latest",
     "update": "eas update --branch production",
-    "lint": "eslint --fix src/"
+    "lint": "eslint --fix src/",
+    "reset-provisioning": "cross-env EXPO_TV=1 eas credentials --platform ios"
   },
   "dependencies": {
-    "@churchapps/content-providers": "^0.1.0",
+    "@churchapps/content-providers": "^0.1.1",
     "@churchapps/helpers": "1.2.9",
     "@expo/metro-runtime": "~6.1.1",
     "@react-native-async-storage/async-storage": "1.24.0",
@@ -57,6 +58,7 @@
     "@types/react": "~19.1.10",
     "@typescript-eslint/eslint-plugin": "^8.55.0",
     "@typescript-eslint/parser": "^8.55.0",
+    "cross-env": "^10.1.0",
     "eslint": "^10.0.0",
     "eslint-plugin-unused-imports": "^4.4.1",
     "react-native-dotenv": "^3.4.11",

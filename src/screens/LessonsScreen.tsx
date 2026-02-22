@@ -1,11 +1,11 @@
 
 import React, { useEffect } from "react";
-import { Image, View, Text, FlatList, TouchableHighlight, ActivityIndicator, BackHandler } from "react-native";
+import { Image, View, Text, FlatList, TouchableHighlight, BackHandler } from "react-native";
 import { ApiHelper } from "../helpers/ApiHelper";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { LessonInterface, ProgramInterface, StudyInterface } from "../interfaces";
 import { Styles } from "../helpers";
-import { MenuHeader } from "../components";
+import { MenuHeader, EmptyState, SkeletonCard } from "../components";
 
 type Props = { navigateTo(page: string, data?:any): void; program: ProgramInterface, study: StudyInterface };
 
@@ -56,19 +56,29 @@ export const LessonsScreen = (props: Props) => {
   };
 
   const getCards = () => {
-    if (loading) return <ActivityIndicator size="small" color="gray" animating={loading} />;
-    else {
+    if (loading) {
+      const skeletonData = Array.from({ length: 6 }, (_, i) => ({ id: `skeleton-${i}` }));
       return (
         <View style={styles.list}>
-          <FlatList
-            data={lessons}
-            numColumns={3}
-            renderItem={getCard}
-            keyExtractor={(item) => item.id}
-          />
+          <FlatList data={skeletonData} numColumns={3} keyExtractor={item => item.id} renderItem={() => (
+            <View style={{ ...styles.item, padding: 7 }}>
+              <SkeletonCard width="100%" height={DimensionHelper.hp("33%")} />
+            </View>
+          )} />
         </View>
       );
     }
+    if (lessons.length === 0) return <EmptyState icon="library-books" message="No lessons available" />;
+    return (
+      <View style={styles.list}>
+        <FlatList
+          data={lessons}
+          numColumns={3}
+          renderItem={getCard}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
+    );
   };
 
   const handleBack = () => {

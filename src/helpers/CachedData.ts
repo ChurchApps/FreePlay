@@ -34,6 +34,19 @@ export class CachedData {
   // Focus memory: stores last focused item index per screen key
   static lastFocusedIndex: { [screenKey: string]: number } = {};
 
+  // Clear focus memory for a specific screen or all screens matching a prefix
+  static clearFocusMemory(screenKeyOrPrefix?: string) {
+    if (!screenKeyOrPrefix) {
+      this.lastFocusedIndex = {};
+    } else {
+      for (const key of Object.keys(this.lastFocusedIndex)) {
+        if (key === screenKeyOrPrefix || key.startsWith(screenKeyOrPrefix + "_")) {
+          delete this.lastFocusedIndex[key];
+        }
+      }
+    }
+  }
+
   // Track active downloads for cleanup
   private static activeDownloads: Map<string, { jobId: number }> = new Map();
 
@@ -115,7 +128,13 @@ export class CachedData {
     if (!url) return "";
     const parts = url.split("?")[0].split("/");
     parts.splice(0, 3);
-    const fullPath = RNFS.CachesDirectoryPath + "/" + parts.join("/");
+    let fullPath = RNFS.CachesDirectoryPath + "/" + parts.join("/");
+    // External video URLs from lessons.church have no file extension (e.g. /externalVideos/download/9DgTnt_fXPu).
+    // iOS AVFoundation needs a file extension to detect the media format, so append .mp4.
+    const lastSegment = parts[parts.length - 1] || "";
+    if (url.includes("externalVideos") && !/\.(mp4|mov|webm|m4v)$/i.test(lastSegment)) {
+      fullPath += ".mp4";
+    }
     return fullPath;
   }
 
@@ -123,7 +142,10 @@ export class CachedData {
     if (!file.url) return;
     let fullPath = this.getFilePath(file.url);
     fullPath = decodeURIComponent(fullPath);
-    if (!await RNFS.exists(fullPath)) await this.download(file, fullPath, fileProgressCallback);
+    const exists = await RNFS.exists(fullPath);
+    if (!exists) {
+      await this.download(file, fullPath, fileProgressCallback);
+    }
   }
 
   private static async download(
@@ -162,7 +184,6 @@ export class CachedData {
 
     try {
       const result = await downloadResponse.promise;
-      // Check if download was successful
       if (result.statusCode !== 200) {
         throw new Error(`Download failed with status ${result.statusCode}`);
       }
@@ -170,6 +191,16 @@ export class CachedData {
       // Clean up tracking
       this.activeDownloads.delete(file.url);
     }
+  }
+
+  static async allFilesCached(files: LessonPlaylistFileInterface[]): Promise<boolean> {
+    for (const f of files) {
+      if (!f.url || f.url.trim() === "") continue;
+      let fullPath = this.getFilePath(f.url);
+      fullPath = decodeURIComponent(fullPath);
+      if (!await RNFS.exists(fullPath)) return false;
+    }
+    return true;
   }
 
   // Cancel all active downloads (useful when navigating away)

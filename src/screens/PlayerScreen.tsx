@@ -4,6 +4,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import { LessonInterface, ProgramInterface, StudyInterface } from "../interfaces";
 import { CachedData } from "../helpers";
 import { PlayerHelper } from "../helpers/PlayerHelper";
+import { SoundHelper } from "../helpers/SoundHelper";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { useKeepAwake } from "expo-keep-awake";
 import { Message, SelectMessage, MessageHandle } from "../components";
@@ -15,6 +16,7 @@ type Props = {
   lesson?: LessonInterface;
   providerId?: string;
   providerStartIndex?: number;
+  streaming?: boolean;
 };
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
@@ -70,6 +72,7 @@ export const PlayerScreen = (props: Props) => {
   };
 
   const handlePlayPause = () => {
+    SoundHelper.playClick();
     const newPausedState = !paused;
     setPaused(newPausedState);
     PlayerHelper.pendingPause = newPausedState;
@@ -80,6 +83,7 @@ export const PlayerScreen = (props: Props) => {
   };
 
   const handleRemotePress = async (pendingKey: string) => {
+    if (showSelectMessage) return;
     switch (pendingKey) {
       case "right":
       case "fastForward": handleRight(); break;
@@ -242,7 +246,7 @@ export const PlayerScreen = (props: Props) => {
         <Message
           ref={messageRef}
           file={currentFile}
-          downloaded={!props.lesson}
+          downloaded={!props.lesson && !props.streaming}
           paused={paused}
           onProgress={handleProgress}
           onEnd={handleVideoEnd}

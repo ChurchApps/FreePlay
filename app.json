@@ -2,7 +2,7 @@
   "expo": {
     "name": "FreePlay",
     "slug": "freeplay",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "landscape",
     "icon": "./assets/images/icon.png",
     "scheme": "church.freeplay",
@@ -41,12 +41,13 @@
             "useFrameworks": "static"
           }
         }
-      ]
+      ],
+      "./plugins/withSoundAssets"
     ],
     "android": {
       "package": "church.freeplay",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 4,
+      "versionCode": 5,
       "permissions": [
         "android.permission.INTERNET",
         "android.permission.READ_EXTERNAL_STORAGE",
@@ -76,7 +77,7 @@
     },
     "ios": {
       "bundleIdentifier": "church.freeplay",
-      "buildNumber": "4",
+      "buildNumber": "5",
       "googleServicesFile": "./GoogleService-Info.plist",
       "splash": {
         "image": "./assets/images/splash.png"
@@ -90,7 +91,7 @@
         "projectId": "b6cd99e1-8cc2-4fd6-b4e7-81d8a6f62507"
       }
     },
-    "runtimeVersion": "1.0.0",
+    "runtimeVersion": "1.1.0",
     "updates": {
       "url": "https://u.expo.dev/b6cd99e1-8cc2-4fd6-b4e7-81d8a6f62507",
       "enabled": true,

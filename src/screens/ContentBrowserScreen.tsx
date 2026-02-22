@@ -18,7 +18,7 @@ import {
   isContentFile
 } from "../interfaces";
 import { Styles, CachedData, ProviderAuthHelper, Colors } from "../helpers";
-import { MenuHeader, SkeletonCard } from "../components";
+import { MenuHeader, SkeletonCard, EmptyState } from "../components";
 import { getProvider } from "../providers";
 
 type Props = {
@@ -37,6 +37,7 @@ export const ContentBrowserScreen = (props: Props) => {
   const initialFocusSet = React.useRef(false);
   const focusedIndexRef = React.useRef<number>(0);
   const listRef = React.useRef<FlatList>(null);
+  const requestVersionRef = React.useRef(0);
 
   const provider = getProvider(props.providerId);
   const folderStack = props.folderStack || [];
@@ -68,10 +69,14 @@ export const ContentBrowserScreen = (props: Props) => {
       return;
     }
 
+    const version = ++requestVersionRef.current;
     setLoading(true);
 
     const auth = await ProviderAuthHelper.refreshIfNeeded(props.providerId);
+    if (version !== requestVersionRef.current) return;
+
     const data = await provider.browse(currentFolder?.path ?? null, auth);
+    if (version !== requestVersionRef.current) return;
 
     setItems(data);
     setLoading(false);
@@ -82,12 +87,16 @@ export const ContentBrowserScreen = (props: Props) => {
   const handleSelectFolder = async (folder: ContentFolder) => {
     if (!provider) return;
 
+    const version = ++requestVersionRef.current;
+
     const auth = await ProviderAuthHelper.refreshIfNeeded(props.providerId);
+    if (version !== requestVersionRef.current) return;
 
     // Check if this is a leaf folder (end of browse tree)
     if (folder.isLeaf) {
       // Leaf folder - fetch playlist directly instead of browsing
       const files = await provider.getPlaylist(folder.path, auth);
+      if (version !== requestVersionRef.current) return;
 
       if (files && files.length > 0) {
         CachedData.messageFiles = files.map(f => ({
@@ -120,6 +129,8 @@ export const ContentBrowserScreen = (props: Props) => {
 
     // Non-leaf folder - fetch contents to check if it has files
     const contents = await provider.browse(folder.path, auth);
+    if (version !== requestVersionRef.current) return;
+
     const files = contents.filter((item): item is ContentFile => item.type === "file");
 
     if (files.length > 0) {
@@ -278,7 +289,8 @@ export const ContentBrowserScreen = (props: Props) => {
                   paddingHorizontal: 12,
                   marginTop: DimensionHelper.hp("1.5%")
                 }}
-                numberOfLines={2}>
+                numberOfLines={2}
+                ellipsizeMode="tail">
                 {folder.title}
               </Text>
             </View>
@@ -384,7 +396,8 @@ export const ContentBrowserScreen = (props: Props) => {
               marginTop: DimensionHelper.hp("1%"),
               textAlign: "center"
             }}
-            numberOfLines={2}>
+            numberOfLines={2}
+            ellipsizeMode="tail">
             {file.title}
           </Text>
           <Text
@@ -429,13 +442,7 @@ export const ContentBrowserScreen = (props: Props) => {
     }
 
     if (items.length === 0) {
-      return (
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-          <Text style={{ color: "rgba(255,255,255,0.6)" }}>
-            No content available
-          </Text>
-        </View>
-      );
+      return <EmptyState icon="folder-open" message="No content available" subMessage="Try navigating to a different folder" />;
     }
 
     const savedIndex = CachedData.lastFocusedIndex[screenKey];
