@@ -55,7 +55,9 @@
       ],
       "edgeToEdgeEnabled": true,
       "splash": {
-        "image": "./assets/images/splash.png"
+        "image": "./assets/images/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#000000"
       },
       "intentFilters": [
         {
@@ -80,7 +82,9 @@
       "buildNumber": "5",
       "googleServicesFile": "./GoogleService-Info.plist",
       "splash": {
-        "image": "./assets/images/splash.png"
+        "image": "./assets/images/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#000000"
       },
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
