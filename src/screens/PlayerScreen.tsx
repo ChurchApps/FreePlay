@@ -28,6 +28,7 @@ export const PlayerScreen = (props: Props) => {
   useKeepAwake();
 
   const [showSelectMessage, setShowSelectMessage] = React.useState(false);
+  const showSelectMessageRef = useRef(false);
   const [messageIndex, setMessageIndex] = React.useState(props.providerStartIndex ?? 0);
   const [paused, setPaused] = React.useState(false);
   const [triggerPauseCheck, setTriggerPauseCheck] = React.useState(0);
@@ -121,7 +122,10 @@ export const PlayerScreen = (props: Props) => {
   const handleUp = () => { if (!showSelectMessage) { stopTimer(); setShowSelectMessage(true); } };
 
   const handleBack = () => {
-    if (!showSelectMessage) {
+    if (showSelectMessageRef.current) {
+      setShowSelectMessage(false);
+      startTimer();
+    } else {
       stopTimer();
       // Handle provider media - navigate back to content browser root
       if (isProviderMedia && props.providerId) {
@@ -193,6 +197,7 @@ export const PlayerScreen = (props: Props) => {
   };
 
   React.useEffect(init, []);
+  React.useEffect(() => { showSelectMessageRef.current = showSelectMessage; }, [showSelectMessage]);
   React.useEffect(startTimer, [messageIndex]);
   React.useEffect(() => { if (PlayerHelper.pendingPause !== paused) handlePlayPause(); }, [triggerPauseCheck]);
 
