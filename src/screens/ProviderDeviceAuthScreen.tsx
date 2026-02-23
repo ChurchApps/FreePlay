@@ -165,6 +165,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
 
       // Success - store auth
       await ProviderAuthHelper.setAuth(props.providerId, result as ContentProviderAuthData);
+      await ProviderAuthHelper.setConnectionState(props.providerId, true);
       setFlowState({ status: "success" });
 
       if (!CachedData.connectedProviders.includes(props.providerId)) {

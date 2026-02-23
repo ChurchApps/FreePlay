@@ -88,6 +88,7 @@ export const ProviderFormLoginScreen = (props: Props) => {
 
       if (auth) {
         await ProviderAuthHelper.setAuth(props.providerId, auth);
+        await ProviderAuthHelper.setConnectionState(props.providerId, true);
         setFlowState({ status: "success" });
 
         if (!CachedData.connectedProviders.includes(props.providerId)) {

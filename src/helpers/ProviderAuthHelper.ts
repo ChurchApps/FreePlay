@@ -72,9 +72,15 @@ export class ProviderAuthHelper {
       return states[providerId] === true;
     }
 
+    // Auth provider: if explicitly connected and auth data exists, trust it.
+    // The token may be expired but refreshIfNeeded() handles refresh when browsing.
     const auth = await this.getAuth(providerId);
-    if (!auth) return false;
+    if (states[providerId] === true) {
+      return auth !== null;
+    }
 
+    // Fallback: no explicit connection state, check token validity directly
+    if (!auth) return false;
     return tokenHelper.isAuthValid(auth);
   }
 
