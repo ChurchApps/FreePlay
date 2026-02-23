@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { HWEvent, BackHandler, useTVEventHandler, Pressable, TextInput, View, StyleSheet, Animated, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { LessonInterface, ProgramInterface, StudyInterface } from "../interfaces";
+import { ContentFolder, LessonInterface, ProgramInterface, StudyInterface } from "../interfaces";
 import { CachedData } from "../helpers";
 import { PlayerHelper } from "../helpers/PlayerHelper";
 import { SoundHelper } from "../helpers/SoundHelper";
@@ -17,6 +17,7 @@ type Props = {
   providerId?: string;
   providerStartIndex?: number;
   streaming?: boolean;
+  folderStack?: ContentFolder[];
 };
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
@@ -127,9 +128,9 @@ export const PlayerScreen = (props: Props) => {
       startTimer();
     } else {
       stopTimer();
-      // Handle provider media - navigate back to content browser root
+      // Handle provider media - navigate back to content browser
       if (isProviderMedia && props.providerId) {
-        props.navigateTo("contentBrowser", { providerId: props.providerId, folderStack: [] });
+        props.navigateTo("contentBrowser", { providerId: props.providerId, folderStack: props.folderStack || [] });
       } else if (props.lesson) {
         props.navigateTo("lessonDetails", { program: props.program, study: props.study, lesson: props.lesson });
       } else if (CachedData.planTypeId) {

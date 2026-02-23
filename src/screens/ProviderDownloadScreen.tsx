@@ -39,7 +39,8 @@ export const ProviderDownloadScreen = (props: Props) => {
   const handleStart = () => {
     props.navigateTo("player", {
       providerId: props.providerId,
-      providerStartIndex: props.startIndex
+      providerStartIndex: props.startIndex,
+      folderStack: props.folderStack
     });
   };
 
@@ -47,7 +48,8 @@ export const ProviderDownloadScreen = (props: Props) => {
     props.navigateTo("player", {
       providerId: props.providerId,
       providerStartIndex: props.startIndex,
-      streaming: true
+      streaming: true,
+      folderStack: props.folderStack
     });
   };
 
