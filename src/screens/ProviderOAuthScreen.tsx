@@ -203,6 +203,7 @@ export const ProviderOAuthScreen = (props: Props) => {
 
       // Success — store auth and navigate
       await ProviderAuthHelper.setAuth(props.providerId, authData);
+      await ProviderAuthHelper.setConnectionState(props.providerId, true);
       setFlowState({ status: "success" });
 
       if (!CachedData.connectedProviders.includes(props.providerId)) {

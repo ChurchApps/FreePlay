@@ -14,7 +14,7 @@ import { SvgUri } from "react-native-svg";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { Styles, CachedData, ProviderAuthHelper, Colors } from "../helpers";
 import { MenuHeader, SkeletonCard } from "../components";
-import { getProvider, getAvailableProviders } from "../providers";
+import { getProvider, getAvailableProviders, FREEPLAY_PROVIDER_IDS } from "../providers";
 import { ProviderInfo } from "../interfaces";
 
 type Props = {
@@ -47,13 +47,13 @@ export const ProvidersScreen = (props: Props) => {
   };
 
   const loadProviders = () => {
-    const availableProviders = getAvailableProviders(["signpresenter", "lessonschurch", "b1church", "bibleproject", "dropbox", "jesusfilm"]);
+    const availableProviders = getAvailableProviders(FREEPLAY_PROVIDER_IDS);
     setProviders(availableProviders);
   };
 
   const checkConnections = async () => {
     const connected: string[] = [];
-    const availableProviders = getAvailableProviders(["signpresenter", "lessonschurch", "b1church", "bibleproject", "dropbox", "jesusfilm"]);
+    const availableProviders = getAvailableProviders(FREEPLAY_PROVIDER_IDS);
     for (const providerInfo of availableProviders) {
       if (providerInfo.implemented) {
         const isConnected = await ProviderAuthHelper.isConnected(providerInfo.id);

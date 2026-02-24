@@ -17,6 +17,9 @@
         "distribution": "internal"
       },
       "production": {
+        "env": {
+          "EXPO_TV": "1"
+        },
         "android": {
           "buildType": "app-bundle"
         }

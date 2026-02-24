@@ -3,7 +3,7 @@ import React, { useRef, useEffect } from "react";
 import { View, Animated, Easing } from "react-native";
 import { CachedData, Styles, Colors } from "../helpers";
 import { ProviderAuthHelper } from "../helpers";
-import { getAvailableProviders } from "../providers";
+import { getAvailableProviders, FREEPLAY_PROVIDER_IDS } from "../providers";
 import SoundPlayer from "react-native-sound-player";
 import { FreePlayLogo } from "../components";
 
@@ -23,7 +23,7 @@ export const SplashScreen = (props: Props) => {
     CachedData.pairedChurchId = await CachedData.getAsyncStorage("pairedChurchId");
 
     const connectedProviders: string[] = [];
-    for (const providerInfo of getAvailableProviders(["signpresenter", "lessonschurch", "b1church", "bibleproject"])) {
+    for (const providerInfo of getAvailableProviders(FREEPLAY_PROVIDER_IDS)) {
       if (providerInfo.implemented) {
         const isConnected = await ProviderAuthHelper.isConnected(providerInfo.id);
         if (isConnected) {
