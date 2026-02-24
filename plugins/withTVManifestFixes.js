@@ -24,23 +24,34 @@ function withTVManifestFixes(config) {
         );
       }
 
-      // Remove any existing faketouch lines and add one with tools:node="remove"
-      // so the Gradle manifest merger strips it from dependency manifests too
+      // Normalize faketouch so Play does not treat it as required.
       manifest = manifest.replace(
         /\s*<uses-feature[^>]*android\.hardware\.faketouch[^>]*\/>/g,
         ""
       );
 
-      // Insert faketouch with tools:node="remove" after touchscreen line
+      // Insert faketouch with required=false after touchscreen declaration.
       manifest = manifest.replace(
         /(<uses-feature[^>]*android\.hardware\.touchscreen[^>]*\/>)/,
-        '$1\n  <uses-feature android:name="android.hardware.faketouch" android:required="false" tools:node="remove"/>'
+        '$1\n  <uses-feature android:name="android.hardware.faketouch" android:required="false"/>'
       );
 
-      // Ensure leanback is required="true"
+      // Ensure leanback exists and is required="true".
+      if (!manifest.includes('android:name="android.software.leanback"')) {
+        manifest = manifest.replace(
+          /(<uses-feature[^>]*android\.hardware\.faketouch[^>]*\/>)/,
+          '$1\n  <uses-feature android:name="android.software.leanback" android:required="true"/>'
+        );
+      }
+
       manifest = manifest.replace(
-        /(<uses-feature[^>]*android\.software\.leanback[^>]*android:required=)"false"/,
-        '$1"true"'
+        /<uses-feature([^>]*android:name="android\.software\.leanback"[^>]*)\/>/,
+        (match, attrs) => {
+          const normalized = attrs.includes("android:required=")
+            ? attrs.replace(/android:required="[^"]*"/, 'android:required="true"')
+            : `${attrs} android:required="true"`;
+          return `<uses-feature${normalized}/>`;
+        }
       );
 
       fs.writeFileSync(manifestPath, manifest, "utf-8");
