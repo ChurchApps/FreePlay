@@ -130,7 +130,7 @@ export const PlayerScreen = (props: Props) => {
       stopTimer();
       // Handle provider media - navigate back to content browser
       if (isProviderMedia && props.providerId) {
-        props.navigateTo("contentBrowser", { providerId: props.providerId, folderStack: props.folderStack || [] });
+        props.navigateTo("contentBrowser", { providerId: props.providerId, folderStack: (props.folderStack || []).slice(0, -1) });
       } else if (props.lesson) {
         props.navigateTo("lessonDetails", { program: props.program, study: props.study, lesson: props.lesson });
       } else if (CachedData.planTypeId) {

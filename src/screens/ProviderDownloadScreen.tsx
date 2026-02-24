@@ -134,7 +134,7 @@ export const ProviderDownloadScreen = (props: Props) => {
     CachedData.cancelAllDownloads();
     props.navigateTo("contentBrowser", {
       providerId: props.providerId,
-      folderStack: props.folderStack
+      folderStack: props.folderStack?.slice(0, -1) || []
     });
   };
 
