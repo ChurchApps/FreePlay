@@ -36,24 +36,6 @@ function withTVManifestFixes(config) {
         '$1\n  <uses-feature android:name="android.hardware.faketouch" android:required="false"/>'
       );
 
-      // Ensure leanback exists and is required="true".
-      if (!manifest.includes('android:name="android.software.leanback"')) {
-        manifest = manifest.replace(
-          /(<uses-feature[^>]*android\.hardware\.faketouch[^>]*\/>)/,
-          '$1\n  <uses-feature android:name="android.software.leanback" android:required="true"/>'
-        );
-      }
-
-      manifest = manifest.replace(
-        /<uses-feature([^>]*android:name="android\.software\.leanback"[^>]*)\/>/,
-        (match, attrs) => {
-          const normalized = attrs.includes("android:required=")
-            ? attrs.replace(/android:required="[^"]*"/, 'android:required="true"')
-            : `${attrs} android:required="true"`;
-          return `<uses-feature${normalized}/>`;
-        }
-      );
-
       fs.writeFileSync(manifestPath, manifest, "utf-8");
       return config;
     },
