@@ -42,12 +42,13 @@
           }
         }
       ],
-      "./plugins/withSoundAssets"
+      "./plugins/withSoundAssets",
+      "./plugins/withTVManifestFixes"
     ],
     "android": {
       "package": "church.freeplay",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 8,
+      "versionCode": 10,
       "permissions": [
         "android.permission.INTERNET",
         "android.permission.READ_EXTERNAL_STORAGE",
