@@ -22,6 +22,7 @@ type Props = {
 
 export const NavWrapper = (props: Props) => {
   const browseRef = useRef(null);
+  const downloadsRef = useRef(null);
   const providersRef = useRef(null);
   const providerRefs = useRef<{[key: string]: any}>({});
   const recentlyCollapsed = useRef(false);
@@ -121,6 +122,9 @@ export const NavWrapper = (props: Props) => {
       case "contentBrowser":
         highlightedItem = CachedData.activeProvider || "provider";
         break;
+      case "downloads":
+        highlightedItem = "downloads";
+        break;
     }
   };
   highlightTab(CachedData.currentScreen);
@@ -155,7 +159,7 @@ export const NavWrapper = (props: Props) => {
 
           // Determine focus targets
           const prevRef = index === 0 ? null : providerRefs.current[connectedProviders[index - 1]];
-          const nextRef = index === connectedProviders.length - 1 ? providersRef.current : providerRefs.current[connectedProviders[index + 1]];
+          const nextRef = index === connectedProviders.length - 1 ? downloadsRef.current : providerRefs.current[connectedProviders[index + 1]];
 
           return (
             <NavItem
@@ -179,6 +183,23 @@ export const NavWrapper = (props: Props) => {
       </View>
       <View style={{ marginBottom: DimensionHelper.hp("2%") }}>
         <NavItem
+          icon={"file-download"}
+          text={"Downloads"}
+          expanded={props.sidebarExpanded}
+          setExpanded={handleSidebarExpand}
+          selected={highlightedItem === "downloads"}
+          onPress={() => {
+            handleClick("downloads");
+          }}
+          ref={downloadsRef}
+          nextFocusUp={
+            connectedProviders.length > 0
+              ? findNodeHandle(providerRefs.current[connectedProviders[connectedProviders.length - 1]])
+              : undefined
+          }
+          nextFocusDown={findNodeHandle(providersRef.current)}
+        />
+        <NavItem
           icon={"extension"}
           text={"Providers"}
           expanded={props.sidebarExpanded}
@@ -188,11 +209,7 @@ export const NavWrapper = (props: Props) => {
             handleClick("providers");
           }}
           ref={providersRef}
-          nextFocusUp={
-            connectedProviders.length > 0
-              ? findNodeHandle(providerRefs.current[connectedProviders[connectedProviders.length - 1]])
-              : undefined
-          }
+          nextFocusUp={findNodeHandle(downloadsRef.current)}
         />
       </View>
     </View>

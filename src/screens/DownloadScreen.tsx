@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import { ApiHelper } from "../helpers/ApiHelper";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { LessonPlaylistFileInterface, LessonPlaylistInterface } from "../interfaces";
-import { CachedData, Styles, Colors } from "../helpers";
+import { CachedData, Styles, Colors, DownloadIndex } from "../helpers";
 import LinearGradient from "react-native-linear-gradient";
 import { getProvider } from "../providers";
 
@@ -110,6 +110,17 @@ export const DownloadScreen = (props: Props) => {
       setReady(false);
       CachedData.prefetch(files, updateCounts, updateFileProgress).then(() => {
         setReady(true);
+        DownloadIndex.addEntry({
+          downloadKey: DownloadIndex.generateKey("classroom", { lessonId: playlist.lessonId || "", venueId: playlist.venueId || "" }),
+          source: "classroom",
+          lessonName: playlist.lessonName,
+          lessonTitle: playlist.lessonTitle,
+          lessonDescription: playlist.lessonDescription,
+          lessonImage: playlist.lessonImage,
+          playlist: playlist,
+          messageFiles: files,
+          downloadedAt: Date.now()
+        });
       });
     }
   };

@@ -7,3 +7,4 @@ export { StyleConstants } from "./StyleConstants";
 export { ErrorHelper } from "./ErrorHelper";
 export { DeviceHelper } from "./DeviceHelper";
 export { ProviderAuthHelper } from "./ProviderAuthHelper";
+export { DownloadIndex } from "./DownloadIndex";

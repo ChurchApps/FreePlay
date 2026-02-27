@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { View, Text, TouchableHighlight, ActivityIndicator, BackHandler, ImageBackground } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { ApiHelper, CachedData, Styles } from "../helpers";
+import { ApiHelper, CachedData, Styles, DownloadIndex } from "../helpers";
 import { Colors } from "../helpers/Styles";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { PlanInterface, FeedVenueInterface, LessonPlaylistFileInterface, PlanItemInterface } from "../interfaces";
@@ -351,6 +351,16 @@ export const PlanDownloadScreen = (props: Props) => {
         setReady(false);
         CachedData.prefetch(files, updateCounts).then(() => {
           setReady(true);
+          DownloadIndex.addEntry({
+            downloadKey: DownloadIndex.generateKey("plan", { planId: plan?.id || "", venueId: venue?.id || "" }),
+            source: "plan",
+            lessonName: plan?.name || "Service Plan",
+            lessonTitle: venue?.lessonName,
+            lessonDescription: venue?.lessonDescription,
+            lessonImage: venue?.lessonImage,
+            messageFiles: files,
+            downloadedAt: Date.now()
+          });
         });
       } else {
         // No media files, still mark as ready

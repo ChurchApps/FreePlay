@@ -161,4 +161,17 @@ export interface FeedFileInterface {
   fileType?: string;
 }
 
+export interface DownloadedLessonInterface {
+  downloadKey: string;
+  source: "classroom" | "provider" | "plan";
+  providerId?: string;
+  lessonName?: string;
+  lessonTitle?: string;
+  lessonDescription?: string;
+  lessonImage?: string;
+  playlist?: LessonPlaylistInterface;
+  messageFiles: LessonPlaylistFileInterface[];
+  downloadedAt: number;
+}
+
 export * from "./ContentProviderInterfaces";

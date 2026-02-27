@@ -12,3 +12,4 @@ export { ProviderFormLoginScreen } from "./ProviderFormLoginScreen";
 export { ProviderOAuthScreen } from "./ProviderOAuthScreen";
 export { ProvidersScreen } from "./ProvidersScreen";
 export { ProviderDownloadScreen } from "./ProviderDownloadScreen";
+export { DownloadsScreen } from "./DownloadsScreen";

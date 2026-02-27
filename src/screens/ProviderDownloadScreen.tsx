@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { View, Text, TouchableHighlight, BackHandler, ImageBackground, Animated } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { DimensionHelper } from "../helpers/DimensionHelper";
-import { CachedData, Styles, Colors } from "../helpers";
+import { CachedData, Styles, Colors, DownloadIndex } from "../helpers";
 import LinearGradient from "react-native-linear-gradient";
 import { ContentFolder } from "../interfaces";
 import { getProvider } from "../providers";
@@ -124,6 +124,16 @@ export const ProviderDownloadScreen = (props: Props) => {
       setReady(false);
       CachedData.prefetch(files, updateCounts, updateFileProgress).then(() => {
         setReady(true);
+        DownloadIndex.addEntry({
+          downloadKey: DownloadIndex.generateKey("provider", { providerId: props.providerId, title: props.title || "" }),
+          source: "provider",
+          providerId: props.providerId,
+          lessonName: props.title,
+          lessonTitle: props.title,
+          lessonImage: props.coverImage,
+          messageFiles: files,
+          downloadedAt: Date.now()
+        });
       });
     } else {
       setReady(true);
