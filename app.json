@@ -49,7 +49,7 @@
     "android": {
       "package": "church.freeplay",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 14,
+      "versionCode": 15,
       "permissions": [
         "android.permission.INTERNET",
         "android.permission.READ_EXTERNAL_STORAGE",
