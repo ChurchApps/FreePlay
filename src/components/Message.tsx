@@ -29,9 +29,7 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [showLoadingOverlay, setShowLoadingOverlay] = React.useState(false);
 
-  React.useImperativeHandle(ref, () => ({
-    seek: (time: number) => { videoRef.current?.seek(time); }
-  }));
+  React.useImperativeHandle(ref, () => ({ seek: (time: number) => { videoRef.current?.seek(time); } }));
 
   React.useEffect(() => {
     setInternalPaused(props.paused);

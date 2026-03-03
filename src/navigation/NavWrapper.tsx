@@ -21,7 +21,7 @@ type Props = {
 };
 
 export const NavWrapper = (props: Props) => {
-  const browseRef = useRef(null);
+  const _browseRef = useRef(null);
   const downloadsRef = useRef(null);
   const providersRef = useRef(null);
   const providerRefs = useRef<{[key: string]: any}>({});
@@ -77,7 +77,7 @@ export const NavWrapper = (props: Props) => {
     props.navigateTo(id);
   };
 
-  const handleChurchClick = () => {
+  const _handleChurchClick = () => {
     // If paired to a plan, go directly to plan download screen
     if (CachedData.planTypeId) handleClick("planDownload");
     // If paired to a classroom, show room selection

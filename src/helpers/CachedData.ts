@@ -209,7 +209,7 @@ export class CachedData {
       try {
         RNFS.stopDownload(download.jobId);
         console.log("Cancelled download:", url);
-      } catch (e) {
+      } catch {
         // Ignore errors when cancelling
       }
     });

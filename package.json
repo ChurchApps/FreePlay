@@ -15,7 +15,7 @@
     "build:tvos": "npm run prebuild:tvos && cross-env EXPO_TV=1 eas build --platform ios --profile tvos-production",
     "submit:tvos": "eas submit --platform ios --profile tvos-production --latest",
     "update": "eas update --branch production",
-    "lint": "eslint --fix src/",
+    "lint": "eslint --fix src/ App.tsx",
     "reset-provisioning": "cross-env EXPO_TV=1 eas credentials --platform ios"
   },
   "dependencies": {
@@ -55,12 +55,15 @@
     "react-native-web": "^0.21.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@react-native-tvos/config-tv": "^0.1.4",
     "@types/react": "~19.1.10",
     "@typescript-eslint/eslint-plugin": "^8.55.0",
     "@typescript-eslint/parser": "^8.55.0",
     "cross-env": "^10.1.0",
     "eslint": "^10.0.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-native": "^5.0.0",
     "eslint-plugin-unused-imports": "^4.4.1",
     "react-native-dotenv": "^3.4.11",
     "typescript": "~5.9.2"

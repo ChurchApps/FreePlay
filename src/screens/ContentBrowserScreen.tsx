@@ -190,7 +190,7 @@ export const ContentBrowserScreen = (props: Props) => {
     });
   };
 
-  const handleSelect = (item: ContentItem) => {
+  const _handleSelect = (item: ContentItem) => {
     if (isContentFolder(item)) {
       handleSelectFolder(item);
     } else if (isContentFile(item)) {
