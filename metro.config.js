@@ -3,9 +3,18 @@ const path = require('path');
 const { getDefaultConfig } = require('expo/metro-config');
 const { getSentryExpoConfig } = require('@sentry/react-native/metro');
 
+const fs = require('fs');
+const contentProvidersPath = path.resolve(__dirname, '../Packages/content-providers');
+
 const config = getSentryExpoConfig(__dirname);
 
 config.resolver.unstable_enablePackageExports = true;
+
+// Support file-linked local packages (symlinks) - only when the local path exists
+if (fs.existsSync(contentProvidersPath)) {
+  config.watchFolders = [contentProvidersPath];
+}
+config.resolver.nodeModulesPaths = [path.resolve(__dirname, 'node_modules')];
 
 // When enabled, the optional code below will allow Metro to resolve
 // and bundle source files with TV-specific extensions

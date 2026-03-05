@@ -95,7 +95,9 @@ export const ContentBrowserScreen = (props: Props) => {
     // Check if this is a leaf folder (end of browse tree)
     if (folder.isLeaf) {
       // Leaf folder - fetch playlist directly instead of browsing
+      console.log(`[ContentBrowser] handleSelectFolder: leaf folder "${folder.title}" path=${folder.path}`);
       const files = await provider.getPlaylist(folder.path, auth);
+      console.log(`[ContentBrowser] handleSelectFolder: getPlaylist returned ${files ? files.length + " files" : "null"}`);
       if (version !== requestVersionRef.current) return;
 
       if (files && files.length > 0) {
@@ -119,6 +121,7 @@ export const ContentBrowserScreen = (props: Props) => {
         });
       } else {
         // No files in playlist - navigate into folder to show empty state
+        console.warn(`[ContentBrowser] handleSelectFolder: no files for leaf "${folder.title}" — showing empty state`);
         props.navigateTo("contentBrowser", {
           providerId: props.providerId,
           folderStack: [...folderStack, folder]
