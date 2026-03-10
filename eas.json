@@ -32,7 +32,7 @@
         "android": {
           "buildType": "apk"
         },
-        "channel": "amazon"
+        "channel": "production"
       },
       "tvos-development": {
         "developmentClient": true,
