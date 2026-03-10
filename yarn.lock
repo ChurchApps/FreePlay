@@ -771,14 +771,14 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.28.5"
 
-"@churchapps/content-providers@0.1.6":
-  version "0.1.6"
-  resolved "https://registry.npmjs.org/@churchapps/content-providers/-/content-providers-0.1.6.tgz"
-  integrity sha512-lZg2BUOE18V2GFqMwEtum9fvhzZmoo6gTuujvm4zShWtaq47sFVCmOkNRdELJ0B1+BSiVKsrYQyF82855Z7lYg==
+"@churchapps/content-providers@0.1.7":
+  version "0.1.7"
+  resolved "https://registry.npmjs.org/@churchapps/content-providers/-/content-providers-0.1.7.tgz"
+  integrity sha512-zuTho7kzUlEvRlGVT296Pjvd53CRZWLhakvWLuRckFGOuvprjCn1TrtUAgr//7Rf0Q9Lfo9Ssy80GwvcfcoT/Q==
 
 "@churchapps/helpers@1.2.29":
   version "1.2.29"
-  resolved "https://registry.yarnpkg.com/@churchapps/helpers/-/helpers-1.2.29.tgz#bd7e7f944c1c837fe0a6824f6f534e3cbe2889dc"
+  resolved "https://registry.npmjs.org/@churchapps/helpers/-/helpers-1.2.29.tgz"
   integrity sha512-dWiDSexLu+s5uS7QBByDp9oNl41/MvGT9v4rvgvyzpxEDn5GY0atUfF9qiXFj9p+ITCTCXgF3DF0+DKnKdYyMg==
   dependencies:
     dayjs "^1.11.18"

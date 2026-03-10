@@ -88,9 +88,9 @@ export const PlayerScreen = (props: Props) => {
   const handleRemotePress = async (pendingKey: string) => {
     if (showSelectMessage) return;
     switch (pendingKey) {
-      case "right":
+      case "right": handleSkipForward(); break;
       case "fastForward": handleRight(); break;
-      case "left":
+      case "left": handleSkipBack(); break;
       case "rewind": handleLeft(); break;
       case "up": handleUp(); break;
       case "previous":
@@ -102,6 +102,9 @@ export const PlayerScreen = (props: Props) => {
   };
 
   useTVEventHandler((evt: HWEvent) => { handleRemotePress(evt.eventType); });
+
+  const handleSkipForward = () => { stopTimer(); goForward(); startTimer(); };
+  const handleSkipBack = () => { stopTimer(); goBack(); startTimer(); };
 
   const handleLeft = () => {
     const currentFile = CachedData.messageFiles?.[messageIndex];
