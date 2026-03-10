@@ -6,10 +6,11 @@ type Props = {
   headerText: string;
   showBackbutton?: boolean;
   onpress?: () => void;
+  noBorder?: boolean;
 };
 
 export const MenuHeader = (props: Props) => (
-  <View style={Styles.menuHeader}>
+  <View style={props.noBorder ? { ...Styles.menuHeader, borderBottomWidth: 0 } : Styles.menuHeader}>
     {props.showBackbutton && (
       <TouchableOpacity
         onPress={props.onpress}

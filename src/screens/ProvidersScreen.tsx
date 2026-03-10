@@ -315,9 +315,18 @@ export const ProvidersScreen = (props: Props) => {
 
   useEffect(init, []);
 
+  const pkg = require("../../package.json");
+
   return (
     <View style={{ ...Styles.menuScreen }}>
-      <MenuHeader headerText="Content Providers" />
+      <View style={{ flexDirection: "row", alignItems: "center", borderBottomWidth: 1, borderBottomColor: Colors.borderAccent, backgroundColor: Colors.surface }}>
+        <View style={{ flex: 1 }}>
+          <MenuHeader headerText="Content Providers" noBorder />
+        </View>
+        <Text style={{ color: Colors.textDimmed, fontSize: DimensionHelper.wp("0.9%"), paddingRight: DimensionHelper.wp("2%") }}>
+          v{pkg.version}
+        </Text>
+      </View>
       <View style={{ ...Styles.menuWrapper, flex: 90 }}>{getCards()}</View>
     </View>
   );
