@@ -771,10 +771,10 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.28.5"
 
-"@churchapps/content-providers@0.1.10":
-  version "0.1.10"
-  resolved "https://registry.npmjs.org/@churchapps/content-providers/-/content-providers-0.1.10.tgz"
-  integrity sha512-L3BMydjDmOdhliTRl+/CJkLVgfP+UG259EuSkeUQKpxd/LCfXZ1sq9tpOp7stuVCKxU8tP3NMVC1BQ8fdVtYKw==
+"@churchapps/content-providers@0.1.12":
+  version "0.1.12"
+  resolved "https://registry.npmjs.org/@churchapps/content-providers/-/content-providers-0.1.12.tgz"
+  integrity sha512-eTl0zaA6ywRRUOBlMhJXLslud2GHfeE4f0zi0Tmk3jYLhNCu6aM2L99oN3njce/QhxOjTYTUaCCqaymSuP9OxA==
 
 "@churchapps/helpers@1.2.31":
   version "1.2.31"

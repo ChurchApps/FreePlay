@@ -1,6 +1,6 @@
 {
   "name": "freeplay",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "scripts": {
     "start": "npx expo start",
     "android": "npx expo run:android",
@@ -19,7 +19,7 @@
     "reset-provisioning": "cross-env EXPO_TV=1 eas credentials --platform ios"
   },
   "dependencies": {
-    "@churchapps/content-providers": "0.1.10",
+    "@churchapps/content-providers": "0.1.12",
     "@churchapps/helpers": "1.2.31",
     "@expo/metro-runtime": "~6.1.1",
     "@react-native-async-storage/async-storage": "1.24.0",
