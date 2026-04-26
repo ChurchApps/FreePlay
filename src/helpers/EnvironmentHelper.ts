@@ -1,14 +1,6 @@
 // Uncomment to use environment variables from .env file
-import { MEMBERSHIP_API, LESSONS_API, MESSAGING_API, DOING_API } from "@env";
+import { API_BASE, LESSONS_API } from "@env";
 import { ApiHelper } from "./ApiHelper";
-
-// Declare these as fallbacks when not using @env imports
-//declare const MEMBERSHIP_API: string | undefined;
-//declare const LESSONS_API: string | undefined;
-
-
-
-
 
 export class EnvironmentHelper {
   public static MembershipApi = "";
@@ -32,27 +24,28 @@ export class EnvironmentHelper {
     console.log(JSON.stringify(ApiHelper.apiConfigs[1].url));
   };
 
+  private static applyApiBase = (base: string) => {
+    const trimmed = base.replace(/\/$/, "");
+    EnvironmentHelper.MembershipApi = trimmed + "/membership";
+    EnvironmentHelper.MessagingApi  = trimmed + "/messaging";
+    EnvironmentHelper.DoingApi      = trimmed + "/doing";
+  };
+
   static initDev = () => {
-    console.log("ENV values:", { MEMBERSHIP_API, LESSONS_API, MESSAGING_API, DOING_API });
-    EnvironmentHelper.MembershipApi = MEMBERSHIP_API || "";
+    console.log("ENV values:", { API_BASE, LESSONS_API });
+    EnvironmentHelper.applyApiBase(API_BASE || "");
     EnvironmentHelper.LessonsApi = LESSONS_API || "";
-    EnvironmentHelper.MessagingApi = MESSAGING_API || "";
-    EnvironmentHelper.DoingApi = DOING_API || "";
   };
 
   static initStaging = () => {
-    EnvironmentHelper.MembershipApi = "https://api.staging.churchapps.org/membership";
+    EnvironmentHelper.applyApiBase("https://api.staging.churchapps.org");
     EnvironmentHelper.LessonsApi = "https://api.staging.lessons.church";
-    EnvironmentHelper.MessagingApi = "https://api.staging.churchapps.org/messaging";
-    EnvironmentHelper.DoingApi = "https://api.staging.churchapps.org/doing";
   };
 
   // NOTE - None of these values are secret
   static initProd = () => {
-    EnvironmentHelper.MembershipApi = "https://api.churchapps.org/membership";
+    EnvironmentHelper.applyApiBase("https://api.churchapps.org");
     EnvironmentHelper.LessonsApi = "https://api.lessons.church";
-    EnvironmentHelper.MessagingApi = "https://api.churchapps.org/messaging";
-    EnvironmentHelper.DoingApi = "https://api.churchapps.org/doing";
   };
 
 }
