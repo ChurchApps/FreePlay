@@ -1,6 +1,7 @@
 //import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect } from "react";
 import { Image, View, Text, FlatList, TouchableHighlight, BackHandler } from "react-native";
+import { useTranslation } from "react-i18next";
 import { ApiHelper } from "../helpers/ApiHelper";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { ProgramInterface, StudyInterface } from "../interfaces";
@@ -10,7 +11,7 @@ import { MenuHeader, EmptyState, SkeletonCard } from "../components";
 type Props = { navigateTo(page: string, data?:any): void; program:ProgramInterface };
 
 export const StudiesScreen = (props: Props) => {
-
+  const { t } = useTranslation();
   const [studies, setStudies] = React.useState<StudyInterface[]>([]);
   const [loading, setLoading] = React.useState(false);
   const [focusedId, setFocusedId] = React.useState(null);
@@ -68,7 +69,7 @@ export const StudiesScreen = (props: Props) => {
         </View>
       );
     }
-    if (studies.length === 0) return <EmptyState icon="library-books" message="No studies available" />;
+    if (studies.length === 0) return <EmptyState icon="library-books" message={t("studies.noStudies")} />;
     return (
       <View style={styles.list}>
         <FlatList
@@ -96,7 +97,7 @@ export const StudiesScreen = (props: Props) => {
 
   return (
     <View style={Styles.menuScreen}>
-      <MenuHeader headerText="Select a Study" />
+      <MenuHeader headerText={t("studies.header")} />
       <View style={{ ...Styles.menuWrapper, flex: 20 }}>
         {getCards()}
       </View>

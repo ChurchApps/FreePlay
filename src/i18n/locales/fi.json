@@ -1,0 +1,190 @@
+{
+  "common": {
+    "cancel": "Peruuta",
+    "comingSoon": "Tulossa pian",
+    "connected": "Yhdistetty",
+    "tryAgain": "Yritä uudelleen",
+    "version": "Versio: {{version}}"
+  },
+  "nav": {
+    "downloads": "Lataukset",
+    "providers": "Tarjoajat"
+  },
+  "providers": {
+    "header": "Sisältötarjoajat",
+    "comingSoonAlert": {
+      "title": "Tulossa pian",
+      "message": "{{name}} ei ole vielä saatavilla."
+    },
+    "disconnect": {
+      "title": "Katkaise tarjoajan yhteys",
+      "message": "Haluatko varmasti katkaista yhteyden palveluun {{name}}?",
+      "action": "Katkaise yhteys"
+    },
+    "errorAlert": {
+      "title": "Virhe",
+      "providerNotFound": "Tarjoajaa {{name}} ei löytynyt."
+    },
+    "notSupported": {
+      "title": "Ei tuettu",
+      "message": "{{name}}-todennusta ei vielä tueta."
+    }
+  },
+  "contentBrowser": {
+    "header": "Selaa sisältöä",
+    "noContent": "Sisältöä ei ole saatavilla",
+    "tryDifferentFolder": "Yritä siirtyä toiseen kansioon",
+    "fileType": {
+      "video": "Video",
+      "image": "Kuva"
+    }
+  },
+  "providerDownload": {
+    "fallbackTitle": "Sisältö",
+    "download": "Lataa",
+    "stream": "Suoratoista",
+    "start": "Aloita",
+    "downloadingItem": "Ladataan kohdetta {{current}}/{{total}}"
+  },
+  "providerDeviceAuth": {
+    "providerNotFound": "Tarjoajaa ei löytynyt.",
+    "initFailed": "Todennuksen alustaminen epäonnistui. Yritä uudelleen.",
+    "unexpectedError": "Tapahtui odottamaton virhe. Yritä uudelleen.",
+    "codeExpired": "Todennuskoodi vanhentunut. Yritä uudelleen.",
+    "authFailed": "Todennus epäonnistui tai evättiin.",
+    "initializing": "Alustetaan todennusta...",
+    "tryAgain": "Yritä uudelleen",
+    "connected": "Yhdistetty!",
+    "loadingContent": "Ladataan sisältöäsi...",
+    "connectTo": "Yhdistä palveluun {{name}}",
+    "fallbackProvider": "Tarjoaja",
+    "instructions": "Skannaa QR-koodi puhelimellasi tai käy osoitteessa",
+    "instructionsLine2": "ja syötä alla oleva koodi",
+    "enterCode": "Syötä tämä koodi:",
+    "waiting": "Odotetaan valtuutusta",
+    "expiresIn": "Koodi vanhenee {{minutes}} minuutin kuluttua",
+    "cancel": "Peruuta"
+  },
+  "providerOAuth": {
+    "providerNotFound": "Tarjoajaa ei löytynyt.",
+    "sessionFailed": "Valtuutusistunnon luominen epäonnistui. Yritä uudelleen.",
+    "unexpectedError": "Tapahtui odottamaton virhe. Yritä uudelleen.",
+    "sessionExpired": "Valtuutusistunto vanhentunut. Yritä uudelleen.",
+    "exchangeFailed": "Valtuutuskoodin vaihto tunnuksiin epäonnistui.",
+    "tokenExchangeFailed": "Tunnuksen vaihto epäonnistui. Yritä uudelleen.",
+    "initializing": "Alustetaan todennusta...",
+    "connecting": "Yhdistetään...",
+    "tryAgain": "Yritä uudelleen",
+    "connected": "Yhdistetty!",
+    "loadingContent": "Ladataan sisältöäsi...",
+    "connectTo": "Yhdistä palveluun {{name}}",
+    "fallbackProvider": "Tarjoaja",
+    "instructionsLine1": "Skannaa QR-koodi puhelimellasi käytön valtuuttamiseksi.",
+    "instructionsLine2": "Televisiosi yhdistyy automaattisesti, kun hyväksyt.",
+    "waiting": "Odotetaan valtuutusta",
+    "expiresIn": "Istunto vanhenee {{minutes}} minuutin kuluttua",
+    "cancel": "Peruuta"
+  },
+  "providerFormLogin": {
+    "missingCredentials": "Anna sähköposti ja salasana",
+    "providerNotFound": "Tarjoajaa ei löytynyt",
+    "notSupported": "Tämä tarjoaja ei tue lomakkeella kirjautumista",
+    "loginFailed": "Kirjautuminen epäonnistui. Tarkista tunnuksesi.",
+    "unexpectedError": "Tapahtui odottamaton virhe. Yritä uudelleen.",
+    "loggingIn": "Kirjaudutaan sisään...",
+    "connected": "Yhdistetty!",
+    "loadingContent": "Ladataan sisältöäsi...",
+    "loginTo": "Kirjaudu palveluun {{name}}",
+    "fallbackProvider": "Tarjoaja",
+    "enterCredentials": "Anna tunnuksesi yhdistääksesi",
+    "email": "Sähköposti",
+    "emailPlaceholder": "email@example.com",
+    "password": "Salasana",
+    "passwordPlaceholder": "Salasana",
+    "signIn": "Kirjaudu sisään",
+    "cancel": "Peruuta"
+  },
+  "download": {
+    "startLesson": "Aloita oppitunti",
+    "downloadingItem": "Ladataan kohdetta {{current}}/{{total}}",
+    "scheduleLoadFailed": "Aikataulua ei voitu ladata.",
+    "scheduleLoadFailedSub": "Varmista, että tälle luokalle on ajastettu oppitunti.",
+    "tryAgain": "Yritä uudelleen"
+  },
+  "downloads": {
+    "header": "Lataukset",
+    "noDownloads": "Ei vielä latauksia"
+  },
+  "planDownload": {
+    "fallbackName": "Jumalanpalvelussuunnitelma",
+    "startPlan": "Aloita suunnitelma",
+    "downloadingItem": "Ladataan kohdetta {{current}}/{{total}}",
+    "loadFailed": "Suunnitelmaa ei voitu ladata.",
+    "loadFailedSub": "Varmista, että tälle suunnitelmatyypille on ajastettu suunnitelma.",
+    "tryAgain": "Yritä uudelleen"
+  },
+  "planPairing": {
+    "generateFailed": "Pariutuskoodin luominen epäonnistui. Yritä uudelleen.",
+    "generating": "Luodaan pariutuskoodia...",
+    "tryAgain": "Yritä uudelleen",
+    "instructions": "Syötä tämä koodi B1Adminin Suunnitelmatyyppi-osioon",
+    "waiting": "Odotetaan yhteyttä",
+    "searchByName": "tai hae kirkon nimellä"
+  },
+  "selectPairingMode": {
+    "header": "Valitse pariutustila",
+    "classroomTitle": "Pariuta luokkaan",
+    "classroomDescription": "Yhdistä tiettyyn luokkahuoneen televisioon ja näytä ajastetut oppitunnit automaattisesti",
+    "planTitle": "Pariuta suunnitelmaan",
+    "planDescription": "Seuraa kirkkosi viikoittaista suunnitelmaa ja selaa sisältöä pyynnöstä"
+  },
+  "selectChurch": {
+    "header": "Etsi kirkkosi",
+    "searchPlaceholder": "Hae kirkon nimeä",
+    "minLetters": "Aloita haku kirjoittamalla vähintään neljä kirjainta kirkkosi nimestä.",
+    "noResults": "Tuloksia ei löytynyt. Hae uudelleen tai rekisteröi kirkkosi osoitteessa https://freeplay.church/."
+  },
+  "selectRoom": {
+    "header": "Valitse luokkahuone",
+    "noClassrooms": "Luokkahuoneita ei löytynyt",
+    "configureRooms": "Määritä luokkahuoneesi osoitteessa freeplay.church."
+  },
+  "offline": {
+    "title": "Offline-tila:",
+    "subtitle": "Internet-yhteys ei ole tällä hetkellä käytettävissä",
+    "canPlayDownloaded": "Voit silti toistaa oppitunnin, joka on ladattu etukäteen.",
+    "notDownloaded": "Valitettavasti oppituntia ei ole vielä ladattu offline-toistoa varten. Tarkista yhteytesi ja yritä uudelleen.",
+    "startLesson": "Aloita oppitunti"
+  },
+  "lessons": {
+    "header": "Valitse oppitunti",
+    "noLessons": "Ei oppitunteja saatavilla"
+  },
+  "lessonDetails": {
+    "version": "Versio: {{version}}"
+  },
+  "studies": {
+    "header": "Valitse opiskelu",
+    "noStudies": "Ei opiskeluja saatavilla"
+  },
+  "programs": {
+    "header": "Selaa ohjelmia",
+    "noPrograms": "Ei ohjelmia saatavilla"
+  },
+  "privacyPolicy": {
+    "header": "Tietosuojakäytäntö",
+    "viewFullPolicy": "Tarkastele täyttä tietosuojakäytäntöämme osoitteessa:",
+    "url": "churchapps.org/privacy"
+  },
+  "selectMessage": {
+    "header": "Valitse viesti"
+  },
+  "message": {
+    "loadingVideo": "Ladataan videota...",
+    "videoFailed": "Videon lataaminen epäonnistui",
+    "skippingNext": "Siirrytään seuraavaan kohteeseen..."
+  },
+  "menu": {
+    "back": "Takaisin"
+  }
+}

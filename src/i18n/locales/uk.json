@@ -1,0 +1,190 @@
+{
+  "common": {
+    "cancel": "Скасувати",
+    "comingSoon": "Незабаром",
+    "connected": "Підключено",
+    "tryAgain": "Спробувати знову",
+    "version": "Версія: {{version}}"
+  },
+  "nav": {
+    "downloads": "Завантаження",
+    "providers": "Постачальники"
+  },
+  "providers": {
+    "header": "Постачальники контенту",
+    "comingSoonAlert": {
+      "title": "Незабаром",
+      "message": "{{name}} ще не доступний."
+    },
+    "disconnect": {
+      "title": "Відключити постачальника",
+      "message": "Ви впевнені, що хочете відключитися від {{name}}?",
+      "action": "Відключити"
+    },
+    "errorAlert": {
+      "title": "Помилка",
+      "providerNotFound": "Постачальника {{name}} не знайдено."
+    },
+    "notSupported": {
+      "title": "Не підтримується",
+      "message": "Автентифікація {{name}} ще не підтримується."
+    }
+  },
+  "contentBrowser": {
+    "header": "Огляд контенту",
+    "noContent": "Немає доступного контенту",
+    "tryDifferentFolder": "Спробуйте перейти до іншої папки",
+    "fileType": {
+      "video": "Відео",
+      "image": "Зображення"
+    }
+  },
+  "providerDownload": {
+    "fallbackTitle": "Контент",
+    "download": "Завантажити",
+    "stream": "Транслювати",
+    "start": "Почати",
+    "downloadingItem": "Завантаження елемента {{current}} з {{total}}"
+  },
+  "providerDeviceAuth": {
+    "providerNotFound": "Постачальника не знайдено.",
+    "initFailed": "Не вдалося ініціалізувати автентифікацію. Спробуйте ще раз.",
+    "unexpectedError": "Сталася неочікувана помилка. Спробуйте ще раз.",
+    "codeExpired": "Термін дії коду автентифікації минув. Спробуйте ще раз.",
+    "authFailed": "Автентифікація не вдалася або була відхилена.",
+    "initializing": "Ініціалізація автентифікації...",
+    "tryAgain": "Спробувати знову",
+    "connected": "Підключено!",
+    "loadingContent": "Завантаження вашого контенту...",
+    "connectTo": "Підключитися до {{name}}",
+    "fallbackProvider": "Постачальник",
+    "instructions": "Скануйте QR-код телефоном або відвідайте",
+    "instructionsLine2": "та введіть код нижче",
+    "enterCode": "Введіть цей код:",
+    "waiting": "Очікування авторизації",
+    "expiresIn": "Термін дії коду закінчиться через {{minutes}} хв.",
+    "cancel": "Скасувати"
+  },
+  "providerOAuth": {
+    "providerNotFound": "Постачальника не знайдено.",
+    "sessionFailed": "Не вдалося створити сеанс авторизації. Спробуйте ще раз.",
+    "unexpectedError": "Сталася неочікувана помилка. Спробуйте ще раз.",
+    "sessionExpired": "Термін дії сеансу авторизації минув. Спробуйте ще раз.",
+    "exchangeFailed": "Не вдалося обміняти код авторизації на токени.",
+    "tokenExchangeFailed": "Обмін токенами не вдався. Спробуйте ще раз.",
+    "initializing": "Ініціалізація автентифікації...",
+    "connecting": "Підключення...",
+    "tryAgain": "Спробувати знову",
+    "connected": "Підключено!",
+    "loadingContent": "Завантаження вашого контенту...",
+    "connectTo": "Підключитися до {{name}}",
+    "fallbackProvider": "Постачальник",
+    "instructionsLine1": "Скануйте QR-код телефоном, щоб авторизувати доступ.",
+    "instructionsLine2": "Ваш телевізор підключиться автоматично після підтвердження.",
+    "waiting": "Очікування авторизації",
+    "expiresIn": "Термін дії сеансу закінчиться через {{minutes}} хв.",
+    "cancel": "Скасувати"
+  },
+  "providerFormLogin": {
+    "missingCredentials": "Введіть електронну пошту та пароль",
+    "providerNotFound": "Постачальника не знайдено",
+    "notSupported": "Цей постачальник не підтримує вхід через форму",
+    "loginFailed": "Не вдалося ввійти. Перевірте свої облікові дані.",
+    "unexpectedError": "Сталася неочікувана помилка. Спробуйте ще раз.",
+    "loggingIn": "Вхід...",
+    "connected": "Підключено!",
+    "loadingContent": "Завантаження вашого контенту...",
+    "loginTo": "Увійти до {{name}}",
+    "fallbackProvider": "Постачальник",
+    "enterCredentials": "Введіть свої облікові дані для підключення",
+    "email": "Електронна пошта",
+    "emailPlaceholder": "email@example.com",
+    "password": "Пароль",
+    "passwordPlaceholder": "Пароль",
+    "signIn": "Увійти",
+    "cancel": "Скасувати"
+  },
+  "download": {
+    "startLesson": "Розпочати урок",
+    "downloadingItem": "Завантаження елемента {{current}} з {{total}}",
+    "scheduleLoadFailed": "Не вдалося завантажити розклад.",
+    "scheduleLoadFailedSub": "Переконайтеся, що для цього класу заплановано урок.",
+    "tryAgain": "Спробувати знову"
+  },
+  "downloads": {
+    "header": "Завантаження",
+    "noDownloads": "Поки що немає завантажень"
+  },
+  "planDownload": {
+    "fallbackName": "План богослужіння",
+    "startPlan": "Розпочати план",
+    "downloadingItem": "Завантаження елемента {{current}} з {{total}}",
+    "loadFailed": "Не вдалося завантажити план.",
+    "loadFailedSub": "Переконайтеся, що для цього типу плану заплановано план.",
+    "tryAgain": "Спробувати знову"
+  },
+  "planPairing": {
+    "generateFailed": "Не вдалося згенерувати код спарювання. Спробуйте ще раз.",
+    "generating": "Генерування коду спарювання...",
+    "tryAgain": "Спробувати знову",
+    "instructions": "Введіть цей код у розділі Тип плану в B1Admin",
+    "waiting": "Очікування підключення",
+    "searchByName": "або шукайте за назвою церкви"
+  },
+  "selectPairingMode": {
+    "header": "Виберіть режим спарювання",
+    "classroomTitle": "Спарувати з класом",
+    "classroomDescription": "Підключіться до конкретного телевізора в класі та автоматично відображайте заплановані уроки",
+    "planTitle": "Спарувати з планом",
+    "planDescription": "Дотримуйтесь щотижневого плану своєї церкви та переглядайте контент за запитом"
+  },
+  "selectChurch": {
+    "header": "Знайдіть свою церкву",
+    "searchPlaceholder": "Пошук назви церкви",
+    "minLetters": "Введіть принаймні чотири літери назви вашої церкви, щоб розпочати пошук.",
+    "noResults": "Результатів не знайдено. Шукайте знову або зареєструйте свою церкву на https://freeplay.church/."
+  },
+  "selectRoom": {
+    "header": "Виберіть клас",
+    "noClassrooms": "Класів не знайдено",
+    "configureRooms": "Налаштуйте свої класи на freeplay.church."
+  },
+  "offline": {
+    "title": "Офлайн:",
+    "subtitle": "Доступ до Інтернету наразі недоступний",
+    "canPlayDownloaded": "Ви все ще можете відтворити урок, який було завантажено заздалегідь.",
+    "notDownloaded": "На жаль, урок ще не завантажено для офлайн-відтворення. Перевірте підключення та спробуйте ще раз.",
+    "startLesson": "Розпочати урок"
+  },
+  "lessons": {
+    "header": "Виберіть урок",
+    "noLessons": "Немає доступних уроків"
+  },
+  "lessonDetails": {
+    "version": "Версія: {{version}}"
+  },
+  "studies": {
+    "header": "Виберіть навчання",
+    "noStudies": "Немає доступних навчань"
+  },
+  "programs": {
+    "header": "Огляд програм",
+    "noPrograms": "Немає доступних програм"
+  },
+  "privacyPolicy": {
+    "header": "Політика конфіденційності",
+    "viewFullPolicy": "Щоб переглянути нашу повну політику конфіденційності, відвідайте:",
+    "url": "churchapps.org/privacy"
+  },
+  "selectMessage": {
+    "header": "Виберіть повідомлення"
+  },
+  "message": {
+    "loadingVideo": "Завантаження відео...",
+    "videoFailed": "Не вдалося завантажити відео",
+    "skippingNext": "Перехід до наступного елемента..."
+  },
+  "menu": {
+    "back": "Назад"
+  }
+}

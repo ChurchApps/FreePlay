@@ -8,6 +8,7 @@ import {
 } from "react-native";
 
 import React, { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { CachedData, Styles, Colors } from "../helpers";
 import { NavItem } from "./NavItem";
 import { getProvider } from "../providers";
@@ -21,6 +22,7 @@ type Props = {
 };
 
 export const NavWrapper = (props: Props) => {
+  const { t } = useTranslation();
   const _browseRef = useRef(null);
   const downloadsRef = useRef(null);
   const providersRef = useRef(null);
@@ -184,7 +186,7 @@ export const NavWrapper = (props: Props) => {
       <View style={{ marginBottom: DimensionHelper.hp("2%") }}>
         <NavItem
           icon={"file-download"}
-          text={"Downloads"}
+          text={t("nav.downloads")}
           expanded={props.sidebarExpanded}
           setExpanded={handleSidebarExpand}
           selected={highlightedItem === "downloads"}
@@ -201,7 +203,7 @@ export const NavWrapper = (props: Props) => {
         />
         <NavItem
           icon={"extension"}
-          text={"Providers"}
+          text={t("nav.providers")}
           expanded={props.sidebarExpanded}
           setExpanded={handleSidebarExpand}
           selected={highlightedItem === "providers"}

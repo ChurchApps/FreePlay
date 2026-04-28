@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Image, View, FlatList, TouchableHighlight, BackHandler } from "react-native";
+import { useTranslation } from "react-i18next";
 import { ApiHelper } from "../helpers/ApiHelper";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { ProgramInterface } from "../interfaces";
@@ -9,7 +10,7 @@ import { MenuHeader, EmptyState, SkeletonCard } from "../components";
 type Props = { navigateTo(page: string, data?:any): void; sidebarState: (state: boolean) => void; sidebarExpanded?: boolean; };
 
 export const ProgramsScreen = (props: Props) => {
-
+  const { t } = useTranslation();
   const [programs, setPrograms] = React.useState<ProgramInterface[]>([]);
   const [loading, setLoading] = React.useState(false);
   const [focusedId, setFocusedId] = React.useState(null);
@@ -87,7 +88,7 @@ export const ProgramsScreen = (props: Props) => {
         </View>
       );
     }
-    if (programs.length === 0) return <EmptyState icon="library-books" message="No programs available" />;
+    if (programs.length === 0) return <EmptyState icon="library-books" message={t("programs.noPrograms")} />;
     return (
       <View style={styles.list}>
         <FlatList
@@ -117,7 +118,7 @@ export const ProgramsScreen = (props: Props) => {
 
   return (
     <View style={{ ...Styles.menuScreen }}>
-      <MenuHeader headerText="Browse Programs" />
+      <MenuHeader headerText={t("programs.header")} />
       <View style={{ ...Styles.menuWrapper, flex: 90 }}>
         {getCards()}
       </View>

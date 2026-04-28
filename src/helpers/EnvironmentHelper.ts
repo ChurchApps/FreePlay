@@ -27,8 +27,8 @@ export class EnvironmentHelper {
   private static applyApiBase = (base: string) => {
     const trimmed = base.replace(/\/$/, "");
     EnvironmentHelper.MembershipApi = trimmed + "/membership";
-    EnvironmentHelper.MessagingApi  = trimmed + "/messaging";
-    EnvironmentHelper.DoingApi      = trimmed + "/doing";
+    EnvironmentHelper.MessagingApi = trimmed + "/messaging";
+    EnvironmentHelper.DoingApi = trimmed + "/doing";
   };
 
   static initDev = () => {

@@ -8,6 +8,7 @@ import {
   Alert,
   Image
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import LinearGradient from "react-native-linear-gradient";
 import { SvgUri } from "react-native-svg";
@@ -24,6 +25,7 @@ type Props = {
 };
 
 export const ProvidersScreen = (props: Props) => {
+  const { t } = useTranslation();
   const [connectedProviders, setConnectedProviders] = React.useState<string[]>([]);
   const [providers, setProviders] = React.useState<ProviderInfo[]>([]);
   const [focusedItemId, setFocusedItemId] = React.useState<string | null>(null);
@@ -87,7 +89,7 @@ export const ProvidersScreen = (props: Props) => {
 
   const handleSelectProvider = async (providerInfo: ProviderInfo) => {
     if (!providerInfo.implemented) {
-      Alert.alert("Coming Soon", `${providerInfo.name} is not yet available.`);
+      Alert.alert(t("providers.comingSoonAlert.title"), t("providers.comingSoonAlert.message", { name: providerInfo.name }));
       return;
     }
 
@@ -95,12 +97,12 @@ export const ProvidersScreen = (props: Props) => {
 
     if (isConnected) {
       Alert.alert(
-        "Disconnect Provider",
-        `Are you sure you want to disconnect from ${providerInfo.name}?`,
+        t("providers.disconnect.title"),
+        t("providers.disconnect.message", { name: providerInfo.name }),
         [
-          { text: "Cancel", style: "cancel" },
+          { text: t("common.cancel"), style: "cancel" },
           {
-            text: "Disconnect",
+            text: t("providers.disconnect.action"),
             style: "destructive",
             onPress: async () => {
               await handleDisconnect(providerInfo);
@@ -113,7 +115,7 @@ export const ProvidersScreen = (props: Props) => {
 
     const provider = getProvider(providerInfo.id);
     if (!provider) {
-      Alert.alert("Error", `Provider ${providerInfo.name} not found.`);
+      Alert.alert(t("providers.errorAlert.title"), t("providers.errorAlert.providerNotFound", { name: providerInfo.name }));
       return;
     }
 
@@ -127,7 +129,7 @@ export const ProvidersScreen = (props: Props) => {
     } else if (provider.authTypes.includes("oauth_pkce")) {
       props.navigateTo("providerOAuth", { providerId: providerInfo.id });
     } else {
-      Alert.alert("Not Supported", `${providerInfo.name} authentication is not yet supported.`);
+      Alert.alert(t("providers.notSupported.title"), t("providers.notSupported.message", { name: providerInfo.name }));
     }
   };
 
@@ -239,7 +241,7 @@ export const ProvidersScreen = (props: Props) => {
                     fontSize: DimensionHelper.wp("1%"),
                     marginLeft: 4
                   }}>
-                  Connected
+                  {t("common.connected")}
                 </Text>
               </View>
             )}
@@ -250,7 +252,7 @@ export const ProvidersScreen = (props: Props) => {
                   fontSize: DimensionHelper.wp("0.9%"),
                   marginTop: DimensionHelper.hp("0.5%")
                 }}>
-                Coming Soon
+                {t("common.comingSoon")}
               </Text>
             )}
           </LinearGradient>
@@ -321,7 +323,7 @@ export const ProvidersScreen = (props: Props) => {
     <View style={{ ...Styles.menuScreen }}>
       <View style={{ flexDirection: "row", alignItems: "center", borderBottomWidth: 1, borderBottomColor: Colors.borderAccent, backgroundColor: Colors.surface }}>
         <View style={{ flex: 1 }}>
-          <MenuHeader headerText="Content Providers" noBorder />
+          <MenuHeader headerText={t("providers.header")} noBorder />
         </View>
         <Text style={{ color: Colors.textDimmed, fontSize: DimensionHelper.wp("0.9%"), paddingRight: DimensionHelper.wp("2%") }}>
           v{pkg.version}

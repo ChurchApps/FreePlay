@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { View, Text, TouchableHighlight, ActivityIndicator, BackHandler, ImageBackground, Animated } from "react-native";
+import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { ApiHelper } from "../helpers/ApiHelper";
 import { DimensionHelper } from "../helpers/DimensionHelper";
@@ -11,6 +12,7 @@ import { getProvider } from "../providers";
 type Props = { navigateTo(page: string): void; };
 
 export const DownloadScreen = (props: Props) => {
+  const { t } = useTranslation();
   const [playlist, setPlaylist] = React.useState<LessonPlaylistInterface>(null);
   const [totalItems, setTotalItems] = React.useState(CachedData.totalCachableItems);
   const [cachedItems, setCachedItems] = React.useState(CachedData.cachedItems);
@@ -54,7 +56,7 @@ export const DownloadScreen = (props: Props) => {
             <TouchableHighlight style={{ backgroundColor: Colors.primaryDark, width: DimensionHelper.wp("18%"), height: DimensionHelper.hp("7%"), marginTop: DimensionHelper.hp("1%"), borderRadius: 12, justifyContent: "center", alignItems: "center" }} underlayColor={Colors.primary} onPress={() => { handleStart(); }} hasTVPreferredFocus={true}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Icon name="play-arrow" size={DimensionHelper.wp("2.5%")} color="#fff" />
-                <Text style={{ ...Styles.smallWhiteText, marginLeft: 4 }} numberOfLines={1}>Start Lesson</Text>
+                <Text style={{ ...Styles.smallWhiteText, marginLeft: 4 }} numberOfLines={1}>{t("download.startLesson")}</Text>
               </View>
             </TouchableHighlight>
           </Animated.View>
@@ -69,7 +71,7 @@ export const DownloadScreen = (props: Props) => {
             <View style={{ width: DimensionHelper.wp("35%"), height: DimensionHelper.hp("6%"), marginTop: DimensionHelper.hp("1%"), borderRadius: 12, overflow: "hidden", backgroundColor: Colors.progressBackground, position: "relative" }}>
               <View style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${totalItems > 0 ? ((cachedItems + currentFileProgress) / totalItems) * 100 : 0}%`, backgroundColor: Colors.primaryDark, borderRadius: 12 }} />
               <View style={{ position: "absolute", left: 0, top: 0, right: 0, bottom: 0, justifyContent: "center", alignItems: "center" }}>
-                <Text style={{ ...Styles.smallWhiteText }} numberOfLines={1}>Downloading item {cachedItems + 1} of {totalItems}</Text>
+                <Text style={{ ...Styles.smallWhiteText }} numberOfLines={1}>{t("download.downloadingItem", { current: cachedItems + 1, total: totalItems })}</Text>
               </View>
             </View>
           </>
@@ -171,15 +173,15 @@ export const DownloadScreen = (props: Props) => {
   if (loadFailed) {
     return (<View style={{ ...Styles.menuScreen, flex: 1, width: DimensionHelper.wp("100%"), justifyContent: "center", alignItems: "center" }}>
       <Icon name="error-outline" size={DimensionHelper.wp("4%")} color={Colors.error} />
-      <Text style={{ ...Styles.bigWhiteText, marginTop: DimensionHelper.hp("2%") }}>The schedule could not be loaded.</Text>
-      <Text style={{ ...Styles.whiteText, marginTop: DimensionHelper.hp("1%") }}>Make sure a lesson is scheduled for this class.</Text>
+      <Text style={{ ...Styles.bigWhiteText, marginTop: DimensionHelper.hp("2%") }}>{t("download.scheduleLoadFailed")}</Text>
+      <Text style={{ ...Styles.whiteText, marginTop: DimensionHelper.hp("1%") }}>{t("download.scheduleLoadFailedSub")}</Text>
       <TouchableHighlight
         style={{ backgroundColor: Colors.primaryDark, paddingVertical: DimensionHelper.hp("1.5%"), paddingHorizontal: DimensionHelper.wp("3%"), marginTop: DimensionHelper.hp("3%"), borderRadius: 12 }}
         underlayColor={Colors.primary}
         onPress={() => { setLoadFailed(false); setRefreshKey(new Date().getTime().toString()); }}
         hasTVPreferredFocus={true}
       >
-        <Text style={Styles.smallWhiteText}>Try Again</Text>
+        <Text style={Styles.smallWhiteText}>{t("download.tryAgain")}</Text>
       </TouchableHighlight>
     </View>);
 

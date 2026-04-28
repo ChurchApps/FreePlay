@@ -1,0 +1,190 @@
+{
+  "common": {
+    "cancel": "रद्द करें",
+    "comingSoon": "जल्द आ रहा है",
+    "connected": "कनेक्ट हो गया",
+    "tryAgain": "पुनः प्रयास करें",
+    "version": "संस्करण: {{version}}"
+  },
+  "nav": {
+    "downloads": "डाउनलोड",
+    "providers": "प्रदाता"
+  },
+  "providers": {
+    "header": "सामग्री प्रदाता",
+    "comingSoonAlert": {
+      "title": "जल्द आ रहा है",
+      "message": "{{name}} अभी उपलब्ध नहीं है।"
+    },
+    "disconnect": {
+      "title": "प्रदाता डिस्कनेक्ट करें",
+      "message": "क्या आप वाकई {{name}} से डिस्कनेक्ट करना चाहते हैं?",
+      "action": "डिस्कनेक्ट करें"
+    },
+    "errorAlert": {
+      "title": "त्रुटि",
+      "providerNotFound": "प्रदाता {{name}} नहीं मिला।"
+    },
+    "notSupported": {
+      "title": "समर्थित नहीं",
+      "message": "{{name}} प्रमाणीकरण अभी समर्थित नहीं है।"
+    }
+  },
+  "contentBrowser": {
+    "header": "सामग्री ब्राउज़ करें",
+    "noContent": "कोई सामग्री उपलब्ध नहीं है",
+    "tryDifferentFolder": "किसी अन्य फ़ोल्डर पर जाने का प्रयास करें",
+    "fileType": {
+      "video": "वीडियो",
+      "image": "छवि"
+    }
+  },
+  "providerDownload": {
+    "fallbackTitle": "सामग्री",
+    "download": "डाउनलोड करें",
+    "stream": "स्ट्रीम",
+    "start": "प्रारंभ करें",
+    "downloadingItem": "{{total}} में से {{current}} आइटम डाउनलोड हो रहा है"
+  },
+  "providerDeviceAuth": {
+    "providerNotFound": "प्रदाता नहीं मिला।",
+    "initFailed": "प्रमाणीकरण आरंभ करने में विफल। कृपया पुनः प्रयास करें।",
+    "unexpectedError": "एक अप्रत्याशित त्रुटि हुई। कृपया पुनः प्रयास करें।",
+    "codeExpired": "प्रमाणीकरण कोड समाप्त हो गया। कृपया पुनः प्रयास करें।",
+    "authFailed": "प्रमाणीकरण विफल हुआ या अस्वीकृत किया गया।",
+    "initializing": "प्रमाणीकरण आरंभ हो रहा है...",
+    "tryAgain": "पुनः प्रयास करें",
+    "connected": "कनेक्ट हो गया!",
+    "loadingContent": "आपकी सामग्री लोड हो रही है...",
+    "connectTo": "{{name}} से कनेक्ट करें",
+    "fallbackProvider": "प्रदाता",
+    "instructions": "अपने फोन से QR कोड स्कैन करें, या यहां जाएं",
+    "instructionsLine2": "और नीचे दिया गया कोड दर्ज करें",
+    "enterCode": "यह कोड दर्ज करें:",
+    "waiting": "प्राधिकरण की प्रतीक्षा है",
+    "expiresIn": "कोड {{minutes}} मिनट में समाप्त हो जाएगा",
+    "cancel": "रद्द करें"
+  },
+  "providerOAuth": {
+    "providerNotFound": "प्रदाता नहीं मिला।",
+    "sessionFailed": "प्राधिकरण सत्र बनाने में विफल। कृपया पुनः प्रयास करें।",
+    "unexpectedError": "एक अप्रत्याशित त्रुटि हुई। कृपया पुनः प्रयास करें।",
+    "sessionExpired": "प्राधिकरण सत्र समाप्त हो गया। कृपया पुनः प्रयास करें।",
+    "exchangeFailed": "टोकन के लिए प्राधिकरण कोड का आदान-प्रदान करने में विफल।",
+    "tokenExchangeFailed": "टोकन आदान-प्रदान विफल। कृपया पुनः प्रयास करें।",
+    "initializing": "प्रमाणीकरण आरंभ हो रहा है...",
+    "connecting": "कनेक्ट हो रहा है...",
+    "tryAgain": "पुनः प्रयास करें",
+    "connected": "कनेक्ट हो गया!",
+    "loadingContent": "आपकी सामग्री लोड हो रही है...",
+    "connectTo": "{{name}} से कनेक्ट करें",
+    "fallbackProvider": "प्रदाता",
+    "instructionsLine1": "एक्सेस अधिकृत करने के लिए अपने फोन से QR कोड स्कैन करें।",
+    "instructionsLine2": "जैसे ही आप अनुमोदन करेंगे, आपका टीवी स्वचालित रूप से कनेक्ट हो जाएगा।",
+    "waiting": "प्राधिकरण की प्रतीक्षा है",
+    "expiresIn": "सत्र {{minutes}} मिनट में समाप्त हो जाएगा",
+    "cancel": "रद्द करें"
+  },
+  "providerFormLogin": {
+    "missingCredentials": "कृपया ईमेल और पासवर्ड दर्ज करें",
+    "providerNotFound": "प्रदाता नहीं मिला",
+    "notSupported": "यह प्रदाता फॉर्म लॉगिन का समर्थन नहीं करता",
+    "loginFailed": "लॉगिन विफल। अपनी क्रेडेंशियल जांचें।",
+    "unexpectedError": "एक अप्रत्याशित त्रुटि हुई। कृपया पुनः प्रयास करें।",
+    "loggingIn": "लॉग इन हो रहा है...",
+    "connected": "कनेक्ट हो गया!",
+    "loadingContent": "आपकी सामग्री लोड हो रही है...",
+    "loginTo": "{{name}} में लॉग इन करें",
+    "fallbackProvider": "प्रदाता",
+    "enterCredentials": "कनेक्ट करने के लिए अपनी क्रेडेंशियल दर्ज करें",
+    "email": "ईमेल",
+    "emailPlaceholder": "email@example.com",
+    "password": "पासवर्ड",
+    "passwordPlaceholder": "पासवर्ड",
+    "signIn": "साइन इन करें",
+    "cancel": "रद्द करें"
+  },
+  "download": {
+    "startLesson": "पाठ प्रारंभ करें",
+    "downloadingItem": "{{total}} में से {{current}} आइटम डाउनलोड हो रहा है",
+    "scheduleLoadFailed": "अनुसूची लोड नहीं हो सकी।",
+    "scheduleLoadFailedSub": "सुनिश्चित करें कि इस कक्षा के लिए एक पाठ निर्धारित है।",
+    "tryAgain": "पुनः प्रयास करें"
+  },
+  "downloads": {
+    "header": "डाउनलोड",
+    "noDownloads": "अभी तक कोई डाउनलोड नहीं"
+  },
+  "planDownload": {
+    "fallbackName": "सेवा योजना",
+    "startPlan": "योजना प्रारंभ करें",
+    "downloadingItem": "{{total}} में से {{current}} आइटम डाउनलोड हो रहा है",
+    "loadFailed": "योजना लोड नहीं हो सकी।",
+    "loadFailedSub": "सुनिश्चित करें कि इस योजना प्रकार के लिए एक योजना निर्धारित है।",
+    "tryAgain": "पुनः प्रयास करें"
+  },
+  "planPairing": {
+    "generateFailed": "जोड़ी कोड बनाने में विफल। कृपया पुनः प्रयास करें।",
+    "generating": "जोड़ी कोड बनाया जा रहा है...",
+    "tryAgain": "पुनः प्रयास करें",
+    "instructions": "B1Admin के योजना प्रकार अनुभाग में यह कोड दर्ज करें",
+    "waiting": "कनेक्शन की प्रतीक्षा है",
+    "searchByName": "या चर्च नाम से खोजें"
+  },
+  "selectPairingMode": {
+    "header": "जोड़ी मोड चुनें",
+    "classroomTitle": "कक्षा से जोड़ें",
+    "classroomDescription": "एक विशिष्ट कक्षा टीवी से कनेक्ट करें और निर्धारित पाठ स्वचालित रूप से प्रदर्शित करें",
+    "planTitle": "योजना से जोड़ें",
+    "planDescription": "अपने चर्च की साप्ताहिक योजना का पालन करें और मांग पर सामग्री ब्राउज़ करें"
+  },
+  "selectChurch": {
+    "header": "अपना चर्च खोजें",
+    "searchPlaceholder": "चर्च का नाम खोजें",
+    "minLetters": "खोज शुरू करने के लिए अपने चर्च के नाम के कम से कम चार अक्षर दर्ज करें।",
+    "noResults": "कोई परिणाम नहीं मिला। फिर से खोजें या अपना चर्च https://freeplay.church/ पर पंजीकृत करें।"
+  },
+  "selectRoom": {
+    "header": "एक कक्षा चुनें",
+    "noClassrooms": "कोई कक्षा नहीं मिली",
+    "configureRooms": "अपनी कक्षाओं को freeplay.church पर कॉन्फ़िगर करें।"
+  },
+  "offline": {
+    "title": "ऑफलाइन:",
+    "subtitle": "इंटरनेट एक्सेस वर्तमान में अनुपलब्ध है",
+    "canPlayDownloaded": "आप अभी भी पहले से डाउनलोड किए गए पाठ को चला सकते हैं।",
+    "notDownloaded": "दुर्भाग्य से पाठ अभी तक ऑफ़लाइन प्ले के लिए डाउनलोड नहीं किया गया है। कृपया अपना कनेक्शन जांचें और पुनः प्रयास करें।",
+    "startLesson": "पाठ प्रारंभ करें"
+  },
+  "lessons": {
+    "header": "एक पाठ चुनें",
+    "noLessons": "कोई पाठ उपलब्ध नहीं"
+  },
+  "lessonDetails": {
+    "version": "संस्करण: {{version}}"
+  },
+  "studies": {
+    "header": "एक अध्ययन चुनें",
+    "noStudies": "कोई अध्ययन उपलब्ध नहीं"
+  },
+  "programs": {
+    "header": "कार्यक्रम ब्राउज़ करें",
+    "noPrograms": "कोई कार्यक्रम उपलब्ध नहीं"
+  },
+  "privacyPolicy": {
+    "header": "गोपनीयता नीति",
+    "viewFullPolicy": "हमारी पूरी गोपनीयता नीति देखने के लिए, कृपया जाएँ:",
+    "url": "churchapps.org/privacy"
+  },
+  "selectMessage": {
+    "header": "एक संदेश चुनें"
+  },
+  "message": {
+    "loadingVideo": "वीडियो लोड हो रहा है...",
+    "videoFailed": "वीडियो लोड होने में विफल",
+    "skippingNext": "अगले आइटम पर जा रहा है..."
+  },
+  "menu": {
+    "back": "वापस"
+  }
+}

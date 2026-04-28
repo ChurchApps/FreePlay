@@ -1,0 +1,190 @@
+{
+  "common": {
+    "cancel": "Annuller",
+    "comingSoon": "Kommer snart",
+    "connected": "Forbundet",
+    "tryAgain": "Prøv igen",
+    "version": "Version: {{version}}"
+  },
+  "nav": {
+    "downloads": "Downloads",
+    "providers": "Udbydere"
+  },
+  "providers": {
+    "header": "Indholdsudbydere",
+    "comingSoonAlert": {
+      "title": "Kommer snart",
+      "message": "{{name}} er endnu ikke tilgængelig."
+    },
+    "disconnect": {
+      "title": "Afbryd udbyder",
+      "message": "Er du sikker på, at du vil afbryde forbindelsen til {{name}}?",
+      "action": "Afbryd"
+    },
+    "errorAlert": {
+      "title": "Fejl",
+      "providerNotFound": "Udbyder {{name}} blev ikke fundet."
+    },
+    "notSupported": {
+      "title": "Ikke understøttet",
+      "message": "{{name}} godkendelse understøttes endnu ikke."
+    }
+  },
+  "contentBrowser": {
+    "header": "Gennemse indhold",
+    "noContent": "Intet indhold tilgængeligt",
+    "tryDifferentFolder": "Prøv at navigere til en anden mappe",
+    "fileType": {
+      "video": "Video",
+      "image": "Billede"
+    }
+  },
+  "providerDownload": {
+    "fallbackTitle": "Indhold",
+    "download": "Download",
+    "stream": "Stream",
+    "start": "Start",
+    "downloadingItem": "Downloader element {{current}} af {{total}}"
+  },
+  "providerDeviceAuth": {
+    "providerNotFound": "Udbyder blev ikke fundet.",
+    "initFailed": "Kunne ikke initialisere godkendelse. Prøv igen.",
+    "unexpectedError": "Der opstod en uventet fejl. Prøv igen.",
+    "codeExpired": "Godkendelseskode udløbet. Prøv igen.",
+    "authFailed": "Godkendelse mislykkedes eller blev nægtet.",
+    "initializing": "Initialiserer godkendelse...",
+    "tryAgain": "Prøv igen",
+    "connected": "Forbundet!",
+    "loadingContent": "Indlæser dit indhold...",
+    "connectTo": "Forbind til {{name}}",
+    "fallbackProvider": "Udbyder",
+    "instructions": "Scan QR-koden med din telefon, eller besøg",
+    "instructionsLine2": "og indtast koden nedenfor",
+    "enterCode": "Indtast denne kode:",
+    "waiting": "Venter på godkendelse",
+    "expiresIn": "Koden udløber om {{minutes}} minutter",
+    "cancel": "Annuller"
+  },
+  "providerOAuth": {
+    "providerNotFound": "Udbyder blev ikke fundet.",
+    "sessionFailed": "Kunne ikke oprette godkendelsessession. Prøv igen.",
+    "unexpectedError": "Der opstod en uventet fejl. Prøv igen.",
+    "sessionExpired": "Godkendelsessession udløbet. Prøv igen.",
+    "exchangeFailed": "Kunne ikke udveksle godkendelseskode for tokens.",
+    "tokenExchangeFailed": "Tokenudveksling mislykkedes. Prøv igen.",
+    "initializing": "Initialiserer godkendelse...",
+    "connecting": "Forbinder...",
+    "tryAgain": "Prøv igen",
+    "connected": "Forbundet!",
+    "loadingContent": "Indlæser dit indhold...",
+    "connectTo": "Forbind til {{name}}",
+    "fallbackProvider": "Udbyder",
+    "instructionsLine1": "Scan QR-koden med din telefon for at godkende adgang.",
+    "instructionsLine2": "Dit TV vil automatisk forbinde, når du godkender.",
+    "waiting": "Venter på godkendelse",
+    "expiresIn": "Sessionen udløber om {{minutes}} minutter",
+    "cancel": "Annuller"
+  },
+  "providerFormLogin": {
+    "missingCredentials": "Indtast venligst e-mail og adgangskode",
+    "providerNotFound": "Udbyder blev ikke fundet",
+    "notSupported": "Denne udbyder understøtter ikke formular-login",
+    "loginFailed": "Login mislykkedes. Tjek dine legitimationsoplysninger.",
+    "unexpectedError": "Der opstod en uventet fejl. Prøv igen.",
+    "loggingIn": "Logger ind...",
+    "connected": "Forbundet!",
+    "loadingContent": "Indlæser dit indhold...",
+    "loginTo": "Log ind på {{name}}",
+    "fallbackProvider": "Udbyder",
+    "enterCredentials": "Indtast dine legitimationsoplysninger for at oprette forbindelse",
+    "email": "E-mail",
+    "emailPlaceholder": "email@example.com",
+    "password": "Adgangskode",
+    "passwordPlaceholder": "Adgangskode",
+    "signIn": "Log ind",
+    "cancel": "Annuller"
+  },
+  "download": {
+    "startLesson": "Start lektion",
+    "downloadingItem": "Downloader element {{current}} af {{total}}",
+    "scheduleLoadFailed": "Tidsplanen kunne ikke indlæses.",
+    "scheduleLoadFailedSub": "Sørg for, at en lektion er planlagt for denne klasse.",
+    "tryAgain": "Prøv igen"
+  },
+  "downloads": {
+    "header": "Downloads",
+    "noDownloads": "Ingen downloads endnu"
+  },
+  "planDownload": {
+    "fallbackName": "Gudstjenesteplan",
+    "startPlan": "Start plan",
+    "downloadingItem": "Downloader element {{current}} af {{total}}",
+    "loadFailed": "Planen kunne ikke indlæses.",
+    "loadFailedSub": "Sørg for, at en plan er planlagt for denne plantype.",
+    "tryAgain": "Prøv igen"
+  },
+  "planPairing": {
+    "generateFailed": "Kunne ikke generere parringskode. Prøv igen.",
+    "generating": "Genererer parringskode...",
+    "tryAgain": "Prøv igen",
+    "instructions": "Indtast denne kode i Plantype-sektionen i B1Admin",
+    "waiting": "Venter på forbindelse",
+    "searchByName": "eller søg efter kirkenavn"
+  },
+  "selectPairingMode": {
+    "header": "Vælg parringstilstand",
+    "classroomTitle": "Par med klasseværelse",
+    "classroomDescription": "Forbind til et bestemt klasseværelses-TV og vis planlagte lektioner automatisk",
+    "planTitle": "Par med plan",
+    "planDescription": "Følg din kirkes ugentlige plan og gennemse indhold efter behov"
+  },
+  "selectChurch": {
+    "header": "Find din kirke",
+    "searchPlaceholder": "Søg kirkenavn",
+    "minLetters": "Indtast mindst fire bogstaver af din kirkes navn for at begynde at søge.",
+    "noResults": "Ingen resultater fundet. Søg igen, eller registrer din kirke på https://freeplay.church/."
+  },
+  "selectRoom": {
+    "header": "Vælg et klasseværelse",
+    "noClassrooms": "Ingen klasseværelser fundet",
+    "configureRooms": "Konfigurer dine klasseværelser på freeplay.church."
+  },
+  "offline": {
+    "title": "Offline:",
+    "subtitle": "Internetadgang er i øjeblikket ikke tilgængelig",
+    "canPlayDownloaded": "Du kan stadig afspille lektionen, der blev downloadet på forhånd.",
+    "notDownloaded": "Desværre er lektionen endnu ikke blevet downloadet til offline afspilning. Tjek din forbindelse, og prøv igen.",
+    "startLesson": "Start lektion"
+  },
+  "lessons": {
+    "header": "Vælg en lektion",
+    "noLessons": "Ingen lektioner tilgængelige"
+  },
+  "lessonDetails": {
+    "version": "Version: {{version}}"
+  },
+  "studies": {
+    "header": "Vælg et studie",
+    "noStudies": "Ingen studier tilgængelige"
+  },
+  "programs": {
+    "header": "Gennemse programmer",
+    "noPrograms": "Ingen programmer tilgængelige"
+  },
+  "privacyPolicy": {
+    "header": "Privatlivspolitik",
+    "viewFullPolicy": "For at se vores fulde privatlivspolitik, besøg venligst:",
+    "url": "churchapps.org/privacy"
+  },
+  "selectMessage": {
+    "header": "Vælg en besked"
+  },
+  "message": {
+    "loadingVideo": "Indlæser video...",
+    "videoFailed": "Videoen kunne ikke indlæses",
+    "skippingNext": "Springer til næste element..."
+  },
+  "menu": {
+    "back": "Tilbage"
+  }
+}

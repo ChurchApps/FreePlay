@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Styles, Colors } from "../helpers";
 import { View, Text, TouchableOpacity } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -9,36 +10,39 @@ type Props = {
   noBorder?: boolean;
 };
 
-export const MenuHeader = (props: Props) => (
-  <View style={props.noBorder ? { ...Styles.menuHeader, borderBottomWidth: 0 } : Styles.menuHeader}>
-    {props.showBackbutton && (
-      <TouchableOpacity
-        onPress={props.onpress}
-        accessibilityLabel="Back"
-        style={{ paddingRight: 16 }}>
-        <View
-          style={{
-            width: 40,
-            height: 40,
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: 20,
-            backgroundColor: Colors.focusBackground
-          }}>
-          <MaterialIcons
-            name={"keyboard-arrow-left"}
-            color={Colors.textPrimary}
-            size={28}
-          />
-        </View>
-      </TouchableOpacity>
-    )}
+export const MenuHeader = (props: Props) => {
+  const { t } = useTranslation();
+  return (
+    <View style={props.noBorder ? { ...Styles.menuHeader, borderBottomWidth: 0 } : Styles.menuHeader}>
+      {props.showBackbutton && (
+        <TouchableOpacity
+          onPress={props.onpress}
+          accessibilityLabel={t("menu.back")}
+          style={{ paddingRight: 16 }}>
+          <View
+            style={{
+              width: 40,
+              height: 40,
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 20,
+              backgroundColor: Colors.focusBackground
+            }}>
+            <MaterialIcons
+              name={"keyboard-arrow-left"}
+              color={Colors.textPrimary}
+              size={28}
+            />
+          </View>
+        </TouchableOpacity>
+      )}
 
-    <Text
-      numberOfLines={1}
-      ellipsizeMode="tail"
-      style={{ ...Styles.H2, flex: 1, color: Colors.textPrimary }}>
-      {props.headerText}
-    </Text>
-  </View>
-);
+      <Text
+        numberOfLines={1}
+        ellipsizeMode="tail"
+        style={{ ...Styles.H2, flex: 1, color: Colors.textPrimary }}>
+        {props.headerText}
+      </Text>
+    </View>
+  );
+};

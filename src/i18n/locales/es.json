@@ -1,0 +1,190 @@
+{
+  "common": {
+    "cancel": "Cancelar",
+    "comingSoon": "Próximamente",
+    "connected": "Conectado",
+    "tryAgain": "Intentar de nuevo",
+    "version": "Versión: {{version}}"
+  },
+  "nav": {
+    "downloads": "Descargas",
+    "providers": "Proveedores"
+  },
+  "providers": {
+    "header": "Proveedores de contenido",
+    "comingSoonAlert": {
+      "title": "Próximamente",
+      "message": "{{name}} aún no está disponible."
+    },
+    "disconnect": {
+      "title": "Desconectar proveedor",
+      "message": "¿Está seguro de que desea desconectarse de {{name}}?",
+      "action": "Desconectar"
+    },
+    "errorAlert": {
+      "title": "Error",
+      "providerNotFound": "Proveedor {{name}} no encontrado."
+    },
+    "notSupported": {
+      "title": "No compatible",
+      "message": "La autenticación de {{name}} aún no es compatible."
+    }
+  },
+  "contentBrowser": {
+    "header": "Explorar contenido",
+    "noContent": "No hay contenido disponible",
+    "tryDifferentFolder": "Intente navegar a una carpeta diferente",
+    "fileType": {
+      "video": "Video",
+      "image": "Imagen"
+    }
+  },
+  "providerDownload": {
+    "fallbackTitle": "Contenido",
+    "download": "Descargar",
+    "stream": "Transmitir",
+    "start": "Iniciar",
+    "downloadingItem": "Descargando elemento {{current}} de {{total}}"
+  },
+  "providerDeviceAuth": {
+    "providerNotFound": "Proveedor no encontrado.",
+    "initFailed": "Error al inicializar la autenticación. Inténtelo de nuevo.",
+    "unexpectedError": "Se produjo un error inesperado. Inténtelo de nuevo.",
+    "codeExpired": "Código de autenticación caducado. Inténtelo de nuevo.",
+    "authFailed": "La autenticación falló o fue denegada.",
+    "initializing": "Inicializando autenticación...",
+    "tryAgain": "Intentar de nuevo",
+    "connected": "¡Conectado!",
+    "loadingContent": "Cargando su contenido...",
+    "connectTo": "Conectar a {{name}}",
+    "fallbackProvider": "Proveedor",
+    "instructions": "Escanee el código QR con su teléfono o visite",
+    "instructionsLine2": "e ingrese el código a continuación",
+    "enterCode": "Ingrese este código:",
+    "waiting": "Esperando autorización",
+    "expiresIn": "El código caduca en {{minutes}} minutos",
+    "cancel": "Cancelar"
+  },
+  "providerOAuth": {
+    "providerNotFound": "Proveedor no encontrado.",
+    "sessionFailed": "Error al crear la sesión de autorización. Inténtelo de nuevo.",
+    "unexpectedError": "Se produjo un error inesperado. Inténtelo de nuevo.",
+    "sessionExpired": "Sesión de autorización caducada. Inténtelo de nuevo.",
+    "exchangeFailed": "Error al intercambiar el código de autorización por tokens.",
+    "tokenExchangeFailed": "Error en el intercambio de tokens. Inténtelo de nuevo.",
+    "initializing": "Inicializando autenticación...",
+    "connecting": "Conectando...",
+    "tryAgain": "Intentar de nuevo",
+    "connected": "¡Conectado!",
+    "loadingContent": "Cargando su contenido...",
+    "connectTo": "Conectar a {{name}}",
+    "fallbackProvider": "Proveedor",
+    "instructionsLine1": "Escanee el código QR con su teléfono para autorizar el acceso.",
+    "instructionsLine2": "Su TV se conectará automáticamente una vez que apruebe.",
+    "waiting": "Esperando autorización",
+    "expiresIn": "La sesión caduca en {{minutes}} minutos",
+    "cancel": "Cancelar"
+  },
+  "providerFormLogin": {
+    "missingCredentials": "Por favor ingrese correo electrónico y contraseña",
+    "providerNotFound": "Proveedor no encontrado",
+    "notSupported": "Este proveedor no admite el inicio de sesión por formulario",
+    "loginFailed": "Error al iniciar sesión. Verifique sus credenciales.",
+    "unexpectedError": "Se produjo un error inesperado. Inténtelo de nuevo.",
+    "loggingIn": "Iniciando sesión...",
+    "connected": "¡Conectado!",
+    "loadingContent": "Cargando su contenido...",
+    "loginTo": "Iniciar sesión en {{name}}",
+    "fallbackProvider": "Proveedor",
+    "enterCredentials": "Ingrese sus credenciales para conectarse",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "email@example.com",
+    "password": "Contraseña",
+    "passwordPlaceholder": "Contraseña",
+    "signIn": "Iniciar sesión",
+    "cancel": "Cancelar"
+  },
+  "download": {
+    "startLesson": "Iniciar lección",
+    "downloadingItem": "Descargando elemento {{current}} de {{total}}",
+    "scheduleLoadFailed": "No se pudo cargar el horario.",
+    "scheduleLoadFailedSub": "Asegúrese de que haya una lección programada para esta clase.",
+    "tryAgain": "Intentar de nuevo"
+  },
+  "downloads": {
+    "header": "Descargas",
+    "noDownloads": "Aún no hay descargas"
+  },
+  "planDownload": {
+    "fallbackName": "Plan de servicio",
+    "startPlan": "Iniciar plan",
+    "downloadingItem": "Descargando elemento {{current}} de {{total}}",
+    "loadFailed": "No se pudo cargar el plan.",
+    "loadFailedSub": "Asegúrese de que haya un plan programado para este tipo de plan.",
+    "tryAgain": "Intentar de nuevo"
+  },
+  "planPairing": {
+    "generateFailed": "Error al generar el código de emparejamiento. Inténtelo de nuevo.",
+    "generating": "Generando código de emparejamiento...",
+    "tryAgain": "Intentar de nuevo",
+    "instructions": "Ingrese este código en la sección Tipo de plan de B1Admin",
+    "waiting": "Esperando conexión",
+    "searchByName": "o busque por nombre de iglesia"
+  },
+  "selectPairingMode": {
+    "header": "Seleccionar modo de emparejamiento",
+    "classroomTitle": "Emparejar con aula",
+    "classroomDescription": "Conéctese a un televisor de aula específico y muestre las lecciones programadas automáticamente",
+    "planTitle": "Emparejar con plan",
+    "planDescription": "Siga el plan semanal de su iglesia y explore el contenido bajo demanda"
+  },
+  "selectChurch": {
+    "header": "Encuentre su iglesia",
+    "searchPlaceholder": "Buscar nombre de iglesia",
+    "minLetters": "Ingrese al menos cuatro letras del nombre de su iglesia para comenzar a buscar.",
+    "noResults": "No se encontraron resultados.  Busque de nuevo o registre su iglesia en https://freeplay.church/."
+  },
+  "selectRoom": {
+    "header": "Seleccione un aula",
+    "noClassrooms": "No se encontraron aulas",
+    "configureRooms": "Configure sus aulas en freeplay.church."
+  },
+  "offline": {
+    "title": "Sin conexión:",
+    "subtitle": "El acceso a Internet no está disponible actualmente",
+    "canPlayDownloaded": "Aún puede reproducir la lección que se descargó previamente.",
+    "notDownloaded": "Lamentablemente, la lección aún no se ha descargado para reproducción sin conexión.  Verifique su conexión e inténtelo de nuevo.",
+    "startLesson": "Iniciar lección"
+  },
+  "lessons": {
+    "header": "Seleccione una lección",
+    "noLessons": "No hay lecciones disponibles"
+  },
+  "lessonDetails": {
+    "version": "Versión: {{version}}"
+  },
+  "studies": {
+    "header": "Seleccione un estudio",
+    "noStudies": "No hay estudios disponibles"
+  },
+  "programs": {
+    "header": "Explorar programas",
+    "noPrograms": "No hay programas disponibles"
+  },
+  "privacyPolicy": {
+    "header": "Política de privacidad",
+    "viewFullPolicy": "Para ver nuestra política de privacidad completa, visite:",
+    "url": "churchapps.org/privacy"
+  },
+  "selectMessage": {
+    "header": "Seleccione un mensaje"
+  },
+  "message": {
+    "loadingVideo": "Cargando video...",
+    "videoFailed": "Error al cargar el video",
+    "skippingNext": "Saltando al siguiente elemento..."
+  },
+  "menu": {
+    "back": "Atrás"
+  }
+}

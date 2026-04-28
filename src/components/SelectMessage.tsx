@@ -1,4 +1,5 @@
 import React, { useRef, useMemo, useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Styles, Colors } from "../helpers";
 import { View, Text, Image, FlatList, ListRenderItem, TouchableHighlight, StyleSheet } from "react-native";
 import { CachedData } from "../helpers";
@@ -49,6 +50,7 @@ const styles = StyleSheet.create({
 });
 
 export const SelectMessage = (props: Props) => {
+  const { t } = useTranslation();
   const firstItemRef = useRef(null);
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
 
@@ -115,7 +117,7 @@ export const SelectMessage = (props: Props) => {
 
   return (
     <View style={Styles.menuScreen}>
-      <MenuHeader headerText="Select a Message" />
+      <MenuHeader headerText={t("selectMessage.header")} />
       <View style={Styles.menuWrapper}>
         <FlatList
           data={messages}

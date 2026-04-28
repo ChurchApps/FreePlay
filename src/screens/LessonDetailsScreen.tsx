@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { View, Text, TouchableHighlight, BackHandler, ImageBackground } from "react-native";
+import { useTranslation } from "react-i18next";
 import { ApiHelper } from "../helpers/ApiHelper";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { LessonInterface, LessonPlaylistFileInterface, LessonPlaylistInterface, ProgramInterface, StudyInterface, VenueInterface } from "../interfaces";
@@ -9,6 +10,7 @@ import LinearGradient from "react-native-linear-gradient";
 type Props = { navigateTo(page: string, data?:any): void; program: ProgramInterface, study: StudyInterface, lesson:LessonInterface };
 
 export const LessonDetailsScreen = (props: Props) => {
+  const { t } = useTranslation();
   const [venues, setVenues] = React.useState<VenueInterface[]>([]);
 
   const handleStart = (venueId:string) => {
@@ -35,7 +37,7 @@ export const LessonDetailsScreen = (props: Props) => {
 
   const getVersion = () => {
     const pkg = require("../../package.json");
-    return <Text style={{ ...Styles.smallWhiteText, textAlign: "left", fontSize: 12, paddingBottom: 15, color: "#999999", paddingTop: 15 }}>Version: {pkg.version}</Text>;
+    return <Text style={{ ...Styles.smallWhiteText, textAlign: "left", fontSize: 12, paddingBottom: 15, color: "#999999", paddingTop: 15 }}>{t("common.version", { version: pkg.version })}</Text>;
   };
 
 

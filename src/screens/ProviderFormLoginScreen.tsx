@@ -11,6 +11,7 @@ import {
   KeyboardAvoidingView,
   Platform
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import { Styles, CachedData, ProviderAuthHelper } from "../helpers";
 import { ContentProviderAuthData } from "../interfaces";
 import { DimensionHelper } from "../helpers/DimensionHelper";
@@ -31,6 +32,7 @@ type FlowState =
   | {status: "success"};
 
 export const ProviderFormLoginScreen = (props: Props) => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [flowState, setFlowState] = useState<FlowState>({ status: "idle" });
@@ -63,7 +65,7 @@ export const ProviderFormLoginScreen = (props: Props) => {
 
   const handleLogin = async () => {
     if (!email.trim() || !password) {
-      setFlowState({ status: "error", message: "Please enter email and password" });
+      setFlowState({ status: "error", message: t("providerFormLogin.missingCredentials") });
       return;
     }
 
@@ -71,13 +73,13 @@ export const ProviderFormLoginScreen = (props: Props) => {
 
     try {
       if (!provider) {
-        setFlowState({ status: "error", message: "Provider not found" });
+        setFlowState({ status: "error", message: t("providerFormLogin.providerNotFound") });
         return;
       }
 
       const providerAny = provider as any;
       if (typeof providerAny.performLogin !== "function") {
-        setFlowState({ status: "error", message: "This provider does not support form login" });
+        setFlowState({ status: "error", message: t("providerFormLogin.notSupported") });
         return;
       }
 
@@ -100,11 +102,11 @@ export const ProviderFormLoginScreen = (props: Props) => {
           props.navigateTo("contentBrowser", { providerId: props.providerId, folderStack: [] });
         }, 1000);
       } else {
-        setFlowState({ status: "error", message: "Login failed. Check your credentials." });
+        setFlowState({ status: "error", message: t("providerFormLogin.loginFailed") });
       }
     } catch (error) {
       console.error("Form login error:", error);
-      setFlowState({ status: "error", message: "An unexpected error occurred. Please try again." });
+      setFlowState({ status: "error", message: t("providerFormLogin.unexpectedError") });
     }
   };
 
@@ -128,7 +130,7 @@ export const ProviderFormLoginScreen = (props: Props) => {
               marginTop: DimensionHelper.hp("3%"),
               letterSpacing: 1
             }}>
-            Logging in...
+            {t("providerFormLogin.loggingIn")}
           </Text>
         </LinearGradient>
       </View>
@@ -153,7 +155,7 @@ export const ProviderFormLoginScreen = (props: Props) => {
               fontSize: DimensionHelper.wp("3%"),
               fontWeight: "bold"
             }}>
-            Connected!
+            {t("providerFormLogin.connected")}
           </Text>
           <Text
             style={{
@@ -161,7 +163,7 @@ export const ProviderFormLoginScreen = (props: Props) => {
               fontSize: DimensionHelper.wp("1.6%"),
               marginTop: DimensionHelper.hp("2%")
             }}>
-            Loading your content...
+            {t("providerFormLogin.loadingContent")}
           </Text>
         </LinearGradient>
       </View>
@@ -193,7 +195,7 @@ export const ProviderFormLoginScreen = (props: Props) => {
                 fontWeight: "600",
                 marginBottom: DimensionHelper.hp("1%")
               }}>
-              Login to {providerConfig?.name || "Provider"}
+              {t("providerFormLogin.loginTo", { name: providerConfig?.name || t("providerFormLogin.fallbackProvider") })}
             </Text>
 
             {/* Instructions */}
@@ -205,7 +207,7 @@ export const ProviderFormLoginScreen = (props: Props) => {
                 marginBottom: DimensionHelper.hp("4%"),
                 textAlign: "center"
               }}>
-              Enter your credentials to connect
+              {t("providerFormLogin.enterCredentials")}
             </Text>
 
             {/* Error message */}
@@ -244,12 +246,12 @@ export const ProviderFormLoginScreen = (props: Props) => {
                     fontSize: DimensionHelper.wp("1.2%"),
                     marginBottom: DimensionHelper.hp("0.5%")
                   }}>
-                  Email
+                  {t("providerFormLogin.email")}
                 </Text>
                 <TextInput
                   value={email}
                   onChangeText={setEmail}
-                  placeholder="email@example.com"
+                  placeholder={t("providerFormLogin.emailPlaceholder")}
                   placeholderTextColor="rgba(255, 255, 255, 0.3)"
                   autoCapitalize="none"
                   autoCorrect={false}
@@ -276,13 +278,13 @@ export const ProviderFormLoginScreen = (props: Props) => {
                     fontSize: DimensionHelper.wp("1.2%"),
                     marginBottom: DimensionHelper.hp("0.5%")
                   }}>
-                  Password
+                  {t("providerFormLogin.password")}
                 </Text>
                 <TextInput
                   ref={passwordRef}
                   value={password}
                   onChangeText={setPassword}
-                  placeholder="Password"
+                  placeholder={t("providerFormLogin.passwordPlaceholder")}
                   placeholderTextColor="rgba(255, 255, 255, 0.3)"
                   secureTextEntry
                   returnKeyType="go"
@@ -317,7 +319,7 @@ export const ProviderFormLoginScreen = (props: Props) => {
                     fontWeight: "600",
                     letterSpacing: 0.5
                   }}>
-                  Sign In
+                  {t("providerFormLogin.signIn")}
                 </Text>
               </TouchableHighlight>
             </View>
@@ -347,7 +349,7 @@ export const ProviderFormLoginScreen = (props: Props) => {
                   fontSize: DimensionHelper.wp("1.2%"),
                   letterSpacing: 0.3
                 }}>
-                Cancel
+                {t("providerFormLogin.cancel")}
               </Text>
             </TouchableHighlight>
           </View>

@@ -11,6 +11,7 @@ import {
   BackHandler,
   useTVEventHandler
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import { ApiHelper } from "../helpers/ApiHelper";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { ChurchInterface } from "../interfaces";
@@ -24,6 +25,7 @@ type Props = {
 };
 
 export const SelectChurchScreen = (props: Props) => {
+  const { t } = useTranslation();
   const [churches, setChurches] = React.useState<ChurchInterface[]>([]);
   const [searchText, setSearchText] = React.useState("");
   const [loading, setLoading] = React.useState(false);
@@ -75,8 +77,8 @@ export const SelectChurchScreen = (props: Props) => {
   };
 
   const getNoResultsMessage = () => {
-    if (searchText.length < 4) return "Enter at least four letters of your church name to start searching.";
-    else return "No results found.  Search again or register your church at https://freeplay.church/.";
+    if (searchText.length < 4) return t("selectChurch.minLetters");
+    else return t("selectChurch.noResults");
   };
 
   const getSearchResult = () => {
@@ -148,7 +150,7 @@ export const SelectChurchScreen = (props: Props) => {
 
   return (
     <View style={Styles.menuScreen}>
-      <MenuHeader headerText="Find Your Church" />
+      <MenuHeader headerText={t("selectChurch.header")} />
       <View
         style={{
           ...Styles.menuWrapper,
@@ -171,7 +173,7 @@ export const SelectChurchScreen = (props: Props) => {
               marginBottom: DimensionHelper.hp("2%")
             }
           ]}
-          placeholder={"Search church name"}
+          placeholder={t("selectChurch.searchPlaceholder")}
           placeholderTextColor={"#7b8794"}
           autoCapitalize="none"
           autoCorrect={false}

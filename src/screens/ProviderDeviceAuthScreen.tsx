@@ -8,6 +8,7 @@ import {
   Animated,
   Easing
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import { Styles, CachedData, ProviderAuthHelper, Colors } from "../helpers";
 import { DeviceAuthorizationResponse, DeviceFlowState, ContentProviderAuthData, DeviceFlowHelper } from "../interfaces";
 import { DimensionHelper } from "../helpers/DimensionHelper";
@@ -25,6 +26,7 @@ type Props = {
 };
 
 export const ProviderDeviceAuthScreen = (props: Props) => {
+  const { t } = useTranslation();
   const [flowState, setFlowState] = useState<DeviceFlowState>({ status: "loading" });
   const pollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const pollGenerationRef = useRef<number>(0);
@@ -79,7 +81,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
       if (!provider) {
         setFlowState({
           status: "error",
-          error: "Provider not found."
+          error: t("providerDeviceAuth.providerNotFound")
         });
         return;
       }
@@ -89,7 +91,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
       if (!deviceAuth) {
         setFlowState({
           status: "error",
-          error: "Failed to initialize authentication. Please try again."
+          error: t("providerDeviceAuth.initFailed")
         });
         return;
       }
@@ -106,7 +108,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
       console.error("Device flow init error:", error);
       setFlowState({
         status: "error",
-        error: "An unexpected error occurred. Please try again."
+        error: t("providerDeviceAuth.unexpectedError")
       });
     }
   };
@@ -124,7 +126,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
       if (Date.now() >= expiresAt) {
         setFlowState({
           status: "expired",
-          error: "Authentication code expired. Please try again."
+          error: t("providerDeviceAuth.codeExpired")
         });
         return;
       }
@@ -138,7 +140,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
       if (result === null) {
         setFlowState({
           status: "error",
-          error: "Authentication failed or was denied."
+          error: t("providerDeviceAuth.authFailed")
         });
         return;
       }
@@ -252,7 +254,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
               marginTop: DimensionHelper.hp("3%"),
               letterSpacing: 1
             }}>
-            Initializing authentication...
+            {t("providerDeviceAuth.initializing")}
           </Text>
         </LinearGradient>
       </View>
@@ -297,7 +299,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
                 fontSize: DimensionHelper.wp("2%"),
                 fontWeight: "600"
               }}>
-              Try Again
+              {t("providerDeviceAuth.tryAgain")}
             </Text>
           </TouchableHighlight>
         </LinearGradient>
@@ -323,7 +325,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
               fontSize: DimensionHelper.wp("3%"),
               fontWeight: "bold"
             }}>
-            Connected!
+            {t("providerDeviceAuth.connected")}
           </Text>
           <Text
             style={{
@@ -331,7 +333,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
               fontSize: DimensionHelper.wp("1.6%"),
               marginTop: DimensionHelper.hp("2%")
             }}>
-            Loading your content...
+            {t("providerDeviceAuth.loadingContent")}
           </Text>
         </LinearGradient>
       </View>
@@ -364,7 +366,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
               fontWeight: "600",
               marginBottom: DimensionHelper.hp("2%")
             }}>
-            Connect to {providerConfig?.name || "Provider"}
+            {t("providerDeviceAuth.connectTo", { name: providerConfig?.name || t("providerDeviceAuth.fallbackProvider") })}
           </Text>
 
           {/* Instructions */}
@@ -377,9 +379,9 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
               textAlign: "center",
               paddingHorizontal: DimensionHelper.wp("10%")
             }}>
-            Scan the QR code with your phone, or visit{"\n"}
+            {t("providerDeviceAuth.instructions")}{"\n"}
             <Text style={{ color: Colors.primary }}>{deviceAuth.verification_uri}</Text>
-            {"\n"}and enter the code below
+            {"\n"}{t("providerDeviceAuth.instructionsLine2")}
           </Text>
 
           {/* QR Code */}
@@ -406,7 +408,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
                 fontSize: DimensionHelper.wp("1.2%"),
                 marginBottom: DimensionHelper.hp("1%")
               }}>
-              Enter this code:
+              {t("providerDeviceAuth.enterCode")}
             </Text>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               {deviceAuth.user_code.split("").map((char, index) =>
@@ -450,7 +452,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
                 fontSize: DimensionHelper.wp("1.4%"),
                 letterSpacing: 0.5
               }}>
-              Waiting for authorization
+              {t("providerDeviceAuth.waiting")}
             </Text>
           </Animated.View>
 
@@ -461,7 +463,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
               fontSize: DimensionHelper.wp("1%"),
               marginTop: DimensionHelper.hp("2%")
             }}>
-            Code expires in {Math.floor(deviceAuth.expires_in / 60)} minutes
+            {t("providerDeviceAuth.expiresIn", { minutes: Math.floor(deviceAuth.expires_in / 60) })}
           </Text>
         </Animated.View>
 
@@ -489,7 +491,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
                 fontSize: DimensionHelper.wp("1.2%"),
                 letterSpacing: 0.3
               }}>
-              Cancel
+              {t("providerDeviceAuth.cancel")}
             </Text>
           </TouchableHighlight>
         </View>

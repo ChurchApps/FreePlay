@@ -1,0 +1,190 @@
+{
+  "common": {
+    "cancel": "Prekliči",
+    "comingSoon": "Kmalu",
+    "connected": "Povezano",
+    "tryAgain": "Poskusi znova",
+    "version": "Različica: {{version}}"
+  },
+  "nav": {
+    "downloads": "Prenosi",
+    "providers": "Ponudniki"
+  },
+  "providers": {
+    "header": "Ponudniki vsebin",
+    "comingSoonAlert": {
+      "title": "Kmalu",
+      "message": "{{name}} še ni na voljo."
+    },
+    "disconnect": {
+      "title": "Prekini povezavo s ponudnikom",
+      "message": "Ali ste prepričani, da želite prekiniti povezavo s {{name}}?",
+      "action": "Prekini povezavo"
+    },
+    "errorAlert": {
+      "title": "Napaka",
+      "providerNotFound": "Ponudnik {{name}} ni bil najden."
+    },
+    "notSupported": {
+      "title": "Ni podprto",
+      "message": "Preverjanje pristnosti za {{name}} še ni podprto."
+    }
+  },
+  "contentBrowser": {
+    "header": "Brskaj po vsebini",
+    "noContent": "Vsebina ni na voljo",
+    "tryDifferentFolder": "Poskusite se pomakniti v drugo mapo",
+    "fileType": {
+      "video": "Video",
+      "image": "Slika"
+    }
+  },
+  "providerDownload": {
+    "fallbackTitle": "Vsebina",
+    "download": "Prenesi",
+    "stream": "Pretakaj",
+    "start": "Začni",
+    "downloadingItem": "Prenašanje elementa {{current}} od {{total}}"
+  },
+  "providerDeviceAuth": {
+    "providerNotFound": "Ponudnik ni bil najden.",
+    "initFailed": "Inicializacija preverjanja pristnosti ni uspela. Poskusite znova.",
+    "unexpectedError": "Prišlo je do nepričakovane napake. Poskusite znova.",
+    "codeExpired": "Koda za preverjanje pristnosti je potekla. Poskusite znova.",
+    "authFailed": "Preverjanje pristnosti ni uspelo ali je bilo zavrnjeno.",
+    "initializing": "Inicializacija preverjanja pristnosti...",
+    "tryAgain": "Poskusi znova",
+    "connected": "Povezano!",
+    "loadingContent": "Nalaganje vaše vsebine...",
+    "connectTo": "Poveži se z {{name}}",
+    "fallbackProvider": "Ponudnik",
+    "instructions": "Skenirajte QR kodo s telefonom ali obiščite",
+    "instructionsLine2": "in vnesite spodnjo kodo",
+    "enterCode": "Vnesite to kodo:",
+    "waiting": "Čakanje na avtorizacijo",
+    "expiresIn": "Koda poteče čez {{minutes}} min.",
+    "cancel": "Prekliči"
+  },
+  "providerOAuth": {
+    "providerNotFound": "Ponudnik ni bil najden.",
+    "sessionFailed": "Ustvarjanje avtorizacijske seje ni uspelo. Poskusite znova.",
+    "unexpectedError": "Prišlo je do nepričakovane napake. Poskusite znova.",
+    "sessionExpired": "Avtorizacijska seja je potekla. Poskusite znova.",
+    "exchangeFailed": "Zamenjava avtorizacijske kode za žetone ni uspela.",
+    "tokenExchangeFailed": "Zamenjava žetonov ni uspela. Poskusite znova.",
+    "initializing": "Inicializacija preverjanja pristnosti...",
+    "connecting": "Povezovanje...",
+    "tryAgain": "Poskusi znova",
+    "connected": "Povezano!",
+    "loadingContent": "Nalaganje vaše vsebine...",
+    "connectTo": "Poveži se z {{name}}",
+    "fallbackProvider": "Ponudnik",
+    "instructionsLine1": "Skenirajte QR kodo s telefonom za odobritev dostopa.",
+    "instructionsLine2": "Vaš TV se bo samodejno povezal, ko boste odobrili.",
+    "waiting": "Čakanje na avtorizacijo",
+    "expiresIn": "Seja poteče čez {{minutes}} min.",
+    "cancel": "Prekliči"
+  },
+  "providerFormLogin": {
+    "missingCredentials": "Vnesite e-pošto in geslo",
+    "providerNotFound": "Ponudnik ni bil najden",
+    "notSupported": "Ta ponudnik ne podpira prijave z obrazcem",
+    "loginFailed": "Prijava ni uspela. Preverite svoje poverilnice.",
+    "unexpectedError": "Prišlo je do nepričakovane napake. Poskusite znova.",
+    "loggingIn": "Prijavljanje...",
+    "connected": "Povezano!",
+    "loadingContent": "Nalaganje vaše vsebine...",
+    "loginTo": "Prijavi se v {{name}}",
+    "fallbackProvider": "Ponudnik",
+    "enterCredentials": "Vnesite svoje poverilnice za povezavo",
+    "email": "E-pošta",
+    "emailPlaceholder": "email@example.com",
+    "password": "Geslo",
+    "passwordPlaceholder": "Geslo",
+    "signIn": "Prijavi se",
+    "cancel": "Prekliči"
+  },
+  "download": {
+    "startLesson": "Začni lekcijo",
+    "downloadingItem": "Prenašanje elementa {{current}} od {{total}}",
+    "scheduleLoadFailed": "Urnika ni bilo mogoče naložiti.",
+    "scheduleLoadFailedSub": "Prepričajte se, da je za ta razred načrtovana lekcija.",
+    "tryAgain": "Poskusi znova"
+  },
+  "downloads": {
+    "header": "Prenosi",
+    "noDownloads": "Še ni prenosov"
+  },
+  "planDownload": {
+    "fallbackName": "Načrt bogoslužja",
+    "startPlan": "Začni načrt",
+    "downloadingItem": "Prenašanje elementa {{current}} od {{total}}",
+    "loadFailed": "Načrta ni bilo mogoče naložiti.",
+    "loadFailedSub": "Prepričajte se, da je za to vrsto načrta načrtovan načrt.",
+    "tryAgain": "Poskusi znova"
+  },
+  "planPairing": {
+    "generateFailed": "Generiranje kode za seznanjanje ni uspelo. Poskusite znova.",
+    "generating": "Generiranje kode za seznanjanje...",
+    "tryAgain": "Poskusi znova",
+    "instructions": "Vnesite to kodo v razdelek Vrsta načrta v B1Admin",
+    "waiting": "Čakanje na povezavo",
+    "searchByName": "ali iščite po imenu cerkve"
+  },
+  "selectPairingMode": {
+    "header": "Izberite način seznanjanja",
+    "classroomTitle": "Seznani z učilnico",
+    "classroomDescription": "Povežite se z določeno TV v učilnici in samodejno prikažite načrtovane lekcije",
+    "planTitle": "Seznani z načrtom",
+    "planDescription": "Sledite tedenskemu načrtu svoje cerkve in brskajte po vsebini na zahtevo"
+  },
+  "selectChurch": {
+    "header": "Poiščite svojo cerkev",
+    "searchPlaceholder": "Iščite ime cerkve",
+    "minLetters": "Vnesite vsaj štiri črke imena svoje cerkve, da začnete iskanje.",
+    "noResults": "Ni najdenih rezultatov. Iščite znova ali registrirajte svojo cerkev na https://freeplay.church/."
+  },
+  "selectRoom": {
+    "header": "Izberite učilnico",
+    "noClassrooms": "Ni najdenih učilnic",
+    "configureRooms": "Konfigurirajte svoje učilnice na freeplay.church."
+  },
+  "offline": {
+    "title": "Brez povezave:",
+    "subtitle": "Dostop do interneta trenutno ni na voljo",
+    "canPlayDownloaded": "Še vedno lahko predvajate lekcijo, ki je bila vnaprej prenesena.",
+    "notDownloaded": "Žal lekcija še ni bila prenesena za predvajanje brez povezave. Preverite svojo povezavo in poskusite znova.",
+    "startLesson": "Začni lekcijo"
+  },
+  "lessons": {
+    "header": "Izberite lekcijo",
+    "noLessons": "Ni razpoložljivih lekcij"
+  },
+  "lessonDetails": {
+    "version": "Različica: {{version}}"
+  },
+  "studies": {
+    "header": "Izberite študijo",
+    "noStudies": "Ni razpoložljivih študij"
+  },
+  "programs": {
+    "header": "Brskaj po programih",
+    "noPrograms": "Ni razpoložljivih programov"
+  },
+  "privacyPolicy": {
+    "header": "Pravilnik o zasebnosti",
+    "viewFullPolicy": "Za ogled našega celotnega pravilnika o zasebnosti obiščite:",
+    "url": "churchapps.org/privacy"
+  },
+  "selectMessage": {
+    "header": "Izberite sporočilo"
+  },
+  "message": {
+    "loadingVideo": "Nalaganje videa...",
+    "videoFailed": "Videa ni bilo mogoče naložiti",
+    "skippingNext": "Preskakovanje na naslednji element..."
+  },
+  "menu": {
+    "back": "Nazaj"
+  }
+}

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { View, Text, TouchableHighlight, BackHandler, ImageBackground, Animated } from "react-native";
+import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { CachedData, Styles, Colors, DownloadIndex } from "../helpers";
@@ -19,6 +20,7 @@ type Props = {
 };
 
 export const ProviderDownloadScreen = (props: Props) => {
+  const { t } = useTranslation();
   const [totalItems, setTotalItems] = React.useState(CachedData.totalCachableItems);
   const [cachedItems, setCachedItems] = React.useState(CachedData.cachedItems);
   const [currentFileProgress, setCurrentFileProgress] = React.useState(0);
@@ -64,16 +66,16 @@ export const ProviderDownloadScreen = (props: Props) => {
       const focusedStyle = { backgroundColor: Colors.primaryDark, borderColor: Colors.primary };
       const unfocusedStyle = { backgroundColor: Colors.surface, borderColor: Colors.borderSubtle };
       return (<>
-        <Text style={Styles.H2}>{props.title || "Content"}</Text>
+        <Text style={Styles.H2}>{props.title || t("providerDownload.fallbackTitle")}</Text>
         {props.description && (
           <Text style={{ ...Styles.smallerWhiteText, color: Colors.textLight }}>{props.description}</Text>
         )}
         <View style={{ flexDirection: "row", marginTop: DimensionHelper.hp("1%"), gap: DimensionHelper.wp("1%") }}>
           <TouchableHighlight style={{ ...btnBase, ...(focusedBtn === "download" ? focusedStyle : unfocusedStyle) }} underlayColor={Colors.primary} onPress={handleDownload} onFocus={() => setFocusedBtn("download")} hasTVPreferredFocus={true}>
-            <Text style={Styles.smallWhiteText} numberOfLines={1}>Download</Text>
+            <Text style={Styles.smallWhiteText} numberOfLines={1}>{t("providerDownload.download")}</Text>
           </TouchableHighlight>
           <TouchableHighlight style={{ ...btnBase, ...(focusedBtn === "stream" ? focusedStyle : unfocusedStyle) }} underlayColor={Colors.primary} onPress={handleStream} onFocus={() => setFocusedBtn("stream")}>
-            <Text style={Styles.smallWhiteText} numberOfLines={1}>Stream</Text>
+            <Text style={Styles.smallWhiteText} numberOfLines={1}>{t("providerDownload.stream")}</Text>
           </TouchableHighlight>
         </View>
       </>);
@@ -81,7 +83,7 @@ export const ProviderDownloadScreen = (props: Props) => {
 
     if (mode === "ready") {
       return (<>
-        <Text style={Styles.H2}>{props.title || "Content"}</Text>
+        <Text style={Styles.H2}>{props.title || t("providerDownload.fallbackTitle")}</Text>
         {props.description && (
           <Text style={{ ...Styles.smallerWhiteText, color: Colors.textLight }}>{props.description}</Text>
         )}
@@ -89,7 +91,7 @@ export const ProviderDownloadScreen = (props: Props) => {
           <TouchableHighlight style={{ backgroundColor: Colors.primaryDark, width: DimensionHelper.wp("18%"), height: DimensionHelper.hp("7%"), marginTop: DimensionHelper.hp("1%"), borderRadius: 12, justifyContent: "center", alignItems: "center", flexDirection: "row" }} underlayColor={Colors.primary} onPress={() => { handleStart(); }} hasTVPreferredFocus={true}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Icon name="play-arrow" size={DimensionHelper.wp("2.5%")} color="#fff" />
-              <Text style={{ ...Styles.smallWhiteText, marginLeft: 4 }} numberOfLines={1}>Start</Text>
+              <Text style={{ ...Styles.smallWhiteText, marginLeft: 4 }} numberOfLines={1}>{t("providerDownload.start")}</Text>
             </View>
           </TouchableHighlight>
         </Animated.View>
@@ -104,14 +106,14 @@ export const ProviderDownloadScreen = (props: Props) => {
     const buttonHeight = DimensionHelper.hp("6%");
     return (
       <>
-        <Text style={Styles.H2}>{props.title || "Content"}</Text>
+        <Text style={Styles.H2}>{props.title || t("providerDownload.fallbackTitle")}</Text>
         {props.description && (
           <Text style={{ ...Styles.smallerWhiteText, color: Colors.textLight }}>{props.description}</Text>
         )}
         <View style={{ width: DimensionHelper.wp("35%"), height: buttonHeight, marginTop: DimensionHelper.hp("1%"), borderRadius: 5, overflow: "hidden", backgroundColor: Colors.progressBackground, position: "relative" }}>
           <View style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${progress}%`, backgroundColor: Colors.primaryDark, borderRadius: 5 }} />
           <TouchableHighlight style={{ position: "absolute", left: 0, top: 0, right: 0, bottom: 0, justifyContent: "center", alignItems: "center" }} underlayColor={"rgba(255,255,255,0.1)"}>
-            <Text style={{ ...Styles.smallWhiteText }} numberOfLines={1}>Downloading item {cachedItems + 1} of {totalItems}</Text>
+            <Text style={{ ...Styles.smallWhiteText }} numberOfLines={1}>{t("providerDownload.downloadingItem", { current: cachedItems + 1, total: totalItems })}</Text>
           </TouchableHighlight>
         </View>
       </>

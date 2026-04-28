@@ -1,0 +1,190 @@
+{
+  "common": {
+    "cancel": "Avbryt",
+    "comingSoon": "Kommer snart",
+    "connected": "Tilkoblet",
+    "tryAgain": "Prøv igjen",
+    "version": "Versjon: {{version}}"
+  },
+  "nav": {
+    "downloads": "Nedlastinger",
+    "providers": "Leverandører"
+  },
+  "providers": {
+    "header": "Innholdsleverandører",
+    "comingSoonAlert": {
+      "title": "Kommer snart",
+      "message": "{{name}} er ikke tilgjengelig ennå."
+    },
+    "disconnect": {
+      "title": "Koble fra leverandør",
+      "message": "Er du sikker på at du vil koble fra {{name}}?",
+      "action": "Koble fra"
+    },
+    "errorAlert": {
+      "title": "Feil",
+      "providerNotFound": "Leverandør {{name}} ikke funnet."
+    },
+    "notSupported": {
+      "title": "Ikke støttet",
+      "message": "{{name}}-autentisering støttes ikke ennå."
+    }
+  },
+  "contentBrowser": {
+    "header": "Bla gjennom innhold",
+    "noContent": "Ingen innhold tilgjengelig",
+    "tryDifferentFolder": "Prøv å navigere til en annen mappe",
+    "fileType": {
+      "video": "Video",
+      "image": "Bilde"
+    }
+  },
+  "providerDownload": {
+    "fallbackTitle": "Innhold",
+    "download": "Last ned",
+    "stream": "Strøm",
+    "start": "Start",
+    "downloadingItem": "Laster ned element {{current}} av {{total}}"
+  },
+  "providerDeviceAuth": {
+    "providerNotFound": "Leverandør ikke funnet.",
+    "initFailed": "Kunne ikke initialisere autentisering. Prøv igjen.",
+    "unexpectedError": "En uventet feil oppstod. Prøv igjen.",
+    "codeExpired": "Autentiseringskode utløpt. Prøv igjen.",
+    "authFailed": "Autentisering mislyktes eller ble nektet.",
+    "initializing": "Initialiserer autentisering...",
+    "tryAgain": "Prøv igjen",
+    "connected": "Tilkoblet!",
+    "loadingContent": "Laster innholdet ditt...",
+    "connectTo": "Koble til {{name}}",
+    "fallbackProvider": "Leverandør",
+    "instructions": "Skann QR-koden med telefonen, eller besøk",
+    "instructionsLine2": "og skriv inn koden nedenfor",
+    "enterCode": "Skriv inn denne koden:",
+    "waiting": "Venter på autorisasjon",
+    "expiresIn": "Koden utløper om {{minutes}} minutter",
+    "cancel": "Avbryt"
+  },
+  "providerOAuth": {
+    "providerNotFound": "Leverandør ikke funnet.",
+    "sessionFailed": "Kunne ikke opprette autorisasjonsøkt. Prøv igjen.",
+    "unexpectedError": "En uventet feil oppstod. Prøv igjen.",
+    "sessionExpired": "Autorisasjonsøkten utløpt. Prøv igjen.",
+    "exchangeFailed": "Kunne ikke utveksle autorisasjonskode for tokens.",
+    "tokenExchangeFailed": "Tokenutveksling mislyktes. Prøv igjen.",
+    "initializing": "Initialiserer autentisering...",
+    "connecting": "Kobler til...",
+    "tryAgain": "Prøv igjen",
+    "connected": "Tilkoblet!",
+    "loadingContent": "Laster innholdet ditt...",
+    "connectTo": "Koble til {{name}}",
+    "fallbackProvider": "Leverandør",
+    "instructionsLine1": "Skann QR-koden med telefonen for å autorisere tilgang.",
+    "instructionsLine2": "TV-en din kobler til automatisk når du godkjenner.",
+    "waiting": "Venter på autorisasjon",
+    "expiresIn": "Økten utløper om {{minutes}} minutter",
+    "cancel": "Avbryt"
+  },
+  "providerFormLogin": {
+    "missingCredentials": "Vennligst skriv inn e-post og passord",
+    "providerNotFound": "Leverandør ikke funnet",
+    "notSupported": "Denne leverandøren støtter ikke skjemainnlogging",
+    "loginFailed": "Innlogging mislyktes. Sjekk legitimasjonen din.",
+    "unexpectedError": "En uventet feil oppstod. Prøv igjen.",
+    "loggingIn": "Logger inn...",
+    "connected": "Tilkoblet!",
+    "loadingContent": "Laster innholdet ditt...",
+    "loginTo": "Logg inn på {{name}}",
+    "fallbackProvider": "Leverandør",
+    "enterCredentials": "Skriv inn legitimasjonen din for å koble til",
+    "email": "E-post",
+    "emailPlaceholder": "email@example.com",
+    "password": "Passord",
+    "passwordPlaceholder": "Passord",
+    "signIn": "Logg inn",
+    "cancel": "Avbryt"
+  },
+  "download": {
+    "startLesson": "Start leksjon",
+    "downloadingItem": "Laster ned element {{current}} av {{total}}",
+    "scheduleLoadFailed": "Tidsplanen kunne ikke lastes.",
+    "scheduleLoadFailedSub": "Sørg for at en leksjon er planlagt for denne klassen.",
+    "tryAgain": "Prøv igjen"
+  },
+  "downloads": {
+    "header": "Nedlastinger",
+    "noDownloads": "Ingen nedlastinger ennå"
+  },
+  "planDownload": {
+    "fallbackName": "Gudstjenesteplan",
+    "startPlan": "Start plan",
+    "downloadingItem": "Laster ned element {{current}} av {{total}}",
+    "loadFailed": "Planen kunne ikke lastes.",
+    "loadFailedSub": "Sørg for at en plan er planlagt for denne plantypen.",
+    "tryAgain": "Prøv igjen"
+  },
+  "planPairing": {
+    "generateFailed": "Kunne ikke generere paringskode. Prøv igjen.",
+    "generating": "Genererer paringskode...",
+    "tryAgain": "Prøv igjen",
+    "instructions": "Skriv inn denne koden i Plantype-delen i B1Admin",
+    "waiting": "Venter på tilkobling",
+    "searchByName": "eller søk etter kirkens navn"
+  },
+  "selectPairingMode": {
+    "header": "Velg paringsmodus",
+    "classroomTitle": "Par med klasserom",
+    "classroomDescription": "Koble til en bestemt TV i et klasserom og vis planlagte leksjoner automatisk",
+    "planTitle": "Par med plan",
+    "planDescription": "Følg kirkens ukentlige plan og bla gjennom innhold på forespørsel"
+  },
+  "selectChurch": {
+    "header": "Finn kirken din",
+    "searchPlaceholder": "Søk etter kirkens navn",
+    "minLetters": "Skriv inn minst fire bokstaver av kirkens navn for å begynne å søke.",
+    "noResults": "Ingen resultater funnet. Søk igjen eller registrer kirken din på https://freeplay.church/."
+  },
+  "selectRoom": {
+    "header": "Velg et klasserom",
+    "noClassrooms": "Ingen klasserom funnet",
+    "configureRooms": "Konfigurer klasserommene dine på freeplay.church."
+  },
+  "offline": {
+    "title": "Frakoblet:",
+    "subtitle": "Internett-tilgang er ikke tilgjengelig for øyeblikket",
+    "canPlayDownloaded": "Du kan fremdeles spille av leksjonen som ble lastet ned på forhånd.",
+    "notDownloaded": "Dessverre har ikke leksjonen blitt lastet ned for offline avspilling ennå. Sjekk tilkoblingen og prøv igjen.",
+    "startLesson": "Start leksjon"
+  },
+  "lessons": {
+    "header": "Velg en leksjon",
+    "noLessons": "Ingen leksjoner tilgjengelig"
+  },
+  "lessonDetails": {
+    "version": "Versjon: {{version}}"
+  },
+  "studies": {
+    "header": "Velg en studie",
+    "noStudies": "Ingen studier tilgjengelig"
+  },
+  "programs": {
+    "header": "Bla gjennom programmer",
+    "noPrograms": "Ingen programmer tilgjengelig"
+  },
+  "privacyPolicy": {
+    "header": "Personvernerklæring",
+    "viewFullPolicy": "For å se vår fullstendige personvernerklæring, besøk:",
+    "url": "churchapps.org/privacy"
+  },
+  "selectMessage": {
+    "header": "Velg en melding"
+  },
+  "message": {
+    "loadingVideo": "Laster video...",
+    "videoFailed": "Videoen kunne ikke lastes",
+    "skippingNext": "Hopper til neste element..."
+  },
+  "menu": {
+    "back": "Tilbake"
+  }
+}

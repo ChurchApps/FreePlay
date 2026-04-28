@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { View, Text, TouchableHighlight, ActivityIndicator, BackHandler, ImageBackground } from "react-native";
+import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { ApiHelper, CachedData, Styles, DownloadIndex } from "../helpers";
 import { Colors } from "../helpers/Styles";
@@ -14,6 +15,7 @@ type Props = {
 };
 
 export const PlanDownloadScreen = (props: Props) => {
+  const { t } = useTranslation();
   const [plan, setPlan] = React.useState<PlanInterface | null>(null);
   const [venue, setVenue] = React.useState<FeedVenueInterface | null>(null);
   const [planItems, setPlanItems] = React.useState<PlanItemInterface[]>([]);
@@ -204,7 +206,7 @@ export const PlanDownloadScreen = (props: Props) => {
     const pkg = require("../../package.json");
     return (
       <Text style={{ ...Styles.smallWhiteText, textAlign: "left", fontSize: 12, paddingBottom: 15, color: "#999999", paddingTop: 15 }}>
-        Version: {pkg.version}
+        {t("common.version", { version: pkg.version })}
       </Text>
     );
   };
@@ -215,7 +217,7 @@ export const PlanDownloadScreen = (props: Props) => {
       if (ready && cachedItems === totalItems) {
         return (
           <>
-            <Text style={Styles.H2}>{plan.name || "Service Plan"}</Text>
+            <Text style={Styles.H2}>{plan.name || t("planDownload.fallbackName")}</Text>
             {plan.serviceDate && (
               <Text style={Styles.H3}>
                 {new Date(plan.serviceDate).toLocaleDateString()}
@@ -239,7 +241,7 @@ export const PlanDownloadScreen = (props: Props) => {
               hasTVPreferredFocus={true}
             >
               <Text style={{ ...Styles.smallWhiteText, width: "100%" }} numberOfLines={1}>
-                Start Plan
+                {t("planDownload.startPlan")}
               </Text>
             </TouchableHighlight>
             {getVersion()}
@@ -248,7 +250,7 @@ export const PlanDownloadScreen = (props: Props) => {
       } else {
         return (
           <>
-            <Text style={Styles.H2}>{plan.name || "Service Plan"}</Text>
+            <Text style={Styles.H2}>{plan.name || t("planDownload.fallbackName")}</Text>
             {plan.serviceDate && (
               <Text style={Styles.H3}>
                 {new Date(plan.serviceDate).toLocaleDateString()}
@@ -265,7 +267,7 @@ export const PlanDownloadScreen = (props: Props) => {
               underlayColor={"#999999"}
             >
               <Text style={{ ...Styles.smallWhiteText, width: "100%" }} numberOfLines={1}>
-                Downloading item {cachedItems} of {totalItems}
+                {t("planDownload.downloadingItem", { current: cachedItems, total: totalItems })}
               </Text>
             </TouchableHighlight>
             {getVersion()}
@@ -354,7 +356,7 @@ export const PlanDownloadScreen = (props: Props) => {
           DownloadIndex.addEntry({
             downloadKey: DownloadIndex.generateKey("plan", { planId: plan?.id || "", venueId: venue?.id || "" }),
             source: "plan",
-            lessonName: plan?.name || "Service Plan",
+            lessonName: plan?.name || t("planDownload.fallbackName"),
             lessonTitle: venue?.lessonName,
             lessonDescription: venue?.lessonDescription,
             lessonImage: venue?.lessonImage,
@@ -405,10 +407,10 @@ export const PlanDownloadScreen = (props: Props) => {
       <View style={{ ...Styles.menuScreen, flex: 1, width: DimensionHelper.wp("100%"), justifyContent: "center", alignItems: "center" }}>
         <Icon name="error-outline" size={DimensionHelper.wp("4%")} color={Colors.error} />
         <Text style={{ ...Styles.bigWhiteText, marginTop: DimensionHelper.hp("2%") }}>
-          The plan could not be loaded.
+          {t("planDownload.loadFailed")}
         </Text>
         <Text style={{ ...Styles.whiteText, marginTop: DimensionHelper.hp("1%") }}>
-          Make sure a plan is scheduled for this plan type.
+          {t("planDownload.loadFailedSub")}
         </Text>
         <TouchableHighlight
           style={{ backgroundColor: Colors.primaryDark, paddingVertical: DimensionHelper.hp("1.5%"), paddingHorizontal: DimensionHelper.wp("3%"), marginTop: DimensionHelper.hp("3%"), borderRadius: 12 }}
@@ -416,7 +418,7 @@ export const PlanDownloadScreen = (props: Props) => {
           onPress={() => { setLoadFailed(false); setRefreshKey(new Date().getTime().toString()); }}
           hasTVPreferredFocus={true}
         >
-          <Text style={Styles.smallWhiteText}>Try Again</Text>
+          <Text style={Styles.smallWhiteText}>{t("planDownload.tryAgain")}</Text>
         </TouchableHighlight>
       </View>
     );

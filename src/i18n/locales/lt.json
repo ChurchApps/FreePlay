@@ -1,0 +1,190 @@
+{
+  "common": {
+    "cancel": "Atšaukti",
+    "comingSoon": "Netrukus",
+    "connected": "Prisijungta",
+    "tryAgain": "Bandyti dar kartą",
+    "version": "Versija: {{version}}"
+  },
+  "nav": {
+    "downloads": "Atsisiuntimai",
+    "providers": "Tiekėjai"
+  },
+  "providers": {
+    "header": "Turinio tiekėjai",
+    "comingSoonAlert": {
+      "title": "Netrukus",
+      "message": "{{name}} dar neprieinamas."
+    },
+    "disconnect": {
+      "title": "Atjungti tiekėją",
+      "message": "Ar tikrai norite atsijungti nuo {{name}}?",
+      "action": "Atjungti"
+    },
+    "errorAlert": {
+      "title": "Klaida",
+      "providerNotFound": "Tiekėjas {{name}} nerastas."
+    },
+    "notSupported": {
+      "title": "Nepalaikoma",
+      "message": "{{name}} autentifikavimas dar nepalaikomas."
+    }
+  },
+  "contentBrowser": {
+    "header": "Naršyti turinį",
+    "noContent": "Turinys neprieinamas",
+    "tryDifferentFolder": "Pabandykite pereiti į kitą aplanką",
+    "fileType": {
+      "video": "Vaizdo įrašas",
+      "image": "Paveikslėlis"
+    }
+  },
+  "providerDownload": {
+    "fallbackTitle": "Turinys",
+    "download": "Atsisiųsti",
+    "stream": "Transliuoti",
+    "start": "Pradėti",
+    "downloadingItem": "Atsisiunčiama {{current}} iš {{total}}"
+  },
+  "providerDeviceAuth": {
+    "providerNotFound": "Tiekėjas nerastas.",
+    "initFailed": "Nepavyko inicijuoti autentifikavimo. Bandykite dar kartą.",
+    "unexpectedError": "Įvyko netikėta klaida. Bandykite dar kartą.",
+    "codeExpired": "Autentifikavimo kodo galiojimas baigėsi. Bandykite dar kartą.",
+    "authFailed": "Autentifikavimas nepavyko arba buvo atmestas.",
+    "initializing": "Inicijuojamas autentifikavimas...",
+    "tryAgain": "Bandyti dar kartą",
+    "connected": "Prisijungta!",
+    "loadingContent": "Įkeliamas turinys...",
+    "connectTo": "Prisijungti prie {{name}}",
+    "fallbackProvider": "Tiekėjas",
+    "instructions": "Nuskaitykite QR kodą telefonu arba apsilankykite",
+    "instructionsLine2": "ir įveskite žemiau esantį kodą",
+    "enterCode": "Įveskite šį kodą:",
+    "waiting": "Laukiama autorizavimo",
+    "expiresIn": "Kodo galiojimas baigsis po {{minutes}} min.",
+    "cancel": "Atšaukti"
+  },
+  "providerOAuth": {
+    "providerNotFound": "Tiekėjas nerastas.",
+    "sessionFailed": "Nepavyko sukurti autorizavimo sesijos. Bandykite dar kartą.",
+    "unexpectedError": "Įvyko netikėta klaida. Bandykite dar kartą.",
+    "sessionExpired": "Autorizavimo sesijos galiojimas baigėsi. Bandykite dar kartą.",
+    "exchangeFailed": "Nepavyko iškeisti autorizavimo kodo į žetonus.",
+    "tokenExchangeFailed": "Žetonų keitimas nepavyko. Bandykite dar kartą.",
+    "initializing": "Inicijuojamas autentifikavimas...",
+    "connecting": "Jungiamasi...",
+    "tryAgain": "Bandyti dar kartą",
+    "connected": "Prisijungta!",
+    "loadingContent": "Įkeliamas turinys...",
+    "connectTo": "Prisijungti prie {{name}}",
+    "fallbackProvider": "Tiekėjas",
+    "instructionsLine1": "Nuskaitykite QR kodą telefonu, kad autorizuotumėte prieigą.",
+    "instructionsLine2": "Jūsų televizorius automatiškai prisijungs, kai patvirtinsite.",
+    "waiting": "Laukiama autorizavimo",
+    "expiresIn": "Sesijos galiojimas baigsis po {{minutes}} min.",
+    "cancel": "Atšaukti"
+  },
+  "providerFormLogin": {
+    "missingCredentials": "Įveskite el. paštą ir slaptažodį",
+    "providerNotFound": "Tiekėjas nerastas",
+    "notSupported": "Šis tiekėjas nepalaiko prisijungimo per formą",
+    "loginFailed": "Nepavyko prisijungti. Patikrinkite savo prisijungimo duomenis.",
+    "unexpectedError": "Įvyko netikėta klaida. Bandykite dar kartą.",
+    "loggingIn": "Jungiamasi...",
+    "connected": "Prisijungta!",
+    "loadingContent": "Įkeliamas turinys...",
+    "loginTo": "Prisijungti prie {{name}}",
+    "fallbackProvider": "Tiekėjas",
+    "enterCredentials": "Įveskite prisijungimo duomenis, kad prisijungtumėte",
+    "email": "El. paštas",
+    "emailPlaceholder": "email@example.com",
+    "password": "Slaptažodis",
+    "passwordPlaceholder": "Slaptažodis",
+    "signIn": "Prisijungti",
+    "cancel": "Atšaukti"
+  },
+  "download": {
+    "startLesson": "Pradėti pamoką",
+    "downloadingItem": "Atsisiunčiama {{current}} iš {{total}}",
+    "scheduleLoadFailed": "Nepavyko įkelti tvarkaraščio.",
+    "scheduleLoadFailedSub": "Įsitikinkite, kad šiai klasei suplanuota pamoka.",
+    "tryAgain": "Bandyti dar kartą"
+  },
+  "downloads": {
+    "header": "Atsisiuntimai",
+    "noDownloads": "Atsisiuntimų dar nėra"
+  },
+  "planDownload": {
+    "fallbackName": "Pamaldų planas",
+    "startPlan": "Pradėti planą",
+    "downloadingItem": "Atsisiunčiama {{current}} iš {{total}}",
+    "loadFailed": "Nepavyko įkelti plano.",
+    "loadFailedSub": "Įsitikinkite, kad šiam plano tipui suplanuotas planas.",
+    "tryAgain": "Bandyti dar kartą"
+  },
+  "planPairing": {
+    "generateFailed": "Nepavyko sugeneruoti susiejimo kodo. Bandykite dar kartą.",
+    "generating": "Generuojamas susiejimo kodas...",
+    "tryAgain": "Bandyti dar kartą",
+    "instructions": "Įveskite šį kodą B1Admin plano tipo skiltyje",
+    "waiting": "Laukiama prisijungimo",
+    "searchByName": "arba ieškokite pagal bažnyčios pavadinimą"
+  },
+  "selectPairingMode": {
+    "header": "Pasirinkite susiejimo režimą",
+    "classroomTitle": "Susieti su klase",
+    "classroomDescription": "Prisijunkite prie konkrečios klasės televizoriaus ir automatiškai rodykite suplanuotas pamokas",
+    "planTitle": "Susieti su planu",
+    "planDescription": "Sekite savaitinį bažnyčios planą ir naršykite turinį pagal poreikį"
+  },
+  "selectChurch": {
+    "header": "Raskite savo bažnyčią",
+    "searchPlaceholder": "Ieškoti bažnyčios pavadinimo",
+    "minLetters": "Įveskite bent keturias bažnyčios pavadinimo raides, kad pradėtumėte paiešką.",
+    "noResults": "Rezultatų nerasta. Ieškokite dar kartą arba užregistruokite savo bažnyčią adresu https://freeplay.church/."
+  },
+  "selectRoom": {
+    "header": "Pasirinkite klasę",
+    "noClassrooms": "Klasių nerasta",
+    "configureRooms": "Sukonfigūruokite savo klases adresu freeplay.church."
+  },
+  "offline": {
+    "title": "Neprisijungus:",
+    "subtitle": "Šiuo metu interneto prieiga negalima",
+    "canPlayDownloaded": "Vis tiek galite atkurti pamoką, kuri buvo atsisiųsta iš anksto.",
+    "notDownloaded": "Deja, pamoka dar nebuvo atsisiųsta atkūrimui neprisijungus. Patikrinkite ryšį ir bandykite dar kartą.",
+    "startLesson": "Pradėti pamoką"
+  },
+  "lessons": {
+    "header": "Pasirinkite pamoką",
+    "noLessons": "Nėra pamokų"
+  },
+  "lessonDetails": {
+    "version": "Versija: {{version}}"
+  },
+  "studies": {
+    "header": "Pasirinkite studiją",
+    "noStudies": "Nėra studijų"
+  },
+  "programs": {
+    "header": "Naršyti programas",
+    "noPrograms": "Nėra programų"
+  },
+  "privacyPolicy": {
+    "header": "Privatumo politika",
+    "viewFullPolicy": "Norėdami peržiūrėti visą mūsų privatumo politiką, apsilankykite:",
+    "url": "churchapps.org/privacy"
+  },
+  "selectMessage": {
+    "header": "Pasirinkite žinutę"
+  },
+  "message": {
+    "loadingVideo": "Įkeliamas vaizdo įrašas...",
+    "videoFailed": "Nepavyko įkelti vaizdo įrašo",
+    "skippingNext": "Praleidžiama į kitą elementą..."
+  },
+  "menu": {
+    "back": "Atgal"
+  }
+}

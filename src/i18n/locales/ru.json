@@ -1,0 +1,190 @@
+{
+  "common": {
+    "cancel": "Отмена",
+    "comingSoon": "Скоро",
+    "connected": "Подключено",
+    "tryAgain": "Повторить",
+    "version": "Версия: {{version}}"
+  },
+  "nav": {
+    "downloads": "Загрузки",
+    "providers": "Поставщики"
+  },
+  "providers": {
+    "header": "Поставщики контента",
+    "comingSoonAlert": {
+      "title": "Скоро",
+      "message": "{{name}} пока недоступен."
+    },
+    "disconnect": {
+      "title": "Отключить поставщика",
+      "message": "Вы уверены, что хотите отключиться от {{name}}?",
+      "action": "Отключить"
+    },
+    "errorAlert": {
+      "title": "Ошибка",
+      "providerNotFound": "Поставщик {{name}} не найден."
+    },
+    "notSupported": {
+      "title": "Не поддерживается",
+      "message": "Аутентификация {{name}} пока не поддерживается."
+    }
+  },
+  "contentBrowser": {
+    "header": "Просмотр контента",
+    "noContent": "Нет доступного контента",
+    "tryDifferentFolder": "Попробуйте перейти в другую папку",
+    "fileType": {
+      "video": "Видео",
+      "image": "Изображение"
+    }
+  },
+  "providerDownload": {
+    "fallbackTitle": "Контент",
+    "download": "Загрузить",
+    "stream": "Транслировать",
+    "start": "Начать",
+    "downloadingItem": "Загрузка элемента {{current}} из {{total}}"
+  },
+  "providerDeviceAuth": {
+    "providerNotFound": "Поставщик не найден.",
+    "initFailed": "Не удалось инициализировать аутентификацию. Повторите попытку.",
+    "unexpectedError": "Произошла непредвиденная ошибка. Повторите попытку.",
+    "codeExpired": "Срок действия кода аутентификации истёк. Повторите попытку.",
+    "authFailed": "Аутентификация не удалась или была отклонена.",
+    "initializing": "Инициализация аутентификации...",
+    "tryAgain": "Повторить",
+    "connected": "Подключено!",
+    "loadingContent": "Загрузка вашего контента...",
+    "connectTo": "Подключиться к {{name}}",
+    "fallbackProvider": "Поставщик",
+    "instructions": "Отсканируйте QR-код телефоном или посетите",
+    "instructionsLine2": "и введите код ниже",
+    "enterCode": "Введите этот код:",
+    "waiting": "Ожидание авторизации",
+    "expiresIn": "Срок действия кода истечёт через {{minutes}} мин.",
+    "cancel": "Отмена"
+  },
+  "providerOAuth": {
+    "providerNotFound": "Поставщик не найден.",
+    "sessionFailed": "Не удалось создать сеанс авторизации. Повторите попытку.",
+    "unexpectedError": "Произошла непредвиденная ошибка. Повторите попытку.",
+    "sessionExpired": "Срок действия сеанса авторизации истёк. Повторите попытку.",
+    "exchangeFailed": "Не удалось обменять код авторизации на токены.",
+    "tokenExchangeFailed": "Обмен токенами не удался. Повторите попытку.",
+    "initializing": "Инициализация аутентификации...",
+    "connecting": "Подключение...",
+    "tryAgain": "Повторить",
+    "connected": "Подключено!",
+    "loadingContent": "Загрузка вашего контента...",
+    "connectTo": "Подключиться к {{name}}",
+    "fallbackProvider": "Поставщик",
+    "instructionsLine1": "Отсканируйте QR-код телефоном, чтобы авторизовать доступ.",
+    "instructionsLine2": "Ваш телевизор подключится автоматически после вашего подтверждения.",
+    "waiting": "Ожидание авторизации",
+    "expiresIn": "Срок действия сеанса истечёт через {{minutes}} мин.",
+    "cancel": "Отмена"
+  },
+  "providerFormLogin": {
+    "missingCredentials": "Введите электронную почту и пароль",
+    "providerNotFound": "Поставщик не найден",
+    "notSupported": "Этот поставщик не поддерживает вход через форму",
+    "loginFailed": "Не удалось войти. Проверьте свои учётные данные.",
+    "unexpectedError": "Произошла непредвиденная ошибка. Повторите попытку.",
+    "loggingIn": "Вход...",
+    "connected": "Подключено!",
+    "loadingContent": "Загрузка вашего контента...",
+    "loginTo": "Войти в {{name}}",
+    "fallbackProvider": "Поставщик",
+    "enterCredentials": "Введите свои учётные данные для подключения",
+    "email": "Электронная почта",
+    "emailPlaceholder": "email@example.com",
+    "password": "Пароль",
+    "passwordPlaceholder": "Пароль",
+    "signIn": "Войти",
+    "cancel": "Отмена"
+  },
+  "download": {
+    "startLesson": "Начать урок",
+    "downloadingItem": "Загрузка элемента {{current}} из {{total}}",
+    "scheduleLoadFailed": "Не удалось загрузить расписание.",
+    "scheduleLoadFailedSub": "Убедитесь, что для этого класса запланирован урок.",
+    "tryAgain": "Повторить"
+  },
+  "downloads": {
+    "header": "Загрузки",
+    "noDownloads": "Загрузок пока нет"
+  },
+  "planDownload": {
+    "fallbackName": "План служения",
+    "startPlan": "Начать план",
+    "downloadingItem": "Загрузка элемента {{current}} из {{total}}",
+    "loadFailed": "Не удалось загрузить план.",
+    "loadFailedSub": "Убедитесь, что для этого типа плана запланирован план.",
+    "tryAgain": "Повторить"
+  },
+  "planPairing": {
+    "generateFailed": "Не удалось сгенерировать код сопряжения. Повторите попытку.",
+    "generating": "Генерация кода сопряжения...",
+    "tryAgain": "Повторить",
+    "instructions": "Введите этот код в разделе Тип плана в B1Admin",
+    "waiting": "Ожидание подключения",
+    "searchByName": "или ищите по названию церкви"
+  },
+  "selectPairingMode": {
+    "header": "Выберите режим сопряжения",
+    "classroomTitle": "Сопряжение с классом",
+    "classroomDescription": "Подключитесь к определённому телевизору класса и автоматически отображайте запланированные уроки",
+    "planTitle": "Сопряжение с планом",
+    "planDescription": "Следуйте еженедельному плану своей церкви и просматривайте контент по запросу"
+  },
+  "selectChurch": {
+    "header": "Найдите свою церковь",
+    "searchPlaceholder": "Поиск по названию церкви",
+    "minLetters": "Введите не менее четырёх букв названия вашей церкви, чтобы начать поиск.",
+    "noResults": "Результатов не найдено. Повторите поиск или зарегистрируйте свою церковь по адресу https://freeplay.church/."
+  },
+  "selectRoom": {
+    "header": "Выберите класс",
+    "noClassrooms": "Классов не найдено",
+    "configureRooms": "Настройте свои классы на freeplay.church."
+  },
+  "offline": {
+    "title": "Не в сети:",
+    "subtitle": "Доступ к Интернету в настоящее время недоступен",
+    "canPlayDownloaded": "Вы по-прежнему можете воспроизвести урок, который был загружен заранее.",
+    "notDownloaded": "К сожалению, урок ещё не был загружен для воспроизведения в автономном режиме. Проверьте подключение и повторите попытку.",
+    "startLesson": "Начать урок"
+  },
+  "lessons": {
+    "header": "Выберите урок",
+    "noLessons": "Нет доступных уроков"
+  },
+  "lessonDetails": {
+    "version": "Версия: {{version}}"
+  },
+  "studies": {
+    "header": "Выберите изучение",
+    "noStudies": "Нет доступных изучений"
+  },
+  "programs": {
+    "header": "Просмотр программ",
+    "noPrograms": "Нет доступных программ"
+  },
+  "privacyPolicy": {
+    "header": "Политика конфиденциальности",
+    "viewFullPolicy": "Чтобы просмотреть нашу полную политику конфиденциальности, посетите:",
+    "url": "churchapps.org/privacy"
+  },
+  "selectMessage": {
+    "header": "Выберите сообщение"
+  },
+  "message": {
+    "loadingVideo": "Загрузка видео...",
+    "videoFailed": "Не удалось загрузить видео",
+    "skippingNext": "Переход к следующему элементу..."
+  },
+  "menu": {
+    "back": "Назад"
+  }
+}

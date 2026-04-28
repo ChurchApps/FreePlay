@@ -1,0 +1,190 @@
+{
+  "common": {
+    "cancel": "Annuleren",
+    "comingSoon": "Binnenkort beschikbaar",
+    "connected": "Verbonden",
+    "tryAgain": "Opnieuw proberen",
+    "version": "Versie: {{version}}"
+  },
+  "nav": {
+    "downloads": "Downloads",
+    "providers": "Aanbieders"
+  },
+  "providers": {
+    "header": "Inhoudsaanbieders",
+    "comingSoonAlert": {
+      "title": "Binnenkort beschikbaar",
+      "message": "{{name}} is nog niet beschikbaar."
+    },
+    "disconnect": {
+      "title": "Aanbieder loskoppelen",
+      "message": "Weet u zeker dat u de verbinding met {{name}} wilt verbreken?",
+      "action": "Loskoppelen"
+    },
+    "errorAlert": {
+      "title": "Fout",
+      "providerNotFound": "Aanbieder {{name}} niet gevonden."
+    },
+    "notSupported": {
+      "title": "Niet ondersteund",
+      "message": "Authenticatie van {{name}} wordt nog niet ondersteund."
+    }
+  },
+  "contentBrowser": {
+    "header": "Inhoud doorzoeken",
+    "noContent": "Geen inhoud beschikbaar",
+    "tryDifferentFolder": "Probeer naar een andere map te navigeren",
+    "fileType": {
+      "video": "Video",
+      "image": "Afbeelding"
+    }
+  },
+  "providerDownload": {
+    "fallbackTitle": "Inhoud",
+    "download": "Downloaden",
+    "stream": "Streamen",
+    "start": "Starten",
+    "downloadingItem": "Item {{current}} van {{total}} wordt gedownload"
+  },
+  "providerDeviceAuth": {
+    "providerNotFound": "Aanbieder niet gevonden.",
+    "initFailed": "Kan authenticatie niet initialiseren. Probeer het opnieuw.",
+    "unexpectedError": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
+    "codeExpired": "Authenticatiecode verlopen. Probeer het opnieuw.",
+    "authFailed": "Authenticatie is mislukt of geweigerd.",
+    "initializing": "Authenticatie wordt geïnitialiseerd...",
+    "tryAgain": "Opnieuw proberen",
+    "connected": "Verbonden!",
+    "loadingContent": "Uw inhoud wordt geladen...",
+    "connectTo": "Verbinden met {{name}}",
+    "fallbackProvider": "Aanbieder",
+    "instructions": "Scan de QR-code met uw telefoon of bezoek",
+    "instructionsLine2": "en voer onderstaande code in",
+    "enterCode": "Voer deze code in:",
+    "waiting": "Wachten op autorisatie",
+    "expiresIn": "Code verloopt over {{minutes}} minuten",
+    "cancel": "Annuleren"
+  },
+  "providerOAuth": {
+    "providerNotFound": "Aanbieder niet gevonden.",
+    "sessionFailed": "Kan autorisatiesessie niet aanmaken. Probeer het opnieuw.",
+    "unexpectedError": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
+    "sessionExpired": "Autorisatiesessie verlopen. Probeer het opnieuw.",
+    "exchangeFailed": "Kan autorisatiecode niet inwisselen voor tokens.",
+    "tokenExchangeFailed": "Token-uitwisseling mislukt. Probeer het opnieuw.",
+    "initializing": "Authenticatie wordt geïnitialiseerd...",
+    "connecting": "Verbinden...",
+    "tryAgain": "Opnieuw proberen",
+    "connected": "Verbonden!",
+    "loadingContent": "Uw inhoud wordt geladen...",
+    "connectTo": "Verbinden met {{name}}",
+    "fallbackProvider": "Aanbieder",
+    "instructionsLine1": "Scan de QR-code met uw telefoon om toegang te autoriseren.",
+    "instructionsLine2": "Uw tv maakt automatisch verbinding zodra u akkoord gaat.",
+    "waiting": "Wachten op autorisatie",
+    "expiresIn": "Sessie verloopt over {{minutes}} minuten",
+    "cancel": "Annuleren"
+  },
+  "providerFormLogin": {
+    "missingCredentials": "Voer e-mail en wachtwoord in",
+    "providerNotFound": "Aanbieder niet gevonden",
+    "notSupported": "Deze aanbieder ondersteunt geen formulier-login",
+    "loginFailed": "Aanmelden mislukt. Controleer uw inloggegevens.",
+    "unexpectedError": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
+    "loggingIn": "Aanmelden...",
+    "connected": "Verbonden!",
+    "loadingContent": "Uw inhoud wordt geladen...",
+    "loginTo": "Aanmelden bij {{name}}",
+    "fallbackProvider": "Aanbieder",
+    "enterCredentials": "Voer uw inloggegevens in om verbinding te maken",
+    "email": "E-mail",
+    "emailPlaceholder": "email@example.com",
+    "password": "Wachtwoord",
+    "passwordPlaceholder": "Wachtwoord",
+    "signIn": "Aanmelden",
+    "cancel": "Annuleren"
+  },
+  "download": {
+    "startLesson": "Les starten",
+    "downloadingItem": "Item {{current}} van {{total}} wordt gedownload",
+    "scheduleLoadFailed": "Het schema kon niet worden geladen.",
+    "scheduleLoadFailedSub": "Zorg ervoor dat er een les is gepland voor deze klas.",
+    "tryAgain": "Opnieuw proberen"
+  },
+  "downloads": {
+    "header": "Downloads",
+    "noDownloads": "Nog geen downloads"
+  },
+  "planDownload": {
+    "fallbackName": "Dienstplan",
+    "startPlan": "Plan starten",
+    "downloadingItem": "Item {{current}} van {{total}} wordt gedownload",
+    "loadFailed": "Het plan kon niet worden geladen.",
+    "loadFailedSub": "Zorg ervoor dat er een plan is gepland voor dit plantype.",
+    "tryAgain": "Opnieuw proberen"
+  },
+  "planPairing": {
+    "generateFailed": "Kan koppelingscode niet genereren. Probeer het opnieuw.",
+    "generating": "Koppelingscode wordt gegenereerd...",
+    "tryAgain": "Opnieuw proberen",
+    "instructions": "Voer deze code in in de sectie Plantype van B1Admin",
+    "waiting": "Wachten op verbinding",
+    "searchByName": "of zoek op kerknaam"
+  },
+  "selectPairingMode": {
+    "header": "Koppelingsmodus selecteren",
+    "classroomTitle": "Koppelen aan klaslokaal",
+    "classroomDescription": "Maak verbinding met een specifieke tv van een klaslokaal en geef geplande lessen automatisch weer",
+    "planTitle": "Koppelen aan plan",
+    "planDescription": "Volg het wekelijkse plan van uw kerk en blader door inhoud op aanvraag"
+  },
+  "selectChurch": {
+    "header": "Vind uw kerk",
+    "searchPlaceholder": "Zoek kerknaam",
+    "minLetters": "Voer ten minste vier letters van uw kerknaam in om te beginnen met zoeken.",
+    "noResults": "Geen resultaten gevonden.  Zoek opnieuw of registreer uw kerk op https://freeplay.church/."
+  },
+  "selectRoom": {
+    "header": "Selecteer een klaslokaal",
+    "noClassrooms": "Geen klaslokalen gevonden",
+    "configureRooms": "Configureer uw klaslokalen op freeplay.church."
+  },
+  "offline": {
+    "title": "Offline:",
+    "subtitle": "Internettoegang is momenteel niet beschikbaar",
+    "canPlayDownloaded": "U kunt de les die vooraf is gedownload nog steeds afspelen.",
+    "notDownloaded": "Helaas is de les nog niet gedownload voor offline afspelen.  Controleer uw verbinding en probeer het opnieuw.",
+    "startLesson": "Les starten"
+  },
+  "lessons": {
+    "header": "Selecteer een les",
+    "noLessons": "Geen lessen beschikbaar"
+  },
+  "lessonDetails": {
+    "version": "Versie: {{version}}"
+  },
+  "studies": {
+    "header": "Selecteer een studie",
+    "noStudies": "Geen studies beschikbaar"
+  },
+  "programs": {
+    "header": "Programma's doorzoeken",
+    "noPrograms": "Geen programma's beschikbaar"
+  },
+  "privacyPolicy": {
+    "header": "Privacybeleid",
+    "viewFullPolicy": "Om ons volledige privacybeleid te bekijken, ga naar:",
+    "url": "churchapps.org/privacy"
+  },
+  "selectMessage": {
+    "header": "Selecteer een bericht"
+  },
+  "message": {
+    "loadingVideo": "Video laden...",
+    "videoFailed": "Video kon niet worden geladen",
+    "skippingNext": "Overslaan naar volgend item..."
+  },
+  "menu": {
+    "back": "Terug"
+  }
+}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TouchableHighlight, BackHandler } from "react-native";
+import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import LinearGradient from "react-native-linear-gradient";
 import { Styles, Colors } from "../helpers";
@@ -13,6 +14,7 @@ type Props = {
 };
 
 export const SelectPairingModeScreen = (props: Props) => {
+  const { t } = useTranslation();
   const [focusedCard, setFocusedCard] = useState<string | null>(null);
 
   const handleBack = () => {
@@ -92,7 +94,7 @@ export const SelectPairingModeScreen = (props: Props) => {
 
   return (
     <View style={Styles.menuScreen}>
-      <MenuHeader headerText="Select Pairing Mode" />
+      <MenuHeader headerText={t("selectPairingMode.header")} />
       <View style={{
         ...Styles.menuWrapper,
         flex: 20,
@@ -104,16 +106,16 @@ export const SelectPairingModeScreen = (props: Props) => {
         {getCard(
           "classroom",
           "tv",
-          "Pair to Classroom",
-          "Connect to a specific classroom TV and display scheduled lessons automatically",
+          t("selectPairingMode.classroomTitle"),
+          t("selectPairingMode.classroomDescription"),
           () => props.navigateTo("selectChurch"),
           true
         )}
         {getCard(
           "plan",
           "event-note",
-          "Pair to Plan",
-          "Follow your church's weekly plan and browse content on demand",
+          t("selectPairingMode.planTitle"),
+          t("selectPairingMode.planDescription"),
           () => props.navigateTo("planPairing"),
           false
         )}

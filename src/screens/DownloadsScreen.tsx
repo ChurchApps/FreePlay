@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Image, View, Text, FlatList, TouchableHighlight, BackHandler } from "react-native";
+import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { DownloadedLessonInterface } from "../interfaces";
@@ -14,6 +15,7 @@ type Props = {
 };
 
 export const DownloadsScreen = (props: Props) => {
+  const { t } = useTranslation();
   const [downloads, setDownloads] = React.useState<DownloadedLessonInterface[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [focusedKey, setFocusedKey] = React.useState<string | null>(null);
@@ -124,7 +126,7 @@ export const DownloadsScreen = (props: Props) => {
         </View>
       );
     }
-    if (downloads.length === 0) return <EmptyState icon="file-download" message="No downloads yet" />;
+    if (downloads.length === 0) return <EmptyState icon="file-download" message={t("downloads.noDownloads")} />;
     return (
       <View style={styles.list}>
         <FlatList
@@ -151,7 +153,7 @@ export const DownloadsScreen = (props: Props) => {
 
   return (
     <View style={{ ...Styles.menuScreen }}>
-      <MenuHeader headerText="Downloads" />
+      <MenuHeader headerText={t("downloads.header")} />
       <View style={{ ...Styles.menuWrapper, flex: 90 }}>
         {getCards()}
       </View>

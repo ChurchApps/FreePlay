@@ -1,6 +1,7 @@
 //import AsyncStorage from "@react-native-community/async-storage";
 import React, { useEffect } from "react";
 import { View, Text, FlatList, TouchableHighlight, ListRenderItem, ActivityIndicator, BackHandler } from "react-native";
+import { useTranslation } from "react-i18next";
 import { ApiHelper } from "../helpers/ApiHelper";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { ClassroomInterface } from "../interfaces";
@@ -14,6 +15,7 @@ type Props = {
 };
 
 export const SelectRoomScreen = (props: Props) => {
+  const { t } = useTranslation();
   const [rooms, setRooms] = React.useState<ClassroomInterface[]>([]);
   const [loading, setLoading] = React.useState(false);
   const [offlineCheck, setOfflineCheck] = React.useState(false);
@@ -41,8 +43,8 @@ export const SelectRoomScreen = (props: Props) => {
       if (loading) return <ActivityIndicator size="small" color="gray" animating={loading} />;
       else {
         return (<>
-          <Text style={Styles.bigWhiteText}>No classrooms found</Text>
-          <Text style={{ ...Styles.smallWhiteText, maxWidth: DimensionHelper.wp("50%") }}>Configure your classrooms at freeplay.church.</Text>
+          <Text style={Styles.bigWhiteText}>{t("selectRoom.noClassrooms")}</Text>
+          <Text style={{ ...Styles.smallWhiteText, maxWidth: DimensionHelper.wp("50%") }}>{t("selectRoom.configureRooms")}</Text>
         </>);
       }
     }
@@ -84,7 +86,7 @@ export const SelectRoomScreen = (props: Props) => {
 
   return (
     <View style={Styles.menuScreen}>
-      <MenuHeader headerText="Select a Classroom" />
+      <MenuHeader headerText={t("selectRoom.header")} />
       <View style={{ ...Styles.menuWrapper, flex: 20 }}>
         {getSearchResult()}
       </View>

@@ -1,0 +1,190 @@
+{
+  "common": {
+    "cancel": "Batal",
+    "comingSoon": "Segera Hadir",
+    "connected": "Terhubung",
+    "tryAgain": "Coba Lagi",
+    "version": "Versi: {{version}}"
+  },
+  "nav": {
+    "downloads": "Unduhan",
+    "providers": "Penyedia"
+  },
+  "providers": {
+    "header": "Penyedia Konten",
+    "comingSoonAlert": {
+      "title": "Segera Hadir",
+      "message": "{{name}} belum tersedia."
+    },
+    "disconnect": {
+      "title": "Putuskan Penyedia",
+      "message": "Apakah Anda yakin ingin memutuskan dari {{name}}?",
+      "action": "Putuskan"
+    },
+    "errorAlert": {
+      "title": "Kesalahan",
+      "providerNotFound": "Penyedia {{name}} tidak ditemukan."
+    },
+    "notSupported": {
+      "title": "Tidak Didukung",
+      "message": "Otentikasi {{name}} belum didukung."
+    }
+  },
+  "contentBrowser": {
+    "header": "Jelajahi Konten",
+    "noContent": "Tidak ada konten yang tersedia",
+    "tryDifferentFolder": "Coba navigasi ke folder lain",
+    "fileType": {
+      "video": "Video",
+      "image": "Gambar"
+    }
+  },
+  "providerDownload": {
+    "fallbackTitle": "Konten",
+    "download": "Unduh",
+    "stream": "Streaming",
+    "start": "Mulai",
+    "downloadingItem": "Mengunduh item {{current}} dari {{total}}"
+  },
+  "providerDeviceAuth": {
+    "providerNotFound": "Penyedia tidak ditemukan.",
+    "initFailed": "Gagal menginisialisasi otentikasi. Silakan coba lagi.",
+    "unexpectedError": "Terjadi kesalahan tak terduga. Silakan coba lagi.",
+    "codeExpired": "Kode otentikasi kedaluwarsa. Silakan coba lagi.",
+    "authFailed": "Otentikasi gagal atau ditolak.",
+    "initializing": "Menginisialisasi otentikasi...",
+    "tryAgain": "Coba Lagi",
+    "connected": "Terhubung!",
+    "loadingContent": "Memuat konten Anda...",
+    "connectTo": "Hubungkan ke {{name}}",
+    "fallbackProvider": "Penyedia",
+    "instructions": "Pindai kode QR dengan ponsel Anda, atau kunjungi",
+    "instructionsLine2": "dan masukkan kode di bawah",
+    "enterCode": "Masukkan kode ini:",
+    "waiting": "Menunggu otorisasi",
+    "expiresIn": "Kode kedaluwarsa dalam {{minutes}} menit",
+    "cancel": "Batal"
+  },
+  "providerOAuth": {
+    "providerNotFound": "Penyedia tidak ditemukan.",
+    "sessionFailed": "Gagal membuat sesi otorisasi. Silakan coba lagi.",
+    "unexpectedError": "Terjadi kesalahan tak terduga. Silakan coba lagi.",
+    "sessionExpired": "Sesi otorisasi kedaluwarsa. Silakan coba lagi.",
+    "exchangeFailed": "Gagal menukar kode otorisasi dengan token.",
+    "tokenExchangeFailed": "Pertukaran token gagal. Silakan coba lagi.",
+    "initializing": "Menginisialisasi otentikasi...",
+    "connecting": "Menghubungkan...",
+    "tryAgain": "Coba Lagi",
+    "connected": "Terhubung!",
+    "loadingContent": "Memuat konten Anda...",
+    "connectTo": "Hubungkan ke {{name}}",
+    "fallbackProvider": "Penyedia",
+    "instructionsLine1": "Pindai kode QR dengan ponsel Anda untuk mengotorisasi akses.",
+    "instructionsLine2": "TV Anda akan terhubung secara otomatis setelah Anda menyetujui.",
+    "waiting": "Menunggu otorisasi",
+    "expiresIn": "Sesi kedaluwarsa dalam {{minutes}} menit",
+    "cancel": "Batal"
+  },
+  "providerFormLogin": {
+    "missingCredentials": "Silakan masukkan email dan kata sandi",
+    "providerNotFound": "Penyedia tidak ditemukan",
+    "notSupported": "Penyedia ini tidak mendukung login formulir",
+    "loginFailed": "Login gagal. Periksa kredensial Anda.",
+    "unexpectedError": "Terjadi kesalahan tak terduga. Silakan coba lagi.",
+    "loggingIn": "Sedang masuk...",
+    "connected": "Terhubung!",
+    "loadingContent": "Memuat konten Anda...",
+    "loginTo": "Login ke {{name}}",
+    "fallbackProvider": "Penyedia",
+    "enterCredentials": "Masukkan kredensial Anda untuk terhubung",
+    "email": "Email",
+    "emailPlaceholder": "email@example.com",
+    "password": "Kata Sandi",
+    "passwordPlaceholder": "Kata Sandi",
+    "signIn": "Masuk",
+    "cancel": "Batal"
+  },
+  "download": {
+    "startLesson": "Mulai Pelajaran",
+    "downloadingItem": "Mengunduh item {{current}} dari {{total}}",
+    "scheduleLoadFailed": "Jadwal tidak dapat dimuat.",
+    "scheduleLoadFailedSub": "Pastikan ada pelajaran yang dijadwalkan untuk kelas ini.",
+    "tryAgain": "Coba Lagi"
+  },
+  "downloads": {
+    "header": "Unduhan",
+    "noDownloads": "Belum ada unduhan"
+  },
+  "planDownload": {
+    "fallbackName": "Rencana Ibadah",
+    "startPlan": "Mulai Rencana",
+    "downloadingItem": "Mengunduh item {{current}} dari {{total}}",
+    "loadFailed": "Rencana tidak dapat dimuat.",
+    "loadFailedSub": "Pastikan ada rencana yang dijadwalkan untuk jenis rencana ini.",
+    "tryAgain": "Coba Lagi"
+  },
+  "planPairing": {
+    "generateFailed": "Gagal menghasilkan kode pemasangan. Silakan coba lagi.",
+    "generating": "Menghasilkan kode pemasangan...",
+    "tryAgain": "Coba Lagi",
+    "instructions": "Masukkan kode ini di bagian Jenis Rencana B1Admin",
+    "waiting": "Menunggu koneksi",
+    "searchByName": "atau cari berdasarkan nama gereja"
+  },
+  "selectPairingMode": {
+    "header": "Pilih Mode Pemasangan",
+    "classroomTitle": "Pasangkan ke Ruang Kelas",
+    "classroomDescription": "Hubungkan ke TV ruang kelas tertentu dan tampilkan pelajaran yang dijadwalkan secara otomatis",
+    "planTitle": "Pasangkan ke Rencana",
+    "planDescription": "Ikuti rencana mingguan gereja Anda dan jelajahi konten sesuai permintaan"
+  },
+  "selectChurch": {
+    "header": "Temukan Gereja Anda",
+    "searchPlaceholder": "Cari nama gereja",
+    "minLetters": "Masukkan setidaknya empat huruf nama gereja Anda untuk mulai mencari.",
+    "noResults": "Tidak ada hasil yang ditemukan. Cari lagi atau daftarkan gereja Anda di https://freeplay.church/."
+  },
+  "selectRoom": {
+    "header": "Pilih Ruang Kelas",
+    "noClassrooms": "Tidak ada ruang kelas yang ditemukan",
+    "configureRooms": "Konfigurasikan ruang kelas Anda di freeplay.church."
+  },
+  "offline": {
+    "title": "Offline:",
+    "subtitle": "Akses internet saat ini tidak tersedia",
+    "canPlayDownloaded": "Anda masih dapat memutar pelajaran yang telah diunduh sebelumnya.",
+    "notDownloaded": "Sayangnya pelajaran belum diunduh untuk pemutaran offline. Periksa koneksi Anda dan coba lagi.",
+    "startLesson": "Mulai Pelajaran"
+  },
+  "lessons": {
+    "header": "Pilih Pelajaran",
+    "noLessons": "Tidak ada pelajaran yang tersedia"
+  },
+  "lessonDetails": {
+    "version": "Versi: {{version}}"
+  },
+  "studies": {
+    "header": "Pilih Studi",
+    "noStudies": "Tidak ada studi yang tersedia"
+  },
+  "programs": {
+    "header": "Jelajahi Program",
+    "noPrograms": "Tidak ada program yang tersedia"
+  },
+  "privacyPolicy": {
+    "header": "Kebijakan Privasi",
+    "viewFullPolicy": "Untuk melihat kebijakan privasi lengkap kami, silakan kunjungi:",
+    "url": "churchapps.org/privacy"
+  },
+  "selectMessage": {
+    "header": "Pilih Pesan"
+  },
+  "message": {
+    "loadingVideo": "Memuat video...",
+    "videoFailed": "Video gagal dimuat",
+    "skippingNext": "Melompat ke item berikutnya..."
+  },
+  "menu": {
+    "back": "Kembali"
+  }
+}

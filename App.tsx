@@ -6,6 +6,7 @@ import { LogBox } from "react-native";
 import { ErrorHelper } from "./src/helpers/ErrorHelper";
 import * as Updates from "expo-updates";
 import * as Sentry from "@sentry/react-native";
+import "./src/i18n";
 
 Sentry.init({
   dsn: "https://ac7ef4e2f5095b74c8e5bc623750fefe@o4510432524107776.ingest.us.sentry.io/4510848267190272",

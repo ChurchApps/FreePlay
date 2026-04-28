@@ -8,6 +8,7 @@ import {
   Animated,
   Easing
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import { Styles, CachedData, ProviderAuthHelper, Colors } from "../helpers";
 import { ApiHelper } from "../helpers/ApiHelper";
 import { ContentProviderAuthData, DropboxProvider } from "../interfaces";
@@ -33,6 +34,7 @@ type FlowState =
   | { status: "expired" };
 
 export const ProviderOAuthScreen = (props: Props) => {
+  const { t } = useTranslation();
   const [flowState, setFlowState] = useState<FlowState>({ status: "loading" });
   const pollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const pollGenerationRef = useRef<number>(0);
@@ -119,14 +121,14 @@ export const ProviderOAuthScreen = (props: Props) => {
 
     try {
       if (!provider) {
-        setFlowState({ status: "error", error: "Provider not found." });
+        setFlowState({ status: "error", error: t("providerOAuth.providerNotFound") });
         return;
       }
 
       // Step 1: Create a relay session on the API
       const relayData = await ApiHelper.post("/oauth/relay/sessions", { provider: props.providerId }, "MembershipApi");
       if (!relayData?.sessionCode || !relayData?.redirectUri) {
-        setFlowState({ status: "error", error: "Failed to create authorization session. Please try again." });
+        setFlowState({ status: "error", error: t("providerOAuth.sessionFailed") });
         return;
       }
 
@@ -147,7 +149,7 @@ export const ProviderOAuthScreen = (props: Props) => {
       startPolling(sessionCode, expiresIn, currentGeneration);
     } catch (error) {
       console.error("OAuth flow init error:", error);
-      setFlowState({ status: "error", error: "An unexpected error occurred. Please try again." });
+      setFlowState({ status: "error", error: t("providerOAuth.unexpectedError") });
     }
   };
 
@@ -158,7 +160,7 @@ export const ProviderOAuthScreen = (props: Props) => {
       if (generation !== pollGenerationRef.current) return;
 
       if (Date.now() >= expiresAt) {
-        setFlowState({ status: "expired", error: "Authorization session expired. Please try again." } as any);
+        setFlowState({ status: "expired", error: t("providerOAuth.sessionExpired") } as any);
         return;
       }
 
@@ -197,7 +199,7 @@ export const ProviderOAuthScreen = (props: Props) => {
       );
 
       if (!authData) {
-        setFlowState({ status: "error", error: "Failed to exchange authorization code for tokens." });
+        setFlowState({ status: "error", error: t("providerOAuth.exchangeFailed") });
         return;
       }
 
@@ -216,7 +218,7 @@ export const ProviderOAuthScreen = (props: Props) => {
       }, 1000);
     } catch (error) {
       console.error("Token exchange error:", error);
-      setFlowState({ status: "error", error: "Token exchange failed. Please try again." });
+      setFlowState({ status: "error", error: t("providerOAuth.tokenExchangeFailed") });
     }
   };
 
@@ -245,7 +247,7 @@ export const ProviderOAuthScreen = (props: Props) => {
 
   // Loading state
   if (flowState.status === "loading" || flowState.status === "exchanging") {
-    const message = flowState.status === "exchanging" ? "Connecting..." : "Initializing authentication...";
+    const message = flowState.status === "exchanging" ? t("providerOAuth.connecting") : t("providerOAuth.initializing");
     return (
       <View style={Styles.menuScreen}>
         <LinearGradient
@@ -309,7 +311,7 @@ export const ProviderOAuthScreen = (props: Props) => {
                 fontSize: DimensionHelper.wp("2%"),
                 fontWeight: "600"
               }}>
-              Try Again
+              {t("providerOAuth.tryAgain")}
             </Text>
           </TouchableHighlight>
         </LinearGradient>
@@ -335,7 +337,7 @@ export const ProviderOAuthScreen = (props: Props) => {
               fontSize: DimensionHelper.wp("3%"),
               fontWeight: "bold"
             }}>
-            Connected!
+            {t("providerOAuth.connected")}
           </Text>
           <Text
             style={{
@@ -343,7 +345,7 @@ export const ProviderOAuthScreen = (props: Props) => {
               fontSize: DimensionHelper.wp("1.6%"),
               marginTop: DimensionHelper.hp("2%")
             }}>
-            Loading your content...
+            {t("providerOAuth.loadingContent")}
           </Text>
         </LinearGradient>
       </View>
@@ -374,7 +376,7 @@ export const ProviderOAuthScreen = (props: Props) => {
               fontWeight: "600",
               marginBottom: DimensionHelper.hp("2%")
             }}>
-            Connect to {providerConfig?.name || "Provider"}
+            {t("providerOAuth.connectTo", { name: providerConfig?.name || t("providerOAuth.fallbackProvider") })}
           </Text>
 
           {/* Instructions */}
@@ -387,8 +389,8 @@ export const ProviderOAuthScreen = (props: Props) => {
               textAlign: "center",
               paddingHorizontal: DimensionHelper.wp("10%")
             }}>
-            Scan the QR code with your phone to authorize access.{"\n"}
-            Your TV will connect automatically once you approve.
+            {t("providerOAuth.instructionsLine1")}{"\n"}
+            {t("providerOAuth.instructionsLine2")}
           </Text>
 
           {/* QR Code */}
@@ -430,7 +432,7 @@ export const ProviderOAuthScreen = (props: Props) => {
                 fontSize: DimensionHelper.wp("1.4%"),
                 letterSpacing: 0.5
               }}>
-              Waiting for authorization
+              {t("providerOAuth.waiting")}
             </Text>
           </Animated.View>
 
@@ -441,7 +443,7 @@ export const ProviderOAuthScreen = (props: Props) => {
               fontSize: DimensionHelper.wp("1%"),
               marginTop: DimensionHelper.hp("2%")
             }}>
-            Session expires in {Math.floor(flowState.expiresIn / 60)} minutes
+            {t("providerOAuth.expiresIn", { minutes: Math.floor(flowState.expiresIn / 60) })}
           </Text>
         </Animated.View>
 
@@ -469,7 +471,7 @@ export const ProviderOAuthScreen = (props: Props) => {
                 fontSize: DimensionHelper.wp("1.2%"),
                 letterSpacing: 0.3
               }}>
-              Cancel
+              {t("providerOAuth.cancel")}
             </Text>
           </TouchableHighlight>
         </View>

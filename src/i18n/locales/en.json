@@ -1,0 +1,190 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "comingSoon": "Coming Soon",
+    "connected": "Connected",
+    "tryAgain": "Try Again",
+    "version": "Version: {{version}}"
+  },
+  "nav": {
+    "downloads": "Downloads",
+    "providers": "Providers"
+  },
+  "providers": {
+    "header": "Content Providers",
+    "comingSoonAlert": {
+      "title": "Coming Soon",
+      "message": "{{name}} is not yet available."
+    },
+    "disconnect": {
+      "title": "Disconnect Provider",
+      "message": "Are you sure you want to disconnect from {{name}}?",
+      "action": "Disconnect"
+    },
+    "errorAlert": {
+      "title": "Error",
+      "providerNotFound": "Provider {{name}} not found."
+    },
+    "notSupported": {
+      "title": "Not Supported",
+      "message": "{{name}} authentication is not yet supported."
+    }
+  },
+  "contentBrowser": {
+    "header": "Browse Content",
+    "noContent": "No content available",
+    "tryDifferentFolder": "Try navigating to a different folder",
+    "fileType": {
+      "video": "Video",
+      "image": "Image"
+    }
+  },
+  "providerDownload": {
+    "fallbackTitle": "Content",
+    "download": "Download",
+    "stream": "Stream",
+    "start": "Start",
+    "downloadingItem": "Downloading item {{current}} of {{total}}"
+  },
+  "providerDeviceAuth": {
+    "providerNotFound": "Provider not found.",
+    "initFailed": "Failed to initialize authentication. Please try again.",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "codeExpired": "Authentication code expired. Please try again.",
+    "authFailed": "Authentication failed or was denied.",
+    "initializing": "Initializing authentication...",
+    "tryAgain": "Try Again",
+    "connected": "Connected!",
+    "loadingContent": "Loading your content...",
+    "connectTo": "Connect to {{name}}",
+    "fallbackProvider": "Provider",
+    "instructions": "Scan the QR code with your phone, or visit",
+    "instructionsLine2": "and enter the code below",
+    "enterCode": "Enter this code:",
+    "waiting": "Waiting for authorization",
+    "expiresIn": "Code expires in {{minutes}} minutes",
+    "cancel": "Cancel"
+  },
+  "providerOAuth": {
+    "providerNotFound": "Provider not found.",
+    "sessionFailed": "Failed to create authorization session. Please try again.",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "sessionExpired": "Authorization session expired. Please try again.",
+    "exchangeFailed": "Failed to exchange authorization code for tokens.",
+    "tokenExchangeFailed": "Token exchange failed. Please try again.",
+    "initializing": "Initializing authentication...",
+    "connecting": "Connecting...",
+    "tryAgain": "Try Again",
+    "connected": "Connected!",
+    "loadingContent": "Loading your content...",
+    "connectTo": "Connect to {{name}}",
+    "fallbackProvider": "Provider",
+    "instructionsLine1": "Scan the QR code with your phone to authorize access.",
+    "instructionsLine2": "Your TV will connect automatically once you approve.",
+    "waiting": "Waiting for authorization",
+    "expiresIn": "Session expires in {{minutes}} minutes",
+    "cancel": "Cancel"
+  },
+  "providerFormLogin": {
+    "missingCredentials": "Please enter email and password",
+    "providerNotFound": "Provider not found",
+    "notSupported": "This provider does not support form login",
+    "loginFailed": "Login failed. Check your credentials.",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "loggingIn": "Logging in...",
+    "connected": "Connected!",
+    "loadingContent": "Loading your content...",
+    "loginTo": "Login to {{name}}",
+    "fallbackProvider": "Provider",
+    "enterCredentials": "Enter your credentials to connect",
+    "email": "Email",
+    "emailPlaceholder": "email@example.com",
+    "password": "Password",
+    "passwordPlaceholder": "Password",
+    "signIn": "Sign In",
+    "cancel": "Cancel"
+  },
+  "download": {
+    "startLesson": "Start Lesson",
+    "downloadingItem": "Downloading item {{current}} of {{total}}",
+    "scheduleLoadFailed": "The schedule could not be loaded.",
+    "scheduleLoadFailedSub": "Make sure a lesson is scheduled for this class.",
+    "tryAgain": "Try Again"
+  },
+  "downloads": {
+    "header": "Downloads",
+    "noDownloads": "No downloads yet"
+  },
+  "planDownload": {
+    "fallbackName": "Service Plan",
+    "startPlan": "Start Plan",
+    "downloadingItem": "Downloading item {{current}} of {{total}}",
+    "loadFailed": "The plan could not be loaded.",
+    "loadFailedSub": "Make sure a plan is scheduled for this plan type.",
+    "tryAgain": "Try Again"
+  },
+  "planPairing": {
+    "generateFailed": "Failed to generate pairing code. Please try again.",
+    "generating": "Generating pairing code...",
+    "tryAgain": "Try Again",
+    "instructions": "Enter this code in the Plan Type section of B1Admin",
+    "waiting": "Waiting for connection",
+    "searchByName": "or search by church name"
+  },
+  "selectPairingMode": {
+    "header": "Select Pairing Mode",
+    "classroomTitle": "Pair to Classroom",
+    "classroomDescription": "Connect to a specific classroom TV and display scheduled lessons automatically",
+    "planTitle": "Pair to Plan",
+    "planDescription": "Follow your church's weekly plan and browse content on demand"
+  },
+  "selectChurch": {
+    "header": "Find Your Church",
+    "searchPlaceholder": "Search church name",
+    "minLetters": "Enter at least four letters of your church name to start searching.",
+    "noResults": "No results found.  Search again or register your church at https://freeplay.church/."
+  },
+  "selectRoom": {
+    "header": "Select a Classroom",
+    "noClassrooms": "No classrooms found",
+    "configureRooms": "Configure your classrooms at freeplay.church."
+  },
+  "offline": {
+    "title": "Offline:",
+    "subtitle": "Internet access is currently unavailable",
+    "canPlayDownloaded": "You can still play the lesson that was downloaded in advance.",
+    "notDownloaded": "Unfortunately the lesson hasn't been downloaded for offline play yet.  Please check your connection and try again.",
+    "startLesson": "Start Lesson"
+  },
+  "lessons": {
+    "header": "Select a Lesson",
+    "noLessons": "No lessons available"
+  },
+  "lessonDetails": {
+    "version": "Version: {{version}}"
+  },
+  "studies": {
+    "header": "Select a Study",
+    "noStudies": "No studies available"
+  },
+  "programs": {
+    "header": "Browse Programs",
+    "noPrograms": "No programs available"
+  },
+  "privacyPolicy": {
+    "header": "Privacy Policy",
+    "viewFullPolicy": "To view our full privacy policy, please visit:",
+    "url": "churchapps.org/privacy"
+  },
+  "selectMessage": {
+    "header": "Select a Message"
+  },
+  "message": {
+    "loadingVideo": "Loading video...",
+    "videoFailed": "Video failed to load",
+    "skippingNext": "Skipping to next item..."
+  },
+  "menu": {
+    "back": "Back"
+  }
+}

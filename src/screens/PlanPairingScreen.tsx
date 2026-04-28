@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useMemo } from "react";
 import { View, Text, TouchableHighlight, BackHandler, ActivityIndicator, Animated, Easing } from "react-native";
+import { useTranslation } from "react-i18next";
 import { ApiHelper, CachedData, DeviceHelper, Styles } from "../helpers";
 import { DeviceInterface } from "../interfaces";
 import { DimensionHelper } from "../helpers/DimensionHelper";
@@ -12,6 +13,7 @@ type Props = {
 };
 
 export const PlanPairingScreen = (props: Props) => {
+  const { t } = useTranslation();
   const [pairingCode, setPairingCode] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
@@ -81,7 +83,7 @@ export const PlanPairingScreen = (props: Props) => {
       startPairingPoll(currentGeneration);
     } catch (err) {
       console.error("Failed to initialize pairing:", err);
-      setError("Failed to generate pairing code. Please try again.");
+      setError(t("planPairing.generateFailed"));
       setLoading(false);
     }
   };
@@ -199,7 +201,7 @@ export const PlanPairingScreen = (props: Props) => {
               letterSpacing: 1
             }}
           >
-            Generating pairing code...
+            {t("planPairing.generating")}
           </Text>
         </LinearGradient>
       </View>
@@ -243,7 +245,7 @@ export const PlanPairingScreen = (props: Props) => {
                 fontWeight: "600"
               }}
             >
-              Try Again
+              {t("planPairing.tryAgain")}
             </Text>
           </TouchableHighlight>
         </LinearGradient>
@@ -276,7 +278,7 @@ export const PlanPairingScreen = (props: Props) => {
               marginBottom: DimensionHelper.hp("2%")
             }}
           >
-            Enter this code in the Plan Type section of B1Admin
+            {t("planPairing.instructions")}
           </Text>
 
           {/* Hero pairing code */}
@@ -311,7 +313,7 @@ export const PlanPairingScreen = (props: Props) => {
                 letterSpacing: 0.5
               }}
             >
-              Waiting for connection
+              {t("planPairing.waiting")}
             </Text>
           </Animated.View>
         </Animated.View>
@@ -343,7 +345,7 @@ export const PlanPairingScreen = (props: Props) => {
                 letterSpacing: 0.3
               }}
             >
-              or search by church name
+              {t("planPairing.searchByName")}
             </Text>
           </TouchableHighlight>
         </View>

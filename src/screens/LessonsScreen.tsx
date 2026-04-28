@@ -1,6 +1,7 @@
 
 import React, { useEffect } from "react";
 import { Image, View, Text, FlatList, TouchableHighlight, BackHandler } from "react-native";
+import { useTranslation } from "react-i18next";
 import { ApiHelper } from "../helpers/ApiHelper";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { LessonInterface, ProgramInterface, StudyInterface } from "../interfaces";
@@ -10,7 +11,7 @@ import { MenuHeader, EmptyState, SkeletonCard } from "../components";
 type Props = { navigateTo(page: string, data?:any): void; program: ProgramInterface, study: StudyInterface };
 
 export const LessonsScreen = (props: Props) => {
-
+  const { t } = useTranslation();
   const [lessons, setLessons] = React.useState<LessonInterface[]>([]);
   const [loading, setLoading] = React.useState(false);
   const [focusedId, setFocusedId] = React.useState(null);
@@ -68,7 +69,7 @@ export const LessonsScreen = (props: Props) => {
         </View>
       );
     }
-    if (lessons.length === 0) return <EmptyState icon="library-books" message="No lessons available" />;
+    if (lessons.length === 0) return <EmptyState icon="library-books" message={t("lessons.noLessons")} />;
     return (
       <View style={styles.list}>
         <FlatList
@@ -96,7 +97,7 @@ export const LessonsScreen = (props: Props) => {
 
   return (
     <View style={Styles.menuScreen}>
-      <MenuHeader headerText="Select a Lesson" />
+      <MenuHeader headerText={t("lessons.header")} />
 
       <View style={{ ...Styles.menuWrapper, flex: 20 }}>
         {getCards()}

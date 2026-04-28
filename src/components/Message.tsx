@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { CachedData } from "../helpers";
 import { Colors } from "../helpers/Styles";
 import { LessonPlaylistFileInterface } from "../interfaces";
@@ -21,7 +22,7 @@ export type MessageHandle = {
 };
 
 export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
-
+  const { t } = useTranslation();
   const videoRef = React.useRef<any>(null);
   const [internalPaused, setInternalPaused] = React.useState(props.paused);
   const [hasError, setHasError] = React.useState(false);
@@ -160,15 +161,15 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   const loadingOverlay = (
     <View style={styles.loadingOverlay}>
       <ActivityIndicator size="large" color={Colors.primary} />
-      <Text style={styles.loadingSubtitle}>Loading video...</Text>
+      <Text style={styles.loadingSubtitle}>{t("message.loadingVideo")}</Text>
     </View>
   );
 
   const errorOverlay = (
     <View style={styles.errorOverlay}>
       <Icon name="error-outline" size={48} color={Colors.error} />
-      <Text style={styles.errorTitle}>Video failed to load</Text>
-      <Text style={styles.errorSubtitle}>Skipping to next item...</Text>
+      <Text style={styles.errorTitle}>{t("message.videoFailed")}</Text>
+      <Text style={styles.errorSubtitle}>{t("message.skippingNext")}</Text>
     </View>
   );
 

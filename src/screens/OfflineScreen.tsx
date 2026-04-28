@@ -1,6 +1,7 @@
 //import AsyncStorage from "@react-native-community/async-storage";
 import React, { useEffect } from "react";
 import { View, Text, TouchableHighlight, BackHandler } from "react-native";
+import { useTranslation } from "react-i18next";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { CachedData, Styles } from "../helpers";
 import LinearGradient from "react-native-linear-gradient";
@@ -8,6 +9,7 @@ import LinearGradient from "react-native-linear-gradient";
 type Props = { navigateTo(page: string): void; };
 
 export const OfflineScreen = (props: Props) => {
+  const { t } = useTranslation();
   const [refreshKey, setRefreshKey] = React.useState(0);
 
   console.log(refreshKey);
@@ -35,14 +37,14 @@ export const OfflineScreen = (props: Props) => {
   const getContent = () => {
     if (CachedData.messageFiles?.length > 0) {
       return (<>
-        <Text style={{ ...Styles.smallerWhiteText, color: "#CCCCCC" }}>You can still play the lesson that was downloaded in advance.</Text>
+        <Text style={{ ...Styles.smallerWhiteText, color: "#CCCCCC" }}>{t("offline.canPlayDownloaded")}</Text>
         <TouchableHighlight style={{ ...Styles.smallMenuClickable, backgroundColor: "#C2185B", width: DimensionHelper.wp("14%"), marginTop: DimensionHelper.hp("1%"), borderRadius: 5 }} underlayColor={"#E91E63"} onPress={() => { handleStart(); }} hasTVPreferredFocus={true}>
-          <Text style={{ ...Styles.smallWhiteText, width: "100%" }}>Start Lesson</Text>
+          <Text style={{ ...Styles.smallWhiteText, width: "100%" }}>{t("offline.startLesson")}</Text>
         </TouchableHighlight>
       </>);
     } else {
       return (<>
-        <Text style={{ ...Styles.smallerWhiteText, color: "#CCCCCC" }}>Unfortunately the lesson hasn't been downloaded for offline play yet.  Please check your connection and try again.</Text>
+        <Text style={{ ...Styles.smallerWhiteText, color: "#CCCCCC" }}>{t("offline.notDownloaded")}</Text>
       </>);
     }
   };
@@ -51,8 +53,8 @@ export const OfflineScreen = (props: Props) => {
     <View style={{ flex: 9, justifyContent: "flex-end", flexDirection: "column" }}>
       <View style={{ justifyContent: "flex-start", flexDirection: "row", paddingLeft: DimensionHelper.wp("5%") }}>
         <View style={{ maxWidth: "60%" }}>
-          <Text style={Styles.H2}>Offline:</Text>
-          <Text style={Styles.H3}>Internet access is currently unavailable</Text>
+          <Text style={Styles.H2}>{t("offline.title")}</Text>
+          <Text style={Styles.H3}>{t("offline.subtitle")}</Text>
           {getContent()}
         </View>
       </View>

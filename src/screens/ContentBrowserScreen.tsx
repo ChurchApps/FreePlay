@@ -7,6 +7,7 @@ import {
   BackHandler,
   Text
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { SvgUri } from "react-native-svg";
 import { DimensionHelper } from "../helpers/DimensionHelper";
@@ -31,6 +32,7 @@ type Props = {
 };
 
 export const ContentBrowserScreen = (props: Props) => {
+  const { t } = useTranslation();
   const [items, setItems] = React.useState<ContentItem[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [focusedItemId, setFocusedItemId] = React.useState<string | null>(null);
@@ -409,7 +411,7 @@ export const ContentBrowserScreen = (props: Props) => {
               fontSize: DimensionHelper.wp("0.9%"),
               textAlign: "center"
             }}>
-            {isVideo ? "Video" : "Image"}
+            {isVideo ? t("contentBrowser.fileType.video") : t("contentBrowser.fileType.image")}
           </Text>
         </View>
       </TouchableHighlight>
@@ -445,7 +447,7 @@ export const ContentBrowserScreen = (props: Props) => {
     }
 
     if (items.length === 0) {
-      return <EmptyState icon="folder-open" message="No content available" subMessage="Try navigating to a different folder" />;
+      return <EmptyState icon="folder-open" message={t("contentBrowser.noContent")} subMessage={t("contentBrowser.tryDifferentFolder")} />;
     }
 
     const savedIndex = CachedData.lastFocusedIndex[screenKey];
@@ -510,7 +512,7 @@ export const ContentBrowserScreen = (props: Props) => {
   useEffect(init, [currentFolder?.id, props.providerId]);
 
   // Determine header text
-  let headerText = provider?.name || "Browse Content";
+  let headerText = provider?.name || t("contentBrowser.header");
   if (currentFolder) {
     headerText = currentFolder.title;
   }
