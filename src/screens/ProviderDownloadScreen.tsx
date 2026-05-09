@@ -3,7 +3,7 @@ import { View, Text, TouchableHighlight, BackHandler, ImageBackground, Animated 
 import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { DimensionHelper } from "../helpers/DimensionHelper";
-import { CachedData, Styles, Colors, DownloadIndex } from "../helpers";
+import { CachedData, Styles, Colors, DownloadIndex, StorageManager } from "../helpers";
 import LinearGradient from "react-native-linear-gradient";
 import { ContentFolder } from "../interfaces";
 import { getProvider } from "../providers";
@@ -38,7 +38,13 @@ export const ProviderDownloadScreen = (props: Props) => {
     setCurrentFileProgress(progress);
   };
 
+  const downloadKey = React.useMemo(
+    () => DownloadIndex.generateKey("provider", { providerId: props.providerId, title: props.title || "" }),
+    [props.providerId, props.title]
+  );
+
   const handleStart = () => {
+    StorageManager.touchEntry(downloadKey);
     props.navigateTo("player", {
       providerId: props.providerId,
       providerStartIndex: props.startIndex,
@@ -120,14 +126,15 @@ export const ProviderDownloadScreen = (props: Props) => {
     );
   };
 
-  const startDownload = () => {
+  const startDownload = async () => {
     const files = CachedData.messageFiles;
     if (files && files.length > 0) {
       setReady(false);
+      await StorageManager.ensureFreeSpace([downloadKey]);
       CachedData.prefetch(files, updateCounts, updateFileProgress).then(() => {
         setReady(true);
         DownloadIndex.addEntry({
-          downloadKey: DownloadIndex.generateKey("provider", { providerId: props.providerId, title: props.title || "" }),
+          downloadKey,
           source: "provider",
           providerId: props.providerId,
           title: props.title,

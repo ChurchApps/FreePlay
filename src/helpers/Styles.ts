@@ -51,6 +51,24 @@ export const Colors = {
   inactive: "#767577"
 };
 
+// 10-foot type scale. Values are sized for couch viewing on a TV.
+// `labelSmall` is the readability floor — never use a fontSize below this.
+export const Typography = {
+  displayHero: DimensionHelper.wp("15%"),    // splash / oversized hero text
+  displayCode: DimensionHelper.wp("7%"),     // primary pairing code character
+  displayCodeSm: DimensionHelper.wp("5%"),   // secondary code character / very large body
+  heading1: DimensionHelper.hp("4.5%"),      // H1
+  heading2: DimensionHelper.wp("3.5%"),      // H2 / page titles
+  heading3: DimensionHelper.wp("3%"),        // H3
+  titleLarge: DimensionHelper.wp("2.5%"),    // section / dialog titles
+  bodyLarge: DimensionHelper.wp("2%"),       // primary body
+  bodyMedium: DimensionHelper.wp("1.8%"),    // secondary body
+  bodySmall: DimensionHelper.wp("1.6%"),     // helper / supporting text
+  labelLarge: DimensionHelper.wp("1.5%"),    // list-item titles
+  labelMedium: DimensionHelper.wp("1.4%"),   // captions, nav items
+  labelSmall: DimensionHelper.wp("1.2%")     // readability FLOOR — do not go below
+};
+
 export const Styles = StyleSheet.create({
   //Splash
   splashMaincontainer: {
@@ -70,19 +88,19 @@ export const Styles = StyleSheet.create({
 
   H1: {
     color: Colors.textPrimary,
-    fontSize: DimensionHelper.hp("4.5%"),
+    fontSize: Typography.heading1,
     fontFamily: StyleConstants.RobotoBold,
     letterSpacing: 0.5
   },
   H2: {
     color: Colors.textPrimary,
-    fontSize: DimensionHelper.wp("3.5%"),
+    fontSize: Typography.heading2,
     fontFamily: StyleConstants.RobotoBold,
     letterSpacing: 0.3
   },
   H3: {
     color: Colors.textPrimary,
-    fontSize: DimensionHelper.wp("3%"),
+    fontSize: Typography.heading3,
     fontFamily: StyleConstants.RobotoRegular,
     letterSpacing: 0.2
   },
@@ -90,28 +108,28 @@ export const Styles = StyleSheet.create({
   messageImage: { maxWidth: DimensionHelper.wp("40%"), alignSelf: "center" },
   bigWhiteText: {
     color: Colors.textPrimary,
-    fontSize: DimensionHelper.wp("5%"),
+    fontSize: Typography.displayCodeSm,
     textAlign: "center",
     letterSpacing: 0.3
   },
   giantWhiteText: {
     color: Colors.textPrimary,
-    fontSize: DimensionHelper.wp("15%"),
+    fontSize: Typography.displayHero,
     textAlign: "center"
   },
   whiteText: {
     color: Colors.textPrimary,
-    fontSize: DimensionHelper.wp("3%"),
+    fontSize: Typography.heading3,
     textAlign: "center"
   },
   smallWhiteText: {
     color: Colors.textPrimary,
-    fontSize: DimensionHelper.wp("2%"),
+    fontSize: Typography.bodyLarge,
     textAlign: "center"
   },
   smallerWhiteText: {
     color: Colors.textSecondary,
-    fontSize: DimensionHelper.wp("1.5%")
+    fontSize: Typography.labelLarge
   },
 
   // Menu / Navigation

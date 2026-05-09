@@ -13,7 +13,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import LinearGradient from "react-native-linear-gradient";
 import { SvgUri } from "react-native-svg";
 import { DimensionHelper } from "../helpers/DimensionHelper";
-import { Styles, CachedData, ProviderAuthHelper, Colors } from "../helpers";
+import { Styles, CachedData, ProviderAuthHelper, Colors, Typography } from "../helpers";
 import { MenuHeader, SkeletonCard } from "../components";
 import { getProvider, getAvailableProviders, FREEPLAY_PROVIDER_IDS } from "../providers";
 import { ProviderInfo } from "../interfaces";
@@ -239,7 +239,7 @@ export const ProvidersScreen = (props: Props) => {
                 <Text
                   style={{
                     color: Colors.success,
-                    fontSize: DimensionHelper.wp("1%"),
+                    fontSize: Typography.labelSmall,
                     marginLeft: 4
                   }}>
                   {t("common.connected")}
@@ -250,7 +250,7 @@ export const ProvidersScreen = (props: Props) => {
               <Text
                 style={{
                   color: Colors.textDimmed,
-                  fontSize: DimensionHelper.wp("0.9%"),
+                  fontSize: Typography.labelSmall,
                   marginTop: DimensionHelper.hp("0.5%")
                 }}>
                 {t("common.comingSoon")}
@@ -326,7 +326,7 @@ export const ProvidersScreen = (props: Props) => {
         <View style={{ flex: 1 }}>
           <MenuHeader headerText={t("providers.header")} noBorder />
         </View>
-        <Text style={{ color: Colors.textDimmed, fontSize: DimensionHelper.wp("0.9%"), paddingRight: DimensionHelper.wp("2%") }}>
+        <Text style={{ color: Colors.textDimmed, fontSize: Typography.labelSmall, paddingRight: DimensionHelper.wp("2%") }}>
           v{pkg.version}
         </Text>
       </View>

@@ -56,6 +56,7 @@ export interface DownloadedItemInterface {
   image?: string;
   messageFiles: MessageFileInterface[];
   downloadedAt: number;
+  lastAccessedAt?: number;
 }
 
 export * from "./ContentProviderInterfaces";

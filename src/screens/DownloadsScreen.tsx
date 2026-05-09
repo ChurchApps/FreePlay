@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { DownloadedItemInterface } from "../interfaces";
-import { CachedData, Styles, Colors, DownloadIndex } from "../helpers";
+import { CachedData, Styles, Colors, DownloadIndex, StorageManager } from "../helpers";
 import { PlayerHelper } from "../helpers/PlayerHelper";
 import { MenuHeader, EmptyState, SkeletonCard } from "../components";
 
@@ -49,6 +49,7 @@ export const DownloadsScreen = (props: Props) => {
   const handleSelect = (entry: DownloadedItemInterface) => {
     CachedData.messageFiles = entry.messageFiles;
     CachedData.setAsyncStorage("messageFiles", entry.messageFiles);
+    StorageManager.touchEntry(entry.downloadKey);
     PlayerHelper.pendingPause = false;
     props.navigateTo("player", { downloadedLesson: true });
   };

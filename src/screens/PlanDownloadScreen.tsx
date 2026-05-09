@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { View, Text, TouchableHighlight, ActivityIndicator, BackHandler, ImageBackground } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { ApiHelper, CachedData, Styles, DownloadIndex, ProviderAuthHelper } from "../helpers";
+import { ApiHelper, CachedData, Styles, DownloadIndex, ProviderAuthHelper, StorageManager, Typography } from "../helpers";
 import { Colors } from "../helpers/Styles";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { PlanInterface, MessageFileInterface, PlanItemInterface } from "../interfaces";
@@ -108,14 +108,20 @@ export const PlanDownloadScreen = (props: Props) => {
     setTotalItems(total);
   };
 
+  const downloadKey = React.useMemo(
+    () => DownloadIndex.generateKey("plan", { planId: plan?.id || "", contentPath: plan?.providerPlanId || "" }),
+    [plan?.id, plan?.providerPlanId]
+  );
+
   const handleStart = () => {
+    StorageManager.touchEntry(downloadKey);
     props.navigateTo("player");
   };
 
   const getVersion = () => {
     const pkg = require("../../package.json");
     return (
-      <Text style={{ ...Styles.smallWhiteText, textAlign: "left", fontSize: 12, paddingBottom: 15, color: "#999999", paddingTop: 15 }}>
+      <Text style={{ ...Styles.smallWhiteText, textAlign: "left", fontSize: Typography.labelSmall, paddingBottom: 15, color: "#999999", paddingTop: 15 }}>
         {t("common.version", { version: pkg.version })}
       </Text>
     );
@@ -250,10 +256,11 @@ export const PlanDownloadScreen = (props: Props) => {
     CachedData.messageFiles = files;
     await CachedData.setAsyncStorage("messageFiles", files);
     setReady(false);
+    await StorageManager.ensureFreeSpace([downloadKey]);
     CachedData.prefetch(files, updateCounts).then(() => {
       setReady(true);
       DownloadIndex.addEntry({
-        downloadKey: DownloadIndex.generateKey("plan", { planId: plan?.id || "", contentPath: plan?.providerPlanId || "" }),
+        downloadKey,
         source: "plan",
         title: plan?.name || t("planDownload.fallbackName"),
         description: instructions.name,

@@ -9,7 +9,7 @@ import {
   Easing
 } from "react-native";
 import { useTranslation } from "react-i18next";
-import { Styles, CachedData, ProviderAuthHelper, Colors } from "../helpers";
+import { Styles, CachedData, ProviderAuthHelper, Colors, Typography } from "../helpers";
 import { ApiHelper } from "../helpers/ApiHelper";
 import { ContentProviderAuthData, DropboxProvider } from "../interfaces";
 import { DimensionHelper } from "../helpers/DimensionHelper";
@@ -440,7 +440,7 @@ export const ProviderOAuthScreen = (props: Props) => {
           <Text
             style={{
               color: "rgba(255, 255, 255, 0.3)",
-              fontSize: DimensionHelper.wp("1%"),
+              fontSize: Typography.labelSmall,
               marginTop: DimensionHelper.hp("2%")
             }}>
             {t("providerOAuth.expiresIn", { minutes: Math.floor(flowState.expiresIn / 60) })}

@@ -18,7 +18,7 @@ import {
   isContentFolder,
   isContentFile
 } from "../interfaces";
-import { Styles, CachedData, ProviderAuthHelper, Colors } from "../helpers";
+import { Styles, CachedData, ProviderAuthHelper, Colors, Typography } from "../helpers";
 import { MenuHeader, SkeletonCard, EmptyState } from "../components";
 import { getProvider } from "../providers";
 
@@ -399,7 +399,7 @@ export const ContentBrowserScreen = (props: Props) => {
           <Text
             style={{
               color: "#fff",
-              fontSize: DimensionHelper.wp("1.1%"),
+              fontSize: Typography.labelMedium,
               marginTop: DimensionHelper.hp("1%"),
               textAlign: "center"
             }}
@@ -410,7 +410,7 @@ export const ContentBrowserScreen = (props: Props) => {
           <Text
             style={{
               color: "rgba(255,255,255,0.5)",
-              fontSize: DimensionHelper.wp("0.9%"),
+              fontSize: Typography.labelSmall,
               textAlign: "center"
             }}>
             {isVideo ? t("contentBrowser.fileType.video") : t("contentBrowser.fileType.image")}

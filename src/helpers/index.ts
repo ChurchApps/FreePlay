@@ -1,4 +1,4 @@
-export { Styles, Colors } from "./Styles";
+export { Styles, Colors, Typography } from "./Styles";
 export { CachedData } from "./CachedData";
 export { Utilities } from "./Utilities";
 export { ApiHelper } from "./ApiHelper";
@@ -8,3 +8,4 @@ export { ErrorHelper } from "./ErrorHelper";
 export { DeviceHelper } from "./DeviceHelper";
 export { ProviderAuthHelper } from "./ProviderAuthHelper";
 export { DownloadIndex } from "./DownloadIndex";
+export { StorageManager } from "./StorageManager";

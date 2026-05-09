@@ -15,13 +15,21 @@ export class DownloadIndex {
     await CachedData.setAsyncStorage(this.STORAGE_KEY, entries);
   }
 
+  static async replaceAll(entries: DownloadedItemInterface[]): Promise<void> {
+    await this.saveAll(entries);
+  }
+
   static async addEntry(entry: DownloadedItemInterface): Promise<void> {
     const entries = await this.getAll();
-    const idx = entries.findIndex(e => e.downloadKey === entry.downloadKey);
+    const stamped: DownloadedItemInterface = {
+      ...entry,
+      lastAccessedAt: entry.lastAccessedAt ?? entry.downloadedAt
+    };
+    const idx = entries.findIndex(e => e.downloadKey === stamped.downloadKey);
     if (idx >= 0) {
-      entries[idx] = entry;
+      entries[idx] = stamped;
     } else {
-      entries.unshift(entry);
+      entries.unshift(stamped);
     }
     await this.saveAll(entries);
   }
@@ -62,18 +70,20 @@ export class DownloadIndex {
     return verified;
   }
 
-  static async deleteFiles(entry: DownloadedItemInterface): Promise<void> {
+  static async deleteFiles(entry: DownloadedItemInterface): Promise<number> {
+    let bytesReclaimed = 0;
     for (const f of entry.messageFiles) {
       if (!f.url || f.url.trim() === "") continue;
       const fullPath = decodeURIComponent(CachedData.getFilePath(f.url));
       try {
-        if (await RNFS.exists(fullPath)) {
-          await RNFS.unlink(fullPath);
-        }
+        const stat = await RNFS.stat(fullPath);
+        bytesReclaimed += Number(stat.size) || 0;
+        await RNFS.unlink(fullPath);
       } catch (e) {
-        console.log("Failed to delete file:", fullPath, e);
+        // File may already be missing; ignore.
       }
     }
+    return bytesReclaimed;
   }
 
   static generateKey(source: string, ids: Record<string, string>): string {

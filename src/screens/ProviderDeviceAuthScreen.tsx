@@ -9,7 +9,7 @@ import {
   Easing
 } from "react-native";
 import { useTranslation } from "react-i18next";
-import { Styles, CachedData, ProviderAuthHelper, Colors } from "../helpers";
+import { Styles, CachedData, ProviderAuthHelper, Colors, Typography } from "../helpers";
 import { DeviceAuthorizationResponse, DeviceFlowState, ContentProviderAuthData, DeviceFlowHelper } from "../interfaces";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import LinearGradient from "react-native-linear-gradient";
@@ -460,7 +460,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
           <Text
             style={{
               color: "rgba(255, 255, 255, 0.3)",
-              fontSize: DimensionHelper.wp("1%"),
+              fontSize: Typography.labelSmall,
               marginTop: DimensionHelper.hp("2%")
             }}>
             {t("providerDeviceAuth.expiresIn", { minutes: Math.floor(deviceAuth.expires_in / 60) })}
