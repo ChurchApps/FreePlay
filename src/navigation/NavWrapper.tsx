@@ -10,6 +10,7 @@ import {
 import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { CachedData, Styles, Colors } from "../helpers";
+import { SoundHelper } from "../helpers/SoundHelper";
 import { NavItem } from "./NavItem";
 import { getProvider } from "../providers";
 import { FreePlayLogo } from "../components";
@@ -28,6 +29,7 @@ export const NavWrapper = (props: Props) => {
   const providersRef = useRef(null);
   const providerRefs = useRef<{[key: string]: any}>({});
   const recentlyCollapsed = useRef(false);
+  const sidebarMounted = useRef(false);
 
   // Screens where sidebar fully hides when collapsed
   const fullScreenModeScreens = ["planDownload"];
@@ -54,6 +56,13 @@ export const NavWrapper = (props: Props) => {
     if (!props.sidebarExpanded) {
       recentlyCollapsed.current = true;
       setTimeout(() => { recentlyCollapsed.current = false; }, 500);
+    }
+
+    // Subtle audio cue on user-initiated open/close (skip the initial mount)
+    if (sidebarMounted.current) {
+      SoundHelper.playWhoosh();
+    } else {
+      sidebarMounted.current = true;
     }
 
     Animated.timing(animatedWidth, {

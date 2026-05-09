@@ -7,7 +7,7 @@ import { PlayerHelper } from "../helpers/PlayerHelper";
 import { SoundHelper } from "../helpers/SoundHelper";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { useKeepAwake } from "expo-keep-awake";
-import { Message, SelectMessage, MessageHandle } from "../components";
+import { Message, SelectMessage, MessageHandle, PlayerErrorBoundary } from "../components";
 
 type Props = {
   navigateTo(page: string, data?: any): void;
@@ -219,7 +219,7 @@ export const PlayerScreen = (props: Props) => {
   }, [hasValidFiles, showSelectMessage]);
 
   // Show select message overlay
-  if (showSelectMessage) return <SelectMessage onSelect={handleMessageSelect} />;
+  if (showSelectMessage) return <SelectMessage onSelect={handleMessageSelect} currentIndex={messageIndex} />;
 
   // Guard against missing files - show nothing while navigating back
   if (!hasValidFiles) {
@@ -246,38 +246,40 @@ export const PlayerScreen = (props: Props) => {
   })();
 
   return (
-    <GestureRecognizer onSwipeLeft={handleRight} onSwipeRight={handleLeft} onSwipeDown={handleUp} onSwipeUp={handleBack} config={config} style={{ flex: 1 }}>
-      <Pressable testID="player-root" onPress={handlePressablePress} style={{ flex: 1 }}>
-        <Message
-          ref={messageRef}
-          file={currentFile}
-          downloaded={!props.streaming}
-          paused={paused}
-          onProgress={handleProgress}
-          onEnd={handleVideoEnd}
-        />
-        <TextInput autoFocus style={{ display: "none" }} showSoftInputOnFocus={false} returnKeyType="none" />
+    <PlayerErrorBoundary onBack={handleBack}>
+      <GestureRecognizer onSwipeLeft={handleRight} onSwipeRight={handleLeft} onSwipeDown={handleUp} onSwipeUp={handleBack} config={config} style={{ flex: 1 }}>
+        <Pressable testID="player-root" onPress={handlePressablePress} style={{ flex: 1 }}>
+          <Message
+            ref={messageRef}
+            file={currentFile}
+            downloaded={!props.streaming}
+            paused={paused}
+            onProgress={handleProgress}
+            onEnd={handleVideoEnd}
+          />
+          <TextInput autoFocus style={{ display: "none" }} showSoftInputOnFocus={false} returnKeyType="none" />
 
-        {currentFileType === "video" && (
-          <Animated.View
-            pointerEvents="none"
-            style={[
-              StyleSheet.absoluteFill,
-              styles.overlayWrapper,
-              { backgroundColor: "rgba(0,0,0,0.5)", opacity: feedbackAnim }
-            ]}
-          >
-            <Pressable style={styles.playPauseButton} onPress={handlePlayPause}>
-              <Icon name={paused ? "play-circle-outline" : "pause-circle-outline"} size={scaleHeight(120)} color="#fff" />
-            </Pressable>
+          {currentFileType === "video" && (
+            <Animated.View
+              pointerEvents="none"
+              style={[
+                StyleSheet.absoluteFill,
+                styles.overlayWrapper,
+                { backgroundColor: "rgba(0,0,0,0.5)", opacity: feedbackAnim }
+              ]}
+            >
+              <Pressable style={styles.playPauseButton} onPress={handlePlayPause}>
+                <Icon name={paused ? "play-circle-outline" : "pause-circle-outline"} size={scaleHeight(120)} color="#fff" />
+              </Pressable>
 
-            <View style={styles.progressContainer}>
-              <View style={[styles.progressBar, { width: `${progress * 100}%` }]} />
-            </View>
-          </Animated.View>
-        )}
-      </Pressable>
-    </GestureRecognizer>
+              <View style={styles.progressContainer}>
+                <View style={[styles.progressBar, { width: `${progress * 100}%` }]} />
+              </View>
+            </Animated.View>
+          )}
+        </Pressable>
+      </GestureRecognizer>
+    </PlayerErrorBoundary>
   );
 };
 

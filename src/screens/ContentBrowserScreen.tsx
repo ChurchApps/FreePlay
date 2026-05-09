@@ -225,7 +225,7 @@ export const ContentBrowserScreen = (props: Props) => {
         }}
         underlayColor={Colors.pressedBackground}
         onPress={() => { CachedData.lastFocusedIndex[screenKey] = index; handleSelectFolder(folder); }}
-        onFocus={() => { initialFocusSet.current = true; focusedIndexRef.current = index; setFocusedItemId(folder.id); }}
+        onFocus={() => { initialFocusSet.current = true; focusedIndexRef.current = index; CachedData.lastFocusedIndex[screenKey] = index; setFocusedItemId(folder.id); }}
         onBlur={() => { setFocusedItemId(prev => prev === folder.id ? null : prev); }}
         hasTVPreferredFocus={shouldFocus}>
         <View style={{ width: "100%" }}>
@@ -338,7 +338,7 @@ export const ContentBrowserScreen = (props: Props) => {
         }}
         underlayColor={Colors.pressedBackground}
         onPress={() => { CachedData.lastFocusedIndex[screenKey] = index; handleSelectFile(file); }}
-        onFocus={() => { initialFocusSet.current = true; focusedIndexRef.current = index; setFocusedItemId(file.id); }}
+        onFocus={() => { initialFocusSet.current = true; focusedIndexRef.current = index; CachedData.lastFocusedIndex[screenKey] = index; setFocusedItemId(file.id); }}
         onBlur={() => { setFocusedItemId(prev => prev === file.id ? null : prev); }}
         hasTVPreferredFocus={shouldFocus}>
         <View style={{ width: "100%" }}>
@@ -519,9 +519,50 @@ export const ContentBrowserScreen = (props: Props) => {
     headerText = currentFolder.title;
   }
 
+  // Breadcrumb trail: "Provider › Folder1 › Folder2"
+  const breadcrumbs = [provider?.name || t("contentBrowser.header"), ...folderStack.map(f => f.title)];
+
   return (
     <View style={{ ...Styles.menuScreen }} testID={`content-browser-root-${currentFolder?.id || "root"}`}>
       <MenuHeader headerText={headerText} />
+      {folderStack.length > 0 && (
+        <View
+          style={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            alignItems: "center",
+            paddingHorizontal: DimensionHelper.wp("2.5%"),
+            paddingVertical: DimensionHelper.hp("1%"),
+            backgroundColor: Colors.surfaceDark
+          }}>
+          {breadcrumbs.map((crumb, idx) => {
+            const isLast = idx === breadcrumbs.length - 1;
+            return (
+              <View key={`${crumb}-${idx}`} style={{ flexDirection: "row", alignItems: "center" }}>
+                <Text
+                  numberOfLines={1}
+                  style={{
+                    color: isLast ? Colors.textPrimary : Colors.textSubtle,
+                    fontSize: Typography.labelLarge,
+                    fontWeight: isLast ? "600" : "400"
+                  }}>
+                  {crumb}
+                </Text>
+                {!isLast && (
+                  <Text
+                    style={{
+                      color: Colors.textDimmed,
+                      fontSize: Typography.labelLarge,
+                      marginHorizontal: DimensionHelper.wp("0.6%")
+                    }}>
+                    ›
+                  </Text>
+                )}
+              </View>
+            );
+          })}
+        </View>
+      )}
       <View style={{ ...Styles.menuWrapper, flex: 90 }}>{getCards()}</View>
     </View>
   );

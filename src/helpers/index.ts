@@ -1,4 +1,4 @@
-export { Styles, Colors, Typography } from "./Styles";
+export { Styles, Colors, Typography, Spacing } from "./Styles";
 export { CachedData } from "./CachedData";
 export { Utilities } from "./Utilities";
 export { ApiHelper } from "./ApiHelper";

@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Styles, CachedData, ProviderAuthHelper, Colors, Typography } from "../helpers";
+import { SoundHelper } from "../helpers/SoundHelper";
 import { ApiHelper } from "../helpers/ApiHelper";
 import { ContentProviderAuthData, DropboxProvider } from "../interfaces";
 import { DimensionHelper } from "../helpers/DimensionHelper";
@@ -207,6 +208,7 @@ export const ProviderOAuthScreen = (props: Props) => {
       await ProviderAuthHelper.setAuth(props.providerId, authData);
       await ProviderAuthHelper.setConnectionState(props.providerId, true);
       setFlowState({ status: "success" });
+      SoundHelper.playChime();
 
       if (!CachedData.connectedProviders.includes(props.providerId)) {
         CachedData.connectedProviders.push(props.providerId);
@@ -215,7 +217,7 @@ export const ProviderOAuthScreen = (props: Props) => {
 
       setTimeout(() => {
         props.navigateTo("contentBrowser", { providerId: props.providerId, folderStack: [] });
-      }, 1000);
+      }, 2000);
     } catch (error) {
       console.error("Token exchange error:", error);
       setFlowState({ status: "error", error: t("providerOAuth.tokenExchangeFailed") });
@@ -429,12 +431,23 @@ export const ProviderOAuthScreen = (props: Props) => {
             <Text
               style={{
                 color: "rgba(255, 255, 255, 0.4)",
-                fontSize: DimensionHelper.wp("1.4%"),
+                fontSize: Typography.labelMedium,
                 letterSpacing: 0.5
               }}>
               {t("providerOAuth.waiting")}
             </Text>
           </Animated.View>
+
+          {/* Secondary instruction */}
+          <Text
+            style={{
+              color: "rgba(255, 255, 255, 0.5)",
+              fontSize: Typography.labelMedium,
+              marginTop: DimensionHelper.hp("1.5%"),
+              letterSpacing: 0.3
+            }}>
+            {t("providerOAuth.secondary")}
+          </Text>
 
           {/* Expiration notice */}
           <Text

@@ -19,11 +19,13 @@ export const Navigator = () => {
     setCurrentScreen(page);
     CachedData.currentScreen = page;
 
-    // Quick fade-in for screen transitions (skip for splash which has its own animation)
+    // Quick fade-in for screen transitions (skip for splash which has its own animation).
+    // Player entry uses a longer 400ms fade so the menu→player transition feels less abrupt.
     if (currentScreen !== "splash") {
+      const duration = page === "player" ? 400 : 200;
       fadeAnim.stopAnimation();
       fadeAnim.setValue(0);
-      Animated.timing(fadeAnim, { toValue: 1, duration: 200, useNativeDriver: true }).start();
+      Animated.timing(fadeAnim, { toValue: 1, duration, useNativeDriver: true }).start();
     }
   };
 

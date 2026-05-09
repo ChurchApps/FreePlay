@@ -61,7 +61,9 @@
     "instructions": "Scan the QR code with your phone, or visit",
     "instructionsLine2": "and enter the code below",
     "enterCode": "Enter this code:",
-    "waiting": "Waiting for authorization",
+    "waiting": "Waiting for confirmation",
+    "secondary": "Check your phone to confirm",
+    "regenerate": "Generate New Code",
     "expiresIn": "Code expires in {{minutes}} minutes",
     "cancel": "Cancel"
   },
@@ -81,7 +83,8 @@
     "fallbackProvider": "Provider",
     "instructionsLine1": "Scan the QR code with your phone to authorize access.",
     "instructionsLine2": "Your TV will connect automatically once you approve.",
-    "waiting": "Waiting for authorization",
+    "waiting": "Waiting for confirmation",
+    "secondary": "Check your phone to confirm",
     "expiresIn": "Session expires in {{minutes}} minutes",
     "cancel": "Cancel"
   },
@@ -121,7 +124,11 @@
     "generating": "Generating pairing code...",
     "tryAgain": "Try Again",
     "instructions": "Enter this code in the Plan Type section of B1Admin",
-    "waiting": "Waiting for connection"
+    "waiting": "Waiting for confirmation",
+    "secondary": "We'll connect automatically once accepted",
+    "regenerate": "Generate New Code",
+    "connected": "Connected!",
+    "loadingPlan": "Loading your plan..."
   },
   "offline": {
     "title": "Offline:",
@@ -136,14 +143,21 @@
     "url": "churchapps.org/privacy"
   },
   "selectMessage": {
-    "header": "Select a Message"
+    "header": "Select a Message",
+    "nowPlaying": "NOW PLAYING"
   },
   "message": {
     "loadingVideo": "Loading video...",
+    "loadingImage": "Loading image...",
     "videoFailed": "Video failed to load",
-    "skippingNext": "Skipping to next item..."
+    "skippingNext": "Skipping to next item...",
+    "playbackFailed": "Playback failed",
+    "playbackFailedSub": "Press back to return"
   },
   "menu": {
     "back": "Back"
+  },
+  "splash": {
+    "connecting": "Connecting..."
   }
 }

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text, TouchableHighlight, ActivityIndicator, BackHandler, ImageBackground } from "react-native";
+import { View, Text, TouchableHighlight, ActivityIndicator, BackHandler } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { ApiHelper, CachedData, Styles, DownloadIndex, ProviderAuthHelper, StorageManager, Typography } from "../helpers";

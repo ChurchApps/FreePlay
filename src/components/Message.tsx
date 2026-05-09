@@ -166,7 +166,9 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   const loadingOverlay = (
     <View style={styles.loadingOverlay}>
       <ActivityIndicator size="large" color={Colors.primary} />
-      <Text style={styles.loadingSubtitle}>{t("message.loadingVideo")}</Text>
+      <Text style={styles.loadingSubtitle}>
+        {getMessageType() === "video" ? t("message.loadingVideo") : t("message.loadingImage")}
+      </Text>
     </View>
   );
 
@@ -183,7 +185,7 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   return (
     <View style={{ flex: 1 }} testID={`message-${messageState}`}>
       {content}
-      {showLoadingOverlay && getMessageType() === "video" && loadingOverlay}
+      {showLoadingOverlay && loadingOverlay}
       {showError && errorOverlay}
     </View>
   );

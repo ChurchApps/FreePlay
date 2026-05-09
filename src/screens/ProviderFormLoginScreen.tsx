@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Styles, CachedData, ProviderAuthHelper } from "../helpers";
+import { SoundHelper } from "../helpers/SoundHelper";
 import { ContentProviderAuthData } from "../interfaces";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import LinearGradient from "react-native-linear-gradient";
@@ -92,6 +93,7 @@ export const ProviderFormLoginScreen = (props: Props) => {
         await ProviderAuthHelper.setAuth(props.providerId, auth);
         await ProviderAuthHelper.setConnectionState(props.providerId, true);
         setFlowState({ status: "success" });
+        SoundHelper.playChime();
 
         if (!CachedData.connectedProviders.includes(props.providerId)) {
           CachedData.connectedProviders.push(props.providerId);
@@ -100,7 +102,7 @@ export const ProviderFormLoginScreen = (props: Props) => {
 
         setTimeout(() => {
           props.navigateTo("contentBrowser", { providerId: props.providerId, folderStack: [] });
-        }, 1000);
+        }, 2000);
       } else {
         setFlowState({ status: "error", message: t("providerFormLogin.loginFailed") });
       }

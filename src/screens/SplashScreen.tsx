@@ -1,7 +1,8 @@
 //import AsyncStorage from "@react-native-community/async-storage";
-import React, { useRef, useEffect } from "react";
-import { View, Animated, Easing } from "react-native";
-import { CachedData, Styles, Colors } from "../helpers";
+import React, { useRef, useEffect, useState } from "react";
+import { View, Text, Animated, Easing } from "react-native";
+import { useTranslation } from "react-i18next";
+import { CachedData, Styles, Colors, Typography } from "../helpers";
 import { ProviderAuthHelper } from "../helpers";
 import { getAvailableProviders, FREEPLAY_PROVIDER_IDS } from "../providers";
 import SoundPlayer from "react-native-sound-player";
@@ -10,9 +11,11 @@ import { FreePlayLogo } from "../components";
 type Props = { navigateTo(page: string, data?: any): void; };
 
 export const SplashScreen = (props: Props) => {
+  const { t } = useTranslation();
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(0.95)).current;
   const dotOpacity = useRef(new Animated.Value(0)).current;
+  const [showConnecting, setShowConnecting] = useState(false);
 
   const loadData = async () => {
     CachedData.resolution = await CachedData.getAsyncStorage("resolution") || "720";
@@ -86,13 +89,16 @@ export const SplashScreen = (props: Props) => {
       });
     }, 1000);
 
+    // Surface "Connecting..." text after 1.5s for users who haven't navigated yet
+    const connectingTimer = setTimeout(() => setShowConnecting(true), 1500);
+
     // Navigate as soon as data loads, but ensure minimum 1.2s display for branding
     const minDisplayTime = new Promise<void>(resolve => setTimeout(resolve, 1200));
     Promise.all([minDisplayTime, loadData()]).then(([, connectedProviders]) => {
       navigate(connectedProviders);
     });
 
-    return () => { clearTimeout(dotTimer); };
+    return () => { clearTimeout(dotTimer); clearTimeout(connectingTimer); };
   }, []);
 
   return (
@@ -106,11 +112,22 @@ export const SplashScreen = (props: Props) => {
         <Animated.View style={{
           opacity: dotOpacity,
           marginTop: 24,
-          width: 8,
-          height: 8,
-          borderRadius: 4,
+          width: 24,
+          height: 24,
+          borderRadius: 12,
           backgroundColor: Colors.primary
         }} />
+        {showConnecting && (
+          <Text
+            style={{
+              color: Colors.textSubtle,
+              fontSize: Typography.bodyMedium,
+              marginTop: 16,
+              letterSpacing: 0.5
+            }}>
+            {t("splash.connecting")}
+          </Text>
+        )}
       </Animated.View>
     </View>
   );

@@ -51,6 +51,17 @@ export const Colors = {
   inactive: "#767577"
 };
 
+// Spacing scale. Use these tokens instead of hardcoded paddings/margins.
+// Values are in DP and chosen for 10-foot legibility.
+export const Spacing = {
+  xs: 4,
+  sm: 8,
+  md: 16,
+  lg: 24,
+  xl: 40,
+  xxl: 64
+};
+
 // 10-foot type scale. Values are sized for couch viewing on a TV.
 // `labelSmall` is the readability floor — never use a fontSize below this.
 export const Typography = {

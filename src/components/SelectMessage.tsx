@@ -7,7 +7,7 @@ import { DimensionHelper } from "../helpers/DimensionHelper";
 import { MenuHeader } from "./MenuHeader";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
-type Props = { onSelect: (index: number) => void };
+type Props = { onSelect: (index: number) => void; currentIndex?: number };
 
 type MessageItem = { index: number; name: string; image?: string; url?: string; fileType?: string };
 
@@ -46,6 +46,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 8
+  },
+  nowPlayingBadge: {
+    position: "absolute",
+    top: 16,
+    left: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: Colors.success,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: 4
+  },
+  nowPlayingBadgeText: {
+    color: "#fff",
+    fontSize: DimensionHelper.wp("1.2%"),
+    fontWeight: "700",
+    marginLeft: 4,
+    letterSpacing: 0.5
   }
 });
 
@@ -75,6 +93,8 @@ export const SelectMessage = (props: Props) => {
       ? data.item.url
       : (data.item.image || undefined);
     const isFocused = focusedIndex === data.item.index;
+    const isCurrent = props.currentIndex === data.item.index;
+    const shouldFocus = props.currentIndex !== undefined ? data.item.index === props.currentIndex : data.index === 0;
     return (
       <View style={styles.maincard}>
         <TouchableHighlight
@@ -84,9 +104,12 @@ export const SelectMessage = (props: Props) => {
               borderWidth: 2,
               borderColor: Colors.primary,
               transform: [{ scale: 1.03 }]
+            } : isCurrent ? {
+              borderWidth: 2,
+              borderColor: Colors.success
             } : { borderWidth: 2, borderColor: "transparent" }
           ]}
-          hasTVPreferredFocus={data.index === 0}
+          hasTVPreferredFocus={shouldFocus}
           focusable={true}
           ref={data.index === 0 ? firstItemRef : null}
           underlayColor={Colors.pressedBackground}
@@ -106,6 +129,12 @@ export const SelectMessage = (props: Props) => {
                 />
               </View>
             )}
+            {isCurrent && (
+              <View style={styles.nowPlayingBadge}>
+                <Icon name="play-arrow" size={DimensionHelper.wp("1.4%")} color="#fff" />
+                <Text style={styles.nowPlayingBadgeText}>{t("selectMessage.nowPlaying")}</Text>
+              </View>
+            )}
             <View style={styles.textContainer}>
               <Text style={styles.title} numberOfLines={2} ellipsizeMode="tail">{data.item.name}</Text>
             </View>
@@ -113,7 +142,7 @@ export const SelectMessage = (props: Props) => {
         </TouchableHighlight>
       </View>
     );
-  }, [handleSelect, focusedIndex]);
+  }, [handleSelect, focusedIndex, props.currentIndex, t]);
 
   return (
     <View style={Styles.menuScreen}>
