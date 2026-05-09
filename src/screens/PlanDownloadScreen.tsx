@@ -214,20 +214,20 @@ export const PlanDownloadScreen = (props: Props) => {
       // Resolve provider + content path from the plan and ask the provider for its instruction tree.
       // Plans paired before content was tracked via providerId/providerPlanId can't load here — they
       // need to be re-paired by a staff member.
-      if (currentPlan.providerId && currentPlan.providerPlanId) {
-        const provider = getProvider(currentPlan.providerId);
-        if (!provider?.getInstructions) {
-          setLoadFailed(true);
-          return;
-        }
-        const auth = await ProviderAuthHelper.refreshIfNeeded(currentPlan.providerId);
-        const result = await provider.getInstructions(currentPlan.providerPlanId, auth);
-        setInstructions(result);
-        CachedData.planInstructions = result;
-        await CachedData.setAsyncStorage("planInstructions", result);
-      } else {
-        setInstructions(null);
+      if (!currentPlan.providerId || !currentPlan.providerPlanId) {
+        setLoadFailed(true);
+        return;
       }
+      const provider = getProvider(currentPlan.providerId);
+      if (!provider?.getInstructions) {
+        setLoadFailed(true);
+        return;
+      }
+      const auth = await ProviderAuthHelper.refreshIfNeeded(currentPlan.providerId);
+      const result = await provider.getInstructions(currentPlan.providerPlanId, auth);
+      setInstructions(result);
+      CachedData.planInstructions = result;
+      await CachedData.setAsyncStorage("planInstructions", result);
     } catch (ex) {
       console.error("Error loading plan:", ex);
       if (ex.toString().indexOf("Network request failed") > -1) {
