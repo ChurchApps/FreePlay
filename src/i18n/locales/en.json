@@ -104,13 +104,6 @@
     "signIn": "Sign In",
     "cancel": "Cancel"
   },
-  "download": {
-    "startLesson": "Start Lesson",
-    "downloadingItem": "Downloading item {{current}} of {{total}}",
-    "scheduleLoadFailed": "The schedule could not be loaded.",
-    "scheduleLoadFailedSub": "Make sure a lesson is scheduled for this class.",
-    "tryAgain": "Try Again"
-  },
   "downloads": {
     "header": "Downloads",
     "noDownloads": "No downloads yet"
@@ -128,33 +121,14 @@
     "generating": "Generating pairing code...",
     "tryAgain": "Try Again",
     "instructions": "Enter this code in the Plan Type section of B1Admin",
-    "waiting": "Waiting for connection",
-    "searchByName": "or search by church name"
-  },
-  "selectPairingMode": {
-    "header": "Select Pairing Mode",
-    "classroomTitle": "Pair to Classroom",
-    "classroomDescription": "Connect to a specific classroom TV and display scheduled lessons automatically",
-    "planTitle": "Pair to Plan",
-    "planDescription": "Follow your church's weekly plan and browse content on demand"
-  },
-  "selectChurch": {
-    "header": "Find Your Church",
-    "searchPlaceholder": "Search church name",
-    "minLetters": "Enter at least four letters of your church name to start searching.",
-    "noResults": "No results found.  Search again or register your church at https://freeplay.church/."
-  },
-  "selectRoom": {
-    "header": "Select a Classroom",
-    "noClassrooms": "No classrooms found",
-    "configureRooms": "Configure your classrooms at freeplay.church."
+    "waiting": "Waiting for connection"
   },
   "offline": {
     "title": "Offline:",
     "subtitle": "Internet access is currently unavailable",
-    "canPlayDownloaded": "You can still play the lesson that was downloaded in advance.",
-    "notDownloaded": "Unfortunately the lesson hasn't been downloaded for offline play yet.  Please check your connection and try again.",
-    "startLesson": "Start Lesson"
+    "canPlayDownloaded": "You can still play what was downloaded in advance.",
+    "notDownloaded": "Nothing has been downloaded for offline play yet. Please check your connection and try again.",
+    "start": "Start"
   },
   "privacyPolicy": {
     "header": "Privacy Policy",

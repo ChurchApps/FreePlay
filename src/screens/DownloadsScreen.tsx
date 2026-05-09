@@ -3,7 +3,7 @@ import { Image, View, Text, FlatList, TouchableHighlight, BackHandler } from "re
 import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { DimensionHelper } from "../helpers/DimensionHelper";
-import { DownloadedLessonInterface } from "../interfaces";
+import { DownloadedItemInterface } from "../interfaces";
 import { CachedData, Styles, Colors, DownloadIndex } from "../helpers";
 import { PlayerHelper } from "../helpers/PlayerHelper";
 import { MenuHeader, EmptyState, SkeletonCard } from "../components";
@@ -16,7 +16,7 @@ type Props = {
 
 export const DownloadsScreen = (props: Props) => {
   const { t } = useTranslation();
-  const [downloads, setDownloads] = React.useState<DownloadedLessonInterface[]>([]);
+  const [downloads, setDownloads] = React.useState<DownloadedItemInterface[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [focusedKey, setFocusedKey] = React.useState<string | null>(null);
 
@@ -46,24 +46,21 @@ export const DownloadsScreen = (props: Props) => {
     });
   };
 
-  const handleSelect = (entry: DownloadedLessonInterface) => {
+  const handleSelect = (entry: DownloadedItemInterface) => {
     CachedData.messageFiles = entry.messageFiles;
     CachedData.setAsyncStorage("messageFiles", entry.messageFiles);
-    if (entry.playlist) {
-      CachedData.setAsyncStorage("playlist", entry.playlist);
-    }
     PlayerHelper.pendingPause = false;
     props.navigateTo("player", { downloadedLesson: true });
   };
 
-  const handleDelete = async (entry: DownloadedLessonInterface) => {
+  const handleDelete = async (entry: DownloadedItemInterface) => {
     await DownloadIndex.deleteFiles(entry);
     await DownloadIndex.removeEntry(entry.downloadKey);
     setDownloads(prev => prev.filter(d => d.downloadKey !== entry.downloadKey));
   };
 
   const getCard = (data: any) => {
-    const entry = data.item as DownloadedLessonInterface;
+    const entry = data.item as DownloadedItemInterface;
     const isFocused = focusedKey === entry.downloadKey;
 
     return (
@@ -84,11 +81,11 @@ export const DownloadsScreen = (props: Props) => {
           borderColor: isFocused ? Colors.primary : "transparent",
           transform: isFocused ? [{ scale: 1.03 }] : [{ scale: 1 }]
         }}>
-          {entry.lessonImage ? (
+          {entry.image ? (
             <Image
               style={{ height: DimensionHelper.hp("25%"), width: "100%", borderTopLeftRadius: 10, borderTopRightRadius: 10 }}
               resizeMode="cover"
-              source={{ uri: entry.lessonImage }}
+              source={{ uri: entry.image }}
             />
           ) : (
             <View style={{ height: DimensionHelper.hp("25%"), width: "100%", borderTopLeftRadius: 10, borderTopRightRadius: 10, backgroundColor: Colors.backgroundCard, justifyContent: "center", alignItems: "center" }}>
@@ -96,8 +93,8 @@ export const DownloadsScreen = (props: Props) => {
             </View>
           )}
           <View style={{ padding: 8, backgroundColor: Colors.backgroundCard }}>
-            {entry.lessonName ? <Text style={{ ...Styles.smallWhiteText }} numberOfLines={1}>{entry.lessonName}</Text> : null}
-            {entry.lessonTitle ? <Text style={{ ...Styles.smallerWhiteText, color: Colors.textLight }} numberOfLines={1}>{entry.lessonTitle}</Text> : null}
+            {entry.title ? <Text style={{ ...Styles.smallWhiteText }} numberOfLines={1}>{entry.title}</Text> : null}
+            {entry.description ? <Text style={{ ...Styles.smallerWhiteText, color: Colors.textLight }} numberOfLines={1}>{entry.description}</Text> : null}
           </View>
           {isFocused && (
             <TouchableHighlight

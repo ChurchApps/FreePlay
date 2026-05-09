@@ -109,9 +109,7 @@ export const PlanPairingScreen = (props: Props) => {
 
         if (status.paired && status.contentType === "planType") {
           CachedData.planTypeId = status.contentId;
-          CachedData.pairedChurchId = status.churchId;
           await CachedData.setAsyncStorage("planTypeId", status.contentId);
-          await CachedData.setAsyncStorage("pairedChurchId", status.churchId);
           props.navigateTo("planDownload");
         } else {
           pollTimeoutRef.current = setTimeout(poll, 3000);
@@ -129,13 +127,6 @@ export const PlanPairingScreen = (props: Props) => {
       clearTimeout(pollTimeoutRef.current);
     }
     props.sidebarState(true);
-  };
-
-  const handleSearchByName = () => {
-    if (pollTimeoutRef.current) {
-      clearTimeout(pollTimeoutRef.current);
-    }
-    props.navigateTo("selectChurch");
   };
 
   const init = () => {
@@ -317,38 +308,6 @@ export const PlanPairingScreen = (props: Props) => {
             </Text>
           </Animated.View>
         </Animated.View>
-
-        {/* Secondary action - very subtle at bottom */}
-        <View
-          style={{
-            position: "absolute",
-            bottom: DimensionHelper.hp("4%"),
-            left: 0,
-            right: 0,
-            alignItems: "center"
-          }}
-        >
-          <TouchableHighlight
-            onPress={handleSearchByName}
-            underlayColor="rgba(255, 255, 255, 0.1)"
-            hasTVPreferredFocus={false}
-            style={{
-              paddingVertical: DimensionHelper.hp("1%"),
-              paddingHorizontal: DimensionHelper.wp("2%"),
-              borderRadius: 4
-            }}
-          >
-            <Text
-              style={{
-                color: "rgba(255, 255, 255, 0.35)",
-                fontSize: DimensionHelper.wp("1.2%"),
-                letterSpacing: 0.3
-              }}
-            >
-              {t("planPairing.searchByName")}
-            </Text>
-          </TouchableHighlight>
-        </View>
       </LinearGradient>
     </View>
   );

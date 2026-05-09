@@ -135,7 +135,7 @@ export const PlayerScreen = (props: Props) => {
       } else if (CachedData.planTypeId) {
         props.navigateTo("planDownload");
       } else {
-        props.navigateTo("download");
+        props.navigateTo("providers");
       }
     }
   };

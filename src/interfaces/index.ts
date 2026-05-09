@@ -1,45 +1,5 @@
-export interface ChurchInterface {
+export interface MessageFileInterface {
   id?: string;
-  name?: string;
-  subDomain?: string;
-  address1?: string;
-  address2?: string;
-  city?: string;
-  state?: string;
-  zip?: string;
-  country?: string;
-  logoSquare?: string;
-}
-
-export interface ClassroomInterface {
-  id?: string;
-  churchId?: string;
-  name?: string;
-  lessonId?: string;
-}
-
-export interface LessonPlaylistInterface {
-  id?: string;
-  lessonId?: string;
-  venueId?: string;
-  messages?: LessonPlaylistMessageInterface[];
-  lessonName?: string;
-  lessonTitle?: string;
-  lessonDescription?: string;
-  lessonImage?: string;
-}
-
-export interface LessonPlaylistMessageInterface {
-  id?: string;
-  playlistId?: string;
-  name?: string;
-  sort?: number;
-  files?: LessonPlaylistFileInterface[];
-}
-
-export interface LessonPlaylistFileInterface {
-  id?: string;
-  messageId?: string;
   name?: string;
   url?: string;
   seconds?: number;
@@ -87,16 +47,14 @@ export interface PlanItemInterface {
   children?: PlanItemInterface[];
 }
 
-export interface DownloadedLessonInterface {
+export interface DownloadedItemInterface {
   downloadKey: string;
-  source: "classroom" | "provider" | "plan";
+  source: "provider" | "plan";
   providerId?: string;
-  lessonName?: string;
-  lessonTitle?: string;
-  lessonDescription?: string;
-  lessonImage?: string;
-  playlist?: LessonPlaylistInterface;
-  messageFiles: LessonPlaylistFileInterface[];
+  title?: string;
+  description?: string;
+  image?: string;
+  messageFiles: MessageFileInterface[];
   downloadedAt: number;
 }
 

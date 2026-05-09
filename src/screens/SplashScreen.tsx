@@ -15,12 +15,8 @@ export const SplashScreen = (props: Props) => {
   const dotOpacity = useRef(new Animated.Value(0)).current;
 
   const loadData = async () => {
-    CachedData.church = await CachedData.getAsyncStorage("church");
-    CachedData.room = await CachedData.getAsyncStorage("room");
     CachedData.resolution = await CachedData.getAsyncStorage("resolution") || "720";
-
     CachedData.planTypeId = await CachedData.getAsyncStorage("planTypeId");
-    CachedData.pairedChurchId = await CachedData.getAsyncStorage("pairedChurchId");
 
     const connectedProviders: string[] = [];
     for (const providerInfo of getAvailableProviders(FREEPLAY_PROVIDER_IDS)) {

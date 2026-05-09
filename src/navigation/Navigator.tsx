@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { CachedData, Styles } from "../helpers";
-import { DownloadScreen, SelectChurchScreen, SelectRoomScreen, SplashScreen, PlayerScreen, SelectPairingModeScreen, PlanPairingScreen, PlanDownloadScreen, ContentBrowserScreen, ProviderDeviceAuthScreen, ProvidersScreen, ProviderFormLoginScreen, ProviderOAuthScreen, ProviderDownloadScreen, DownloadsScreen } from "../screens";
+import { SplashScreen, PlayerScreen, PlanPairingScreen, PlanDownloadScreen, ContentBrowserScreen, ProviderDeviceAuthScreen, ProvidersScreen, ProviderFormLoginScreen, ProviderOAuthScreen, ProviderDownloadScreen, DownloadsScreen } from "../screens";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { View, Platform, TVEventControl, Animated } from "react-native";
 import { NavWrapper } from "./NavWrapper";
@@ -34,13 +34,9 @@ export const Navigator = () => {
   let screen = <></>;
   switch (currentScreen) {
     case "splash": screen = (<SplashScreen navigateTo={handleNavigate} />); break;
-    case "selectPairingMode": screen = (<SelectPairingModeScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
-    case "selectChurch": screen = (<SelectChurchScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
-    case "selectRoom": screen = (<SelectRoomScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
     case "planPairing": screen = (<PlanPairingScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
     case "planDownload": screen = (<PlanDownloadScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
     case "offline": screen = (<OfflineScreen navigateTo={handleNavigate} />); break;
-    case "download": screen = (<DownloadScreen navigateTo={handleNavigate} />); break;
     case "player": screen = (<PlayerScreen navigateTo={handleNavigate} providerId={currentData?.providerId} providerStartIndex={currentData?.providerStartIndex} streaming={currentData?.streaming} folderStack={currentData?.folderStack} downloadedLesson={currentData?.downloadedLesson} />); break;
     case "downloads": screen = (<DownloadsScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
 
@@ -81,7 +77,7 @@ export const Navigator = () => {
   useEffect(init, []);
   if (dimensions !== "1,1") console.log(dimensions);
 
-  const fullScreenScreens = ["splash", "player", "download", "providerDownload"];
+  const fullScreenScreens = ["splash", "player", "providerDownload"];
 
   if (fullScreenScreens.indexOf(currentScreen) > -1) {
     return (<View style={Styles.splashMaincontainer}>

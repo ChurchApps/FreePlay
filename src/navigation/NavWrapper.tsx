@@ -79,15 +79,6 @@ export const NavWrapper = (props: Props) => {
     props.navigateTo(id);
   };
 
-  const _handleChurchClick = () => {
-    // If paired to a plan, go directly to plan download screen
-    if (CachedData.planTypeId) handleClick("planDownload");
-    // If paired to a classroom, show room selection
-    else if (CachedData.church) handleClick("selectRoom");
-    // Not paired at all, go to church search
-    else handleClick("selectChurch");
-  };
-
   // TV-specific: useTVEventHandler catches DPAD events reliably on TV platforms
   const tvEventHandler = (evt: any) => {
     const eventType = evt && (evt.eventType || evt.eventName || evt.type);
@@ -111,12 +102,10 @@ export const NavWrapper = (props: Props) => {
   let highlightedItem = "browse";
   const highlightTab = (tab: string) => {
     switch (tab) {
-      case "selectRoom":
-      case "selectChurch":
-      case "download":
       case "planDownload":
+      case "planPairing":
       case "player":
-        highlightedItem = "church";
+        highlightedItem = "plan";
         break;
       case "providers":
         highlightedItem = "providers";

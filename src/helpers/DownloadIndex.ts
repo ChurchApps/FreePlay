@@ -1,21 +1,21 @@
 import RNFS from "react-native-fs";
-import { DownloadedLessonInterface } from "../interfaces";
+import { DownloadedItemInterface } from "../interfaces";
 import { CachedData } from "./CachedData";
 
 export class DownloadIndex {
   private static STORAGE_KEY = "downloadIndex";
 
-  static async getAll(): Promise<DownloadedLessonInterface[]> {
+  static async getAll(): Promise<DownloadedItemInterface[]> {
     const data = await CachedData.getAsyncStorage(this.STORAGE_KEY);
     if (!data || !Array.isArray(data)) return [];
     return data;
   }
 
-  private static async saveAll(entries: DownloadedLessonInterface[]): Promise<void> {
+  private static async saveAll(entries: DownloadedItemInterface[]): Promise<void> {
     await CachedData.setAsyncStorage(this.STORAGE_KEY, entries);
   }
 
-  static async addEntry(entry: DownloadedLessonInterface): Promise<void> {
+  static async addEntry(entry: DownloadedItemInterface): Promise<void> {
     const entries = await this.getAll();
     const idx = entries.findIndex(e => e.downloadKey === entry.downloadKey);
     if (idx >= 0) {
@@ -32,7 +32,7 @@ export class DownloadIndex {
     await this.saveAll(filtered);
   }
 
-  static async verifyFiles(entry: DownloadedLessonInterface): Promise<boolean> {
+  static async verifyFiles(entry: DownloadedItemInterface): Promise<boolean> {
     for (const f of entry.messageFiles) {
       if (!f.url || f.url.trim() === "") continue;
       const fullPath = decodeURIComponent(CachedData.getFilePath(f.url));
@@ -41,9 +41,9 @@ export class DownloadIndex {
     return true;
   }
 
-  static async getVerifiedEntries(prune?: boolean): Promise<DownloadedLessonInterface[]> {
+  static async getVerifiedEntries(prune?: boolean): Promise<DownloadedItemInterface[]> {
     const entries = await this.getAll();
-    const verified: DownloadedLessonInterface[] = [];
+    const verified: DownloadedItemInterface[] = [];
     const toRemove: string[] = [];
 
     for (const entry of entries) {
@@ -62,7 +62,7 @@ export class DownloadIndex {
     return verified;
   }
 
-  static async deleteFiles(entry: DownloadedLessonInterface): Promise<void> {
+  static async deleteFiles(entry: DownloadedItemInterface): Promise<void> {
     for (const f of entry.messageFiles) {
       if (!f.url || f.url.trim() === "") continue;
       const fullPath = decodeURIComponent(CachedData.getFilePath(f.url));

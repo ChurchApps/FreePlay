@@ -130,9 +130,9 @@ export const ProviderDownloadScreen = (props: Props) => {
           downloadKey: DownloadIndex.generateKey("provider", { providerId: props.providerId, title: props.title || "" }),
           source: "provider",
           providerId: props.providerId,
-          lessonName: props.title,
-          lessonTitle: props.title,
-          lessonImage: props.coverImage,
+          title: props.title,
+          description: props.description,
+          image: props.coverImage,
           messageFiles: files,
           downloadedAt: Date.now()
         });

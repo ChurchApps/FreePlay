@@ -5,7 +5,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import { ApiHelper, CachedData, Styles, DownloadIndex, ProviderAuthHelper } from "../helpers";
 import { Colors } from "../helpers/Styles";
 import { DimensionHelper } from "../helpers/DimensionHelper";
-import { PlanInterface, LessonPlaylistFileInterface, PlanItemInterface } from "../interfaces";
+import { PlanInterface, MessageFileInterface, PlanItemInterface } from "../interfaces";
 import { getProvider, type Instructions, type InstructionItem } from "../providers";
 import LinearGradient from "react-native-linear-gradient";
 
@@ -16,8 +16,8 @@ type Props = {
 };
 
 // Walk an InstructionItem subtree and collect every node that has a downloadUrl.
-function collectFilesFromNode(node: InstructionItem): LessonPlaylistFileInterface[] {
-  const files: LessonPlaylistFileInterface[] = [];
+function collectFilesFromNode(node: InstructionItem): MessageFileInterface[] {
+  const files: MessageFileInterface[] = [];
   if (node.downloadUrl) {
     files.push({
       id: node.id,
@@ -33,9 +33,9 @@ function collectFilesFromNode(node: InstructionItem): LessonPlaylistFileInterfac
 }
 
 // Build maps from instruction tree: section id → all descendant files; item id → that item's files.
-function buildFileMaps(items: InstructionItem[]): { sectionMap: Map<string, LessonPlaylistFileInterface[]>, itemMap: Map<string, LessonPlaylistFileInterface[]> } {
-  const sectionMap = new Map<string, LessonPlaylistFileInterface[]>();
-  const itemMap = new Map<string, LessonPlaylistFileInterface[]>();
+function buildFileMaps(items: InstructionItem[]): { sectionMap: Map<string, MessageFileInterface[]>, itemMap: Map<string, MessageFileInterface[]> } {
+  const sectionMap = new Map<string, MessageFileInterface[]>();
+  const itemMap = new Map<string, MessageFileInterface[]>();
 
   const walk = (nodes: InstructionItem[]) => {
     for (const node of nodes) {
@@ -69,13 +69,13 @@ function collectRelatedIds(items: PlanItemInterface[]): { id: string, itemType: 
   return out;
 }
 
-function getOrderedFiles(instructions: Instructions, customPlanItems?: PlanItemInterface[]): LessonPlaylistFileInterface[] {
+function getOrderedFiles(instructions: Instructions, customPlanItems?: PlanItemInterface[]): MessageFileInterface[] {
   const { sectionMap, itemMap } = buildFileMaps(instructions.items || []);
 
   if (customPlanItems && customPlanItems.length > 0) {
     const relatedIds = collectRelatedIds(customPlanItems);
     if (relatedIds.length > 0) {
-      const result: LessonPlaylistFileInterface[] = [];
+      const result: MessageFileInterface[] = [];
       for (const { id, itemType } of relatedIds) {
         const files = SECTION_TYPES.has(itemType) ? sectionMap.get(id) : itemMap.get(id);
         if (files) result.push(...files);
@@ -85,7 +85,7 @@ function getOrderedFiles(instructions: Instructions, customPlanItems?: PlanItemI
   }
 
   // No customization (or no matches) - return every playable file in tree order.
-  const all: LessonPlaylistFileInterface[] = [];
+  const all: MessageFileInterface[] = [];
   for (const item of instructions.items || []) all.push(...collectFilesFromNode(item));
   return all;
 }
@@ -255,8 +255,8 @@ export const PlanDownloadScreen = (props: Props) => {
       DownloadIndex.addEntry({
         downloadKey: DownloadIndex.generateKey("plan", { planId: plan?.id || "", contentPath: plan?.providerPlanId || "" }),
         source: "plan",
-        lessonName: plan?.name || t("planDownload.fallbackName"),
-        lessonTitle: instructions.name,
+        title: plan?.name || t("planDownload.fallbackName"),
+        description: instructions.name,
         messageFiles: files,
         downloadedAt: Date.now()
       });

@@ -6,8 +6,7 @@ export class Utilities {
   static async trackEvent(name: string, data?: any) {
     try {
       const props: Record<string, any> = data ? { ...data } : {};
-      if (CachedData.church?.name) props.church = CachedData.church.name;
-      if (CachedData.room?.name) props.classRoom = CachedData.room.name;
+      if (CachedData.activeProvider) props.provider = CachedData.activeProvider;
       await analytics().logEvent(name, props);
     } catch {
       // Silently fail if analytics unavailable

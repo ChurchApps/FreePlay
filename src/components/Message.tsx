@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { CachedData } from "../helpers";
 import { Colors } from "../helpers/Styles";
-import { LessonPlaylistFileInterface } from "../interfaces";
+import { MessageFileInterface } from "../interfaces";
 import { Image, View, Text, ActivityIndicator, StyleSheet } from "react-native";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import Video from "react-native-video";
@@ -10,7 +10,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 
 
 type Props = {
-  file: LessonPlaylistFileInterface,
+  file: MessageFileInterface,
   downloaded: boolean,
   paused: boolean,
   onProgress?: (data: { currentTime: number; playableDuration: number }) => void,
