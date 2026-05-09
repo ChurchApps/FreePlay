@@ -1,0 +1,25 @@
+# The hardware BACK key on the providers screen opens the sidebar (see
+# handleBack in src/screens/ProvidersScreen.tsx — calls props.sidebarState(true)).
+# When expanded, the sidebar's nav item labels become visible (they're hidden
+# at the 8% collapsed width). This exercises the same sidebar-expansion code
+# path that D-pad LEFT triggers on a real remote.
+#
+# Note: Maestro 2.5.1's pressKey YAML parser does not accept D-pad direction
+# keys (REMOTE_LEFT, remote_left, RemoteLeft all reject), even though the
+# runtime KeyCode enum defines them. So we use BACK here as a proxy. Real
+# D-pad navigation tests would require an external adb shell input keyevent
+# helper, deferred to Tier 3.
+
+appId: church.freeplay
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: "providers-root"
+    timeout: 60000
+- pressKey: back
+- extendedWaitUntil:
+    visible: "Providers"
+    timeout: 5000
+- assertVisible: "Downloads"

@@ -237,7 +237,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
   // Loading state
   if (flowState.status === "loading") {
     return (
-      <View style={Styles.menuScreen}>
+      <View style={Styles.menuScreen} testID="provider-device-auth-loading">
         <LinearGradient
           colors={["#1a0f17", "#160a14", "#100714"]}
           style={{
@@ -346,7 +346,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
     deviceAuth.verification_uri_complete || deviceAuth.verification_uri;
 
   return (
-    <View style={Styles.menuScreen}>
+    <View style={Styles.menuScreen} testID="provider-device-auth-root">
       <LinearGradient
         colors={["#1a0f17", "#160a14", "#0d0510"]}
         style={{ flex: 1, width: "100%" }}>
@@ -477,6 +477,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
             alignItems: "center"
           }}>
           <TouchableHighlight
+            testID="provider-device-auth-cancel"
             onPress={handleBack}
             underlayColor="rgba(255, 255, 255, 0.1)"
             hasTVPreferredFocus={false}

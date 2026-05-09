@@ -96,7 +96,7 @@ export const SplashScreen = (props: Props) => {
   }, []);
 
   return (
-    <View style={Styles.splashMaincontainer}>
+    <View style={Styles.splashMaincontainer} testID="splash-root">
       <Animated.View style={{
         opacity: fadeAnim,
         transform: [{ scale: scaleAnim }],

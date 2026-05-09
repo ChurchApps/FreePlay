@@ -144,6 +144,7 @@ export const ProvidersScreen = (props: Props) => {
 
     return (
       <TouchableHighlight
+        testID={`providers-card-${providerInfo.id}${isFocused ? "-focused" : ""}`}
         style={{
           ...styles.item,
           ...(isFocused ? { transform: [{ scale: 1.03 }] } : {})
@@ -320,7 +321,7 @@ export const ProvidersScreen = (props: Props) => {
   const pkg = require("../../package.json");
 
   return (
-    <View style={{ ...Styles.menuScreen }}>
+    <View style={{ ...Styles.menuScreen }} testID="providers-root">
       <View style={{ flexDirection: "row", alignItems: "center", borderBottomWidth: 1, borderBottomColor: Colors.borderAccent, backgroundColor: Colors.surface }}>
         <View style={{ flex: 1 }}>
           <MenuHeader headerText={t("providers.header")} noBorder />

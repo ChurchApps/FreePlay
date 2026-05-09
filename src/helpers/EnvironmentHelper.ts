@@ -7,9 +7,10 @@ export class EnvironmentHelper {
   public static DoingApi = "";
 
   static init = () => {
-    //EnvironmentHelper.initDev();
-    //EnvironmentHelper.initStaging();
-    EnvironmentHelper.initProd();
+    const env = (process.env.EXPO_PUBLIC_FREEPLAY_ENV || "prod").toLowerCase();
+    if (env === "dev") EnvironmentHelper.initDev();
+    else if (env === "staging") EnvironmentHelper.initStaging();
+    else EnvironmentHelper.initProd();
 
     ApiHelper.apiConfigs = [
       { keyName: "MembershipApi", url: EnvironmentHelper.MembershipApi, jwt: "", permisssions: [] },

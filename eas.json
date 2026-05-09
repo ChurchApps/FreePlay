@@ -13,6 +13,13 @@
         "developmentClient": true,
         "distribution": "internal"
       },
+      "e2e": {
+        "developmentClient": true,
+        "distribution": "internal",
+        "env": {
+          "EXPO_PUBLIC_FREEPLAY_ENV": "staging"
+        }
+      },
       "preview": {
         "distribution": "internal"
       },

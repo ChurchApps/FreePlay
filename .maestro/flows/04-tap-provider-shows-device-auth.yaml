@@ -1,0 +1,30 @@
+# Tapping the signpresenter card (a device-flow provider) should navigate to
+# the providerDeviceAuth screen. The screen first shows a loading state while
+# initiating the device flow against the provider's backend, then transitions
+# to the awaiting_user state with QR + user code. We assert reaching the
+# awaiting_user state (provider-device-auth-root) which proves both the
+# navigation AND the device flow init succeeded — important regression signal.
+#
+# This is the only flow in Tier 1 that depends on a real third-party API
+# (signpresenter device authorization endpoint), so it can be flaky on cold
+# emulator / network blips. If signpresenter is down, this flow will fail
+# loudly rather than silently — that's intentional.
+
+appId: church.freeplay
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: "providers-card-signpresenter(-focused)?"
+    timeout: 60000
+- tapOn:
+    id: "providers-card-signpresenter(-focused)?"
+# Loading state may flash too quickly to assert reliably; jump straight to
+# the post-init awaiting_user screen.
+- extendedWaitUntil:
+    visible:
+      id: "provider-device-auth-root"
+    timeout: 20000
+- assertVisible:
+    id: "provider-device-auth-cancel"

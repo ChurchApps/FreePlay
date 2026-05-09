@@ -1,0 +1,8 @@
+# Maestro project config for FreePlay E2E tests.
+# Target: Android TV emulator (Google TV API 34, profile tv_1080p).
+# See .maestro/README.md for setup.
+
+appId: church.freeplay
+
+flows:
+  - flows/*.yaml
