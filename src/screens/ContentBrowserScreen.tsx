@@ -214,6 +214,7 @@ export const ContentBrowserScreen = (props: Props) => {
 
     return (
       <TouchableHighlight
+        testID={`cb-folder-${folder.id}${isFocused ? "-focused" : ""}`}
         style={{
           ...styles.item,
           ...(isFocused ? {
@@ -326,6 +327,7 @@ export const ContentBrowserScreen = (props: Props) => {
 
     return (
       <TouchableHighlight
+        testID={`cb-file-${file.id}${isFocused ? "-focused" : ""}`}
         style={{
           ...styles.item,
           ...(isFocused ? {
@@ -518,7 +520,7 @@ export const ContentBrowserScreen = (props: Props) => {
   }
 
   return (
-    <View style={{ ...Styles.menuScreen }}>
+    <View style={{ ...Styles.menuScreen }} testID={`content-browser-root-${currentFolder?.id || "root"}`}>
       <MenuHeader headerText={headerText} />
       <View style={{ ...Styles.menuWrapper, flex: 90 }}>{getCards()}</View>
     </View>

@@ -247,7 +247,7 @@ export const PlayerScreen = (props: Props) => {
 
   return (
     <GestureRecognizer onSwipeLeft={handleRight} onSwipeRight={handleLeft} onSwipeDown={handleUp} onSwipeUp={handleBack} config={config} style={{ flex: 1 }}>
-      <Pressable onPress={handlePressablePress} style={{ flex: 1 }}>
+      <Pressable testID="player-root" onPress={handlePressablePress} style={{ flex: 1 }}>
         <Message
           ref={messageRef}
           file={currentFile}

@@ -151,7 +151,12 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   const getImage = () => {
     const localPath = decodeURIComponent(CachedData.getFilePath(props.file.url));
     const filePath = props.downloaded ? "file://" + localPath : props.file.url;
-    return (<Image source={{ uri: filePath }} style={{ width: DimensionHelper.wp("100%"), height: DimensionHelper.hp("100%") }} />);
+    return (<Image
+      source={{ uri: filePath }}
+      style={{ width: DimensionHelper.wp("100%"), height: DimensionHelper.hp("100%") }}
+      onLoad={() => setIsLoading(false)}
+      onError={() => handleVideoError({ error: "image load failed" })}
+    />);
   };
 
   const content = React.useMemo(() => {
@@ -173,8 +178,10 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
     </View>
   );
 
+  const messageState = hasError ? "error" : (isLoading ? "loading" : "ready");
+
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1 }} testID={`message-${messageState}`}>
       {content}
       {showLoadingOverlay && getMessageType() === "video" && loadingOverlay}
       {showError && errorOverlay}

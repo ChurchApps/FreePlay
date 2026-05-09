@@ -84,9 +84,25 @@ maestro test .maestro/flows/ --format junit --output report/
 
 | Tier | Files | Status |
 |------|-------|--------|
-| 1 — golden paths (PR-blocking) | `01-splash-loads`, `02-providers-list-renders`, `03-sidebar-toggle`, `04-tap-provider-shows-device-auth` | 4/4 passing |
-| 2 — broader coverage | `10-*` through `18-*` | not started |
+| 1 — golden paths (PR-blocking) | `01-splash-loads`, `02-providers-list-renders`, `03-sidebar-toggle`, `04-tap-provider-shows-device-auth`, `05-app-relaunch` | 5/5 passing |
+| 2 — broader coverage | `14-provider-device-auth-cancel`, `17-downloads-list` | 2/2 passing |
+| Lessons.church streaming + download (online) | `30-stream-lessonschurch`, `31-download-lessonschurch` | 2/2 passing |
+| Offline (separate runner — see below) | `flows-offline/32-play-downloaded-offline` | passing via run-offline.ps1 |
 | 3 — nice-to-have (incl. real D-pad navigation, requires adb helper) | `20-*` through `23-*` | not started |
+
+## Offline mode
+
+Flow `32-play-downloaded-offline` lives in `.maestro/flows-offline/` (deliberately outside the default `flows/` glob) because it requires the AVD's wifi to be off and a previous successful run of `31-download-lessonschurch` to leave cached files on disk.
+
+Run it via the wrapper:
+
+```powershell
+pwsh .maestro/scripts/run-offline.ps1
+```
+
+The wrapper toggles `adb shell svc wifi disable` before invoking Maestro and re-enables wifi on exit (even on failure). Metro bundle delivery still works because `adb reverse tcp:8081 tcp:8081` goes through the adb pipe, not the AVD's wifi stack.
+
+**Required ordering**: run `maestro test .maestro/flows/` first to get the download in place, then `pwsh .maestro/scripts/run-offline.ps1`. Don't add a `clearState: true` flow between 31 and the offline run.
 
 See the test plan at `~/.claude/plans/alright-make-a-plan-sprightly-moon.md` for the full inventory and rationale.
 
