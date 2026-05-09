@@ -4,7 +4,12 @@ export {
   registerProvider,
   getProviderConfig,
   getAvailableProviders,
-  type IProvider
+  type IProvider,
+  type Instructions,
+  type InstructionItem,
+  type ContentFile,
+  type ContentFolder,
+  type ContentItem
 } from "@churchapps/content-providers";
 
 /** Provider IDs shown in the FreePlay app. Used by both SplashScreen and ProvidersScreen. */

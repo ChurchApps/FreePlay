@@ -18,51 +18,6 @@ export interface ClassroomInterface {
   lessonId?: string;
 }
 
-export interface ProgramInterface {
-  id?: string;
-  name?: string;
-  slug?: string;
-  image?: string;
-  shortDescription?: string;
-  description?: string;
-  videoEmbedUrl?: string;
-  live?: boolean;
-  aboutSection?: string;
-}
-
-export interface StudyInterface {
-  id?: string;
-  programId?: string;
-  name?: string;
-  slug?: string;
-  image?: string;
-  shortDescription?: string;
-  description?: string;
-  videoEmbedUrl?: string;
-  live?: boolean;
-  sort?: number;
-}
-
-export interface LessonInterface {
-  id?: string;
-  studyId?: string;
-  name?: string;
-  slug?: string;
-  title?: string;
-  image?: string;
-  description?: string;
-  live?: boolean;
-  sort?: number;
-  videoEmbedUrl?: string;
-}
-
-export interface VenueInterface {
-  id?: string;
-  lessonId?: string;
-  name?: string;
-  sort?: number;
-}
-
 export interface LessonPlaylistInterface {
   id?: string;
   lessonId?: string;
@@ -112,6 +67,9 @@ export interface PlanInterface {
   serviceDate?: Date;
   contentType?: string;
   contentId?: string;
+  providerId?: string;
+  providerPlanId?: string;
+  providerPlanName?: string;
 }
 
 export interface PlanItemInterface {
@@ -127,38 +85,6 @@ export interface PlanItemInterface {
   seconds?: number;
   link?: string;
   children?: PlanItemInterface[];
-}
-
-export interface FeedVenueInterface {
-  id?: string;
-  lessonId?: string;
-  name?: string;
-  lessonName?: string;
-  lessonDescription?: string;
-  lessonImage?: string;
-  sections?: FeedSectionInterface[];
-}
-
-export interface FeedSectionInterface {
-  id?: string;
-  name?: string;
-  actions?: FeedActionInterface[];
-}
-
-export interface FeedActionInterface {
-  id?: string;
-  actionType?: string;
-  content?: string;
-  files?: FeedFileInterface[];
-}
-
-export interface FeedFileInterface {
-  id?: string;
-  name?: string;
-  url?: string;
-  streamUrl?: string;
-  seconds?: number;
-  fileType?: string;
 }
 
 export interface DownloadedLessonInterface {

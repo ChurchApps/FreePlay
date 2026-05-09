@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { HWEvent, BackHandler, useTVEventHandler, Pressable, TextInput, View, StyleSheet, Animated, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { ContentFolder, LessonInterface, ProgramInterface, StudyInterface } from "../interfaces";
+import { ContentFolder } from "../interfaces";
 import { CachedData } from "../helpers";
 import { PlayerHelper } from "../helpers/PlayerHelper";
 import { SoundHelper } from "../helpers/SoundHelper";
@@ -11,9 +11,6 @@ import { Message, SelectMessage, MessageHandle } from "../components";
 
 type Props = {
   navigateTo(page: string, data?: any): void;
-  program?: ProgramInterface;
-  study?: StudyInterface;
-  lesson?: LessonInterface;
   providerId?: string;
   providerStartIndex?: number;
   streaming?: boolean;
@@ -36,8 +33,7 @@ export const PlayerScreen = (props: Props) => {
   const [triggerPauseCheck, setTriggerPauseCheck] = React.useState(0);
   const [progress, setProgress] = React.useState(0);
 
-  // Check if we're playing provider media (from content browser)
-  const isProviderMedia = !!props.providerId && !props.lesson;
+  const isProviderMedia = !!props.providerId;
 
   const messageRef = useRef<MessageHandle>(null);
   const currentTimeRef = useRef(0);
@@ -136,8 +132,6 @@ export const PlayerScreen = (props: Props) => {
         props.navigateTo("downloads");
       } else if (isProviderMedia && props.providerId) {
         props.navigateTo("contentBrowser", { providerId: props.providerId, folderStack: (props.folderStack || []).slice(0, -1) });
-      } else if (props.lesson) {
-        props.navigateTo("lessonDetails", { program: props.program, study: props.study, lesson: props.lesson });
       } else if (CachedData.planTypeId) {
         props.navigateTo("planDownload");
       } else {
@@ -257,7 +251,7 @@ export const PlayerScreen = (props: Props) => {
         <Message
           ref={messageRef}
           file={currentFile}
-          downloaded={!props.lesson && !props.streaming}
+          downloaded={!props.streaming}
           paused={paused}
           onProgress={handleProgress}
           onEnd={handleVideoEnd}

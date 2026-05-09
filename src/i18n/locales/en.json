@@ -156,21 +156,6 @@
     "notDownloaded": "Unfortunately the lesson hasn't been downloaded for offline play yet.  Please check your connection and try again.",
     "startLesson": "Start Lesson"
   },
-  "lessons": {
-    "header": "Select a Lesson",
-    "noLessons": "No lessons available"
-  },
-  "lessonDetails": {
-    "version": "Version: {{version}}"
-  },
-  "studies": {
-    "header": "Select a Study",
-    "noStudies": "No studies available"
-  },
-  "programs": {
-    "header": "Browse Programs",
-    "noPrograms": "No programs available"
-  },
   "privacyPolicy": {
     "header": "Privacy Policy",
     "viewFullPolicy": "To view our full privacy policy, please visit:",

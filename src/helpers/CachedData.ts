@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ChurchInterface, ClassroomInterface, LessonPlaylistFileInterface, PlanInterface, FeedVenueInterface } from "../interfaces";
+import { ChurchInterface, ClassroomInterface, LessonPlaylistFileInterface, PlanInterface } from "../interfaces";
+import { type Instructions } from "../providers";
 import RNFS from "react-native-fs";
 import * as Sentry from "@sentry/react-native";
 
@@ -12,7 +13,7 @@ export class CachedData {
   static planTypeId: string | null = null;
   static pairedChurchId: string | null = null;
   static currentPlan: PlanInterface | null = null;
-  static planVenue: FeedVenueInterface | null = null;
+  static planInstructions: Instructions | null = null;
 
   static totalCachableItems: number = 0;
   static cachedItems: number = 0;
