@@ -1,0 +1,93 @@
+# Connects FreePlay's B1ChurchProvider to a localhost ChurchApps Api on port
+# 8084, completes the OAuth device-flow handshake via an API approval helper,
+# drills to the demo plan that schedules a real lessons.church venue, and
+# verifies the player loads the first message.
+#
+# REQUIRES (run via .maestro/scripts/run-b1.ps1, not directly):
+#   - Local Api on http://localhost:8084 with `npm run reset-demo` already run
+#     so demo plan PLA00000003 references venue keYYf8Z8ZD1 ("10 Sport Battle"
+#     Small Group) and OAuth client `nsowldn58dk` is seeded.
+#   - FreePlay's node_modules patched so API_BASE3 -> http://localhost:8084
+#     (run setup-b1-localhost.ps1, then restart Metro with --reset-cache).
+#   - adb reverse tcp:8084 tcp:8084 set so the AVD can reach the local Api.
+#   - emulator-5554 booted, FreePlay debug APK installed (`npm run android`).
+#
+# Demo data IDs (from Api/tools/dbScripts/doing/demo.sql):
+#   Worship Ministry group:       GRP0000000a
+#   Sunday Service plan type:     PLT00000001
+#   Upcoming Worship Schedule:    PLA00000003  (contentType=lesson, contentId=keYYf8Z8ZD1)
+
+appId: church.freeplay
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: "providers-card-b1church(-focused)?"
+    timeout: 60000
+- tapOn:
+    id: "providers-card-b1church(-focused)?"
+# Loading state shows briefly while POST /membership/oauth/device/authorize
+# resolves, then awaiting_user state renders the QR + user_code.
+- extendedWaitUntil:
+    visible:
+      id: "provider-device-auth-root"
+    timeout: 30000
+- copyTextFrom:
+    id: "provider-device-auth-user-code"
+- runScript:
+    file: ../scripts/approve-b1-device.js
+# After approval, FreePlay's polling on POST /membership/oauth/token returns an
+# access_token within ~5s (interval=5 from the authorize response). Provider
+# success state renders briefly, then navigates to contentBrowser. Allow up to
+# 20s for the next polling cycle + transition.
+- extendedWaitUntil:
+    visible:
+      id: "content-browser-root-root"
+    timeout: 20000
+# B1Church root returns a single "Ministries" folder with id "ministries-root".
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-ministries-root(-focused)?"
+    timeout: 15000
+- tapOn:
+    id: "cb-folder-ministries-root(-focused)?"
+# Depth 1: Worship Ministry (GRP0000000a) is the only ministry the demo user
+# has access to via Sunday Service plan type.
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-GRP0000000a(-focused)?"
+    timeout: 15000
+- tapOn:
+    id: "cb-folder-GRP0000000a(-focused)?"
+# Depth 2: Plan types — Sunday Service is PLT00000001.
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-PLT00000001(-focused)?"
+    timeout: 15000
+- tapOn:
+    id: "cb-folder-PLT00000001(-focused)?"
+# Depth 3: Plans — PLA00000003 is the upcoming-Sunday plan (the past plan
+# PLA00000002 is filtered out by the provider's "future dates only" sort).
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-PLA00000003(-focused)?"
+    timeout: 15000
+- tapOn:
+    id: "cb-folder-PLA00000003(-focused)?"
+# Plan is a leaf — handleSelectFolder calls getPlaylist and navigates to
+# ProviderDownloadScreen with the resolved files.
+- extendedWaitUntil:
+    visible:
+      id: "pd-root-choosing"
+    timeout: 30000
+- tapOn:
+    id: "pd-stream-btn"
+- extendedWaitUntil:
+    visible:
+      id: "player-root"
+    timeout: 15000
+- extendedWaitUntil:
+    visible:
+      id: "message-ready"
+    timeout: 30000

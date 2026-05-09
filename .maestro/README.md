@@ -88,6 +88,7 @@ maestro test .maestro/flows/ --format junit --output report/
 | 2 — broader coverage | `14-provider-device-auth-cancel`, `17-downloads-list` | 2/2 passing |
 | Lessons.church streaming + download (online) | `30-stream-lessonschurch`, `31-download-lessonschurch` | 2/2 passing |
 | Offline (separate runner — see below) | `flows-offline/32-play-downloaded-offline` | passing via run-offline.ps1 |
+| B1Church → localhost Api (separate runner — see below) | `flows-b1/40-b1church-scheduled-lesson` | passing via run-b1.ps1 |
 | 3 — nice-to-have (incl. real D-pad navigation, requires adb helper) | `20-*` through `23-*` | not started |
 
 ## Offline mode
@@ -102,7 +103,36 @@ pwsh .maestro/scripts/run-offline.ps1
 
 The wrapper toggles `adb shell svc wifi disable` before invoking Maestro and re-enables wifi on exit (even on failure). Metro bundle delivery still works because `adb reverse tcp:8081 tcp:8081` goes through the adb pipe, not the AVD's wifi stack.
 
-**Required ordering**: run `maestro test .maestro/flows/` first to get the download in place, then `pwsh .maestro/scripts/run-offline.ps1`. Don't add a `clearState: true` flow between 31 and the offline run.
+**Required ordering**: run `maestro test .maestro/flows/` first to get the download in place, then `pwsh .maestro/scripts/run-offline.ps1`. Don't add a `clearState: true` flow between 31 and the offline run — that includes the B1 flow (`run-b1.ps1`), which also clears state and wipes the download.
+
+## B1Church → localhost Api
+
+Flow `40-b1church-scheduled-lesson` lives in `.maestro/flows-b1/` and is run via:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .maestro/scripts/run-b1.ps1
+```
+
+The wrapper checks prereqs, applies the `node_modules` patch, and invokes Maestro on `.maestro/flows-b1/`. Uses an OAuth device-flow approval helper at `.maestro/scripts/approve-b1-device.js` to bypass the second-device step (logs in as `demo@b1.church` via the local Api and POSTs `/membership/oauth/device/approve`).
+
+Pre-requisites the wrapper enforces (will fail loudly otherwise):
+- Local Api on `http://localhost:8084` reporting `environment=dev|demo` (`cd Api; npm run dev`).
+- Demo data loaded via `cd Api; npm run reset-demo` so:
+  - OAuth client `nsowldn58dk` exists in `oAuthClients` (seeded by [Api/tools/dbScripts/membership/demo.sql](../../../Api/tools/dbScripts/membership/demo.sql)).
+  - Plan `PLA00000003` exists with `contentId='keYYf8Z8ZD1'` and a `lessonSection` plan item pointing at the venue feed (seeded by [Api/tools/dbScripts/doing/demo.sql](../../../Api/tools/dbScripts/doing/demo.sql)).
+- AVD `emulator-5554` booted, FreePlay debug APK installed.
+
+The wrapper patches `node_modules/@churchapps/content-providers/dist/index.js` to point `API_BASE3` at `http://localhost:8084`. The patch is idempotent and reversible:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .maestro/scripts/setup-b1-localhost.ps1 -Revert
+```
+
+After patching, restart Metro with `--reset-cache` so the bundle picks up the new value, then re-run `npm run android` once (or `adb shell am force-stop church.freeplay` + relaunch).
+
+### Schema dependency
+
+This flow depends on a migration that widens `oAuthTokens.accessToken` from `VARCHAR(1000)` to `TEXT` ([Api/tools/migrations/membership/2026-05-08_oauth_token_widen_access_token.ts](../../../Api/tools/migrations/membership/2026-05-08_oauth_token_widen_access_token.ts)). The demo user's combined-permissions JWT is ~1359 chars, so without this migration the device-flow `/oauth/token` grant returns 500.
 
 See the test plan at `~/.claude/plans/alright-make-a-plan-sprightly-moon.md` for the full inventory and rationale.
 

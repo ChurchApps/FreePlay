@@ -401,7 +401,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
           </View>
 
           {/* User Code */}
-          <View style={{ alignItems: "center" }}>
+          <View style={{ alignItems: "center" }} testID="provider-device-auth-user-code" accessibilityLabel={deviceAuth.user_code}>
             <Text
               style={{
                 color: "rgba(255, 255, 255, 0.4)",
