@@ -1,0 +1,19 @@
+# Cold-boot resilience: launch the app twice in a row without clearing state,
+# verify both reach the providers screen. Catches regressions where AsyncStorage
+# reads on second launch crash or hang the splash routing logic in
+# src/screens/SplashScreen.tsx loadData/navigate.
+
+appId: church.freeplay
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: "providers-root"
+    timeout: 60000
+- stopApp
+- launchApp
+- extendedWaitUntil:
+    visible:
+      id: "providers-root"
+    timeout: 30000

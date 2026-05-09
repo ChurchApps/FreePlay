@@ -1,0 +1,98 @@
+name: E2E Android TV (Maestro)
+
+on:
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'App.tsx'
+      - '.maestro/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'app.json'
+      - 'eas.json'
+      - '.github/workflows/e2e-android-tv.yml'
+  schedule:
+    - cron: '0 7 * * *'  # nightly 07:00 UTC
+  workflow_dispatch:
+
+concurrency:
+  group: e2e-android-tv-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  maestro:
+    name: Tier 1 flows on Google TV API 34
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      EXPO_PUBLIC_FREEPLAY_ENV: staging
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Install Maestro
+        run: |
+          curl -fsSL "https://get.maestro.mobile.dev" | bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+
+      - run: npm ci
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            android/.gradle
+          key: gradle-${{ runner.os }}-${{ hashFiles('android/**/*.gradle*', 'android/**/gradle-wrapper.properties', 'package-lock.json') }}
+          restore-keys: gradle-${{ runner.os }}-
+
+      - name: Prebuild Android (creates android/ from app.json)
+        run: npx expo prebuild --platform android --no-install
+
+      - name: Build debug APK
+        working-directory: android
+        run: ./gradlew assembleDebug -x lint
+
+      # The reactivecircus action handles AVD creation, snapshot caching, and
+      # boot. profile=tv_1080p targets the Google TV form factor; api 34 has
+      # the latest google_apis_playstore image with TV support.
+      - name: Run Maestro flows on Android TV emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis_playstore
+          arch: x86_64
+          profile: tv_1080p
+          emulator-options: -no-window -no-audio -no-snapshot-save -gpu swiftshader_indirect -no-boot-anim -camera-back none
+          disable-animations: true
+          script: |
+            adb wait-for-device
+            adb install -r android/app/build/outputs/apk/debug/app-debug.apk
+            mkdir -p maestro-report
+            maestro test .maestro/flows/ --format junit --output maestro-report/junit.xml
+
+      - name: Upload Maestro artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: maestro-report
+          path: |
+            maestro-report/
+            ~/.maestro/tests/
+          retention-days: 14

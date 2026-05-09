@@ -1,0 +1,26 @@
+# Tap a device-flow provider, wait for the device-auth screen, tap cancel,
+# assert we're back on a screen where the providers nav item is interactable
+# (the cancel button calls sidebarState(true), which expands the sidebar but
+# stays on the device-auth screen — see handleBack in
+# src/screens/ProviderDeviceAuthScreen.tsx). The "Providers" nav text becoming
+# visible is the only observable signal of cancel succeeding.
+
+appId: church.freeplay
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: "providers-card-signpresenter(-focused)?"
+    timeout: 60000
+- tapOn:
+    id: "providers-card-signpresenter(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "provider-device-auth-cancel"
+    timeout: 20000
+- tapOn:
+    id: "provider-device-auth-cancel"
+- extendedWaitUntil:
+    visible: "Providers"
+    timeout: 5000

@@ -149,7 +149,7 @@ export const DownloadsScreen = (props: Props) => {
   useEffect(init, []);
 
   return (
-    <View style={{ ...Styles.menuScreen }}>
+    <View style={{ ...Styles.menuScreen }} testID="downloads-root">
       <MenuHeader headerText={t("downloads.header")} />
       <View style={{ ...Styles.menuWrapper, flex: 90 }}>
         {getCards()}

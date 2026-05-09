@@ -155,6 +155,7 @@ export const NavWrapper = (props: Props) => {
           return (
             <NavItem
               key={providerId}
+              testID={`nav-item-provider-${providerId}`}
               icon={"play-circle-outline"}
               text={provider.name}
               logoUrl={provider.logos?.dark}
@@ -174,6 +175,7 @@ export const NavWrapper = (props: Props) => {
       </View>
       <View style={{ marginBottom: DimensionHelper.hp("2%") }}>
         <NavItem
+          testID="nav-item-downloads"
           icon={"file-download"}
           text={t("nav.downloads")}
           expanded={props.sidebarExpanded}
@@ -191,6 +193,7 @@ export const NavWrapper = (props: Props) => {
           nextFocusDown={findNodeHandle(providersRef.current)}
         />
         <NavItem
+          testID="nav-item-providers"
           icon={"extension"}
           text={t("nav.providers")}
           expanded={props.sidebarExpanded}

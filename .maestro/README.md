@@ -99,3 +99,16 @@ These are deliberately not tested by this suite:
 - Third-party OAuth login UIs (Google, etc.) where we don't control the IdP.
 - Firebase Analytics event emission — verify via Firebase DebugView.
 - Pixel-perfect focus animation timing.
+
+## Currently unreachable from the UI (not blocked, but no entry point exists)
+
+These screens still exist in the codebase but no UI element navigates to them, so end-to-end tests aren't meaningful until an entry point is restored:
+
+- `PlanPairingScreen`, `PlanDownloadScreen` — only reachable from the removed `SelectPairingMode` flow.
+- `OfflineScreen` — only navigated to from `PlanDownloadScreen`.
+- `PrivacyPolicyScreen` — no nav item points to it in `NavWrapper`.
+- The classroom flow (`SelectChurchScreen`, `SelectRoomScreen`, `DownloadScreen`) — screens deleted.
+
+## Discovered behavior worth flagging
+
+- The "cancel" button on `ProviderDeviceAuthScreen` only stops polling and expands the sidebar — it does **not** navigate away from the device-auth screen. The user is left on the same screen with the sidebar open. If that's not the intent, the handler should also call `navigateTo("providers")`.
