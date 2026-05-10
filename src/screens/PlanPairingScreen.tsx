@@ -111,8 +111,10 @@ export const PlanPairingScreen = (props: Props) => {
         console.log("Polling deviceId:", currentDeviceId, "status:", JSON.stringify(status));
 
         if (status.paired && status.contentType === "planType") {
-          CachedData.planTypeId = status.contentId;
-          await CachedData.setAsyncStorage("planTypeId", status.contentId);
+          CachedData.providerId = "b1church";
+          CachedData.scheduleId = status.contentId;
+          await CachedData.setAsyncStorage("providerId", "b1church");
+          await CachedData.setAsyncStorage("scheduleId", status.contentId);
           pollGenerationRef.current += 1;
           setSuccess(true);
           SoundHelper.playChime();

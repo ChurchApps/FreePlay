@@ -132,7 +132,7 @@ export const PlayerScreen = (props: Props) => {
         props.navigateTo("downloads");
       } else if (isProviderMedia && props.providerId) {
         props.navigateTo("contentBrowser", { providerId: props.providerId, folderStack: (props.folderStack || []).slice(0, -1) });
-      } else if (CachedData.planTypeId) {
+      } else if (CachedData.scheduleId) {
         props.navigateTo("planDownload");
       } else {
         props.navigateTo("providers");

@@ -19,7 +19,18 @@ export const SplashScreen = (props: Props) => {
 
   const loadData = async () => {
     CachedData.resolution = await CachedData.getAsyncStorage("resolution") || "720";
-    CachedData.planTypeId = await CachedData.getAsyncStorage("planTypeId");
+
+    CachedData.providerId = await CachedData.getAsyncStorage("providerId");
+    CachedData.scheduleId = await CachedData.getAsyncStorage("scheduleId");
+    if (!CachedData.providerId) {
+      const legacyPlanTypeId = await CachedData.getAsyncStorage("planTypeId");
+      if (legacyPlanTypeId) {
+        CachedData.providerId = "b1church";
+        CachedData.scheduleId = legacyPlanTypeId;
+        await CachedData.setAsyncStorage("providerId", "b1church");
+        await CachedData.setAsyncStorage("scheduleId", legacyPlanTypeId);
+      }
+    }
 
     const connectedProviders: string[] = [];
     for (const providerInfo of getAvailableProviders(FREEPLAY_PROVIDER_IDS)) {
