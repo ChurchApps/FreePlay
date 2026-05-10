@@ -25,6 +25,7 @@ type Props = {
 export const NavWrapper = (props: Props) => {
   const { t } = useTranslation();
   const _browseRef = useRef(null);
+  const planRef = useRef(null);
   const downloadsRef = useRef(null);
   const providersRef = useRef(null);
   const providerRefs = useRef<{[key: string]: any}>({});
@@ -132,6 +133,10 @@ export const NavWrapper = (props: Props) => {
   // Get connected providers for nav items
   const connectedProviders = CachedData.connectedProviders || [];
 
+  // Show "Today's Plan" when the device is paired AND that provider can resolve a current plan
+  const pairedProvider = CachedData.providerId ? getProvider(CachedData.providerId) : null;
+  const showPlanNav = !!(CachedData.providerId && CachedData.scheduleId && pairedProvider?.getCurrentPlan);
+
   const getContent = () => (
     <View
       style={{
@@ -152,13 +157,33 @@ export const NavWrapper = (props: Props) => {
           }}>
           <FreePlayLogo size={logoSize} showText={showLogoText} />
         </View>
+        {/* Today's Plan — only visible when device is paired to a schedule */}
+        {showPlanNav && (
+          <NavItem
+            testID="nav-item-plan"
+            icon={"event"}
+            text={t("nav.plan")}
+            expanded={props.sidebarExpanded}
+            setExpanded={handleSidebarExpand}
+            selected={highlightedItem === "plan"}
+            onPress={() => handleClick("planDownload")}
+            ref={planRef}
+            nextFocusDown={
+              connectedProviders.length > 0
+                ? findNodeHandle(providerRefs.current[connectedProviders[0]])
+                : findNodeHandle(downloadsRef.current)
+            }
+          />
+        )}
         {/* Connected content provider nav items */}
         {connectedProviders.map((providerId: string, index: number) => {
           const provider = getProvider(providerId);
           if (!provider) return null;
 
           // Determine focus targets
-          const prevRef = index === 0 ? null : providerRefs.current[connectedProviders[index - 1]];
+          const prevRef = index === 0
+            ? (showPlanNav ? planRef.current : null)
+            : providerRefs.current[connectedProviders[index - 1]];
           const nextRef = index === connectedProviders.length - 1 ? downloadsRef.current : providerRefs.current[connectedProviders[index + 1]];
 
           return (
