@@ -135,7 +135,7 @@ export const NavWrapper = (props: Props) => {
 
   // Show "Today's Plan" when the device is paired AND that provider can resolve a current plan
   const pairedProvider = CachedData.providerId ? getProvider(CachedData.providerId) : null;
-  const showPlanNav = !!(CachedData.providerId && CachedData.scheduleId && pairedProvider?.getCurrentPlan);
+  const showPlanNav = !!(CachedData.providerId && pairedProvider?.getCurrentPlan);
 
   const getContent = () => (
     <View

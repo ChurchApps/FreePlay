@@ -5,8 +5,8 @@ export interface DeviceInterface {
   id?: string;
   deviceId?: string;
   churchId?: string;
-  contentType?: string;
-  contentId?: string;
+  providerId?: string;
+  pairingData?: unknown;
   pairingCode?: string;
 }
 

@@ -13,7 +13,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import LinearGradient from "react-native-linear-gradient";
 import { SvgUri } from "react-native-svg";
 import { DimensionHelper } from "../helpers/DimensionHelper";
-import { Styles, CachedData, ProviderAuthHelper, Colors, Typography } from "../helpers";
+import { Styles, CachedData, ProviderAuthHelper, Colors, Typography, PlanSync } from "../helpers";
 import { MenuHeader, SkeletonCard } from "../components";
 import { getProvider, getAvailableProviders, FREEPLAY_PROVIDER_IDS } from "../providers";
 import { ProviderInfo } from "../interfaces";
@@ -84,7 +84,19 @@ export const ProvidersScreen = (props: Props) => {
       CachedData.connectedProviders.push(providerId);
     }
     CachedData.activeProvider = providerId;
+    await maybeAutoPairSchedule(providerId);
     props.navigateTo("contentBrowser", { providerId, folderStack: [] });
+  };
+
+  // If the connected provider can serve a current plan and the device isn't paired
+  // through any other flow, adopt this provider so "Today's Plan" works immediately.
+  const maybeAutoPairSchedule = async (providerId: string) => {
+    if (CachedData.providerId) return;
+    const provider = getProvider(providerId);
+    if (!provider?.getCurrentPlan) return;
+    CachedData.providerId = providerId;
+    await CachedData.setAsyncStorage("providerId", providerId);
+    PlanSync.syncCurrentPlan();
   };
 
   const handleSelectProvider = async (providerInfo: ProviderInfo) => {

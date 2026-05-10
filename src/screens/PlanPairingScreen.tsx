@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ApiHelper, CachedData, DeviceHelper, Styles, Colors, Typography } from "../helpers";
 import { SoundHelper } from "../helpers/SoundHelper";
 import { DeviceInterface } from "../interfaces";
+import { getProvider } from "../providers";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import LinearGradient from "react-native-linear-gradient";
 import { PairingCode } from "../components";
@@ -110,11 +111,13 @@ export const PlanPairingScreen = (props: Props) => {
 
         console.log("Polling deviceId:", currentDeviceId, "status:", JSON.stringify(status));
 
-        if (status.paired && status.contentType === "planType") {
-          CachedData.providerId = "b1church";
-          CachedData.scheduleId = status.contentId;
-          await CachedData.setAsyncStorage("providerId", "b1church");
-          await CachedData.setAsyncStorage("scheduleId", status.contentId);
+        if (status.paired && status.providerId) {
+          CachedData.providerId = status.providerId;
+          CachedData.pairingData = status.pairingData ?? null;
+          await CachedData.setAsyncStorage("providerId", status.providerId);
+          await CachedData.setAsyncStorage("pairingData", CachedData.pairingData);
+          const provider = getProvider(status.providerId);
+          provider?.setPairingData?.(CachedData.pairingData);
           pollGenerationRef.current += 1;
           setSuccess(true);
           SoundHelper.playChime();

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text, TouchableHighlight, ActivityIndicator, BackHandler } from "react-native";
+import { View, Text, TouchableHighlight, ActivityIndicator, BackHandler, ImageBackground } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { CachedData, Styles, DownloadIndex, ProviderAuthHelper, StorageManager, Typography } from "../helpers";
@@ -112,14 +112,13 @@ export const PlanDownloadScreen = (props: Props) => {
 
     try {
       const providerId = CachedData.providerId;
-      const scheduleId = CachedData.scheduleId;
-      if (!providerId || !scheduleId) { setLoadFailed(true); setLoading(false); return; }
+      if (!providerId) { setLoadFailed(true); setLoading(false); return; }
 
       const provider = getProvider(providerId);
       if (!provider?.getCurrentPlan) { setLoadFailed(true); setLoading(false); return; }
 
       const auth = await ProviderAuthHelper.refreshIfNeeded(providerId);
-      const currentPlan = await provider.getCurrentPlan(scheduleId, auth);
+      const currentPlan = await provider.getCurrentPlan(auth);
       if (!currentPlan) { setLoadFailed(true); setLoading(false); return; }
 
       setPlan(currentPlan);
@@ -229,14 +228,20 @@ export const PlanDownloadScreen = (props: Props) => {
 
   return (
     <View style={{ ...Styles.menuScreen, flex: 1, flexDirection: "row" }}>
-      <LinearGradient
-        colors={["#1a0f17", "#3d1a36", "#0f0a16"]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={{ flex: 1, width: "100%" }}
-      >
-        {contentOverlay}
-      </LinearGradient>
+      {plan?.thumbnail ? (
+        <ImageBackground source={{ uri: plan.thumbnail }} resizeMode="contain" style={{ flex: 1, width: "100%" }}>
+          {contentOverlay}
+        </ImageBackground>
+      ) : (
+        <LinearGradient
+          colors={["#1a0f17", "#3d1a36", "#0f0a16"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={{ flex: 1, width: "100%" }}
+        >
+          {contentOverlay}
+        </LinearGradient>
+      )}
     </View>
   );
 };

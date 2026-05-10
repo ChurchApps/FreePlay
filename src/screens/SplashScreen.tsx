@@ -4,7 +4,7 @@ import { View, Text, Animated, Easing } from "react-native";
 import { useTranslation } from "react-i18next";
 import { CachedData, Styles, Colors, Typography, PlanSync } from "../helpers";
 import { ProviderAuthHelper } from "../helpers";
-import { getAvailableProviders, FREEPLAY_PROVIDER_IDS } from "../providers";
+import { getAvailableProviders, FREEPLAY_PROVIDER_IDS, getProvider } from "../providers";
 import SoundPlayer from "react-native-sound-player";
 import { FreePlayLogo } from "../components";
 
@@ -21,16 +21,11 @@ export const SplashScreen = (props: Props) => {
     CachedData.resolution = await CachedData.getAsyncStorage("resolution") || "720";
 
     CachedData.providerId = await CachedData.getAsyncStorage("providerId");
-    CachedData.scheduleId = await CachedData.getAsyncStorage("scheduleId");
+    CachedData.pairingData = await CachedData.getAsyncStorage("pairingData");
     CachedData.currentPlan = await CachedData.getAsyncStorage("currentPlan");
-    if (!CachedData.providerId) {
-      const legacyPlanTypeId = await CachedData.getAsyncStorage("planTypeId");
-      if (legacyPlanTypeId) {
-        CachedData.providerId = "b1church";
-        CachedData.scheduleId = legacyPlanTypeId;
-        await CachedData.setAsyncStorage("providerId", "b1church");
-        await CachedData.setAsyncStorage("scheduleId", legacyPlanTypeId);
-      }
+    if (CachedData.providerId && CachedData.pairingData) {
+      const provider = getProvider(CachedData.providerId);
+      provider?.setPairingData?.(CachedData.pairingData);
     }
 
     const connectedProviders: string[] = [];

@@ -24,8 +24,7 @@ export class PlanSync {
     if (CachedData.currentScreen === "planDownload") return;
 
     const providerId = CachedData.providerId;
-    const scheduleId = CachedData.scheduleId;
-    if (!providerId || !scheduleId) return;
+    if (!providerId) return;
 
     const provider = getProvider(providerId);
     if (!provider?.getCurrentPlan) return;
@@ -33,7 +32,7 @@ export class PlanSync {
     syncing = true;
     try {
       const auth = await ProviderAuthHelper.refreshIfNeeded(providerId);
-      const newPlan = await provider.getCurrentPlan(scheduleId, auth);
+      const newPlan = await provider.getCurrentPlan(auth);
       if (!newPlan) return;
 
       if (!planChanged(CachedData.currentPlan, newPlan)) return;

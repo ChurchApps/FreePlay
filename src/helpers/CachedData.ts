@@ -8,7 +8,7 @@ export class CachedData {
 
   // Plan pairing data
   static providerId: string | null = null;
-  static scheduleId: string | null = null;
+  static pairingData: unknown = null;
   static currentPlan: CurrentPlan | null = null;
 
   static totalCachableItems: number = 0;
