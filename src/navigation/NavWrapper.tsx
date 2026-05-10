@@ -9,7 +9,7 @@ import {
 
 import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { CachedData, Styles, Colors } from "../helpers";
+import { CachedData, Styles, Colors, ProviderSettingsHelper } from "../helpers";
 import { SoundHelper } from "../helpers/SoundHelper";
 import { NavItem } from "./NavItem";
 import { getProvider } from "../providers";
@@ -130,8 +130,8 @@ export const NavWrapper = (props: Props) => {
   };
   highlightTab(CachedData.currentScreen);
 
-  // Get connected providers for nav items
-  const connectedProviders = CachedData.connectedProviders || [];
+  // Get connected providers for nav items, hiding any whose Library toggle is off
+  const connectedProviders = (CachedData.connectedProviders || []).filter(id => ProviderSettingsHelper.getLibraryEnabledSync(id));
 
   // Show "Today's Plan" when the device is paired AND that provider can resolve a current plan
   const pairedProvider = CachedData.providerId ? getProvider(CachedData.providerId) : null;

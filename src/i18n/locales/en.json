@@ -31,6 +31,18 @@
       "message": "{{name}} authentication is not yet supported."
     }
   },
+  "providerSettings": {
+    "header": "Provider Settings",
+    "library": {
+      "label": "Browse Library",
+      "description": "Show this provider's content library in the menu"
+    },
+    "autoDownload": {
+      "label": "Auto-Download Today's Lesson",
+      "description": "Use this provider as the source of today's lesson and pre-download files"
+    },
+    "disconnect": "Disconnect"
+  },
   "contentBrowser": {
     "header": "Browse Content",
     "noContent": "No content available",

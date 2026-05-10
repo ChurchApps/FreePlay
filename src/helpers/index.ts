@@ -7,6 +7,7 @@ export { StyleConstants } from "./StyleConstants";
 export { ErrorHelper } from "./ErrorHelper";
 export { DeviceHelper } from "./DeviceHelper";
 export { ProviderAuthHelper } from "./ProviderAuthHelper";
+export { ProviderSettingsHelper } from "./ProviderSettingsHelper";
 export { DownloadIndex } from "./DownloadIndex";
 export { StorageManager } from "./StorageManager";
 export { PlanSync } from "./PlanSync";

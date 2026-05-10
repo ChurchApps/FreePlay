@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { CachedData, Styles } from "../helpers";
-import { SplashScreen, PlayerScreen, PlanPairingScreen, PlanDownloadScreen, ContentBrowserScreen, ProviderDeviceAuthScreen, ProvidersScreen, ProviderFormLoginScreen, ProviderOAuthScreen, ProviderDownloadScreen, DownloadsScreen } from "../screens";
+import { SplashScreen, PlayerScreen, PlanPairingScreen, PlanDownloadScreen, ContentBrowserScreen, ProviderDeviceAuthScreen, ProvidersScreen, ProviderSettingsScreen, ProviderFormLoginScreen, ProviderOAuthScreen, ProviderDownloadScreen, DownloadsScreen } from "../screens";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { View, Platform, TVEventControl, Animated } from "react-native";
 import { NavWrapper } from "./NavWrapper";
@@ -49,6 +49,7 @@ export const Navigator = () => {
     case "providerOAuth": screen = (<ProviderOAuthScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} providerId={currentData?.providerId} />); break;
     case "providerDownload": screen = (<ProviderDownloadScreen navigateTo={handleNavigate} providerId={currentData?.providerId} coverImage={currentData?.coverImage} title={currentData?.title} description={currentData?.description} startIndex={currentData?.startIndex ?? 0} folderStack={currentData?.folderStack} />); break;
     case "providers": screen = (<ProvidersScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
+    case "providerSettings": screen = (<ProviderSettingsScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} providerId={currentData?.providerId} />); break;
 
     case "PrivacyPolicy": screen = (<PrivacyPolicyScreen navigateTo={handleNavigate} /> ); break;
   }

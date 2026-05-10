@@ -18,7 +18,7 @@ import {
   isContentFolder,
   isContentFile
 } from "../interfaces";
-import { Styles, CachedData, ProviderAuthHelper, Colors, Typography } from "../helpers";
+import { Styles, CachedData, ProviderAuthHelper, ProviderSettingsHelper, Colors, Typography } from "../helpers";
 import { MenuHeader, SkeletonCard, EmptyState } from "../components";
 import { getProvider } from "../providers";
 
@@ -79,6 +79,11 @@ export const ContentBrowserScreen = (props: Props) => {
     if (!provider) {
       console.error(`Provider ${props.providerId} not found`);
       setLoading(false);
+      return;
+    }
+
+    if (!ProviderSettingsHelper.getLibraryEnabledSync(props.providerId)) {
+      props.navigateTo("providers");
       return;
     }
 

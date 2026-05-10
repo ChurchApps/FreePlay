@@ -13,7 +13,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import LinearGradient from "react-native-linear-gradient";
 import { SvgUri } from "react-native-svg";
 import { DimensionHelper } from "../helpers/DimensionHelper";
-import { Styles, CachedData, ProviderAuthHelper, Colors, Typography, PlanSync } from "../helpers";
+import { Styles, CachedData, ProviderAuthHelper, ProviderSettingsHelper, Colors, Typography, PlanSync } from "../helpers";
 import { MenuHeader, SkeletonCard } from "../components";
 import { getProvider, getAvailableProviders, FREEPLAY_PROVIDER_IDS } from "../providers";
 import { ProviderInfo } from "../interfaces";
@@ -67,19 +67,9 @@ export const ProvidersScreen = (props: Props) => {
     setConnectedProviders(connected);
   };
 
-  const handleDisconnect = async (providerInfo: ProviderInfo) => {
-    await ProviderAuthHelper.clearAuth(providerInfo.id);
-    await ProviderAuthHelper.setConnectionState(providerInfo.id, false);
-    CachedData.connectedProviders = CachedData.connectedProviders.filter(id => id !== providerInfo.id);
-    CachedData.clearFocusMemory(`contentBrowser_${providerInfo.id}`);
-    if (CachedData.activeProvider === providerInfo.id) {
-      CachedData.activeProvider = null;
-    }
-    setConnectedProviders(prev => prev.filter(id => id !== providerInfo.id));
-  };
-
   const connectAndNavigate = async (providerId: string) => {
     await ProviderAuthHelper.setConnectionState(providerId, true);
+    await ProviderSettingsHelper.setLibraryEnabled(providerId, true);
     if (!CachedData.connectedProviders.includes(providerId)) {
       CachedData.connectedProviders.push(providerId);
     }
@@ -108,20 +98,7 @@ export const ProvidersScreen = (props: Props) => {
     const isConnected = connectedProviders.includes(providerInfo.id);
 
     if (isConnected) {
-      Alert.alert(
-        t("providers.disconnect.title"),
-        t("providers.disconnect.message", { name: providerInfo.name }),
-        [
-          { text: t("common.cancel"), style: "cancel" },
-          {
-            text: t("providers.disconnect.action"),
-            style: "destructive",
-            onPress: async () => {
-              await handleDisconnect(providerInfo);
-            }
-          }
-        ]
-      );
+      props.navigateTo("providerSettings", { providerId: providerInfo.id });
       return;
     }
 

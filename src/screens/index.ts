@@ -7,5 +7,6 @@ export { ProviderDeviceAuthScreen } from "./ProviderDeviceAuthScreen";
 export { ProviderFormLoginScreen } from "./ProviderFormLoginScreen";
 export { ProviderOAuthScreen } from "./ProviderOAuthScreen";
 export { ProvidersScreen } from "./ProvidersScreen";
+export { ProviderSettingsScreen } from "./ProviderSettingsScreen";
 export { ProviderDownloadScreen } from "./ProviderDownloadScreen";
 export { DownloadsScreen } from "./DownloadsScreen";

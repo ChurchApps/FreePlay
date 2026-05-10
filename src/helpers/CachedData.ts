@@ -27,6 +27,7 @@ export class CachedData {
   // Content provider state
   static connectedProviders: string[] = [];
   static activeProvider: string | null = null;
+  static providerSettings: Record<string, { libraryEnabled: boolean }> = {};
 
   // Focus memory: stores last focused item index per screen key
   static lastFocusedIndex: { [screenKey: string]: number } = {};
