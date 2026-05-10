@@ -94,22 +94,6 @@ export const ProviderOAuthScreen = (props: Props) => {
     return digest.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
   };
 
-  // Build the Dropbox auth URL with PKCE (avoids browser-only crypto in OAuthHelper)
-  const buildDropboxAuthUrl = async (codeVerifier: string, redirectUri: string, state: string): Promise<string> => {
-    const config = provider!.config;
-    const codeChallenge = await generateCodeChallenge(codeVerifier);
-    const params = new URLSearchParams({
-      response_type: "code",
-      client_id: config.clientId,
-      redirect_uri: redirectUri,
-      code_challenge: codeChallenge,
-      code_challenge_method: "S256",
-      token_access_type: "offline",
-      state
-    });
-    return `${config.oauthBase}/authorize?${params.toString()}`;
-  };
-
   const initOAuthFlow = async () => {
     if (pollTimeoutRef.current) {
       clearTimeout(pollTimeoutRef.current);
@@ -140,7 +124,9 @@ export const ProviderOAuthScreen = (props: Props) => {
       const codeVerifier = generateCodeVerifier();
       codeVerifierRef.current = codeVerifier;
 
-      const authUrl = await buildDropboxAuthUrl(codeVerifier, redirectUri, sessionCode);
+      const codeChallenge = await generateCodeChallenge(codeVerifier);
+      const dropboxProvider = provider as DropboxProvider;
+      const authUrl = dropboxProvider.buildAuthUrlFromChallenge(codeChallenge, redirectUri, sessionCode);
 
       setFlowState({ status: "awaiting_user", authUrl, expiresIn });
       fadeIn();

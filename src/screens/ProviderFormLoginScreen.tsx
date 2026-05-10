@@ -78,16 +78,12 @@ export const ProviderFormLoginScreen = (props: Props) => {
         return;
       }
 
-      const providerAny = provider as any;
-      if (typeof providerAny.performLogin !== "function") {
+      if (!provider.performLogin) {
         setFlowState({ status: "error", message: t("providerFormLogin.notSupported") });
         return;
       }
 
-      const auth: ContentProviderAuthData | null = await providerAny.performLogin(
-        email.trim(),
-        password
-      );
+      const auth: ContentProviderAuthData | null = await provider.performLogin(email.trim(), password);
 
       if (auth) {
         await ProviderAuthHelper.setAuth(props.providerId, auth);

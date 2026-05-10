@@ -69,9 +69,10 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   // Safety timeout: if video hasn't loaded within 15 seconds, auto-advance
   React.useEffect(() => {
     if (!isLoading || hasError) return;
+    const url = props.file.url || "";
     const isVideo = props.file.fileType === "video"
-      || /\.(mp4|webm)$/i.test((props.file.url || "").split("?")[0])
-      || (props.file.url || "").includes("externalVideos");
+      || /\.(mp4|webm)$/i.test(url.split("?")[0])
+      || url.includes("externalVideos");
     if (!isVideo) return;
 
     const safetyTimer = setTimeout(() => {

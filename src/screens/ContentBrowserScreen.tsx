@@ -22,6 +22,17 @@ import { Styles, CachedData, ProviderAuthHelper, Colors, Typography } from "../h
 import { MenuHeader, SkeletonCard, EmptyState } from "../components";
 import { getProvider } from "../providers";
 
+const toMessageFile = (f: ContentFile) => ({
+  id: f.id,
+  name: f.title,
+  url: f.url,
+  fileType: f.mediaType,
+  loop: f.loop,
+  loopVideo: f.loopVideo,
+  seconds: f.seconds,
+  image: f.thumbnail
+});
+
 type Props = {
   navigateTo(page: string, data?: any): void;
   sidebarState: (state: boolean) => void;
@@ -103,16 +114,7 @@ export const ContentBrowserScreen = (props: Props) => {
       if (version !== requestVersionRef.current) return;
 
       if (files && files.length > 0) {
-        CachedData.messageFiles = files.map(f => ({
-          id: f.id,
-          name: f.title,
-          url: f.url,
-          fileType: f.mediaType,
-          loop: f.loop,
-          loopVideo: f.loopVideo,
-          seconds: f.seconds,
-          image: f.thumbnail
-        }));
+        CachedData.messageFiles = files.map(toMessageFile);
 
         props.navigateTo("providerDownload", {
           providerId: props.providerId,
@@ -140,16 +142,7 @@ export const ContentBrowserScreen = (props: Props) => {
 
     if (files.length > 0) {
       // Folder has files - go to download screen
-      CachedData.messageFiles = files.map(f => ({
-        id: f.id,
-        name: f.title,
-        url: f.url,
-        fileType: f.mediaType,
-        loop: f.loop,
-        loopVideo: f.loopVideo,
-        seconds: f.seconds,
-        image: f.thumbnail
-      }));
+      CachedData.messageFiles = files.map(toMessageFile);
 
       props.navigateTo("providerDownload", {
         providerId: props.providerId,
@@ -172,16 +165,7 @@ export const ContentBrowserScreen = (props: Props) => {
     const files = items.filter((item): item is ContentFile => item.type === "file");
 
     // Convert to playlist format
-    CachedData.messageFiles = files.map(f => ({
-      id: f.id,
-      name: f.title,
-      url: f.url,
-      fileType: f.mediaType,
-      loop: f.loop,
-      loopVideo: f.loopVideo,
-      seconds: f.seconds,
-      image: f.thumbnail
-    }));
+    CachedData.messageFiles = files.map(toMessageFile);
 
     // Find selected file index
     const startIndex = files.findIndex(f => f.id === file.id);

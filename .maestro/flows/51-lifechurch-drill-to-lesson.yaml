@@ -1,0 +1,50 @@
+# Drill into Life.Church → Konnect → first episode → confirm playback starts.
+# Konnect is structured as a single "Episodes" unit so it's a stable, predictable
+# 3-tap drill. The first lesson by alphabetical order is "be-kind-when-you-disagree".
+#
+# Slugs are scraped from www.life.church/sitemap.xml; if Life.Church renames or
+# removes this episode, re-run scripts/scrape-lifechurch.ts and update this flow.
+
+appId: church.freeplay
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: "providers-card-lifechurch(-focused)?"
+    timeout: 60000
+- tapOn:
+    id: "providers-card-lifechurch(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-konnect(-focused)?"
+    timeout: 30000
+- tapOn:
+    id: "cb-folder-konnect(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-episodes(-focused)?"
+    timeout: 15000
+- tapOn:
+    id: "cb-folder-episodes(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-be-kind-when-you-disagree(-focused)?"
+    timeout: 15000
+- tapOn:
+    id: "cb-folder-be-kind-when-you-disagree(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "pd-root-choosing"
+    timeout: 30000
+- tapOn:
+    id: "pd-stream-btn"
+- extendedWaitUntil:
+    visible:
+      id: "player-root"
+    timeout: 15000
+# Confirm the mp4 actually loads in react-native-video, not just the player shell.
+- extendedWaitUntil:
+    visible:
+      id: "message-ready"
+    timeout: 30000

@@ -1,4 +1,4 @@
-# Asserts the providers screen renders all 6 expected provider cards.
+# Asserts the providers screen renders all 7 expected provider cards.
 # Provider IDs are pinned in src/providers/index.ts (FREEPLAY_PROVIDER_IDS) and
 # are intentionally hard-coded here — if a provider is added or removed, this
 # flow should be updated alongside the constant.
@@ -15,7 +15,7 @@ appId: church.freeplay
     visible:
       id: "providers-root"
     timeout: 30000
-# All 6 cards should render. Each id matcher uses an optional -focused suffix
+# All 7 cards should render. Each id matcher uses an optional -focused suffix
 # regex because the currently-focused card's testID flips to "<id>-focused"
 # (per the focus-state convention in src/screens/ProvidersScreen.tsx). Exactly
 # one card is focused at a time, so without the regex the focused card's
@@ -28,6 +28,8 @@ appId: church.freeplay
     id: "providers-card-b1church(-focused)?"
 - assertVisible:
     id: "providers-card-bibleproject(-focused)?"
+- assertVisible:
+    id: "providers-card-lifechurch(-focused)?"
 - assertVisible:
     id: "providers-card-dropbox(-focused)?"
 - assertVisible:

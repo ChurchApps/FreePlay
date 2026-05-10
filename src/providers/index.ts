@@ -18,6 +18,7 @@ export const FREEPLAY_PROVIDER_IDS = [
   "lessonschurch",
   "b1church",
   "bibleproject",
+  "lifechurch",
   "dropbox",
   "jesusfilm"
 ];

@@ -87,6 +87,7 @@ maestro test .maestro/flows/ --format junit --output report/
 | 1 — golden paths (PR-blocking) | `01-splash-loads`, `02-providers-list-renders`, `03-sidebar-toggle`, `04-tap-provider-shows-device-auth`, `05-app-relaunch` | 5/5 passing |
 | 2 — broader coverage | `14-provider-device-auth-cancel`, `17-downloads-list` | 2/2 passing |
 | Lessons.church streaming + download (online) | `30-stream-lessonschurch`, `31-download-lessonschurch` | 2/2 passing |
+| Life.Church kids curriculum browse (online) | `50-lifechurch-series-visible`, `51-lifechurch-drill-to-lesson`, `52-lifechurch-scheduled-lesson` | 3/3 passing |
 | Offline (separate runner — see below) | `flows-offline/32-play-downloaded-offline` | passing via run-offline.ps1 |
 | B1Church → localhost Api (separate runner — see below) | `flows-b1/40-b1church-scheduled-lesson` | passing via run-b1.ps1 |
 | 3 — nice-to-have (incl. real D-pad navigation, requires adb helper) | `20-*` through `23-*` | not started |
