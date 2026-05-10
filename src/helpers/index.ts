@@ -9,3 +9,4 @@ export { DeviceHelper } from "./DeviceHelper";
 export { ProviderAuthHelper } from "./ProviderAuthHelper";
 export { DownloadIndex } from "./DownloadIndex";
 export { StorageManager } from "./StorageManager";
+export { PlanSync } from "./PlanSync";

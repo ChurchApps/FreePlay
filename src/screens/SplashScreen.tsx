@@ -2,7 +2,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { View, Text, Animated, Easing } from "react-native";
 import { useTranslation } from "react-i18next";
-import { CachedData, Styles, Colors, Typography } from "../helpers";
+import { CachedData, Styles, Colors, Typography, PlanSync } from "../helpers";
 import { ProviderAuthHelper } from "../helpers";
 import { getAvailableProviders, FREEPLAY_PROVIDER_IDS } from "../providers";
 import SoundPlayer from "react-native-sound-player";
@@ -22,6 +22,7 @@ export const SplashScreen = (props: Props) => {
 
     CachedData.providerId = await CachedData.getAsyncStorage("providerId");
     CachedData.scheduleId = await CachedData.getAsyncStorage("scheduleId");
+    CachedData.currentPlan = await CachedData.getAsyncStorage("currentPlan");
     if (!CachedData.providerId) {
       const legacyPlanTypeId = await CachedData.getAsyncStorage("planTypeId");
       if (legacyPlanTypeId) {
@@ -107,6 +108,7 @@ export const SplashScreen = (props: Props) => {
     const minDisplayTime = new Promise<void>(resolve => setTimeout(resolve, 1200));
     Promise.all([minDisplayTime, loadData()]).then(([, connectedProviders]) => {
       navigate(connectedProviders);
+      PlanSync.syncCurrentPlan();
     });
 
     return () => { clearTimeout(dotTimer); clearTimeout(connectingTimer); };
