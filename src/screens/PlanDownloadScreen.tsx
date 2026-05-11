@@ -60,6 +60,7 @@ export const PlanDownloadScreen = (props: Props) => {
             <Text style={Styles.H3}>{new Date(plan.serviceDate).toLocaleDateString()}</Text>
           )}
           <TouchableHighlight
+            testID="plan-download-start-btn"
             style={{
               ...Styles.smallMenuClickable,
               backgroundColor: "#C2185B",
@@ -190,7 +191,7 @@ export const PlanDownloadScreen = (props: Props) => {
 
   if (loadFailed) {
     return (
-      <View style={{ ...Styles.menuScreen, flex: 1, width: DimensionHelper.wp("100%"), justifyContent: "center", alignItems: "center" }}>
+      <View testID="plan-download-load-failed" style={{ ...Styles.menuScreen, flex: 1, width: DimensionHelper.wp("100%"), justifyContent: "center", alignItems: "center" }}>
         <Icon name="error-outline" size={DimensionHelper.wp("4%")} color={Colors.error} />
         <Text style={{ ...Styles.bigWhiteText, marginTop: DimensionHelper.hp("2%") }}>
           {t("planDownload.loadFailed")}
@@ -227,7 +228,7 @@ export const PlanDownloadScreen = (props: Props) => {
   );
 
   return (
-    <View style={{ ...Styles.menuScreen, flex: 1, flexDirection: "row" }}>
+    <View testID="plan-download-root" style={{ ...Styles.menuScreen, flex: 1, flexDirection: "row" }}>
       {plan?.thumbnail ? (
         <ImageBackground source={{ uri: plan.thumbnail }} resizeMode="contain" style={{ flex: 1, width: "100%" }}>
           {contentOverlay}

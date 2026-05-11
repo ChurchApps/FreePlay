@@ -1,0 +1,53 @@
+# The Disconnect button on ProviderSettingsScreen replaces the old
+# tap-to-disconnect alert. After disconnect, control returns to the providers
+# grid; the lifechurch sidebar nav item is gone (no longer connected) and
+# tapping the card again triggers a fresh connect (since lifechurch has
+# requiresAuth=false, "fresh connect" lands directly on contentBrowser
+# without an auth screen).
+
+appId: church.freeplay
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: "providers-card-lifechurch(-focused)?"
+    timeout: 60000
+- tapOn:
+    id: "providers-card-lifechurch(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "content-browser-root-root"
+    timeout: 30000
+- pressKey: back
+- extendedWaitUntil:
+    visible:
+      id: "nav-item-providers"
+    timeout: 5000
+- tapOn:
+    id: "nav-item-providers"
+- extendedWaitUntil:
+    visible:
+      id: "providers-root"
+    timeout: 10000
+- tapOn:
+    id: "providers-card-lifechurch(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "provider-settings-disconnect"
+    timeout: 10000
+- tapOn:
+    id: "provider-settings-disconnect"
+# Disconnect navigates back to the providers screen.
+- extendedWaitUntil:
+    visible:
+      id: "providers-root"
+    timeout: 10000
+# Expand sidebar to confirm lifechurch is no longer in the connected list.
+- pressKey: back
+- extendedWaitUntil:
+    visible:
+      id: "nav-item-providers"
+    timeout: 5000
+- assertNotVisible:
+    id: "nav-item-provider-lifechurch"
