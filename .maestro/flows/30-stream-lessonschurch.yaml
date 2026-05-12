@@ -1,0 +1,79 @@
+# Drill into a known small lessons.church lesson and stream it. Asserts the
+# player loads the first message (a video, "10 Sport Battle"), then advances
+# to the second message (an image) and verifies that loads too. This proves
+# both video and image rendering paths in Message.tsx work end-to-end.
+#
+# Lesson choice: West Ridge / Series 01 / "10 Sport Battle" / Small Group venue.
+# Selected because Small Group is the smallest venue with at least one video
+# AND mixed content (1 video + 1 short video + 8 images). IDs are pinned by the
+# lessons.church public API; if the lesson is removed, this flow needs updating.
+#
+# Folder ids (from api.lessons.church/programs/public traversal):
+#   West Ridge program:    CjDN3VrEm3s
+#   Series 01 study:       RrXaNqS4loC
+#   10 Sport Battle lesson: R0WCydnr6BC
+#   Small Group venue:     keYYf8Z8ZD1
+
+appId: church.freeplay
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: "providers-card-lessonschurch(-focused)?"
+    timeout: 60000
+- tapOn:
+    id: "providers-card-lessonschurch(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "content-browser-root-root"
+    timeout: 30000
+# lessonschurch root has two folders: "Lessons" (lessons-root) and "Add-Ons"
+# (addons-root). Navigate into Lessons to see programs.
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-lessons-root(-focused)?"
+    timeout: 15000
+- tapOn:
+    id: "cb-folder-lessons-root(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-CjDN3VrEm3s(-focused)?"
+    timeout: 15000
+- tapOn:
+    id: "cb-folder-CjDN3VrEm3s(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-RrXaNqS4loC(-focused)?"
+    timeout: 15000
+- tapOn:
+    id: "cb-folder-RrXaNqS4loC(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-R0WCydnr6BC(-focused)?"
+    timeout: 15000
+- tapOn:
+    id: "cb-folder-R0WCydnr6BC(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-keYYf8Z8ZD1(-focused)?"
+    timeout: 15000
+- tapOn:
+    id: "cb-folder-keYYf8Z8ZD1(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "pd-root-choosing"
+    timeout: 30000
+- tapOn:
+    id: "pd-stream-btn"
+- extendedWaitUntil:
+    visible:
+      id: "player-root"
+    timeout: 15000
+# First message in this playlist is a video. Wait for it to actually load
+# (Message.tsx flips its testID from message-loading to message-ready when
+# react-native-video fires onLoad).
+- extendedWaitUntil:
+    visible:
+      id: "message-ready"
+    timeout: 30000

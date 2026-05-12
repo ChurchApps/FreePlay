@@ -1,10 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { CachedData, Styles } from "../helpers";
-import { DownloadScreen, SelectChurchScreen, SelectRoomScreen, SplashScreen, PlayerScreen, SelectPairingModeScreen, PlanPairingScreen, PlanDownloadScreen, ContentBrowserScreen, ProviderDeviceAuthScreen, ProvidersScreen, ProviderFormLoginScreen, ProviderOAuthScreen, ProviderDownloadScreen, DownloadsScreen } from "../screens";
-import { ProgramsScreen } from "../screens/ProgramsScreen";
-import { StudiesScreen } from "../screens/StudiesScreen";
-import { LessonsScreen } from "../screens/LessonsScreen";
-import { LessonDetailsScreen } from "../screens/LessonDetailsScreen";
+import { SplashScreen, PlayerScreen, PlanPairingScreen, PlanDownloadScreen, ContentBrowserScreen, ProviderDeviceAuthScreen, ProvidersScreen, ProviderSettingsScreen, ProviderFormLoginScreen, ProviderOAuthScreen, ProviderDownloadScreen, DownloadsScreen } from "../screens";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { View, Platform, TVEventControl, Animated } from "react-native";
 import { NavWrapper } from "./NavWrapper";
@@ -23,11 +19,13 @@ export const Navigator = () => {
     setCurrentScreen(page);
     CachedData.currentScreen = page;
 
-    // Quick fade-in for screen transitions (skip for splash which has its own animation)
+    // Quick fade-in for screen transitions (skip for splash which has its own animation).
+    // Player entry uses a longer 400ms fade so the menu→player transition feels less abrupt.
     if (currentScreen !== "splash") {
+      const duration = page === "player" ? 400 : 200;
       fadeAnim.stopAnimation();
       fadeAnim.setValue(0);
-      Animated.timing(fadeAnim, { toValue: 1, duration: 200, useNativeDriver: true }).start();
+      Animated.timing(fadeAnim, { toValue: 1, duration, useNativeDriver: true }).start();
     }
   };
 
@@ -38,14 +36,10 @@ export const Navigator = () => {
   let screen = <></>;
   switch (currentScreen) {
     case "splash": screen = (<SplashScreen navigateTo={handleNavigate} />); break;
-    case "selectPairingMode": screen = (<SelectPairingModeScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
-    case "selectChurch": screen = (<SelectChurchScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
-    case "selectRoom": screen = (<SelectRoomScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
     case "planPairing": screen = (<PlanPairingScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
     case "planDownload": screen = (<PlanDownloadScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
     case "offline": screen = (<OfflineScreen navigateTo={handleNavigate} />); break;
-    case "download": screen = (<DownloadScreen navigateTo={handleNavigate} />); break;
-    case "player": screen = (<PlayerScreen navigateTo={handleNavigate} program={currentData?.program} study={currentData?.study} lesson={currentData?.lesson} providerId={currentData?.providerId} providerStartIndex={currentData?.providerStartIndex} streaming={currentData?.streaming} folderStack={currentData?.folderStack} downloadedLesson={currentData?.downloadedLesson} />); break;
+    case "player": screen = (<PlayerScreen navigateTo={handleNavigate} providerId={currentData?.providerId} providerStartIndex={currentData?.providerStartIndex} streaming={currentData?.streaming} folderStack={currentData?.folderStack} downloadedLesson={currentData?.downloadedLesson} />); break;
     case "downloads": screen = (<DownloadsScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
 
     // Content Provider screens
@@ -55,11 +49,8 @@ export const Navigator = () => {
     case "providerOAuth": screen = (<ProviderOAuthScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} providerId={currentData?.providerId} />); break;
     case "providerDownload": screen = (<ProviderDownloadScreen navigateTo={handleNavigate} providerId={currentData?.providerId} coverImage={currentData?.coverImage} title={currentData?.title} description={currentData?.description} startIndex={currentData?.startIndex ?? 0} folderStack={currentData?.folderStack} />); break;
     case "providers": screen = (<ProvidersScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
+    case "providerSettings": screen = (<ProviderSettingsScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} providerId={currentData?.providerId} />); break;
 
-    case "programs": screen = (<ProgramsScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
-    case "studies": screen = (<StudiesScreen navigateTo={handleNavigate} program={currentData?.program} />); break;
-    case "lessons": screen = (<LessonsScreen navigateTo={handleNavigate} program={currentData?.program} study={currentData?.study} />); break;
-    case "lessonDetails": screen = (<LessonDetailsScreen navigateTo={handleNavigate} program={currentData?.program} study={currentData?.study} lesson={currentData?.lesson} />); break;
     case "PrivacyPolicy": screen = (<PrivacyPolicyScreen navigateTo={handleNavigate} /> ); break;
   }
 
@@ -89,7 +80,7 @@ export const Navigator = () => {
   useEffect(init, []);
   if (dimensions !== "1,1") console.log(dimensions);
 
-  const fullScreenScreens = ["splash", "player", "download", "lessonDetails", "providerDownload"];
+  const fullScreenScreens = ["splash", "player", "providerDownload"];
 
   if (fullScreenScreens.indexOf(currentScreen) > -1) {
     return (<View style={Styles.splashMaincontainer}>

@@ -1,0 +1,55 @@
+# Verifies a previously-downloaded lesson plays back when the device has no
+# network. Depends on 31-download-lessonschurch having been run first to leave
+# the lesson in DownloadIndex + on disk. Do NOT use clearState here — that
+# would wipe the download.
+#
+# The runner script (.maestro/scripts/run-offline.ps1) disables wifi+data on
+# the AVD before invoking maestro, then re-enables it on exit (even on
+# failure). adb reverse for Metro keeps working because it goes through the
+# adb pipe, not the AVD's wifi/data stack — so the dev bundle still loads.
+# Real network calls (api.lessons.church, vimeo CDN, content.lessons.church)
+# fail. The downloaded video must therefore play from RNFS.CachesDirectoryPath.
+#
+# Splash will route to contentBrowser (lessonschurch is now connected). That
+# screen will fail to load programs (no network) but its hardware-back handler
+# still works — pressing back opens the sidebar, from which Downloads is
+# tapable.
+
+appId: church.freeplay
+---
+- launchApp
+- extendedWaitUntil:
+    visible:
+      id: "splash-root"
+    timeout: 60000
+# Splash routes to contentBrowser because lessonschurch was set as connected
+# by flow 31. The browse() call will time out (no network), but the root
+# View renders immediately around the loading skeletons.
+- extendedWaitUntil:
+    visible:
+      id: "content-browser-root-root"
+    timeout: 30000
+- pressKey: back
+- extendedWaitUntil:
+    visible:
+      id: "nav-item-downloads"
+    timeout: 5000
+- tapOn:
+    id: "nav-item-downloads"
+- extendedWaitUntil:
+    visible:
+      id: "downloads-root"
+    timeout: 10000
+# Tap the download card by its title text. The title rendered on the card is
+# what was passed as `title` to ProviderDownloadScreen — which is the FOLDER
+# title from ContentBrowserScreen.handleSelectFolder, i.e. the venue name
+# "Small Group" (NOT the lesson title "10 Sport Battle").
+- tapOn: "Small Group"
+- extendedWaitUntil:
+    visible:
+      id: "player-root"
+    timeout: 15000
+- extendedWaitUntil:
+    visible:
+      id: "message-ready"
+    timeout: 30000

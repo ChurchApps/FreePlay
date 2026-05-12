@@ -7,6 +7,7 @@
     "version": "Version: {{version}}"
   },
   "nav": {
+    "plan": "Today's Plan",
     "downloads": "Downloads",
     "providers": "Providers"
   },
@@ -29,6 +30,18 @@
       "title": "Not Supported",
       "message": "{{name}} authentication is not yet supported."
     }
+  },
+  "providerSettings": {
+    "header": "Provider Settings",
+    "library": {
+      "label": "Browse Library",
+      "description": "Show this provider's content library in the menu"
+    },
+    "autoDownload": {
+      "label": "Auto-Download Today's Lesson",
+      "description": "Use this provider as the source of today's lesson and pre-download files"
+    },
+    "disconnect": "Disconnect"
   },
   "contentBrowser": {
     "header": "Browse Content",
@@ -61,7 +74,9 @@
     "instructions": "Scan the QR code with your phone, or visit",
     "instructionsLine2": "and enter the code below",
     "enterCode": "Enter this code:",
-    "waiting": "Waiting for authorization",
+    "waiting": "Waiting for confirmation",
+    "secondary": "Check your phone to confirm",
+    "regenerate": "Generate New Code",
     "expiresIn": "Code expires in {{minutes}} minutes",
     "cancel": "Cancel"
   },
@@ -81,7 +96,8 @@
     "fallbackProvider": "Provider",
     "instructionsLine1": "Scan the QR code with your phone to authorize access.",
     "instructionsLine2": "Your TV will connect automatically once you approve.",
-    "waiting": "Waiting for authorization",
+    "waiting": "Waiting for confirmation",
+    "secondary": "Check your phone to confirm",
     "expiresIn": "Session expires in {{minutes}} minutes",
     "cancel": "Cancel"
   },
@@ -104,13 +120,6 @@
     "signIn": "Sign In",
     "cancel": "Cancel"
   },
-  "download": {
-    "startLesson": "Start Lesson",
-    "downloadingItem": "Downloading item {{current}} of {{total}}",
-    "scheduleLoadFailed": "The schedule could not be loaded.",
-    "scheduleLoadFailedSub": "Make sure a lesson is scheduled for this class.",
-    "tryAgain": "Try Again"
-  },
   "downloads": {
     "header": "Downloads",
     "noDownloads": "No downloads yet"
@@ -128,48 +137,18 @@
     "generating": "Generating pairing code...",
     "tryAgain": "Try Again",
     "instructions": "Enter this code in the Plan Type section of B1Admin",
-    "waiting": "Waiting for connection",
-    "searchByName": "or search by church name"
-  },
-  "selectPairingMode": {
-    "header": "Select Pairing Mode",
-    "classroomTitle": "Pair to Classroom",
-    "classroomDescription": "Connect to a specific classroom TV and display scheduled lessons automatically",
-    "planTitle": "Pair to Plan",
-    "planDescription": "Follow your church's weekly plan and browse content on demand"
-  },
-  "selectChurch": {
-    "header": "Find Your Church",
-    "searchPlaceholder": "Search church name",
-    "minLetters": "Enter at least four letters of your church name to start searching.",
-    "noResults": "No results found.  Search again or register your church at https://freeplay.church/."
-  },
-  "selectRoom": {
-    "header": "Select a Classroom",
-    "noClassrooms": "No classrooms found",
-    "configureRooms": "Configure your classrooms at freeplay.church."
+    "waiting": "Waiting for confirmation",
+    "secondary": "We'll connect automatically once accepted",
+    "regenerate": "Generate New Code",
+    "connected": "Connected!",
+    "loadingPlan": "Loading your plan..."
   },
   "offline": {
     "title": "Offline:",
     "subtitle": "Internet access is currently unavailable",
-    "canPlayDownloaded": "You can still play the lesson that was downloaded in advance.",
-    "notDownloaded": "Unfortunately the lesson hasn't been downloaded for offline play yet.  Please check your connection and try again.",
-    "startLesson": "Start Lesson"
-  },
-  "lessons": {
-    "header": "Select a Lesson",
-    "noLessons": "No lessons available"
-  },
-  "lessonDetails": {
-    "version": "Version: {{version}}"
-  },
-  "studies": {
-    "header": "Select a Study",
-    "noStudies": "No studies available"
-  },
-  "programs": {
-    "header": "Browse Programs",
-    "noPrograms": "No programs available"
+    "canPlayDownloaded": "You can still play what was downloaded in advance.",
+    "notDownloaded": "Nothing has been downloaded for offline play yet. Please check your connection and try again.",
+    "start": "Start"
   },
   "privacyPolicy": {
     "header": "Privacy Policy",
@@ -177,14 +156,21 @@
     "url": "churchapps.org/privacy"
   },
   "selectMessage": {
-    "header": "Select a Message"
+    "header": "Select a Message",
+    "nowPlaying": "NOW PLAYING"
   },
   "message": {
     "loadingVideo": "Loading video...",
+    "loadingImage": "Loading image...",
     "videoFailed": "Video failed to load",
-    "skippingNext": "Skipping to next item..."
+    "skippingNext": "Skipping to next item...",
+    "playbackFailed": "Playback failed",
+    "playbackFailedSub": "Press back to return"
   },
   "menu": {
     "back": "Back"
+  },
+  "splash": {
+    "connecting": "Connecting..."
   }
 }

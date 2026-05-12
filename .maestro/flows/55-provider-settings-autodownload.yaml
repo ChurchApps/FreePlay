@@ -1,0 +1,71 @@
+# Connecting a provider that exposes getCurrentPlan causes the device to
+# auto-pair to that provider (CachedData.providerId is set). The
+# Auto-Download row in ProviderSettings reflects this state and the
+# "Today's Plan" sidebar item becomes visible. Tapping it must load the
+# plan (NOT show "plan could not be loaded").
+#
+# We pick Life.Church here because it has requiresAuth=false (single-tap
+# connect) and getCurrentPlan resolves to the latest bundled scheduledLesson
+# (e.g. loop-2026-05-10). If that data is stale, re-run
+# scripts/scrape-lifechurch.ts --schedule-only in the package repo and
+# republish.
+
+appId: church.freeplay
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: "providers-card-lifechurch(-focused)?"
+    timeout: 60000
+# First tap: connects (no auth) AND auto-pairs because Life.Church has
+# getCurrentPlan and providerId was null after clearState.
+- tapOn:
+    id: "providers-card-lifechurch(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "content-browser-root-root"
+    timeout: 30000
+# Back at root expands the sidebar. The plan nav item should already be
+# visible courtesy of auto-pair — no toggle interaction required.
+- pressKey: back
+- extendedWaitUntil:
+    visible:
+      id: "nav-item-plan"
+    timeout: 10000
+# The Auto-Download row should reflect the auto-pair (ON) for any future
+# regression where settings drift from the paired state.
+- tapOn:
+    id: "nav-item-providers"
+- extendedWaitUntil:
+    visible:
+      id: "providers-root"
+    timeout: 10000
+- tapOn:
+    id: "providers-card-lifechurch(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "provider-settings-autoDownload"
+    timeout: 10000
+- pressKey: back
+- extendedWaitUntil:
+    visible:
+      id: "providers-root"
+    timeout: 10000
+- pressKey: back
+- extendedWaitUntil:
+    visible:
+      id: "nav-item-plan"
+    timeout: 10000
+- tapOn:
+    id: "nav-item-plan"
+- extendedWaitUntil:
+    visible:
+      id: "plan-download-root"
+    timeout: 30000
+- assertNotVisible:
+    id: "plan-download-load-failed"
+- extendedWaitUntil:
+    visible:
+      id: "plan-download-start-btn"
+    timeout: 60000

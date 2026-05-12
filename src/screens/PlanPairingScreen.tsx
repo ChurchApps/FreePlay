@@ -1,10 +1,13 @@
-import React, { useEffect, useState, useRef, useMemo } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { View, Text, TouchableHighlight, BackHandler, ActivityIndicator, Animated, Easing } from "react-native";
 import { useTranslation } from "react-i18next";
-import { ApiHelper, CachedData, DeviceHelper, Styles } from "../helpers";
+import { ApiHelper, CachedData, DeviceHelper, Styles, Colors, Typography } from "../helpers";
+import { SoundHelper } from "../helpers/SoundHelper";
 import { DeviceInterface } from "../interfaces";
+import { getProvider } from "../providers";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import LinearGradient from "react-native-linear-gradient";
+import { PairingCode } from "../components";
 
 type Props = {
   navigateTo(page: string): void;
@@ -17,6 +20,7 @@ export const PlanPairingScreen = (props: Props) => {
   const [pairingCode, setPairingCode] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState(false);
   const pollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const deviceIdRef = useRef<string>("");
   const pollGenerationRef = useRef<number>(0);
@@ -107,12 +111,17 @@ export const PlanPairingScreen = (props: Props) => {
 
         console.log("Polling deviceId:", currentDeviceId, "status:", JSON.stringify(status));
 
-        if (status.paired && status.contentType === "planType") {
-          CachedData.planTypeId = status.contentId;
-          CachedData.pairedChurchId = status.churchId;
-          await CachedData.setAsyncStorage("planTypeId", status.contentId);
-          await CachedData.setAsyncStorage("pairedChurchId", status.churchId);
-          props.navigateTo("planDownload");
+        if (status.paired && status.providerId) {
+          CachedData.providerId = status.providerId;
+          CachedData.pairingData = status.pairingData ?? null;
+          await CachedData.setAsyncStorage("providerId", status.providerId);
+          await CachedData.setAsyncStorage("pairingData", CachedData.pairingData);
+          const provider = getProvider(status.providerId);
+          provider?.setPairingData?.(CachedData.pairingData);
+          pollGenerationRef.current += 1;
+          setSuccess(true);
+          SoundHelper.playChime();
+          setTimeout(() => props.navigateTo("planDownload"), 2000);
         } else {
           pollTimeoutRef.current = setTimeout(poll, 3000);
         }
@@ -131,13 +140,6 @@ export const PlanPairingScreen = (props: Props) => {
     props.sidebarState(true);
   };
 
-  const handleSearchByName = () => {
-    if (pollTimeoutRef.current) {
-      clearTimeout(pollTimeoutRef.current);
-    }
-    props.navigateTo("selectChurch");
-  };
-
   const init = () => {
     initPairing();
     const backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
@@ -153,36 +155,6 @@ export const PlanPairingScreen = (props: Props) => {
   };
 
   useEffect(init, []);
-
-  // Render individual code character with styling
-  const renderCodeCharacter = (char: string, index: number) => (
-    <View
-      key={index}
-      style={{
-        backgroundColor: "rgba(233, 30, 99, 0.08)",
-        borderRadius: DimensionHelper.wp("1%"),
-        paddingVertical: DimensionHelper.hp("2.5%"),
-        paddingHorizontal: DimensionHelper.wp("3%"),
-        marginHorizontal: DimensionHelper.wp("0.5%"),
-        borderWidth: 1,
-        borderColor: "rgba(233, 30, 99, 0.2)"
-      }}
-    >
-      <Text
-        style={{
-          fontSize: DimensionHelper.wp("7%"),
-          fontWeight: "800",
-          fontFamily: "monospace",
-          color: "#E91E63",
-          textShadowColor: "rgba(233, 30, 99, 0.5)",
-          textShadowOffset: { width: 0, height: 0 },
-          textShadowRadius: 20
-        }}
-      >
-        {char}
-      </Text>
-    </View>
-  );
 
   // Loading state
   if (loading) {
@@ -202,6 +174,37 @@ export const PlanPairingScreen = (props: Props) => {
             }}
           >
             {t("planPairing.generating")}
+          </Text>
+        </LinearGradient>
+      </View>
+    );
+  }
+
+  // Success state
+  if (success) {
+    return (
+      <View style={Styles.menuScreen}>
+        <LinearGradient
+          colors={["#1a0f17", "#160a14", "#100714"]}
+          style={{ flex: 1, width: "100%", alignItems: "center", justifyContent: "center" }}
+        >
+          <Text
+            style={{
+              color: Colors.success,
+              fontSize: Typography.heading3,
+              fontWeight: "bold"
+            }}
+          >
+            {t("planPairing.connected")}
+          </Text>
+          <Text
+            style={{
+              color: "rgba(255, 255, 255, 0.6)",
+              fontSize: Typography.bodySmall,
+              marginTop: DimensionHelper.hp("2%")
+            }}
+          >
+            {t("planPairing.loadingPlan")}
           </Text>
         </LinearGradient>
       </View>
@@ -282,11 +285,7 @@ export const PlanPairingScreen = (props: Props) => {
           </Text>
 
           {/* Hero pairing code */}
-          {useMemo(() => (
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              {pairingCode.split("").map((char, index) => renderCodeCharacter(char, index))}
-            </View>
-          ), [pairingCode])}
+          <PairingCode code={pairingCode} />
 
           {/* Waiting indicator with pulsing animation */}
           <Animated.View
@@ -302,53 +301,58 @@ export const PlanPairingScreen = (props: Props) => {
                 width: 8,
                 height: 8,
                 borderRadius: 4,
-                backgroundColor: "#E91E63",
+                backgroundColor: Colors.primary,
                 marginRight: DimensionHelper.wp("1%")
               }}
             />
             <Text
               style={{
                 color: "rgba(255, 255, 255, 0.4)",
-                fontSize: DimensionHelper.wp("1.4%"),
+                fontSize: Typography.labelMedium,
                 letterSpacing: 0.5
               }}
             >
               {t("planPairing.waiting")}
             </Text>
           </Animated.View>
-        </Animated.View>
 
-        {/* Secondary action - very subtle at bottom */}
-        <View
-          style={{
-            position: "absolute",
-            bottom: DimensionHelper.hp("4%"),
-            left: 0,
-            right: 0,
-            alignItems: "center"
-          }}
-        >
+          {/* Secondary instruction */}
+          <Text
+            style={{
+              color: "rgba(255, 255, 255, 0.5)",
+              fontSize: Typography.labelMedium,
+              marginTop: DimensionHelper.hp("1.5%"),
+              letterSpacing: 0.3
+            }}
+          >
+            {t("planPairing.secondary")}
+          </Text>
+
+          {/* Low-focus regenerate button */}
           <TouchableHighlight
-            onPress={handleSearchByName}
+            onPress={initPairing}
             underlayColor="rgba(255, 255, 255, 0.1)"
             hasTVPreferredFocus={false}
             style={{
-              paddingVertical: DimensionHelper.hp("1%"),
-              paddingHorizontal: DimensionHelper.wp("2%"),
-              borderRadius: 4
+              marginTop: DimensionHelper.hp("4%"),
+              paddingVertical: DimensionHelper.hp("1.2%"),
+              paddingHorizontal: DimensionHelper.wp("2.5%"),
+              borderRadius: 6,
+              borderWidth: 1,
+              borderColor: "rgba(255, 255, 255, 0.15)"
             }}
           >
             <Text
               style={{
-                color: "rgba(255, 255, 255, 0.35)",
-                fontSize: DimensionHelper.wp("1.2%"),
+                color: "rgba(255, 255, 255, 0.5)",
+                fontSize: Typography.labelMedium,
                 letterSpacing: 0.3
               }}
             >
-              {t("planPairing.searchByName")}
+              {t("planPairing.regenerate")}
             </Text>
           </TouchableHighlight>
-        </View>
+        </Animated.View>
       </LinearGradient>
     </View>
   );

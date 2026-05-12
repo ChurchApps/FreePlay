@@ -13,7 +13,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import LinearGradient from "react-native-linear-gradient";
 import { SvgUri } from "react-native-svg";
 import { DimensionHelper } from "../helpers/DimensionHelper";
-import { Styles, CachedData, ProviderAuthHelper, Colors } from "../helpers";
+import { Styles, CachedData, ProviderAuthHelper, ProviderSettingsHelper, Colors, Typography, PlanSync } from "../helpers";
 import { MenuHeader, SkeletonCard } from "../components";
 import { getProvider, getAvailableProviders, FREEPLAY_PROVIDER_IDS } from "../providers";
 import { ProviderInfo } from "../interfaces";
@@ -67,24 +67,26 @@ export const ProvidersScreen = (props: Props) => {
     setConnectedProviders(connected);
   };
 
-  const handleDisconnect = async (providerInfo: ProviderInfo) => {
-    await ProviderAuthHelper.clearAuth(providerInfo.id);
-    await ProviderAuthHelper.setConnectionState(providerInfo.id, false);
-    CachedData.connectedProviders = CachedData.connectedProviders.filter(id => id !== providerInfo.id);
-    CachedData.clearFocusMemory(`contentBrowser_${providerInfo.id}`);
-    if (CachedData.activeProvider === providerInfo.id) {
-      CachedData.activeProvider = null;
-    }
-    setConnectedProviders(prev => prev.filter(id => id !== providerInfo.id));
-  };
-
   const connectAndNavigate = async (providerId: string) => {
     await ProviderAuthHelper.setConnectionState(providerId, true);
+    await ProviderSettingsHelper.setLibraryEnabled(providerId, true);
     if (!CachedData.connectedProviders.includes(providerId)) {
       CachedData.connectedProviders.push(providerId);
     }
     CachedData.activeProvider = providerId;
+    await maybeAutoPairSchedule(providerId);
     props.navigateTo("contentBrowser", { providerId, folderStack: [] });
+  };
+
+  // If the connected provider can serve a current plan and the device isn't paired
+  // through any other flow, adopt this provider so "Today's Plan" works immediately.
+  const maybeAutoPairSchedule = async (providerId: string) => {
+    if (CachedData.providerId) return;
+    const provider = getProvider(providerId);
+    if (!provider?.getCurrentPlan) return;
+    CachedData.providerId = providerId;
+    await CachedData.setAsyncStorage("providerId", providerId);
+    PlanSync.syncCurrentPlan();
   };
 
   const handleSelectProvider = async (providerInfo: ProviderInfo) => {
@@ -96,20 +98,7 @@ export const ProvidersScreen = (props: Props) => {
     const isConnected = connectedProviders.includes(providerInfo.id);
 
     if (isConnected) {
-      Alert.alert(
-        t("providers.disconnect.title"),
-        t("providers.disconnect.message", { name: providerInfo.name }),
-        [
-          { text: t("common.cancel"), style: "cancel" },
-          {
-            text: t("providers.disconnect.action"),
-            style: "destructive",
-            onPress: async () => {
-              await handleDisconnect(providerInfo);
-            }
-          }
-        ]
-      );
+      props.navigateTo("providerSettings", { providerId: providerInfo.id });
       return;
     }
 
@@ -144,6 +133,7 @@ export const ProvidersScreen = (props: Props) => {
 
     return (
       <TouchableHighlight
+        testID={`providers-card-${providerInfo.id}${isFocused ? "-focused" : ""}`}
         style={{
           ...styles.item,
           ...(isFocused ? { transform: [{ scale: 1.03 }] } : {})
@@ -238,7 +228,7 @@ export const ProvidersScreen = (props: Props) => {
                 <Text
                   style={{
                     color: Colors.success,
-                    fontSize: DimensionHelper.wp("1%"),
+                    fontSize: Typography.labelSmall,
                     marginLeft: 4
                   }}>
                   {t("common.connected")}
@@ -249,7 +239,7 @@ export const ProvidersScreen = (props: Props) => {
               <Text
                 style={{
                   color: Colors.textDimmed,
-                  fontSize: DimensionHelper.wp("0.9%"),
+                  fontSize: Typography.labelSmall,
                   marginTop: DimensionHelper.hp("0.5%")
                 }}>
                 {t("common.comingSoon")}
@@ -320,12 +310,12 @@ export const ProvidersScreen = (props: Props) => {
   const pkg = require("../../package.json");
 
   return (
-    <View style={{ ...Styles.menuScreen }}>
+    <View style={{ ...Styles.menuScreen }} testID="providers-root">
       <View style={{ flexDirection: "row", alignItems: "center", borderBottomWidth: 1, borderBottomColor: Colors.borderAccent, backgroundColor: Colors.surface }}>
         <View style={{ flex: 1 }}>
           <MenuHeader headerText={t("providers.header")} noBorder />
         </View>
-        <Text style={{ color: Colors.textDimmed, fontSize: DimensionHelper.wp("0.9%"), paddingRight: DimensionHelper.wp("2%") }}>
+        <Text style={{ color: Colors.textDimmed, fontSize: Typography.labelSmall, paddingRight: DimensionHelper.wp("2%") }}>
           v{pkg.version}
         </Text>
       </View>

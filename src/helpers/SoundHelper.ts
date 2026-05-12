@@ -10,4 +10,22 @@ export class SoundHelper {
       // Sound file may not exist yet — fail silently
     }
   }
+
+  // Play a success chime when an auth/pairing flow completes
+  static playChime() {
+    try {
+      SoundPlayer.playSoundFile("chime", "wav");
+    } catch {
+      // Sound file may not exist yet — fail silently
+    }
+  }
+
+  // Play a subtle whoosh when the sidebar opens or closes
+  static playWhoosh() {
+    try {
+      SoundPlayer.playSoundFile("whoosh", "wav");
+    } catch {
+      // Sound file may not exist yet — fail silently
+    }
+  }
 }

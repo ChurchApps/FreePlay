@@ -1,0 +1,81 @@
+# Same nav path as 30, but tap Download instead of Stream. Waits for the
+# download to complete (the screen flips to mode=ready), then taps Play and
+# verifies the downloaded video plays back. This proves the full
+# fetch-and-cache pipeline AND that downloaded files play correctly with
+# `props.streaming === false` (so `downloaded` flag in Message.tsx uses the
+# file:// path against RNFS.CachesDirectoryPath).
+#
+# State left after this flow is what 32-play-downloaded-offline needs:
+# DownloadIndex entry + cached files on disk. Do NOT add a flow with
+# clearState between this and 32 in alphabetical order.
+#
+# Download size: ~200MB (one ~17min 720p MP4 + one 5s clip + 8 PNGs). On a
+# host-LAN-speed AVD this typically completes in 60-120s, hence the long
+# timeout on the download-complete assertion.
+
+appId: church.freeplay
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: "providers-card-lessonschurch(-focused)?"
+    timeout: 60000
+- tapOn:
+    id: "providers-card-lessonschurch(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-lessons-root(-focused)?"
+    timeout: 30000
+- tapOn:
+    id: "cb-folder-lessons-root(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-CjDN3VrEm3s(-focused)?"
+    timeout: 15000
+- tapOn:
+    id: "cb-folder-CjDN3VrEm3s(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-RrXaNqS4loC(-focused)?"
+    timeout: 15000
+- tapOn:
+    id: "cb-folder-RrXaNqS4loC(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-R0WCydnr6BC(-focused)?"
+    timeout: 15000
+- tapOn:
+    id: "cb-folder-R0WCydnr6BC(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-keYYf8Z8ZD1(-focused)?"
+    timeout: 15000
+- tapOn:
+    id: "cb-folder-keYYf8Z8ZD1(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "pd-root-choosing"
+    timeout: 30000
+- tapOn:
+    id: "pd-download-btn"
+- extendedWaitUntil:
+    visible:
+      id: "pd-root-downloading"
+    timeout: 10000
+# Download all files. Completion flips testID to pd-root-ready; allow up to
+# 3 minutes for the worst-case (~200MB over a slow connection).
+- extendedWaitUntil:
+    visible:
+      id: "pd-root-ready"
+    timeout: 180000
+- tapOn:
+    id: "pd-play-btn"
+- extendedWaitUntil:
+    visible:
+      id: "player-root"
+    timeout: 15000
+- extendedWaitUntil:
+    visible:
+      id: "message-ready"
+    timeout: 30000

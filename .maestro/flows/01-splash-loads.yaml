@@ -1,0 +1,21 @@
+# Smoke test: app launches, splash renders, navigates to first post-splash screen.
+# On a fresh install with no connected providers, SplashScreen routes to providers
+# (see src/screens/SplashScreen.tsx loadData/navigate). If a provider is already
+# connected from a prior run, splash routes to contentBrowser instead — both are
+# acceptable signals that the app booted past splash.
+
+appId: church.freeplay
+---
+- launchApp:
+    clearState: true
+# Cold launch can take 30s+ when Metro is serving the dev bundle.
+- extendedWaitUntil:
+    visible:
+      id: "splash-root"
+    timeout: 60000
+# Splash enforces a 1.2s minimum display before navigating; allow margin
+# for AsyncStorage reads and provider connection checks on cold start.
+- extendedWaitUntil:
+    visible:
+      id: "providers-root"
+    timeout: 30000

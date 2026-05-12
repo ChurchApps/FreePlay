@@ -9,12 +9,14 @@ import {
   Easing
 } from "react-native";
 import { useTranslation } from "react-i18next";
-import { Styles, CachedData, ProviderAuthHelper, Colors } from "../helpers";
+import { Styles, CachedData, ProviderAuthHelper, Colors, Typography } from "../helpers";
+import { SoundHelper } from "../helpers/SoundHelper";
 import { DeviceAuthorizationResponse, DeviceFlowState, ContentProviderAuthData, DeviceFlowHelper } from "../interfaces";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import LinearGradient from "react-native-linear-gradient";
 import { getProvider } from "../providers";
 import QRCode from "react-native-qrcode-svg";
+import { PairingCode } from "../components";
 
 const deviceFlowHelper = new DeviceFlowHelper();
 
@@ -169,6 +171,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
       await ProviderAuthHelper.setAuth(props.providerId, result as ContentProviderAuthData);
       await ProviderAuthHelper.setConnectionState(props.providerId, true);
       setFlowState({ status: "success" });
+      SoundHelper.playChime();
 
       if (!CachedData.connectedProviders.includes(props.providerId)) {
         CachedData.connectedProviders.push(props.providerId);
@@ -177,7 +180,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
 
       setTimeout(() => {
         props.navigateTo("contentBrowser", { providerId: props.providerId, folderStack: [] });
-      }, 1000);
+      }, 2000);
     };
 
     const initialDelay = deviceFlowHelper.calculatePollDelay(baseInterval, 0);
@@ -207,37 +210,10 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
     };
   }, []);
 
-  const renderCodeCharacter = (char: string, index: number) => (
-    <View
-      key={index}
-      style={{
-        backgroundColor: Colors.hoverBackground,
-        borderRadius: DimensionHelper.wp("0.8%"),
-        paddingVertical: DimensionHelper.hp("1.5%"),
-        paddingHorizontal: DimensionHelper.wp("2%"),
-        marginHorizontal: DimensionHelper.wp("0.3%"),
-        borderWidth: 1,
-        borderColor: Colors.borderAccent
-      }}>
-      <Text
-        style={{
-          fontSize: DimensionHelper.wp("5%"),
-          fontWeight: "800",
-          fontFamily: "monospace",
-          color: Colors.primary,
-          textShadowColor: "rgba(233, 30, 99, 0.5)",
-          textShadowOffset: { width: 0, height: 0 },
-          textShadowRadius: 20
-        }}>
-        {char}
-      </Text>
-    </View>
-  );
-
   // Loading state
   if (flowState.status === "loading") {
     return (
-      <View style={Styles.menuScreen}>
+      <View style={Styles.menuScreen} testID="provider-device-auth-loading">
         <LinearGradient
           colors={["#1a0f17", "#160a14", "#100714"]}
           style={{
@@ -346,7 +322,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
     deviceAuth.verification_uri_complete || deviceAuth.verification_uri;
 
   return (
-    <View style={Styles.menuScreen}>
+    <View style={Styles.menuScreen} testID="provider-device-auth-root">
       <LinearGradient
         colors={["#1a0f17", "#160a14", "#0d0510"]}
         style={{ flex: 1, width: "100%" }}>
@@ -401,32 +377,16 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
           </View>
 
           {/* User Code */}
-          <View style={{ alignItems: "center" }}>
+          <View style={{ alignItems: "center" }} testID="provider-device-auth-user-code" accessibilityLabel={deviceAuth.user_code}>
             <Text
               style={{
                 color: "rgba(255, 255, 255, 0.4)",
-                fontSize: DimensionHelper.wp("1.2%"),
+                fontSize: Typography.labelSmall,
                 marginBottom: DimensionHelper.hp("1%")
               }}>
               {t("providerDeviceAuth.enterCode")}
             </Text>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              {deviceAuth.user_code.split("").map((char, index) =>
-                char === "-" ? (
-                  <Text
-                    key={index}
-                    style={{
-                      fontSize: DimensionHelper.wp("3.5%"),
-                      color: "rgba(255,255,255,0.3)",
-                      alignSelf: "center",
-                      marginHorizontal: DimensionHelper.wp("0.5%")
-                    }}>
-                    -
-                  </Text>
-                ) : (
-                  renderCodeCharacter(char, index)
-                ))}
-            </View>
+            <PairingCode code={deviceAuth.user_code} />
           </View>
 
           {/* Waiting indicator with pulse animation */}
@@ -449,18 +409,52 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
             <Text
               style={{
                 color: "rgba(255, 255, 255, 0.4)",
-                fontSize: DimensionHelper.wp("1.4%"),
+                fontSize: Typography.labelMedium,
                 letterSpacing: 0.5
               }}>
               {t("providerDeviceAuth.waiting")}
             </Text>
           </Animated.View>
 
+          {/* Secondary instruction */}
+          <Text
+            style={{
+              color: "rgba(255, 255, 255, 0.5)",
+              fontSize: Typography.labelMedium,
+              marginTop: DimensionHelper.hp("1.5%"),
+              letterSpacing: 0.3
+            }}>
+            {t("providerDeviceAuth.secondary")}
+          </Text>
+
+          {/* Low-focus regenerate button */}
+          <TouchableHighlight
+            onPress={initDeviceFlow}
+            underlayColor="rgba(255, 255, 255, 0.1)"
+            hasTVPreferredFocus={false}
+            style={{
+              marginTop: DimensionHelper.hp("3%"),
+              paddingVertical: DimensionHelper.hp("1.2%"),
+              paddingHorizontal: DimensionHelper.wp("2.5%"),
+              borderRadius: 6,
+              borderWidth: 1,
+              borderColor: "rgba(255, 255, 255, 0.15)"
+            }}>
+            <Text
+              style={{
+                color: "rgba(255, 255, 255, 0.5)",
+                fontSize: Typography.labelMedium,
+                letterSpacing: 0.3
+              }}>
+              {t("providerDeviceAuth.regenerate")}
+            </Text>
+          </TouchableHighlight>
+
           {/* Expiration notice */}
           <Text
             style={{
               color: "rgba(255, 255, 255, 0.3)",
-              fontSize: DimensionHelper.wp("1%"),
+              fontSize: Typography.labelSmall,
               marginTop: DimensionHelper.hp("2%")
             }}>
             {t("providerDeviceAuth.expiresIn", { minutes: Math.floor(deviceAuth.expires_in / 60) })}
@@ -477,6 +471,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
             alignItems: "center"
           }}>
           <TouchableHighlight
+            testID="provider-device-auth-cancel"
             onPress={handleBack}
             underlayColor="rgba(255, 255, 255, 0.1)"
             hasTVPreferredFocus={false}

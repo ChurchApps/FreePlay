@@ -25,7 +25,7 @@ export const OfflineScreen = (props: Props) => {
   };
 
   const handleBack = () => {
-    props.navigateTo("selectRoom");
+    props.navigateTo("providers");
   };
 
   useEffect(init, []);
@@ -39,14 +39,13 @@ export const OfflineScreen = (props: Props) => {
       return (<>
         <Text style={{ ...Styles.smallerWhiteText, color: "#CCCCCC" }}>{t("offline.canPlayDownloaded")}</Text>
         <TouchableHighlight style={{ ...Styles.smallMenuClickable, backgroundColor: "#C2185B", width: DimensionHelper.wp("14%"), marginTop: DimensionHelper.hp("1%"), borderRadius: 5 }} underlayColor={"#E91E63"} onPress={() => { handleStart(); }} hasTVPreferredFocus={true}>
-          <Text style={{ ...Styles.smallWhiteText, width: "100%" }}>{t("offline.startLesson")}</Text>
+          <Text style={{ ...Styles.smallWhiteText, width: "100%" }}>{t("offline.start")}</Text>
         </TouchableHighlight>
       </>);
-    } else {
-      return (<>
-        <Text style={{ ...Styles.smallerWhiteText, color: "#CCCCCC" }}>{t("offline.notDownloaded")}</Text>
-      </>);
     }
+    return (<>
+      <Text style={{ ...Styles.smallerWhiteText, color: "#CCCCCC" }}>{t("offline.notDownloaded")}</Text>
+    </>);
   };
 
   return (<LinearGradient colors={["rgba(0, 0, 0, 1)", "rgba(0, 0, 0, 0)"]} start={{ x: 0, y: 1 }} end={{ x: 1, y: 0 }} style={{ flex: 1 }}>

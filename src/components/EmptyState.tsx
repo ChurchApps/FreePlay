@@ -12,11 +12,15 @@ type Props = {
 
 export const EmptyState = ({ icon = "inbox", message, subMessage }: Props) => (
   <View style={styles.container}>
-    <Icon name={icon} size={DimensionHelper.wp("5%")} color={Colors.textDimmed} />
+    <View style={styles.backplate}>
+      <Icon name={icon} size={DimensionHelper.wp("5%")} color={Colors.textDimmed} />
+    </View>
     <Text style={styles.message}>{message}</Text>
     {subMessage && <Text style={styles.subMessage}>{subMessage}</Text>}
   </View>
 );
+
+const BACKPLATE_SIZE = DimensionHelper.wp("10%");
 
 const styles = StyleSheet.create({
   container: {
@@ -24,6 +28,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: DimensionHelper.wp("5%")
+  },
+  backplate: {
+    width: BACKPLATE_SIZE,
+    height: BACKPLATE_SIZE,
+    borderRadius: BACKPLATE_SIZE / 2,
+    backgroundColor: Colors.hoverBackground,
+    borderWidth: 1,
+    borderColor: Colors.borderAccent,
+    alignItems: "center",
+    justifyContent: "center"
   },
   message: {
     color: Colors.textSubtle,

@@ -1,0 +1,54 @@
+# Tapping a CONNECTED provider card now opens the new ProviderSettingsScreen
+# (replaces the old "tap-to-disconnect" alert). Confirms:
+#   - The new settings screen renders
+#   - The Library toggle is shown (always)
+#   - The Auto-Download toggle is shown for providers with getCurrentPlan
+#     (Life.Church does — see node_modules/@churchapps/content-providers/src/
+#     providers/lifeChurch/LifeChurchProvider.ts)
+#   - The Disconnect button is shown
+#
+# Setup uses Life.Church because it has requiresAuth=false, so the connect
+# step is a single tap with no external auth flow to mock.
+
+appId: church.freeplay
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: "providers-card-lifechurch(-focused)?"
+    timeout: 60000
+# First tap: connects (no auth required) and navigates straight to contentBrowser.
+- tapOn:
+    id: "providers-card-lifechurch(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "content-browser-root-root"
+    timeout: 30000
+# Back to providers screen via the sidebar. Back at root expands the sidebar
+# (handleBack in ContentBrowserScreen.tsx); the providers nav item is then tappable.
+- pressKey: back
+- extendedWaitUntil:
+    visible:
+      id: "nav-item-providers"
+    timeout: 5000
+- tapOn:
+    id: "nav-item-providers"
+- extendedWaitUntil:
+    visible:
+      id: "providers-root"
+    timeout: 10000
+# Second tap on the now-connected card should open ProviderSettings, NOT
+# the old disconnect alert.
+- tapOn:
+    id: "providers-card-lifechurch(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "provider-settings-root"
+    timeout: 10000
+- assertVisible:
+    id: "provider-settings-library"
+- assertVisible:
+    id: "provider-settings-autoDownload"
+- assertVisible:
+    id: "provider-settings-disconnect"

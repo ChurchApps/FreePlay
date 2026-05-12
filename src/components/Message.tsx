@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { CachedData } from "../helpers";
 import { Colors } from "../helpers/Styles";
-import { LessonPlaylistFileInterface } from "../interfaces";
+import { MessageFileInterface } from "../interfaces";
 import { Image, View, Text, ActivityIndicator, StyleSheet } from "react-native";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import Video from "react-native-video";
@@ -10,7 +10,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 
 
 type Props = {
-  file: LessonPlaylistFileInterface,
+  file: MessageFileInterface,
   downloaded: boolean,
   paused: boolean,
   onProgress?: (data: { currentTime: number; playableDuration: number }) => void,
@@ -69,9 +69,10 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   // Safety timeout: if video hasn't loaded within 15 seconds, auto-advance
   React.useEffect(() => {
     if (!isLoading || hasError) return;
+    const url = props.file.url || "";
     const isVideo = props.file.fileType === "video"
-      || /\.(mp4|webm)$/i.test((props.file.url || "").split("?")[0])
-      || (props.file.url || "").includes("externalVideos");
+      || /\.(mp4|webm)$/i.test(url.split("?")[0])
+      || url.includes("externalVideos");
     if (!isVideo) return;
 
     const safetyTimer = setTimeout(() => {
@@ -151,7 +152,12 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   const getImage = () => {
     const localPath = decodeURIComponent(CachedData.getFilePath(props.file.url));
     const filePath = props.downloaded ? "file://" + localPath : props.file.url;
-    return (<Image source={{ uri: filePath }} style={{ width: DimensionHelper.wp("100%"), height: DimensionHelper.hp("100%") }} />);
+    return (<Image
+      source={{ uri: filePath }}
+      style={{ width: DimensionHelper.wp("100%"), height: DimensionHelper.hp("100%") }}
+      onLoad={() => setIsLoading(false)}
+      onError={() => handleVideoError({ error: "image load failed" })}
+    />);
   };
 
   const content = React.useMemo(() => {
@@ -161,7 +167,9 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   const loadingOverlay = (
     <View style={styles.loadingOverlay}>
       <ActivityIndicator size="large" color={Colors.primary} />
-      <Text style={styles.loadingSubtitle}>{t("message.loadingVideo")}</Text>
+      <Text style={styles.loadingSubtitle}>
+        {getMessageType() === "video" ? t("message.loadingVideo") : t("message.loadingImage")}
+      </Text>
     </View>
   );
 
@@ -173,10 +181,12 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
     </View>
   );
 
+  const messageState = hasError ? "error" : (isLoading ? "loading" : "ready");
+
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1 }} testID={`message-${messageState}`}>
       {content}
-      {showLoadingOverlay && getMessageType() === "video" && loadingOverlay}
+      {showLoadingOverlay && loadingOverlay}
       {showError && errorOverlay}
     </View>
   );

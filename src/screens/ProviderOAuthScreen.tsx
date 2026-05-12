@@ -9,7 +9,8 @@ import {
   Easing
 } from "react-native";
 import { useTranslation } from "react-i18next";
-import { Styles, CachedData, ProviderAuthHelper, Colors } from "../helpers";
+import { Styles, CachedData, ProviderAuthHelper, Colors, Typography } from "../helpers";
+import { SoundHelper } from "../helpers/SoundHelper";
 import { ApiHelper } from "../helpers/ApiHelper";
 import { ContentProviderAuthData, DropboxProvider } from "../interfaces";
 import { DimensionHelper } from "../helpers/DimensionHelper";
@@ -93,22 +94,6 @@ export const ProviderOAuthScreen = (props: Props) => {
     return digest.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
   };
 
-  // Build the Dropbox auth URL with PKCE (avoids browser-only crypto in OAuthHelper)
-  const buildDropboxAuthUrl = async (codeVerifier: string, redirectUri: string, state: string): Promise<string> => {
-    const config = provider!.config;
-    const codeChallenge = await generateCodeChallenge(codeVerifier);
-    const params = new URLSearchParams({
-      response_type: "code",
-      client_id: config.clientId,
-      redirect_uri: redirectUri,
-      code_challenge: codeChallenge,
-      code_challenge_method: "S256",
-      token_access_type: "offline",
-      state
-    });
-    return `${config.oauthBase}/authorize?${params.toString()}`;
-  };
-
   const initOAuthFlow = async () => {
     if (pollTimeoutRef.current) {
       clearTimeout(pollTimeoutRef.current);
@@ -139,7 +124,9 @@ export const ProviderOAuthScreen = (props: Props) => {
       const codeVerifier = generateCodeVerifier();
       codeVerifierRef.current = codeVerifier;
 
-      const authUrl = await buildDropboxAuthUrl(codeVerifier, redirectUri, sessionCode);
+      const codeChallenge = await generateCodeChallenge(codeVerifier);
+      const dropboxProvider = provider as DropboxProvider;
+      const authUrl = dropboxProvider.buildAuthUrlFromChallenge(codeChallenge, redirectUri, sessionCode);
 
       setFlowState({ status: "awaiting_user", authUrl, expiresIn });
       fadeIn();
@@ -207,6 +194,7 @@ export const ProviderOAuthScreen = (props: Props) => {
       await ProviderAuthHelper.setAuth(props.providerId, authData);
       await ProviderAuthHelper.setConnectionState(props.providerId, true);
       setFlowState({ status: "success" });
+      SoundHelper.playChime();
 
       if (!CachedData.connectedProviders.includes(props.providerId)) {
         CachedData.connectedProviders.push(props.providerId);
@@ -215,7 +203,7 @@ export const ProviderOAuthScreen = (props: Props) => {
 
       setTimeout(() => {
         props.navigateTo("contentBrowser", { providerId: props.providerId, folderStack: [] });
-      }, 1000);
+      }, 2000);
     } catch (error) {
       console.error("Token exchange error:", error);
       setFlowState({ status: "error", error: t("providerOAuth.tokenExchangeFailed") });
@@ -429,18 +417,29 @@ export const ProviderOAuthScreen = (props: Props) => {
             <Text
               style={{
                 color: "rgba(255, 255, 255, 0.4)",
-                fontSize: DimensionHelper.wp("1.4%"),
+                fontSize: Typography.labelMedium,
                 letterSpacing: 0.5
               }}>
               {t("providerOAuth.waiting")}
             </Text>
           </Animated.View>
 
+          {/* Secondary instruction */}
+          <Text
+            style={{
+              color: "rgba(255, 255, 255, 0.5)",
+              fontSize: Typography.labelMedium,
+              marginTop: DimensionHelper.hp("1.5%"),
+              letterSpacing: 0.3
+            }}>
+            {t("providerOAuth.secondary")}
+          </Text>
+
           {/* Expiration notice */}
           <Text
             style={{
               color: "rgba(255, 255, 255, 0.3)",
-              fontSize: DimensionHelper.wp("1%"),
+              fontSize: Typography.labelSmall,
               marginTop: DimensionHelper.hp("2%")
             }}>
             {t("providerOAuth.expiresIn", { minutes: Math.floor(flowState.expiresIn / 60) })}

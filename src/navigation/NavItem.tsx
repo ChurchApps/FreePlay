@@ -15,6 +15,7 @@ type Props = {
   nextFocusDown?: any;
   nextFocusUp?: any;
   logoUrl?: string;
+  testID?: string;
 };
 
 
@@ -45,6 +46,7 @@ export const NavItem = React.forwardRef((props: Props, ref) => {
 
   return (
     <TouchableHighlight
+      testID={props.testID}
       underlayColor={Colors.hoverBackground}
       onPress={() => {
         props.setExpanded(false);

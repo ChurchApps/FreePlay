@@ -1,9 +1,5 @@
-export { DownloadScreen } from "./DownloadScreen";
 export { PlayerScreen } from "./PlayerScreen";
-export { SelectChurchScreen } from "./SelectChurchScreen";
-export { SelectRoomScreen } from "./SelectRoomScreen";
 export { SplashScreen } from "./SplashScreen";
-export { SelectPairingModeScreen } from "./SelectPairingModeScreen";
 export { PlanPairingScreen } from "./PlanPairingScreen";
 export { PlanDownloadScreen } from "./PlanDownloadScreen";
 export { ContentBrowserScreen } from "./ContentBrowserScreen";
@@ -11,5 +7,6 @@ export { ProviderDeviceAuthScreen } from "./ProviderDeviceAuthScreen";
 export { ProviderFormLoginScreen } from "./ProviderFormLoginScreen";
 export { ProviderOAuthScreen } from "./ProviderOAuthScreen";
 export { ProvidersScreen } from "./ProvidersScreen";
+export { ProviderSettingsScreen } from "./ProviderSettingsScreen";
 export { ProviderDownloadScreen } from "./ProviderDownloadScreen";
 export { DownloadsScreen } from "./DownloadsScreen";

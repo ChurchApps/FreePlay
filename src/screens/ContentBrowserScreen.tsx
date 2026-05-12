@@ -18,9 +18,20 @@ import {
   isContentFolder,
   isContentFile
 } from "../interfaces";
-import { Styles, CachedData, ProviderAuthHelper, Colors } from "../helpers";
+import { Styles, CachedData, ProviderAuthHelper, ProviderSettingsHelper, Colors, Typography } from "../helpers";
 import { MenuHeader, SkeletonCard, EmptyState } from "../components";
 import { getProvider } from "../providers";
+
+const toMessageFile = (f: ContentFile) => ({
+  id: f.id,
+  name: f.title,
+  url: f.url,
+  fileType: f.mediaType,
+  loop: f.loop,
+  loopVideo: f.loopVideo,
+  seconds: f.seconds,
+  image: f.thumbnail
+});
 
 type Props = {
   navigateTo(page: string, data?: any): void;
@@ -71,6 +82,11 @@ export const ContentBrowserScreen = (props: Props) => {
       return;
     }
 
+    if (!ProviderSettingsHelper.getLibraryEnabledSync(props.providerId)) {
+      props.navigateTo("providers");
+      return;
+    }
+
     const version = ++requestVersionRef.current;
     setLoading(true);
 
@@ -103,16 +119,7 @@ export const ContentBrowserScreen = (props: Props) => {
       if (version !== requestVersionRef.current) return;
 
       if (files && files.length > 0) {
-        CachedData.messageFiles = files.map(f => ({
-          id: f.id,
-          name: f.title,
-          url: f.url,
-          fileType: f.mediaType,
-          loop: f.loop,
-          loopVideo: f.loopVideo,
-          seconds: f.seconds,
-          image: f.thumbnail
-        }));
+        CachedData.messageFiles = files.map(toMessageFile);
 
         props.navigateTo("providerDownload", {
           providerId: props.providerId,
@@ -140,16 +147,7 @@ export const ContentBrowserScreen = (props: Props) => {
 
     if (files.length > 0) {
       // Folder has files - go to download screen
-      CachedData.messageFiles = files.map(f => ({
-        id: f.id,
-        name: f.title,
-        url: f.url,
-        fileType: f.mediaType,
-        loop: f.loop,
-        loopVideo: f.loopVideo,
-        seconds: f.seconds,
-        image: f.thumbnail
-      }));
+      CachedData.messageFiles = files.map(toMessageFile);
 
       props.navigateTo("providerDownload", {
         providerId: props.providerId,
@@ -172,16 +170,7 @@ export const ContentBrowserScreen = (props: Props) => {
     const files = items.filter((item): item is ContentFile => item.type === "file");
 
     // Convert to playlist format
-    CachedData.messageFiles = files.map(f => ({
-      id: f.id,
-      name: f.title,
-      url: f.url,
-      fileType: f.mediaType,
-      loop: f.loop,
-      loopVideo: f.loopVideo,
-      seconds: f.seconds,
-      image: f.thumbnail
-    }));
+    CachedData.messageFiles = files.map(toMessageFile);
 
     // Find selected file index
     const startIndex = files.findIndex(f => f.id === file.id);
@@ -214,6 +203,7 @@ export const ContentBrowserScreen = (props: Props) => {
 
     return (
       <TouchableHighlight
+        testID={`cb-folder-${folder.id}${isFocused ? "-focused" : ""}`}
         style={{
           ...styles.item,
           ...(isFocused ? {
@@ -224,7 +214,7 @@ export const ContentBrowserScreen = (props: Props) => {
         }}
         underlayColor={Colors.pressedBackground}
         onPress={() => { CachedData.lastFocusedIndex[screenKey] = index; handleSelectFolder(folder); }}
-        onFocus={() => { initialFocusSet.current = true; focusedIndexRef.current = index; setFocusedItemId(folder.id); }}
+        onFocus={() => { initialFocusSet.current = true; focusedIndexRef.current = index; CachedData.lastFocusedIndex[screenKey] = index; setFocusedItemId(folder.id); }}
         onBlur={() => { setFocusedItemId(prev => prev === folder.id ? null : prev); }}
         hasTVPreferredFocus={shouldFocus}>
         <View style={{ width: "100%" }}>
@@ -326,6 +316,7 @@ export const ContentBrowserScreen = (props: Props) => {
 
     return (
       <TouchableHighlight
+        testID={`cb-file-${file.id}${isFocused ? "-focused" : ""}`}
         style={{
           ...styles.item,
           ...(isFocused ? {
@@ -336,7 +327,7 @@ export const ContentBrowserScreen = (props: Props) => {
         }}
         underlayColor={Colors.pressedBackground}
         onPress={() => { CachedData.lastFocusedIndex[screenKey] = index; handleSelectFile(file); }}
-        onFocus={() => { initialFocusSet.current = true; focusedIndexRef.current = index; setFocusedItemId(file.id); }}
+        onFocus={() => { initialFocusSet.current = true; focusedIndexRef.current = index; CachedData.lastFocusedIndex[screenKey] = index; setFocusedItemId(file.id); }}
         onBlur={() => { setFocusedItemId(prev => prev === file.id ? null : prev); }}
         hasTVPreferredFocus={shouldFocus}>
         <View style={{ width: "100%" }}>
@@ -397,7 +388,7 @@ export const ContentBrowserScreen = (props: Props) => {
           <Text
             style={{
               color: "#fff",
-              fontSize: DimensionHelper.wp("1.1%"),
+              fontSize: Typography.labelMedium,
               marginTop: DimensionHelper.hp("1%"),
               textAlign: "center"
             }}
@@ -408,7 +399,7 @@ export const ContentBrowserScreen = (props: Props) => {
           <Text
             style={{
               color: "rgba(255,255,255,0.5)",
-              fontSize: DimensionHelper.wp("0.9%"),
+              fontSize: Typography.labelSmall,
               textAlign: "center"
             }}>
             {isVideo ? t("contentBrowser.fileType.video") : t("contentBrowser.fileType.image")}
@@ -517,9 +508,50 @@ export const ContentBrowserScreen = (props: Props) => {
     headerText = currentFolder.title;
   }
 
+  // Breadcrumb trail: "Provider › Folder1 › Folder2"
+  const breadcrumbs = [provider?.name || t("contentBrowser.header"), ...folderStack.map(f => f.title)];
+
   return (
-    <View style={{ ...Styles.menuScreen }}>
+    <View style={{ ...Styles.menuScreen }} testID={`content-browser-root-${currentFolder?.id || "root"}`}>
       <MenuHeader headerText={headerText} />
+      {folderStack.length > 0 && (
+        <View
+          style={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            alignItems: "center",
+            paddingHorizontal: DimensionHelper.wp("2.5%"),
+            paddingVertical: DimensionHelper.hp("1%"),
+            backgroundColor: Colors.surfaceDark
+          }}>
+          {breadcrumbs.map((crumb, idx) => {
+            const isLast = idx === breadcrumbs.length - 1;
+            return (
+              <View key={`${crumb}-${idx}`} style={{ flexDirection: "row", alignItems: "center" }}>
+                <Text
+                  numberOfLines={1}
+                  style={{
+                    color: isLast ? Colors.textPrimary : Colors.textSubtle,
+                    fontSize: Typography.labelLarge,
+                    fontWeight: isLast ? "600" : "400"
+                  }}>
+                  {crumb}
+                </Text>
+                {!isLast && (
+                  <Text
+                    style={{
+                      color: Colors.textDimmed,
+                      fontSize: Typography.labelLarge,
+                      marginHorizontal: DimensionHelper.wp("0.6%")
+                    }}>
+                    ›
+                  </Text>
+                )}
+              </View>
+            );
+          })}
+        </View>
+      )}
       <View style={{ ...Styles.menuWrapper, flex: 90 }}>{getCards()}</View>
     </View>
   );

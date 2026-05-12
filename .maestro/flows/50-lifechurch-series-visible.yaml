@@ -1,0 +1,30 @@
+# Asserts the four Life.Church kids series render at the LifeChurch provider root.
+# Series ids come from src/providers/lifeChurch/data.json in @churchapps/content-providers
+# and are stable scraper outputs (the curriculum slugs we hard-code in scrape-lifechurch.ts).
+# If a series is renamed or removed in data.json, update this flow alongside.
+
+appId: church.freeplay
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: "providers-card-lifechurch(-focused)?"
+    timeout: 60000
+- tapOn:
+    id: "providers-card-lifechurch(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "content-browser-root-root"
+    timeout: 30000
+# All four series folders should be visible at the provider root.
+- assertVisible:
+    id: "cb-folder-scheduled(-focused)?"
+- assertVisible:
+    id: "cb-folder-loop(-focused)?"
+- assertVisible:
+    id: "cb-folder-konnect(-focused)?"
+- assertVisible:
+    id: "cb-folder-crosstown(-focused)?"
+- assertVisible:
+    id: "cb-folder-early-childhood(-focused)?"

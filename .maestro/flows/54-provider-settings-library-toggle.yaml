@@ -1,0 +1,63 @@
+# Toggling the Library setting OFF for a connected provider hides its
+# sidebar nav item. The provider stays "connected" (auth retained), but
+# NavWrapper filters connected providers by getLibraryEnabledSync before
+# rendering the per-provider nav rows.
+#
+# After the toggle, walk back to the Providers screen and expand the
+# sidebar — the lifechurch nav item should be gone, while the static
+# nav items (Downloads, Providers) remain.
+
+appId: church.freeplay
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: "providers-card-lifechurch(-focused)?"
+    timeout: 60000
+- tapOn:
+    id: "providers-card-lifechurch(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "content-browser-root-root"
+    timeout: 30000
+- pressKey: back
+- extendedWaitUntil:
+    visible:
+      id: "nav-item-providers"
+    timeout: 5000
+# Sanity: while library is enabled (default ON), the lifechurch nav item is present.
+- assertVisible:
+    id: "nav-item-provider-lifechurch"
+- tapOn:
+    id: "nav-item-providers"
+- extendedWaitUntil:
+    visible:
+      id: "providers-root"
+    timeout: 10000
+- tapOn:
+    id: "providers-card-lifechurch(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "provider-settings-library"
+    timeout: 10000
+# Toggle Library OFF.
+- tapOn:
+    id: "provider-settings-library"
+# Back navigates to providers screen (BackHandler in ProviderSettingsScreen).
+- pressKey: back
+- extendedWaitUntil:
+    visible:
+      id: "providers-root"
+    timeout: 10000
+# Expand sidebar from providers screen (BackHandler -> sidebarState(true)).
+- pressKey: back
+- extendedWaitUntil:
+    visible:
+      id: "nav-item-providers"
+    timeout: 5000
+# Library is OFF -> lifechurch sidebar item should NOT be visible.
+- assertNotVisible:
+    id: "nav-item-provider-lifechurch"
+- assertVisible:
+    id: "nav-item-downloads"

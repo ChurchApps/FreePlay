@@ -9,9 +9,11 @@ import {
 
 import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { CachedData, Styles, Colors } from "../helpers";
+import { CachedData, Styles, Colors, ProviderSettingsHelper } from "../helpers";
+import { SoundHelper } from "../helpers/SoundHelper";
 import { NavItem } from "./NavItem";
 import { getProvider } from "../providers";
+import { isLocked } from "../branding";
 import { FreePlayLogo } from "../components";
 
 type Props = {
@@ -24,10 +26,12 @@ type Props = {
 export const NavWrapper = (props: Props) => {
   const { t } = useTranslation();
   const _browseRef = useRef(null);
+  const planRef = useRef(null);
   const downloadsRef = useRef(null);
   const providersRef = useRef(null);
   const providerRefs = useRef<{[key: string]: any}>({});
   const recentlyCollapsed = useRef(false);
+  const sidebarMounted = useRef(false);
 
   // Screens where sidebar fully hides when collapsed
   const fullScreenModeScreens = ["planDownload"];
@@ -56,6 +60,13 @@ export const NavWrapper = (props: Props) => {
       setTimeout(() => { recentlyCollapsed.current = false; }, 500);
     }
 
+    // Subtle audio cue on user-initiated open/close (skip the initial mount)
+    if (sidebarMounted.current) {
+      SoundHelper.playWhoosh();
+    } else {
+      sidebarMounted.current = true;
+    }
+
     Animated.timing(animatedWidth, {
       toValue: getTargetWidth(),
       duration: 240,
@@ -77,15 +88,6 @@ export const NavWrapper = (props: Props) => {
 
   const handleClick = (id: string) => {
     props.navigateTo(id);
-  };
-
-  const _handleChurchClick = () => {
-    // If paired to a plan, go directly to plan download screen
-    if (CachedData.planTypeId) handleClick("planDownload");
-    // If paired to a classroom, show room selection
-    else if (CachedData.church) handleClick("selectRoom");
-    // Not paired at all, go to church search
-    else handleClick("selectChurch");
   };
 
   // TV-specific: useTVEventHandler catches DPAD events reliably on TV platforms
@@ -111,12 +113,10 @@ export const NavWrapper = (props: Props) => {
   let highlightedItem = "browse";
   const highlightTab = (tab: string) => {
     switch (tab) {
-      case "selectRoom":
-      case "selectChurch":
-      case "download":
       case "planDownload":
+      case "planPairing":
       case "player":
-        highlightedItem = "church";
+        highlightedItem = "plan";
         break;
       case "providers":
         highlightedItem = "providers";
@@ -131,8 +131,12 @@ export const NavWrapper = (props: Props) => {
   };
   highlightTab(CachedData.currentScreen);
 
-  // Get connected providers for nav items
-  const connectedProviders = CachedData.connectedProviders || [];
+  // Get connected providers for nav items, hiding any whose Library toggle is off
+  const connectedProviders = (CachedData.connectedProviders || []).filter(id => ProviderSettingsHelper.getLibraryEnabledSync(id));
+
+  // Show "Today's Plan" when the device is paired AND that provider can resolve a current plan
+  const pairedProvider = CachedData.providerId ? getProvider(CachedData.providerId) : null;
+  const showPlanNav = !!(CachedData.providerId && pairedProvider?.getCurrentPlan);
 
   const getContent = () => (
     <View
@@ -154,18 +158,39 @@ export const NavWrapper = (props: Props) => {
           }}>
           <FreePlayLogo size={logoSize} showText={showLogoText} />
         </View>
+        {/* Today's Plan — only visible when device is paired to a schedule */}
+        {showPlanNav && (
+          <NavItem
+            testID="nav-item-plan"
+            icon={"event"}
+            text={t("nav.plan")}
+            expanded={props.sidebarExpanded}
+            setExpanded={handleSidebarExpand}
+            selected={highlightedItem === "plan"}
+            onPress={() => handleClick("planDownload")}
+            ref={planRef}
+            nextFocusDown={
+              connectedProviders.length > 0
+                ? findNodeHandle(providerRefs.current[connectedProviders[0]])
+                : findNodeHandle(downloadsRef.current)
+            }
+          />
+        )}
         {/* Connected content provider nav items */}
         {connectedProviders.map((providerId: string, index: number) => {
           const provider = getProvider(providerId);
           if (!provider) return null;
 
           // Determine focus targets
-          const prevRef = index === 0 ? null : providerRefs.current[connectedProviders[index - 1]];
+          const prevRef = index === 0
+            ? (showPlanNav ? planRef.current : null)
+            : providerRefs.current[connectedProviders[index - 1]];
           const nextRef = index === connectedProviders.length - 1 ? downloadsRef.current : providerRefs.current[connectedProviders[index + 1]];
 
           return (
             <NavItem
               key={providerId}
+              testID={`nav-item-provider-${providerId}`}
               icon={"play-circle-outline"}
               text={provider.name}
               logoUrl={provider.logos?.dark}
@@ -185,6 +210,7 @@ export const NavWrapper = (props: Props) => {
       </View>
       <View style={{ marginBottom: DimensionHelper.hp("2%") }}>
         <NavItem
+          testID="nav-item-downloads"
           icon={"file-download"}
           text={t("nav.downloads")}
           expanded={props.sidebarExpanded}
@@ -199,20 +225,23 @@ export const NavWrapper = (props: Props) => {
               ? findNodeHandle(providerRefs.current[connectedProviders[connectedProviders.length - 1]])
               : undefined
           }
-          nextFocusDown={findNodeHandle(providersRef.current)}
+          nextFocusDown={isLocked ? undefined : findNodeHandle(providersRef.current)}
         />
-        <NavItem
-          icon={"extension"}
-          text={t("nav.providers")}
-          expanded={props.sidebarExpanded}
-          setExpanded={handleSidebarExpand}
-          selected={highlightedItem === "providers"}
-          onPress={() => {
-            handleClick("providers");
-          }}
-          ref={providersRef}
-          nextFocusUp={findNodeHandle(downloadsRef.current)}
-        />
+        {!isLocked && (
+          <NavItem
+            testID="nav-item-providers"
+            icon={"extension"}
+            text={t("nav.providers")}
+            expanded={props.sidebarExpanded}
+            setExpanded={handleSidebarExpand}
+            selected={highlightedItem === "providers"}
+            onPress={() => {
+              handleClick("providers");
+            }}
+            ref={providersRef}
+            nextFocusUp={findNodeHandle(downloadsRef.current)}
+          />
+        )}
       </View>
     </View>
   );

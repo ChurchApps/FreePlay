@@ -3,7 +3,7 @@ import { View, Text, TouchableHighlight, BackHandler, ImageBackground, Animated 
 import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { DimensionHelper } from "../helpers/DimensionHelper";
-import { CachedData, Styles, Colors, DownloadIndex } from "../helpers";
+import { CachedData, Styles, Colors, DownloadIndex, StorageManager } from "../helpers";
 import LinearGradient from "react-native-linear-gradient";
 import { ContentFolder } from "../interfaces";
 import { getProvider } from "../providers";
@@ -38,7 +38,13 @@ export const ProviderDownloadScreen = (props: Props) => {
     setCurrentFileProgress(progress);
   };
 
+  const downloadKey = React.useMemo(
+    () => DownloadIndex.generateKey("provider", { providerId: props.providerId, title: props.title || "" }),
+    [props.providerId, props.title]
+  );
+
   const handleStart = () => {
+    StorageManager.touchEntry(downloadKey);
     props.navigateTo("player", {
       providerId: props.providerId,
       providerStartIndex: props.startIndex,
@@ -71,10 +77,10 @@ export const ProviderDownloadScreen = (props: Props) => {
           <Text style={{ ...Styles.smallerWhiteText, color: Colors.textLight }}>{props.description}</Text>
         )}
         <View style={{ flexDirection: "row", marginTop: DimensionHelper.hp("1%"), gap: DimensionHelper.wp("1%") }}>
-          <TouchableHighlight style={{ ...btnBase, ...(focusedBtn === "download" ? focusedStyle : unfocusedStyle) }} underlayColor={Colors.primary} onPress={handleDownload} onFocus={() => setFocusedBtn("download")} hasTVPreferredFocus={true}>
+          <TouchableHighlight testID="pd-download-btn" style={{ ...btnBase, ...(focusedBtn === "download" ? focusedStyle : unfocusedStyle) }} underlayColor={Colors.primary} onPress={handleDownload} onFocus={() => setFocusedBtn("download")} hasTVPreferredFocus={true}>
             <Text style={Styles.smallWhiteText} numberOfLines={1}>{t("providerDownload.download")}</Text>
           </TouchableHighlight>
-          <TouchableHighlight style={{ ...btnBase, ...(focusedBtn === "stream" ? focusedStyle : unfocusedStyle) }} underlayColor={Colors.primary} onPress={handleStream} onFocus={() => setFocusedBtn("stream")}>
+          <TouchableHighlight testID="pd-stream-btn" style={{ ...btnBase, ...(focusedBtn === "stream" ? focusedStyle : unfocusedStyle) }} underlayColor={Colors.primary} onPress={handleStream} onFocus={() => setFocusedBtn("stream")}>
             <Text style={Styles.smallWhiteText} numberOfLines={1}>{t("providerDownload.stream")}</Text>
           </TouchableHighlight>
         </View>
@@ -88,7 +94,7 @@ export const ProviderDownloadScreen = (props: Props) => {
           <Text style={{ ...Styles.smallerWhiteText, color: Colors.textLight }}>{props.description}</Text>
         )}
         <Animated.View style={{ opacity: buttonFadeAnim }}>
-          <TouchableHighlight style={{ backgroundColor: Colors.primaryDark, width: DimensionHelper.wp("18%"), height: DimensionHelper.hp("7%"), marginTop: DimensionHelper.hp("1%"), borderRadius: 12, justifyContent: "center", alignItems: "center", flexDirection: "row" }} underlayColor={Colors.primary} onPress={() => { handleStart(); }} hasTVPreferredFocus={true}>
+          <TouchableHighlight testID="pd-play-btn" style={{ backgroundColor: Colors.primaryDark, width: DimensionHelper.wp("18%"), height: DimensionHelper.hp("7%"), marginTop: DimensionHelper.hp("1%"), borderRadius: 12, justifyContent: "center", alignItems: "center", flexDirection: "row" }} underlayColor={Colors.primary} onPress={() => { handleStart(); }} hasTVPreferredFocus={true}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Icon name="play-arrow" size={DimensionHelper.wp("2.5%")} color="#fff" />
               <Text style={{ ...Styles.smallWhiteText, marginLeft: 4 }} numberOfLines={1}>{t("providerDownload.start")}</Text>
@@ -120,19 +126,20 @@ export const ProviderDownloadScreen = (props: Props) => {
     );
   };
 
-  const startDownload = () => {
+  const startDownload = async () => {
     const files = CachedData.messageFiles;
     if (files && files.length > 0) {
       setReady(false);
+      await StorageManager.ensureFreeSpace([downloadKey]);
       CachedData.prefetch(files, updateCounts, updateFileProgress).then(() => {
         setReady(true);
         DownloadIndex.addEntry({
-          downloadKey: DownloadIndex.generateKey("provider", { providerId: props.providerId, title: props.title || "" }),
+          downloadKey,
           source: "provider",
           providerId: props.providerId,
-          lessonName: props.title,
-          lessonTitle: props.title,
-          lessonImage: props.coverImage,
+          title: props.title,
+          description: props.description,
+          image: props.coverImage,
           messageFiles: files,
           downloadedAt: Date.now()
         });
@@ -227,7 +234,7 @@ export const ProviderDownloadScreen = (props: Props) => {
   );
 
   return (
-    <View style={{ ...Styles.menuScreen, flex: 1, flexDirection: "row" }}>
+    <View style={{ ...Styles.menuScreen, flex: 1, flexDirection: "row" }} testID={`pd-root-${mode}`}>
       {background && !background.isSvg ? (
         <ImageBackground source={{ uri: background.uri }} resizeMode="contain" style={{ flex: 1, width: "100%" }}>
           {content}

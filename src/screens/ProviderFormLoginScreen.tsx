@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Styles, CachedData, ProviderAuthHelper } from "../helpers";
+import { SoundHelper } from "../helpers/SoundHelper";
 import { ContentProviderAuthData } from "../interfaces";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import LinearGradient from "react-native-linear-gradient";
@@ -77,21 +78,18 @@ export const ProviderFormLoginScreen = (props: Props) => {
         return;
       }
 
-      const providerAny = provider as any;
-      if (typeof providerAny.performLogin !== "function") {
+      if (!provider.performLogin) {
         setFlowState({ status: "error", message: t("providerFormLogin.notSupported") });
         return;
       }
 
-      const auth: ContentProviderAuthData | null = await providerAny.performLogin(
-        email.trim(),
-        password
-      );
+      const auth: ContentProviderAuthData | null = await provider.performLogin(email.trim(), password);
 
       if (auth) {
         await ProviderAuthHelper.setAuth(props.providerId, auth);
         await ProviderAuthHelper.setConnectionState(props.providerId, true);
         setFlowState({ status: "success" });
+        SoundHelper.playChime();
 
         if (!CachedData.connectedProviders.includes(props.providerId)) {
           CachedData.connectedProviders.push(props.providerId);
@@ -100,7 +98,7 @@ export const ProviderFormLoginScreen = (props: Props) => {
 
         setTimeout(() => {
           props.navigateTo("contentBrowser", { providerId: props.providerId, folderStack: [] });
-        }, 1000);
+        }, 2000);
       } else {
         setFlowState({ status: "error", message: t("providerFormLogin.loginFailed") });
       }

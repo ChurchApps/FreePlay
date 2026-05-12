@@ -1,18 +1,15 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ChurchInterface, ClassroomInterface, LessonPlaylistFileInterface, PlanInterface, FeedVenueInterface } from "../interfaces";
+import { MessageFileInterface, CurrentPlan } from "@churchapps/content-providers";
 import RNFS from "react-native-fs";
 import * as Sentry from "@sentry/react-native";
 
 export class CachedData {
-  static church: ChurchInterface;
-  static room: ClassroomInterface;
-  static messageFiles: LessonPlaylistFileInterface[];
+  static messageFiles: MessageFileInterface[];
 
   // Plan pairing data
-  static planTypeId: string | null = null;
-  static pairedChurchId: string | null = null;
-  static currentPlan: PlanInterface | null = null;
-  static planVenue: FeedVenueInterface | null = null;
+  static providerId: string | null = null;
+  static pairingData: unknown = null;
+  static currentPlan: CurrentPlan | null = null;
 
   static totalCachableItems: number = 0;
   static cachedItems: number = 0;
@@ -30,6 +27,7 @@ export class CachedData {
   // Content provider state
   static connectedProviders: string[] = [];
   static activeProvider: string | null = null;
+  static providerSettings: Record<string, { libraryEnabled: boolean }> = {};
 
   // Focus memory: stores last focused item index per screen key
   static lastFocusedIndex: { [screenKey: string]: number } = {};
@@ -80,7 +78,7 @@ export class CachedData {
   }
 
   static async prefetch(
-    files: LessonPlaylistFileInterface[],
+    files: MessageFileInterface[],
     changeCallback: (cached: number, total: number) => void,
     fileProgressCallback?: (progress: number) => void
   ) {
@@ -138,7 +136,7 @@ export class CachedData {
     return fullPath;
   }
 
-  static async load(file: LessonPlaylistFileInterface, fileProgressCallback?: (progress: number) => void) {
+  static async load(file: MessageFileInterface, fileProgressCallback?: (progress: number) => void) {
     if (!file.url) return;
     let fullPath = this.getFilePath(file.url);
     fullPath = decodeURIComponent(fullPath);
@@ -149,7 +147,7 @@ export class CachedData {
   }
 
   private static async download(
-    file: LessonPlaylistFileInterface,
+    file: MessageFileInterface,
     diskPath: string,
     fileProgressCallback?: (progress: number) => void
   ) {
@@ -193,7 +191,7 @@ export class CachedData {
     }
   }
 
-  static async allFilesCached(files: LessonPlaylistFileInterface[]): Promise<boolean> {
+  static async allFilesCached(files: MessageFileInterface[]): Promise<boolean> {
     for (const f of files) {
       if (!f.url || f.url.trim() === "") continue;
       let fullPath = this.getFilePath(f.url);

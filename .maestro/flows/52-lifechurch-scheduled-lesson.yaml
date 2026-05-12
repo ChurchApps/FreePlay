@@ -1,0 +1,48 @@
+# Drill into Life.Church → "This Sunday" scheduled lessons → tap the 4-6th
+# Grade entry → confirm playback. Mirrors the B1Church scheduled-lesson flow
+# (40-b1church-scheduled-lesson.yaml) but for the Life.Church provider's
+# weekly calendar surface.
+#
+# Scheduled-lesson ids are scraped from open.life.church's calendar
+# (/schedule?category_id=266|303|301) and stored in the LifeChurch data.json.
+# The id format is {seriesId}-{YYYY-MM-DD}, so the entry below assumes the
+# next-Sunday catalog refresh produced loop-2026-05-10. If the demo runs
+# after that Sunday, re-run scripts/scrape-lifechurch.ts --schedule-only and
+# update the id below.
+
+appId: church.freeplay
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: "providers-card-lifechurch(-focused)?"
+    timeout: 60000
+- tapOn:
+    id: "providers-card-lifechurch(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-scheduled(-focused)?"
+    timeout: 30000
+- tapOn:
+    id: "cb-folder-scheduled(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "cb-folder-loop-2026-05-10(-focused)?"
+    timeout: 15000
+- tapOn:
+    id: "cb-folder-loop-2026-05-10(-focused)?"
+- extendedWaitUntil:
+    visible:
+      id: "pd-root-choosing"
+    timeout: 30000
+- tapOn:
+    id: "pd-stream-btn"
+- extendedWaitUntil:
+    visible:
+      id: "player-root"
+    timeout: 15000
+- extendedWaitUntil:
+    visible:
+      id: "message-ready"
+    timeout: 30000

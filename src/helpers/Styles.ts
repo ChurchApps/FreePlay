@@ -1,22 +1,35 @@
 import { StyleSheet } from "react-native";
 import { DimensionHelper } from "./DimensionHelper";
 import { StyleConstants } from "./StyleConstants";
+import { Branding } from "../branding";
 
-// Centralized color palette for consistency
+// rgb tuple from "#RRGGBB" so partners only define a primary color, not its 4 overlay tints.
+const hexToRgb = (hex: string): [number, number, number] => {
+  const h = hex.replace("#", "");
+  return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
+};
+const rgba = (hex: string, alpha: number) => {
+  const [r, g, b] = hexToRgb(hex);
+  return `rgba(${r},${g},${b},${alpha})`;
+};
+
+const brand = Branding.colors;
+
+// Centralized color palette for consistency. Brand-tinted values come from branding.json.
 export const Colors = {
   // Brand colors
-  primary: "#E91E63",
-  primaryLight: "#f48fb1",
-  primaryDark: "#c2185b",
+  primary: brand.primary,
+  primaryLight: brand.primaryLight,
+  primaryDark: brand.primaryDark,
 
   // Background colors
-  background: "#1a0f17",
-  backgroundDark: "#000000",
-  backgroundCard: "#2d1f2d",
-  surface: "#1a1118",
-  surfaceDark: "#120b11",
-  navBackground: "#1a0b1a",
-  inputBackground: "#100714",
+  background: brand.background,
+  backgroundDark: brand.backgroundDark,
+  backgroundCard: brand.backgroundCard,
+  surface: brand.surface,
+  surfaceDark: brand.surfaceDark,
+  navBackground: brand.navBackground,
+  inputBackground: brand.inputBackground,
 
   // Text colors
   textPrimary: "#FFFFFF",
@@ -24,15 +37,15 @@ export const Colors = {
   textMuted: "#777777",
   textInput: "#e6eef8",
 
-  // State colors
-  activeBackground: "rgba(233,30,99,0.12)",
-  hoverBackground: "rgba(233,30,99,0.08)",
+  // State colors (derived from primary so partners don't tune 4 alphas per fork)
+  activeBackground: rgba(brand.primary, 0.12),
+  hoverBackground: rgba(brand.primary, 0.08),
   focusBackground: "rgba(255,255,255,0.03)",
-  pressedBackground: "rgba(233,30,99,0.8)",
+  pressedBackground: rgba(brand.primary, 0.8),
 
   // Border colors
   borderSubtle: "rgba(255,255,255,0.06)",
-  borderAccent: "rgba(233,30,99,0.15)",
+  borderAccent: rgba(brand.primary, 0.15),
 
   // Status colors
   success: "#4CAF50",
@@ -49,6 +62,35 @@ export const Colors = {
 
   // Misc
   inactive: "#767577"
+};
+
+// Spacing scale. Use these tokens instead of hardcoded paddings/margins.
+// Values are in DP and chosen for 10-foot legibility.
+export const Spacing = {
+  xs: 4,
+  sm: 8,
+  md: 16,
+  lg: 24,
+  xl: 40,
+  xxl: 64
+};
+
+// 10-foot type scale. Values are sized for couch viewing on a TV.
+// `labelSmall` is the readability floor — never use a fontSize below this.
+export const Typography = {
+  displayHero: DimensionHelper.wp("15%"),    // splash / oversized hero text
+  displayCode: DimensionHelper.wp("7%"),     // primary pairing code character
+  displayCodeSm: DimensionHelper.wp("5%"),   // secondary code character / very large body
+  heading1: DimensionHelper.hp("4.5%"),      // H1
+  heading2: DimensionHelper.wp("3.5%"),      // H2 / page titles
+  heading3: DimensionHelper.wp("3%"),        // H3
+  titleLarge: DimensionHelper.wp("2.5%"),    // section / dialog titles
+  bodyLarge: DimensionHelper.wp("2%"),       // primary body
+  bodyMedium: DimensionHelper.wp("1.8%"),    // secondary body
+  bodySmall: DimensionHelper.wp("1.6%"),     // helper / supporting text
+  labelLarge: DimensionHelper.wp("1.5%"),    // list-item titles
+  labelMedium: DimensionHelper.wp("1.4%"),   // captions, nav items
+  labelSmall: DimensionHelper.wp("1.2%")     // readability FLOOR — do not go below
 };
 
 export const Styles = StyleSheet.create({
@@ -70,19 +112,19 @@ export const Styles = StyleSheet.create({
 
   H1: {
     color: Colors.textPrimary,
-    fontSize: DimensionHelper.hp("4.5%"),
+    fontSize: Typography.heading1,
     fontFamily: StyleConstants.RobotoBold,
     letterSpacing: 0.5
   },
   H2: {
     color: Colors.textPrimary,
-    fontSize: DimensionHelper.wp("3.5%"),
+    fontSize: Typography.heading2,
     fontFamily: StyleConstants.RobotoBold,
     letterSpacing: 0.3
   },
   H3: {
     color: Colors.textPrimary,
-    fontSize: DimensionHelper.wp("3%"),
+    fontSize: Typography.heading3,
     fontFamily: StyleConstants.RobotoRegular,
     letterSpacing: 0.2
   },
@@ -90,28 +132,28 @@ export const Styles = StyleSheet.create({
   messageImage: { maxWidth: DimensionHelper.wp("40%"), alignSelf: "center" },
   bigWhiteText: {
     color: Colors.textPrimary,
-    fontSize: DimensionHelper.wp("5%"),
+    fontSize: Typography.displayCodeSm,
     textAlign: "center",
     letterSpacing: 0.3
   },
   giantWhiteText: {
     color: Colors.textPrimary,
-    fontSize: DimensionHelper.wp("15%"),
+    fontSize: Typography.displayHero,
     textAlign: "center"
   },
   whiteText: {
     color: Colors.textPrimary,
-    fontSize: DimensionHelper.wp("3%"),
+    fontSize: Typography.heading3,
     textAlign: "center"
   },
   smallWhiteText: {
     color: Colors.textPrimary,
-    fontSize: DimensionHelper.wp("2%"),
+    fontSize: Typography.bodyLarge,
     textAlign: "center"
   },
   smallerWhiteText: {
     color: Colors.textSecondary,
-    fontSize: DimensionHelper.wp("1.5%")
+    fontSize: Typography.labelLarge
   },
 
   // Menu / Navigation

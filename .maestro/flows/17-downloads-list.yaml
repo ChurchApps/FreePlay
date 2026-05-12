@@ -1,0 +1,25 @@
+# Open the sidebar (via hardware back, since pressKey doesn't expose D-pad
+# direction keys in Maestro 2.5.1 — see README), tap the Downloads nav item,
+# assert the downloads screen renders. On a fresh emulator the downloads
+# list is empty, so the EmptyState is what we see (downloads-root + the
+# "no downloads" translated message).
+
+appId: church.freeplay
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible:
+      id: "providers-root"
+    timeout: 60000
+- pressKey: back
+- extendedWaitUntil:
+    visible:
+      id: "nav-item-downloads"
+    timeout: 5000
+- tapOn:
+    id: "nav-item-downloads"
+- extendedWaitUntil:
+    visible:
+      id: "downloads-root"
+    timeout: 5000
