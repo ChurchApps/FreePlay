@@ -7,6 +7,7 @@ import { DimensionHelper } from "../helpers/DimensionHelper";
 import { Styles, CachedData, Colors, Typography, ProviderAuthHelper, ProviderSettingsHelper } from "../helpers";
 import { MenuHeader } from "../components";
 import { getProvider, FREEPLAY_PROVIDER_IDS, getAvailableProviders } from "../providers";
+import { isLocked } from "../branding";
 import { ProviderInfo } from "../interfaces";
 
 type Props = {
@@ -45,7 +46,8 @@ export const ProviderSettingsScreen = (props: Props) => {
   }, [props.providerId]);
 
   const handleBack = () => {
-    props.navigateTo("providers");
+    // Locked forks have no picker — bounce back through splash, which routes appropriately.
+    props.navigateTo(isLocked ? "splash" : "providers");
     return true;
   };
 
@@ -71,7 +73,8 @@ export const ProviderSettingsScreen = (props: Props) => {
     CachedData.connectedProviders = CachedData.connectedProviders.filter(id => id !== props.providerId);
     CachedData.clearFocusMemory(`contentBrowser_${props.providerId}`);
     if (CachedData.activeProvider === props.providerId) CachedData.activeProvider = null;
-    props.navigateTo("providers");
+    // Locked forks: re-route through splash so it lands on the auth screen for the locked provider.
+    props.navigateTo(isLocked ? "splash" : "providers");
   };
 
   const renderLogo = () => {

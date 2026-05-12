@@ -13,6 +13,7 @@ import { CachedData, Styles, Colors, ProviderSettingsHelper } from "../helpers";
 import { SoundHelper } from "../helpers/SoundHelper";
 import { NavItem } from "./NavItem";
 import { getProvider } from "../providers";
+import { isLocked } from "../branding";
 import { FreePlayLogo } from "../components";
 
 type Props = {
@@ -224,21 +225,23 @@ export const NavWrapper = (props: Props) => {
               ? findNodeHandle(providerRefs.current[connectedProviders[connectedProviders.length - 1]])
               : undefined
           }
-          nextFocusDown={findNodeHandle(providersRef.current)}
+          nextFocusDown={isLocked ? undefined : findNodeHandle(providersRef.current)}
         />
-        <NavItem
-          testID="nav-item-providers"
-          icon={"extension"}
-          text={t("nav.providers")}
-          expanded={props.sidebarExpanded}
-          setExpanded={handleSidebarExpand}
-          selected={highlightedItem === "providers"}
-          onPress={() => {
-            handleClick("providers");
-          }}
-          ref={providersRef}
-          nextFocusUp={findNodeHandle(downloadsRef.current)}
-        />
+        {!isLocked && (
+          <NavItem
+            testID="nav-item-providers"
+            icon={"extension"}
+            text={t("nav.providers")}
+            expanded={props.sidebarExpanded}
+            setExpanded={handleSidebarExpand}
+            selected={highlightedItem === "providers"}
+            onPress={() => {
+              handleClick("providers");
+            }}
+            ref={providersRef}
+            nextFocusUp={findNodeHandle(downloadsRef.current)}
+          />
+        )}
       </View>
     </View>
   );

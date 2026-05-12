@@ -1,3 +1,5 @@
+import { Branding } from "../branding";
+
 export {
   getProvider,
   getAllProviders,
@@ -12,13 +14,5 @@ export {
   type ContentItem
 } from "@churchapps/content-providers";
 
-/** Provider IDs shown in the FreePlay app. Used by both SplashScreen and ProvidersScreen. */
-export const FREEPLAY_PROVIDER_IDS = [
-  "signpresenter",
-  "lessonschurch",
-  "b1church",
-  "bibleproject",
-  "lifechurch",
-  "dropbox",
-  "jesusfilm"
-];
+/** Provider IDs shown in the FreePlay app. Sourced from branding.json so forks can lock to one. */
+export const FREEPLAY_PROVIDER_IDS: string[] = Branding.providerIds;

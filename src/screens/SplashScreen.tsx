@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { CachedData, Styles, Colors, Typography, PlanSync } from "../helpers";
 import { ProviderAuthHelper, ProviderSettingsHelper } from "../helpers";
 import { getAvailableProviders, FREEPLAY_PROVIDER_IDS, getProvider } from "../providers";
+import { isLocked, lockedProviderId } from "../branding";
 import SoundPlayer from "react-native-sound-player";
 import { FreePlayLogo } from "../components";
 
@@ -47,9 +48,24 @@ export const SplashScreen = (props: Props) => {
       const firstProviderId = connectedProviders[0];
       CachedData.activeProvider = firstProviderId;
       props.navigateTo("contentBrowser", { providerId: firstProviderId, folderStack: [] });
-    } else {
-      props.navigateTo("providers");
+      return;
     }
+    if (isLocked && lockedProviderId) {
+      // White-labeled forks lock to one provider — skip the picker.
+      const provider = getProvider(lockedProviderId);
+      if (provider && !provider.requiresAuth) {
+        CachedData.activeProvider = lockedProviderId;
+        props.navigateTo("contentBrowser", { providerId: lockedProviderId, folderStack: [] });
+        return;
+      }
+      const authType = provider?.authTypes?.[0];
+      const authScreen = authType === "oauth_pkce" ? "providerOAuth"
+        : authType === "form_login" ? "providerFormLogin"
+          : "providerDeviceAuth";
+      props.navigateTo(authScreen, { providerId: lockedProviderId });
+      return;
+    }
+    props.navigateTo("providers");
   };
 
   useEffect(() => {

@@ -1,0 +1,48 @@
+{
+  "appName": "FreePlay",
+  "slug": "freeplay",
+  "scheme": "church.freeplay",
+  "owner": "churchapps",
+  "version": "1.3.0",
+  "android": {
+    "package": "church.freeplay",
+    "versionCode": 17
+  },
+  "ios": {
+    "bundleIdentifier": "church.freeplay",
+    "buildNumber": "10"
+  },
+  "eas": {
+    "projectId": "b6cd99e1-8cc2-4fd6-b4e7-81d8a6f62507",
+    "updatesUrl": "https://u.expo.dev/b6cd99e1-8cc2-4fd6-b4e7-81d8a6f62507"
+  },
+  "sentry": {
+    "organization": "churchapps",
+    "project": "freeplay"
+  },
+  "providerIds": [
+    "signpresenter",
+    "lessonschurch",
+    "b1church",
+    "bibleproject",
+    "lifechurch",
+    "dropbox",
+    "jesusfilm"
+  ],
+  "colors": {
+    "primary": "#E91E63",
+    "primaryLight": "#f48fb1",
+    "primaryDark": "#c2185b",
+    "background": "#1a0f17",
+    "backgroundDark": "#000000",
+    "backgroundCard": "#2d1f2d",
+    "surface": "#1a1118",
+    "surfaceDark": "#120b11",
+    "navBackground": "#1a0b1a",
+    "inputBackground": "#100714"
+  },
+  "tvosSubmit": {
+    "ascAppId": "6758970546",
+    "appleTeamId": "84A55Q9H5B"
+  }
+}
