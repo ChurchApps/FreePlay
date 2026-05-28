@@ -6,11 +6,11 @@
   "version": "1.3.0",
   "android": {
     "package": "church.freeplay",
-    "versionCode": 17
+    "versionCode": 18
   },
   "ios": {
     "bundleIdentifier": "church.freeplay",
-    "buildNumber": "10"
+    "buildNumber": "11"
   },
   "eas": {
     "projectId": "b6cd99e1-8cc2-4fd6-b4e7-81d8a6f62507",
