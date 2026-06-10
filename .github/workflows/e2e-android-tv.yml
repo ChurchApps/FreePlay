@@ -19,6 +19,12 @@ concurrency:
   group: e2e-android-tv-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
+env:
+  YARN_ENABLE_HARDENED_MODE: "1"
+
 jobs:
   maestro:
     name: Tier 1 flows on Google TV API 34
@@ -27,7 +33,7 @@ jobs:
     env:
       EXPO_PUBLIC_FREEPLAY_ENV: staging
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Enable KVM
         run: |
@@ -38,12 +44,12 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 22
           cache: yarn
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9 # v4.8.0
         with:
           distribution: temurin
           java-version: 17
@@ -56,7 +62,7 @@ jobs:
       - run: yarn install --immutable
 
       - name: Cache Gradle
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: |
             ~/.gradle/caches
@@ -76,7 +82,7 @@ jobs:
       # boot. profile=tv_1080p targets the Google TV form factor; api 34 has
       # the latest google_apis_playstore image with TV support.
       - name: Run Maestro flows on Android TV emulator
-        uses: reactivecircus/android-emulator-runner@v2
+        uses: reactivecircus/android-emulator-runner@e89f39f1abbbd05b1113a29cf4db69e7540cae5a # v2.9.0
         with:
           api-level: 34
           target: google_apis_playstore
@@ -92,7 +98,7 @@ jobs:
 
       - name: Upload Maestro artifacts
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: maestro-report
           path: |
