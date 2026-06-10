@@ -20,8 +20,8 @@
     "reset-provisioning": "cross-env EXPO_TV=1 eas credentials --platform ios"
   },
   "dependencies": {
-    "@churchapps/content-providers": "^0.3.0",
-    "@churchapps/helpers": "^1.5.0",
+    "@churchapps/content-providers": "^0.3.1",
+    "@churchapps/helpers": "^1.6.1",
     "@expo/metro-runtime": "~6.1.1",
     "@react-native-async-storage/async-storage": "1.24.0",
     "@react-native-firebase/analytics": "^23.8.4",
