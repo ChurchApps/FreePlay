@@ -1,190 +1,169 @@
 {
   "common": {
-    "cancel": "Mégse",
     "comingSoon": "Hamarosan",
     "connected": "Kapcsolódva",
-    "tryAgain": "Próbálja újra",
     "version": "Verzió: {{version}}"
   },
-  "nav": {
-    "downloads": "Letöltések",
-    "providers": "Szolgáltatók"
-  },
-  "providers": {
-    "header": "Tartalomszolgáltatók",
-    "comingSoonAlert": {
-      "title": "Hamarosan",
-      "message": "{{name}} még nem érhető el."
-    },
-    "disconnect": {
-      "title": "Szolgáltató leválasztása",
-      "message": "Biztosan le szeretne csatlakozni a következőről: {{name}}?",
-      "action": "Leválasztás"
-    },
-    "errorAlert": {
-      "title": "Hiba",
-      "providerNotFound": "{{name}} szolgáltató nem található."
-    },
-    "notSupported": {
-      "title": "Nem támogatott",
-      "message": "A {{name}} hitelesítés még nem támogatott."
-    }
-  },
   "contentBrowser": {
+    "fileType": {
+      "image": "Kép",
+      "video": "Videó"
+    },
     "header": "Tartalom böngészése",
     "noContent": "Nincs elérhető tartalom",
-    "tryDifferentFolder": "Próbáljon meg egy másik mappára navigálni",
-    "fileType": {
-      "video": "Videó",
-      "image": "Kép"
-    }
-  },
-  "providerDownload": {
-    "fallbackTitle": "Tartalom",
-    "download": "Letöltés",
-    "stream": "Streamelés",
-    "start": "Indítás",
-    "downloadingItem": "{{current}}. elem letöltése a következőből: {{total}}"
-  },
-  "providerDeviceAuth": {
-    "providerNotFound": "A szolgáltató nem található.",
-    "initFailed": "Nem sikerült inicializálni a hitelesítést. Próbálja újra.",
-    "unexpectedError": "Váratlan hiba történt. Próbálja újra.",
-    "codeExpired": "A hitelesítési kód lejárt. Próbálja újra.",
-    "authFailed": "A hitelesítés sikertelen volt vagy elutasítva.",
-    "initializing": "Hitelesítés inicializálása...",
-    "tryAgain": "Próbálja újra",
-    "connected": "Kapcsolódva!",
-    "loadingContent": "Tartalom betöltése...",
-    "connectTo": "Kapcsolódás a következőhöz: {{name}}",
-    "fallbackProvider": "Szolgáltató",
-    "instructions": "Olvassa be a QR-kódot a telefonjával, vagy látogassa meg",
-    "instructionsLine2": "és adja meg az alábbi kódot",
-    "enterCode": "Adja meg ezt a kódot:",
-    "waiting": "Várakozás engedélyezésre",
-    "expiresIn": "A kód {{minutes}} perc múlva lejár",
-    "cancel": "Mégse"
-  },
-  "providerOAuth": {
-    "providerNotFound": "A szolgáltató nem található.",
-    "sessionFailed": "Nem sikerült létrehozni az engedélyezési munkamenetet. Próbálja újra.",
-    "unexpectedError": "Váratlan hiba történt. Próbálja újra.",
-    "sessionExpired": "Az engedélyezési munkamenet lejárt. Próbálja újra.",
-    "exchangeFailed": "Nem sikerült az engedélyezési kód cseréje tokenekre.",
-    "tokenExchangeFailed": "A token csere sikertelen. Próbálja újra.",
-    "initializing": "Hitelesítés inicializálása...",
-    "connecting": "Kapcsolódás...",
-    "tryAgain": "Próbálja újra",
-    "connected": "Kapcsolódva!",
-    "loadingContent": "Tartalom betöltése...",
-    "connectTo": "Kapcsolódás a következőhöz: {{name}}",
-    "fallbackProvider": "Szolgáltató",
-    "instructionsLine1": "Olvassa be a QR-kódot a telefonjával a hozzáférés engedélyezéséhez.",
-    "instructionsLine2": "A TV automatikusan csatlakozik, miután jóváhagyja.",
-    "waiting": "Várakozás engedélyezésre",
-    "expiresIn": "A munkamenet {{minutes}} perc múlva lejár",
-    "cancel": "Mégse"
-  },
-  "providerFormLogin": {
-    "missingCredentials": "Adja meg az e-mail-címet és a jelszót",
-    "providerNotFound": "A szolgáltató nem található",
-    "notSupported": "Ez a szolgáltató nem támogatja az űrlapos bejelentkezést",
-    "loginFailed": "A bejelentkezés sikertelen. Ellenőrizze a hitelesítő adatait.",
-    "unexpectedError": "Váratlan hiba történt. Próbálja újra.",
-    "loggingIn": "Bejelentkezés...",
-    "connected": "Kapcsolódva!",
-    "loadingContent": "Tartalom betöltése...",
-    "loginTo": "Bejelentkezés ide: {{name}}",
-    "fallbackProvider": "Szolgáltató",
-    "enterCredentials": "Adja meg hitelesítő adatait a kapcsolódáshoz",
-    "email": "E-mail",
-    "emailPlaceholder": "email@example.com",
-    "password": "Jelszó",
-    "passwordPlaceholder": "Jelszó",
-    "signIn": "Bejelentkezés",
-    "cancel": "Mégse"
-  },
-  "download": {
-    "startLesson": "Lecke indítása",
-    "downloadingItem": "{{current}}. elem letöltése a következőből: {{total}}",
-    "scheduleLoadFailed": "A menetrend nem tölthető be.",
-    "scheduleLoadFailedSub": "Győződjön meg róla, hogy ehhez az osztályhoz van ütemezett lecke.",
-    "tryAgain": "Próbálja újra"
+    "tryDifferentFolder": "Próbáljon meg egy másik mappára navigálni"
   },
   "downloads": {
     "header": "Letöltések",
     "noDownloads": "Még nincsenek letöltések"
   },
+  "menu": {
+    "back": "Vissza"
+  },
+  "message": {
+    "loadingImage": "Kép betöltése...",
+    "loadingVideo": "Videó betöltése...",
+    "playbackFailed": "A lejátszás sikertelen",
+    "playbackFailedSub": "Nyomja meg a vissza gombot",
+    "skippingNext": "Ugrás a következő elemre...",
+    "videoFailed": "A videó nem töltődött be"
+  },
+  "nav": {
+    "downloads": "Letöltések",
+    "plan": "Mai Terv",
+    "providers": "Szolgáltatók"
+  },
+  "offline": {
+    "canPlayDownloaded": "Még mindig lejátszhatja az előre letöltött leckét.",
+    "notDownloaded": "Sajnos a leckét még nem töltötték le offline lejátszáshoz. Ellenőrizze a kapcsolatát, és próbálja újra.",
+    "start": "Indítás",
+    "subtitle": "Az internet-hozzáférés jelenleg nem érhető el",
+    "title": "Offline:"
+  },
   "planDownload": {
-    "fallbackName": "Istentisztelet terve",
-    "startPlan": "Terv indítása",
     "downloadingItem": "{{current}}. elem letöltése a következőből: {{total}}",
+    "fallbackName": "Istentisztelet terve",
     "loadFailed": "A terv nem tölthető be.",
     "loadFailedSub": "Győződjön meg róla, hogy ehhez a terv típushoz van ütemezett terv.",
+    "startPlan": "Terv indítása",
     "tryAgain": "Próbálja újra"
   },
   "planPairing": {
+    "connected": "Csatlakozva!",
     "generateFailed": "Nem sikerült létrehozni a párosítási kódot. Próbálja újra.",
     "generating": "Párosítási kód létrehozása...",
-    "tryAgain": "Próbálja újra",
     "instructions": "Adja meg ezt a kódot a B1Admin Terv típus szakaszában",
-    "waiting": "Várakozás kapcsolódásra",
-    "searchByName": "vagy keressen a templom nevével"
-  },
-  "selectPairingMode": {
-    "header": "Válasszon párosítási módot",
-    "classroomTitle": "Párosítás osztályteremmel",
-    "classroomDescription": "Csatlakozzon egy adott osztálytermi TV-hez, és automatikusan jelenítse meg az ütemezett leckéket",
-    "planTitle": "Párosítás tervvel",
-    "planDescription": "Kövesse temploma heti tervét, és böngésszen igény szerinti tartalmat"
-  },
-  "selectChurch": {
-    "header": "Találja meg templomát",
-    "searchPlaceholder": "Templom nevének keresése",
-    "minLetters": "A keresés megkezdéséhez adjon meg legalább négy betűt a templom nevéből.",
-    "noResults": "Nincs találat. Keressen újra, vagy regisztrálja templomát a https://freeplay.church/ címen."
-  },
-  "selectRoom": {
-    "header": "Válasszon osztálytermet",
-    "noClassrooms": "Nem találhatók osztálytermek",
-    "configureRooms": "Konfigurálja osztálytermeit a freeplay.church oldalon."
-  },
-  "offline": {
-    "title": "Offline:",
-    "subtitle": "Az internet-hozzáférés jelenleg nem érhető el",
-    "canPlayDownloaded": "Még mindig lejátszhatja az előre letöltött leckét.",
-    "notDownloaded": "Sajnos a leckét még nem töltötték le offline lejátszáshoz. Ellenőrizze a kapcsolatát, és próbálja újra.",
-    "startLesson": "Lecke indítása"
-  },
-  "lessons": {
-    "header": "Válasszon leckét",
-    "noLessons": "Nincsenek elérhető leckék"
-  },
-  "lessonDetails": {
-    "version": "Verzió: {{version}}"
-  },
-  "studies": {
-    "header": "Válasszon tanulmányt",
-    "noStudies": "Nincsenek elérhető tanulmányok"
-  },
-  "programs": {
-    "header": "Programok böngészése",
-    "noPrograms": "Nincsenek elérhető programok"
+    "loadingPlan": "A terve betöltése...",
+    "regenerate": "Új Kód Generálása",
+    "secondary": "Elfogadás után automatikusan csatlakozunk",
+    "tryAgain": "Próbálja újra",
+    "waiting": "Várakozás kapcsolódásra"
   },
   "privacyPolicy": {
     "header": "Adatvédelmi szabályzat",
-    "viewFullPolicy": "Teljes adatvédelmi szabályzatunk megtekintéséhez látogasson el a következő oldalra:",
-    "url": "churchapps.org/privacy"
+    "url": "churchapps.org/privacy",
+    "viewFullPolicy": "Teljes adatvédelmi szabályzatunk megtekintéséhez látogasson el a következő oldalra:"
+  },
+  "providerDeviceAuth": {
+    "authFailed": "A hitelesítés sikertelen volt vagy elutasítva.",
+    "cancel": "Mégse",
+    "codeExpired": "A hitelesítési kód lejárt. Próbálja újra.",
+    "connectTo": "Kapcsolódás a következőhöz: {{name}}",
+    "connected": "Kapcsolódva!",
+    "enterCode": "Adja meg ezt a kódot:",
+    "expiresIn": "A kód {{minutes}} perc múlva lejár",
+    "fallbackProvider": "Szolgáltató",
+    "initFailed": "Nem sikerült inicializálni a hitelesítést. Próbálja újra.",
+    "initializing": "Hitelesítés inicializálása...",
+    "instructions": "Olvassa be a QR-kódot a telefonjával, vagy látogassa meg",
+    "instructionsLine2": "és adja meg az alábbi kódot",
+    "loadingContent": "Tartalom betöltése...",
+    "providerNotFound": "A szolgáltató nem található.",
+    "regenerate": "Új Kód Generálása",
+    "secondary": "Ellenőrizze telefonját a megerősítéshez",
+    "tryAgain": "Próbálja újra",
+    "unexpectedError": "Váratlan hiba történt. Próbálja újra.",
+    "waiting": "Várakozás engedélyezésre"
+  },
+  "providerDownload": {
+    "download": "Letöltés",
+    "downloadingItem": "{{current}}. elem letöltése a következőből: {{total}}",
+    "fallbackTitle": "Tartalom",
+    "start": "Indítás",
+    "stream": "Streamelés"
+  },
+  "providerFormLogin": {
+    "cancel": "Mégse",
+    "connected": "Kapcsolódva!",
+    "email": "E-mail",
+    "emailPlaceholder": "email@example.com",
+    "enterCredentials": "Adja meg hitelesítő adatait a kapcsolódáshoz",
+    "fallbackProvider": "Szolgáltató",
+    "loadingContent": "Tartalom betöltése...",
+    "loggingIn": "Bejelentkezés...",
+    "loginFailed": "A bejelentkezés sikertelen. Ellenőrizze a hitelesítő adatait.",
+    "loginTo": "Bejelentkezés ide: {{name}}",
+    "missingCredentials": "Adja meg az e-mail-címet és a jelszót",
+    "notSupported": "Ez a szolgáltató nem támogatja az űrlapos bejelentkezést",
+    "password": "Jelszó",
+    "passwordPlaceholder": "Jelszó",
+    "providerNotFound": "A szolgáltató nem található",
+    "signIn": "Bejelentkezés",
+    "unexpectedError": "Váratlan hiba történt. Próbálja újra."
+  },
+  "providerOAuth": {
+    "cancel": "Mégse",
+    "connectTo": "Kapcsolódás a következőhöz: {{name}}",
+    "connected": "Kapcsolódva!",
+    "connecting": "Kapcsolódás...",
+    "exchangeFailed": "Nem sikerült az engedélyezési kód cseréje tokenekre.",
+    "expiresIn": "A munkamenet {{minutes}} perc múlva lejár",
+    "fallbackProvider": "Szolgáltató",
+    "initializing": "Hitelesítés inicializálása...",
+    "instructionsLine1": "Olvassa be a QR-kódot a telefonjával a hozzáférés engedélyezéséhez.",
+    "instructionsLine2": "A TV automatikusan csatlakozik, miután jóváhagyja.",
+    "loadingContent": "Tartalom betöltése...",
+    "providerNotFound": "A szolgáltató nem található.",
+    "secondary": "Ellenőrizze telefonját a megerősítéshez",
+    "sessionExpired": "Az engedélyezési munkamenet lejárt. Próbálja újra.",
+    "sessionFailed": "Nem sikerült létrehozni az engedélyezési munkamenetet. Próbálja újra.",
+    "tokenExchangeFailed": "A token csere sikertelen. Próbálja újra.",
+    "tryAgain": "Próbálja újra",
+    "unexpectedError": "Váratlan hiba történt. Próbálja újra.",
+    "waiting": "Várakozás engedélyezésre"
+  },
+  "providerSettings": {
+    "autoDownload": {
+      "description": "Használja ezt a szolgáltatót a mai lecke forrásaként, és töltse le előre a fájlokat",
+      "label": "Mai Lecke Automatikus Letöltése"
+    },
+    "disconnect": "Kapcsolat Bontása",
+    "header": "Szolgáltató Beállításai",
+    "library": {
+      "description": "Mutassa a szolgáltató tartalomkönyvtárát a menüben",
+      "label": "Könyvtár Böngészése"
+    }
+  },
+  "providers": {
+    "comingSoonAlert": {
+      "message": "{{name}} még nem érhető el.",
+      "title": "Hamarosan"
+    },
+    "errorAlert": {
+      "providerNotFound": "{{name}} szolgáltató nem található.",
+      "title": "Hiba"
+    },
+    "header": "Tartalomszolgáltatók",
+    "notSupported": {
+      "message": "A {{name}} hitelesítés még nem támogatott.",
+      "title": "Nem támogatott"
+    }
   },
   "selectMessage": {
-    "header": "Válasszon üzenetet"
+    "header": "Válasszon üzenetet",
+    "nowPlaying": "MOST JÁTSSZIK"
   },
-  "message": {
-    "loadingVideo": "Videó betöltése...",
-    "videoFailed": "A videó nem töltődött be",
-    "skippingNext": "Ugrás a következő elemre..."
-  },
-  "menu": {
-    "back": "Vissza"
+  "splash": {
+    "connecting": "Csatlakozás..."
   }
 }

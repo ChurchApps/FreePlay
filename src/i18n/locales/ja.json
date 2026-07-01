@@ -1,190 +1,169 @@
 {
   "common": {
-    "cancel": "キャンセル",
     "comingSoon": "近日公開",
     "connected": "接続済み",
-    "tryAgain": "再試行",
     "version": "バージョン: {{version}}"
   },
-  "nav": {
-    "downloads": "ダウンロード",
-    "providers": "プロバイダー"
-  },
-  "providers": {
-    "header": "コンテンツプロバイダー",
-    "comingSoonAlert": {
-      "title": "近日公開",
-      "message": "{{name}}はまだ利用できません。"
-    },
-    "disconnect": {
-      "title": "プロバイダーを切断",
-      "message": "{{name}}との接続を切断してもよろしいですか?",
-      "action": "切断"
-    },
-    "errorAlert": {
-      "title": "エラー",
-      "providerNotFound": "プロバイダー{{name}}が見つかりません。"
-    },
-    "notSupported": {
-      "title": "サポートされていません",
-      "message": "{{name}}認証はまだサポートされていません。"
-    }
-  },
   "contentBrowser": {
+    "fileType": {
+      "image": "画像",
+      "video": "動画"
+    },
     "header": "コンテンツを閲覧",
     "noContent": "利用可能なコンテンツがありません",
-    "tryDifferentFolder": "別のフォルダーに移動してみてください",
-    "fileType": {
-      "video": "動画",
-      "image": "画像"
-    }
-  },
-  "providerDownload": {
-    "fallbackTitle": "コンテンツ",
-    "download": "ダウンロード",
-    "stream": "ストリーミング",
-    "start": "開始",
-    "downloadingItem": "{{total}}個中{{current}}個目をダウンロード中"
-  },
-  "providerDeviceAuth": {
-    "providerNotFound": "プロバイダーが見つかりません。",
-    "initFailed": "認証の初期化に失敗しました。再度お試しください。",
-    "unexpectedError": "予期しないエラーが発生しました。再度お試しください。",
-    "codeExpired": "認証コードの有効期限が切れました。再度お試しください。",
-    "authFailed": "認証に失敗したか、拒否されました。",
-    "initializing": "認証を初期化中...",
-    "tryAgain": "再試行",
-    "connected": "接続しました!",
-    "loadingContent": "コンテンツを読み込み中...",
-    "connectTo": "{{name}}に接続",
-    "fallbackProvider": "プロバイダー",
-    "instructions": "携帯電話でQRコードをスキャンするか、次のサイトにアクセスしてください",
-    "instructionsLine2": "下記のコードを入力してください",
-    "enterCode": "このコードを入力してください:",
-    "waiting": "認証を待機中",
-    "expiresIn": "コードは{{minutes}}分後に期限切れになります",
-    "cancel": "キャンセル"
-  },
-  "providerOAuth": {
-    "providerNotFound": "プロバイダーが見つかりません。",
-    "sessionFailed": "認証セッションの作成に失敗しました。再度お試しください。",
-    "unexpectedError": "予期しないエラーが発生しました。再度お試しください。",
-    "sessionExpired": "認証セッションの有効期限が切れました。再度お試しください。",
-    "exchangeFailed": "認証コードとトークンの交換に失敗しました。",
-    "tokenExchangeFailed": "トークン交換に失敗しました。再度お試しください。",
-    "initializing": "認証を初期化中...",
-    "connecting": "接続中...",
-    "tryAgain": "再試行",
-    "connected": "接続しました!",
-    "loadingContent": "コンテンツを読み込み中...",
-    "connectTo": "{{name}}に接続",
-    "fallbackProvider": "プロバイダー",
-    "instructionsLine1": "アクセスを承認するために携帯電話でQRコードをスキャンしてください。",
-    "instructionsLine2": "承認するとTVが自動的に接続されます。",
-    "waiting": "認証を待機中",
-    "expiresIn": "セッションは{{minutes}}分後に期限切れになります",
-    "cancel": "キャンセル"
-  },
-  "providerFormLogin": {
-    "missingCredentials": "メールアドレスとパスワードを入力してください",
-    "providerNotFound": "プロバイダーが見つかりません",
-    "notSupported": "このプロバイダーはフォームログインをサポートしていません",
-    "loginFailed": "ログインに失敗しました。資格情報を確認してください。",
-    "unexpectedError": "予期しないエラーが発生しました。再度お試しください。",
-    "loggingIn": "ログイン中...",
-    "connected": "接続しました!",
-    "loadingContent": "コンテンツを読み込み中...",
-    "loginTo": "{{name}}にログイン",
-    "fallbackProvider": "プロバイダー",
-    "enterCredentials": "接続するために資格情報を入力してください",
-    "email": "メールアドレス",
-    "emailPlaceholder": "email@example.com",
-    "password": "パスワード",
-    "passwordPlaceholder": "パスワード",
-    "signIn": "サインイン",
-    "cancel": "キャンセル"
-  },
-  "download": {
-    "startLesson": "レッスンを開始",
-    "downloadingItem": "{{total}}個中{{current}}個目をダウンロード中",
-    "scheduleLoadFailed": "スケジュールを読み込めませんでした。",
-    "scheduleLoadFailedSub": "このクラスのレッスンが予定されていることを確認してください。",
-    "tryAgain": "再試行"
+    "tryDifferentFolder": "別のフォルダーに移動してみてください"
   },
   "downloads": {
     "header": "ダウンロード",
     "noDownloads": "ダウンロードがまだありません"
   },
+  "menu": {
+    "back": "戻る"
+  },
+  "message": {
+    "loadingImage": "画像を読み込み中...",
+    "loadingVideo": "動画を読み込み中...",
+    "playbackFailed": "再生に失敗しました",
+    "playbackFailedSub": "戻るには「戻る」を押してください",
+    "skippingNext": "次の項目にスキップ中...",
+    "videoFailed": "動画の読み込みに失敗しました"
+  },
+  "nav": {
+    "downloads": "ダウンロード",
+    "plan": "本日のプラン",
+    "providers": "プロバイダー"
+  },
+  "offline": {
+    "canPlayDownloaded": "事前にダウンロードしたレッスンは引き続き再生できます。",
+    "notDownloaded": "残念ながら、レッスンはまだオフライン再生用にダウンロードされていません。接続を確認して再度お試しください。",
+    "start": "開始",
+    "subtitle": "現在インターネットアクセスが利用できません",
+    "title": "オフライン:"
+  },
   "planDownload": {
-    "fallbackName": "礼拝計画",
-    "startPlan": "計画を開始",
     "downloadingItem": "{{total}}個中{{current}}個目をダウンロード中",
+    "fallbackName": "礼拝計画",
     "loadFailed": "計画を読み込めませんでした。",
     "loadFailedSub": "この計画タイプの計画が予定されていることを確認してください。",
+    "startPlan": "計画を開始",
     "tryAgain": "再試行"
   },
   "planPairing": {
+    "connected": "接続しました！",
     "generateFailed": "ペアリングコードの生成に失敗しました。再度お試しください。",
     "generating": "ペアリングコードを生成中...",
-    "tryAgain": "再試行",
     "instructions": "B1Adminの計画タイプセクションにこのコードを入力してください",
-    "waiting": "接続を待機中",
-    "searchByName": "または教会名で検索"
-  },
-  "selectPairingMode": {
-    "header": "ペアリングモードを選択",
-    "classroomTitle": "教室とペアリング",
-    "classroomDescription": "特定の教室のTVに接続し、予定されたレッスンを自動的に表示します",
-    "planTitle": "計画とペアリング",
-    "planDescription": "教会の週間計画に従い、オンデマンドでコンテンツを閲覧します"
-  },
-  "selectChurch": {
-    "header": "教会を見つける",
-    "searchPlaceholder": "教会名を検索",
-    "minLetters": "検索を開始するには、教会名を少なくとも4文字入力してください。",
-    "noResults": "結果が見つかりませんでした。もう一度検索するか、https://freeplay.church/で教会を登録してください。"
-  },
-  "selectRoom": {
-    "header": "教室を選択",
-    "noClassrooms": "教室が見つかりません",
-    "configureRooms": "freeplay.churchで教室を設定してください。"
-  },
-  "offline": {
-    "title": "オフライン:",
-    "subtitle": "現在インターネットアクセスが利用できません",
-    "canPlayDownloaded": "事前にダウンロードしたレッスンは引き続き再生できます。",
-    "notDownloaded": "残念ながら、レッスンはまだオフライン再生用にダウンロードされていません。接続を確認して再度お試しください。",
-    "startLesson": "レッスンを開始"
-  },
-  "lessons": {
-    "header": "レッスンを選択",
-    "noLessons": "利用可能なレッスンがありません"
-  },
-  "lessonDetails": {
-    "version": "バージョン: {{version}}"
-  },
-  "studies": {
-    "header": "学習を選択",
-    "noStudies": "利用可能な学習がありません"
-  },
-  "programs": {
-    "header": "プログラムを閲覧",
-    "noPrograms": "利用可能なプログラムがありません"
+    "loadingPlan": "プランを読み込み中...",
+    "regenerate": "新しいコードを生成",
+    "secondary": "承認されると自動的に接続します",
+    "tryAgain": "再試行",
+    "waiting": "接続を待機中"
   },
   "privacyPolicy": {
     "header": "プライバシーポリシー",
-    "viewFullPolicy": "完全なプライバシーポリシーを見るには、こちらをご覧ください:",
-    "url": "churchapps.org/privacy"
+    "url": "churchapps.org/privacy",
+    "viewFullPolicy": "完全なプライバシーポリシーを見るには、こちらをご覧ください:"
+  },
+  "providerDeviceAuth": {
+    "authFailed": "認証に失敗したか、拒否されました。",
+    "cancel": "キャンセル",
+    "codeExpired": "認証コードの有効期限が切れました。再度お試しください。",
+    "connectTo": "{{name}}に接続",
+    "connected": "接続しました!",
+    "enterCode": "このコードを入力してください:",
+    "expiresIn": "コードは{{minutes}}分後に期限切れになります",
+    "fallbackProvider": "プロバイダー",
+    "initFailed": "認証の初期化に失敗しました。再度お試しください。",
+    "initializing": "認証を初期化中...",
+    "instructions": "携帯電話でQRコードをスキャンするか、次のサイトにアクセスしてください",
+    "instructionsLine2": "下記のコードを入力してください",
+    "loadingContent": "コンテンツを読み込み中...",
+    "providerNotFound": "プロバイダーが見つかりません。",
+    "regenerate": "新しいコードを生成",
+    "secondary": "確認のため電話をご確認ください",
+    "tryAgain": "再試行",
+    "unexpectedError": "予期しないエラーが発生しました。再度お試しください。",
+    "waiting": "認証を待機中"
+  },
+  "providerDownload": {
+    "download": "ダウンロード",
+    "downloadingItem": "{{total}}個中{{current}}個目をダウンロード中",
+    "fallbackTitle": "コンテンツ",
+    "start": "開始",
+    "stream": "ストリーミング"
+  },
+  "providerFormLogin": {
+    "cancel": "キャンセル",
+    "connected": "接続しました!",
+    "email": "メールアドレス",
+    "emailPlaceholder": "email@example.com",
+    "enterCredentials": "接続するために資格情報を入力してください",
+    "fallbackProvider": "プロバイダー",
+    "loadingContent": "コンテンツを読み込み中...",
+    "loggingIn": "ログイン中...",
+    "loginFailed": "ログインに失敗しました。資格情報を確認してください。",
+    "loginTo": "{{name}}にログイン",
+    "missingCredentials": "メールアドレスとパスワードを入力してください",
+    "notSupported": "このプロバイダーはフォームログインをサポートしていません",
+    "password": "パスワード",
+    "passwordPlaceholder": "パスワード",
+    "providerNotFound": "プロバイダーが見つかりません",
+    "signIn": "サインイン",
+    "unexpectedError": "予期しないエラーが発生しました。再度お試しください。"
+  },
+  "providerOAuth": {
+    "cancel": "キャンセル",
+    "connectTo": "{{name}}に接続",
+    "connected": "接続しました!",
+    "connecting": "接続中...",
+    "exchangeFailed": "認証コードとトークンの交換に失敗しました。",
+    "expiresIn": "セッションは{{minutes}}分後に期限切れになります",
+    "fallbackProvider": "プロバイダー",
+    "initializing": "認証を初期化中...",
+    "instructionsLine1": "アクセスを承認するために携帯電話でQRコードをスキャンしてください。",
+    "instructionsLine2": "承認するとTVが自動的に接続されます。",
+    "loadingContent": "コンテンツを読み込み中...",
+    "providerNotFound": "プロバイダーが見つかりません。",
+    "secondary": "確認のため電話をご確認ください",
+    "sessionExpired": "認証セッションの有効期限が切れました。再度お試しください。",
+    "sessionFailed": "認証セッションの作成に失敗しました。再度お試しください。",
+    "tokenExchangeFailed": "トークン交換に失敗しました。再度お試しください。",
+    "tryAgain": "再試行",
+    "unexpectedError": "予期しないエラーが発生しました。再度お試しください。",
+    "waiting": "認証を待機中"
+  },
+  "providerSettings": {
+    "autoDownload": {
+      "description": "このプロバイダーを本日のレッスンのソースとして使用し、ファイルを事前にダウンロードします",
+      "label": "本日のレッスンを自動ダウンロード"
+    },
+    "disconnect": "切断",
+    "header": "プロバイダー設定",
+    "library": {
+      "description": "メニューにこのプロバイダーのコンテンツライブラリを表示",
+      "label": "ライブラリを閲覧"
+    }
+  },
+  "providers": {
+    "comingSoonAlert": {
+      "message": "{{name}}はまだ利用できません。",
+      "title": "近日公開"
+    },
+    "errorAlert": {
+      "providerNotFound": "プロバイダー{{name}}が見つかりません。",
+      "title": "エラー"
+    },
+    "header": "コンテンツプロバイダー",
+    "notSupported": {
+      "message": "{{name}}認証はまだサポートされていません。",
+      "title": "サポートされていません"
+    }
   },
   "selectMessage": {
-    "header": "メッセージを選択"
+    "header": "メッセージを選択",
+    "nowPlaying": "再生中"
   },
-  "message": {
-    "loadingVideo": "動画を読み込み中...",
-    "videoFailed": "動画の読み込みに失敗しました",
-    "skippingNext": "次の項目にスキップ中..."
-  },
-  "menu": {
-    "back": "戻る"
+  "splash": {
+    "connecting": "接続中..."
   }
 }

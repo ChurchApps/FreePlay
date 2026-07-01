@@ -1,190 +1,169 @@
 {
   "common": {
-    "cancel": "Откажи",
     "comingSoon": "Ускоро",
     "connected": "Повезано",
-    "tryAgain": "Покушај поново",
     "version": "Верзија: {{version}}"
   },
-  "nav": {
-    "downloads": "Преузимања",
-    "providers": "Добављачи"
-  },
-  "providers": {
-    "header": "Добављачи садржаја",
-    "comingSoonAlert": {
-      "title": "Ускоро",
-      "message": "{{name}} још увек није доступан."
-    },
-    "disconnect": {
-      "title": "Прекини везу са добављачем",
-      "message": "Да ли сте сигурни да желите да прекинете везу са {{name}}?",
-      "action": "Прекини везу"
-    },
-    "errorAlert": {
-      "title": "Грешка",
-      "providerNotFound": "Добављач {{name}} није пронађен."
-    },
-    "notSupported": {
-      "title": "Није подржано",
-      "message": "Аутентификација {{name}} још увек није подржана."
-    }
-  },
   "contentBrowser": {
+    "fileType": {
+      "image": "Слика",
+      "video": "Видео"
+    },
     "header": "Прегледај садржај",
     "noContent": "Нема доступног садржаја",
-    "tryDifferentFolder": "Покушајте да пређете у другу фасциклу",
-    "fileType": {
-      "video": "Видео",
-      "image": "Слика"
-    }
-  },
-  "providerDownload": {
-    "fallbackTitle": "Садржај",
-    "download": "Преузми",
-    "stream": "Стримуј",
-    "start": "Почни",
-    "downloadingItem": "Преузимање ставке {{current}} од {{total}}"
-  },
-  "providerDeviceAuth": {
-    "providerNotFound": "Добављач није пронађен.",
-    "initFailed": "Иницијализација аутентификације није успела. Покушајте поново.",
-    "unexpectedError": "Дошло је до неочекиване грешке. Покушајте поново.",
-    "codeExpired": "Аутентификациони код је истекао. Покушајте поново.",
-    "authFailed": "Аутентификација није успела или је одбијена.",
-    "initializing": "Иницијализација аутентификације...",
-    "tryAgain": "Покушај поново",
-    "connected": "Повезано!",
-    "loadingContent": "Учитавање вашег садржаја...",
-    "connectTo": "Повежи се са {{name}}",
-    "fallbackProvider": "Добављач",
-    "instructions": "Скенирајте QR код телефоном или посетите",
-    "instructionsLine2": "и унесите код испод",
-    "enterCode": "Унесите овај код:",
-    "waiting": "Чекање на ауторизацију",
-    "expiresIn": "Код истиче за {{minutes}} мин.",
-    "cancel": "Откажи"
-  },
-  "providerOAuth": {
-    "providerNotFound": "Добављач није пронађен.",
-    "sessionFailed": "Креирање ауторизационе сесије није успело. Покушајте поново.",
-    "unexpectedError": "Дошло је до неочекиване грешке. Покушајте поново.",
-    "sessionExpired": "Ауторизациона сесија је истекла. Покушајте поново.",
-    "exchangeFailed": "Размена ауторизационог кода за токене није успела.",
-    "tokenExchangeFailed": "Размена токена није успела. Покушајте поново.",
-    "initializing": "Иницијализација аутентификације...",
-    "connecting": "Повезивање...",
-    "tryAgain": "Покушај поново",
-    "connected": "Повезано!",
-    "loadingContent": "Учитавање вашег садржаја...",
-    "connectTo": "Повежи се са {{name}}",
-    "fallbackProvider": "Добављач",
-    "instructionsLine1": "Скенирајте QR код телефоном да бисте овластили приступ.",
-    "instructionsLine2": "Ваш ТВ ће се аутоматски повезати када одобрите.",
-    "waiting": "Чекање на ауторизацију",
-    "expiresIn": "Сесија истиче за {{minutes}} мин.",
-    "cancel": "Откажи"
-  },
-  "providerFormLogin": {
-    "missingCredentials": "Унесите имејл и лозинку",
-    "providerNotFound": "Добављач није пронађен",
-    "notSupported": "Овај добављач не подржава пријаву преко обрасца",
-    "loginFailed": "Пријава није успела. Проверите своје акредитиве.",
-    "unexpectedError": "Дошло је до неочекиване грешке. Покушајте поново.",
-    "loggingIn": "Пријављивање...",
-    "connected": "Повезано!",
-    "loadingContent": "Учитавање вашег садржаја...",
-    "loginTo": "Пријави се на {{name}}",
-    "fallbackProvider": "Добављач",
-    "enterCredentials": "Унесите своје акредитиве да бисте се повезали",
-    "email": "Имејл",
-    "emailPlaceholder": "email@example.com",
-    "password": "Лозинка",
-    "passwordPlaceholder": "Лозинка",
-    "signIn": "Пријави се",
-    "cancel": "Откажи"
-  },
-  "download": {
-    "startLesson": "Почни лекцију",
-    "downloadingItem": "Преузимање ставке {{current}} од {{total}}",
-    "scheduleLoadFailed": "Распоред није могао да се учита.",
-    "scheduleLoadFailedSub": "Уверите се да је за овај разред заказана лекција.",
-    "tryAgain": "Покушај поново"
+    "tryDifferentFolder": "Покушајте да пређете у другу фасциклу"
   },
   "downloads": {
     "header": "Преузимања",
     "noDownloads": "Још увек нема преузимања"
   },
+  "menu": {
+    "back": "Назад"
+  },
+  "message": {
+    "loadingImage": "Учитавање слике...",
+    "loadingVideo": "Учитавање видеа...",
+    "playbackFailed": "Репродукција није успела",
+    "playbackFailedSub": "Притисните назад за повратак",
+    "skippingNext": "Прескакање на следећу ставку...",
+    "videoFailed": "Видео се није учитао"
+  },
+  "nav": {
+    "downloads": "Преузимања",
+    "plan": "Данашњи План",
+    "providers": "Добављачи"
+  },
+  "offline": {
+    "canPlayDownloaded": "И даље можете репродуковати лекцију која је унапред преузета.",
+    "notDownloaded": "Нажалост, лекција још увек није преузета за репродукцију ван мреже. Проверите везу и покушајте поново.",
+    "start": "Почни",
+    "subtitle": "Приступ интернету тренутно није доступан",
+    "title": "Ван мреже:"
+  },
   "planDownload": {
-    "fallbackName": "План богослужења",
-    "startPlan": "Почни план",
     "downloadingItem": "Преузимање ставке {{current}} од {{total}}",
+    "fallbackName": "План богослужења",
     "loadFailed": "План није могао да се учита.",
     "loadFailedSub": "Уверите се да је за ову врсту плана заказан план.",
+    "startPlan": "Почни план",
     "tryAgain": "Покушај поново"
   },
   "planPairing": {
+    "connected": "Повезано!",
     "generateFailed": "Генерисање кода за упаривање није успело. Покушајте поново.",
     "generating": "Генерисање кода за упаривање...",
-    "tryAgain": "Покушај поново",
     "instructions": "Унесите овај код у одељак Врста плана у B1Admin",
-    "waiting": "Чекање на повезивање",
-    "searchByName": "или претражите по имену цркве"
-  },
-  "selectPairingMode": {
-    "header": "Изаберите режим упаривања",
-    "classroomTitle": "Упари са учионицом",
-    "classroomDescription": "Повежите се са одређеним ТВ у учионици и аутоматски приказујте заказане лекције",
-    "planTitle": "Упари са планом",
-    "planDescription": "Пратите недељни план своје цркве и прегледајте садржај на захтев"
-  },
-  "selectChurch": {
-    "header": "Пронађите своју цркву",
-    "searchPlaceholder": "Претражи име цркве",
-    "minLetters": "Унесите најмање четири слова имена ваше цркве да бисте започели претрагу.",
-    "noResults": "Нема пронађених резултата. Претражите поново или региструјте своју цркву на https://freeplay.church/."
-  },
-  "selectRoom": {
-    "header": "Изаберите учионицу",
-    "noClassrooms": "Нема пронађених учионица",
-    "configureRooms": "Конфигуришите своје учионице на freeplay.church."
-  },
-  "offline": {
-    "title": "Ван мреже:",
-    "subtitle": "Приступ интернету тренутно није доступан",
-    "canPlayDownloaded": "И даље можете репродуковати лекцију која је унапред преузета.",
-    "notDownloaded": "Нажалост, лекција још увек није преузета за репродукцију ван мреже. Проверите везу и покушајте поново.",
-    "startLesson": "Почни лекцију"
-  },
-  "lessons": {
-    "header": "Изаберите лекцију",
-    "noLessons": "Нема доступних лекција"
-  },
-  "lessonDetails": {
-    "version": "Верзија: {{version}}"
-  },
-  "studies": {
-    "header": "Изаберите проучавање",
-    "noStudies": "Нема доступних проучавања"
-  },
-  "programs": {
-    "header": "Прегледај програме",
-    "noPrograms": "Нема доступних програма"
+    "loadingPlan": "Учитавање вашег плана...",
+    "regenerate": "Генериши Нови Код",
+    "secondary": "Аутоматски ћемо се повезати након прихватања",
+    "tryAgain": "Покушај поново",
+    "waiting": "Чекање на повезивање"
   },
   "privacyPolicy": {
     "header": "Политика приватности",
-    "viewFullPolicy": "Да бисте видели нашу пуну политику приватности, посетите:",
-    "url": "churchapps.org/privacy"
+    "url": "churchapps.org/privacy",
+    "viewFullPolicy": "Да бисте видели нашу пуну политику приватности, посетите:"
+  },
+  "providerDeviceAuth": {
+    "authFailed": "Аутентификација није успела или је одбијена.",
+    "cancel": "Откажи",
+    "codeExpired": "Аутентификациони код је истекао. Покушајте поново.",
+    "connectTo": "Повежи се са {{name}}",
+    "connected": "Повезано!",
+    "enterCode": "Унесите овај код:",
+    "expiresIn": "Код истиче за {{minutes}} мин.",
+    "fallbackProvider": "Добављач",
+    "initFailed": "Иницијализација аутентификације није успела. Покушајте поново.",
+    "initializing": "Иницијализација аутентификације...",
+    "instructions": "Скенирајте QR код телефоном или посетите",
+    "instructionsLine2": "и унесите код испод",
+    "loadingContent": "Учитавање вашег садржаја...",
+    "providerNotFound": "Добављач није пронађен.",
+    "regenerate": "Генериши Нови Код",
+    "secondary": "Проверите телефон да потврдите",
+    "tryAgain": "Покушај поново",
+    "unexpectedError": "Дошло је до неочекиване грешке. Покушајте поново.",
+    "waiting": "Чекање на ауторизацију"
+  },
+  "providerDownload": {
+    "download": "Преузми",
+    "downloadingItem": "Преузимање ставке {{current}} од {{total}}",
+    "fallbackTitle": "Садржај",
+    "start": "Почни",
+    "stream": "Стримуј"
+  },
+  "providerFormLogin": {
+    "cancel": "Откажи",
+    "connected": "Повезано!",
+    "email": "Имејл",
+    "emailPlaceholder": "email@example.com",
+    "enterCredentials": "Унесите своје акредитиве да бисте се повезали",
+    "fallbackProvider": "Добављач",
+    "loadingContent": "Учитавање вашег садржаја...",
+    "loggingIn": "Пријављивање...",
+    "loginFailed": "Пријава није успела. Проверите своје акредитиве.",
+    "loginTo": "Пријави се на {{name}}",
+    "missingCredentials": "Унесите имејл и лозинку",
+    "notSupported": "Овај добављач не подржава пријаву преко обрасца",
+    "password": "Лозинка",
+    "passwordPlaceholder": "Лозинка",
+    "providerNotFound": "Добављач није пронађен",
+    "signIn": "Пријави се",
+    "unexpectedError": "Дошло је до неочекиване грешке. Покушајте поново."
+  },
+  "providerOAuth": {
+    "cancel": "Откажи",
+    "connectTo": "Повежи се са {{name}}",
+    "connected": "Повезано!",
+    "connecting": "Повезивање...",
+    "exchangeFailed": "Размена ауторизационог кода за токене није успела.",
+    "expiresIn": "Сесија истиче за {{minutes}} мин.",
+    "fallbackProvider": "Добављач",
+    "initializing": "Иницијализација аутентификације...",
+    "instructionsLine1": "Скенирајте QR код телефоном да бисте овластили приступ.",
+    "instructionsLine2": "Ваш ТВ ће се аутоматски повезати када одобрите.",
+    "loadingContent": "Учитавање вашег садржаја...",
+    "providerNotFound": "Добављач није пронађен.",
+    "secondary": "Проверите телефон да потврдите",
+    "sessionExpired": "Ауторизациона сесија је истекла. Покушајте поново.",
+    "sessionFailed": "Креирање ауторизационе сесије није успело. Покушајте поново.",
+    "tokenExchangeFailed": "Размена токена није успела. Покушајте поново.",
+    "tryAgain": "Покушај поново",
+    "unexpectedError": "Дошло је до неочекиване грешке. Покушајте поново.",
+    "waiting": "Чекање на ауторизацију"
+  },
+  "providerSettings": {
+    "autoDownload": {
+      "description": "Користите овог добављача као извор данашње лекције и унапред преузмите датотеке",
+      "label": "Аутоматски Преузми Данашњу Лекцију"
+    },
+    "disconnect": "Прекини Везу",
+    "header": "Подешавања Добављача",
+    "library": {
+      "description": "Прикажи библиотеку садржаја овог добављача у менију",
+      "label": "Прегледај Библиотеку"
+    }
+  },
+  "providers": {
+    "comingSoonAlert": {
+      "message": "{{name}} још увек није доступан.",
+      "title": "Ускоро"
+    },
+    "errorAlert": {
+      "providerNotFound": "Добављач {{name}} није пронађен.",
+      "title": "Грешка"
+    },
+    "header": "Добављачи садржаја",
+    "notSupported": {
+      "message": "Аутентификација {{name}} још увек није подржана.",
+      "title": "Није подржано"
+    }
   },
   "selectMessage": {
-    "header": "Изаберите поруку"
+    "header": "Изаберите поруку",
+    "nowPlaying": "СЕ РЕПРОДУКУЈЕ"
   },
-  "message": {
-    "loadingVideo": "Учитавање видеа...",
-    "videoFailed": "Видео се није учитао",
-    "skippingNext": "Прескакање на следећу ставку..."
-  },
-  "menu": {
-    "back": "Назад"
+  "splash": {
+    "connecting": "Повезивање..."
   }
 }

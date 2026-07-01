@@ -1,190 +1,169 @@
 {
   "common": {
-    "cancel": "Zrušiť",
     "comingSoon": "Už čoskoro",
     "connected": "Pripojené",
-    "tryAgain": "Skúsiť znova",
     "version": "Verzia: {{version}}"
   },
-  "nav": {
-    "downloads": "Stiahnuté súbory",
-    "providers": "Poskytovatelia"
-  },
-  "providers": {
-    "header": "Poskytovatelia obsahu",
-    "comingSoonAlert": {
-      "title": "Už čoskoro",
-      "message": "{{name}} ešte nie je k dispozícii."
-    },
-    "disconnect": {
-      "title": "Odpojiť poskytovateľa",
-      "message": "Naozaj sa chcete odpojiť od {{name}}?",
-      "action": "Odpojiť"
-    },
-    "errorAlert": {
-      "title": "Chyba",
-      "providerNotFound": "Poskytovateľ {{name}} nebol nájdený."
-    },
-    "notSupported": {
-      "title": "Nepodporované",
-      "message": "Overenie {{name}} ešte nie je podporované."
-    }
-  },
   "contentBrowser": {
+    "fileType": {
+      "image": "Obrázok",
+      "video": "Video"
+    },
     "header": "Prehliadať obsah",
     "noContent": "Nie je k dispozícii žiadny obsah",
-    "tryDifferentFolder": "Skúste prejsť do iného priečinka",
-    "fileType": {
-      "video": "Video",
-      "image": "Obrázok"
-    }
-  },
-  "providerDownload": {
-    "fallbackTitle": "Obsah",
-    "download": "Stiahnuť",
-    "stream": "Streamovať",
-    "start": "Spustiť",
-    "downloadingItem": "Sťahovanie položky {{current}} z {{total}}"
-  },
-  "providerDeviceAuth": {
-    "providerNotFound": "Poskytovateľ nebol nájdený.",
-    "initFailed": "Nepodarilo sa inicializovať overovanie. Skúste to znova.",
-    "unexpectedError": "Vyskytla sa neočakávaná chyba. Skúste to znova.",
-    "codeExpired": "Overovací kód vypršal. Skúste to znova.",
-    "authFailed": "Overovanie zlyhalo alebo bolo zamietnuté.",
-    "initializing": "Inicializuje sa overovanie...",
-    "tryAgain": "Skúsiť znova",
-    "connected": "Pripojené!",
-    "loadingContent": "Načítava sa obsah...",
-    "connectTo": "Pripojiť sa k {{name}}",
-    "fallbackProvider": "Poskytovateľ",
-    "instructions": "Naskenujte QR kód telefónom alebo navštívte",
-    "instructionsLine2": "a zadajte kód nižšie",
-    "enterCode": "Zadajte tento kód:",
-    "waiting": "Čaká sa na autorizáciu",
-    "expiresIn": "Kód vyprší o {{minutes}} min.",
-    "cancel": "Zrušiť"
-  },
-  "providerOAuth": {
-    "providerNotFound": "Poskytovateľ nebol nájdený.",
-    "sessionFailed": "Nepodarilo sa vytvoriť autorizačnú reláciu. Skúste to znova.",
-    "unexpectedError": "Vyskytla sa neočakávaná chyba. Skúste to znova.",
-    "sessionExpired": "Autorizačná relácia vypršala. Skúste to znova.",
-    "exchangeFailed": "Nepodarilo sa vymeniť autorizačný kód za tokeny.",
-    "tokenExchangeFailed": "Výmena tokenov zlyhala. Skúste to znova.",
-    "initializing": "Inicializuje sa overovanie...",
-    "connecting": "Pripájanie...",
-    "tryAgain": "Skúsiť znova",
-    "connected": "Pripojené!",
-    "loadingContent": "Načítava sa obsah...",
-    "connectTo": "Pripojiť sa k {{name}}",
-    "fallbackProvider": "Poskytovateľ",
-    "instructionsLine1": "Naskenujte QR kód telefónom na autorizáciu prístupu.",
-    "instructionsLine2": "Vaša TV sa po schválení automaticky pripojí.",
-    "waiting": "Čaká sa na autorizáciu",
-    "expiresIn": "Relácia vyprší o {{minutes}} min.",
-    "cancel": "Zrušiť"
-  },
-  "providerFormLogin": {
-    "missingCredentials": "Zadajte e-mail a heslo",
-    "providerNotFound": "Poskytovateľ nebol nájdený",
-    "notSupported": "Tento poskytovateľ nepodporuje prihlásenie formulárom",
-    "loginFailed": "Prihlásenie zlyhalo. Skontrolujte svoje prihlasovacie údaje.",
-    "unexpectedError": "Vyskytla sa neočakávaná chyba. Skúste to znova.",
-    "loggingIn": "Prihlasovanie...",
-    "connected": "Pripojené!",
-    "loadingContent": "Načítava sa obsah...",
-    "loginTo": "Prihlásiť sa do {{name}}",
-    "fallbackProvider": "Poskytovateľ",
-    "enterCredentials": "Zadajte svoje prihlasovacie údaje na pripojenie",
-    "email": "E-mail",
-    "emailPlaceholder": "email@example.com",
-    "password": "Heslo",
-    "passwordPlaceholder": "Heslo",
-    "signIn": "Prihlásiť sa",
-    "cancel": "Zrušiť"
-  },
-  "download": {
-    "startLesson": "Začať lekciu",
-    "downloadingItem": "Sťahovanie položky {{current}} z {{total}}",
-    "scheduleLoadFailed": "Rozvrh sa nepodarilo načítať.",
-    "scheduleLoadFailedSub": "Uistite sa, že pre túto triedu je naplánovaná lekcia.",
-    "tryAgain": "Skúsiť znova"
+    "tryDifferentFolder": "Skúste prejsť do iného priečinka"
   },
   "downloads": {
     "header": "Stiahnuté súbory",
     "noDownloads": "Zatiaľ žiadne stiahnuté súbory"
   },
+  "menu": {
+    "back": "Späť"
+  },
+  "message": {
+    "loadingImage": "Načítava sa obrázok...",
+    "loadingVideo": "Načítava sa video...",
+    "playbackFailed": "Prehrávanie zlyhalo",
+    "playbackFailedSub": "Stlačte späť pre návrat",
+    "skippingNext": "Preskakovanie na ďalšiu položku...",
+    "videoFailed": "Video sa nepodarilo načítať"
+  },
+  "nav": {
+    "downloads": "Stiahnuté súbory",
+    "plan": "Dnešný Plán",
+    "providers": "Poskytovatelia"
+  },
+  "offline": {
+    "canPlayDownloaded": "Stále môžete prehrať lekciu, ktorá bola stiahnutá vopred.",
+    "notDownloaded": "Bohužiaľ, lekcia ešte nebola stiahnutá na offline prehrávanie. Skontrolujte pripojenie a skúste to znova.",
+    "start": "Spustiť",
+    "subtitle": "Prístup na internet nie je momentálne k dispozícii",
+    "title": "Offline:"
+  },
   "planDownload": {
-    "fallbackName": "Plán bohoslužby",
-    "startPlan": "Spustiť plán",
     "downloadingItem": "Sťahovanie položky {{current}} z {{total}}",
+    "fallbackName": "Plán bohoslužby",
     "loadFailed": "Plán sa nepodarilo načítať.",
     "loadFailedSub": "Uistite sa, že pre tento typ plánu je naplánovaný plán.",
+    "startPlan": "Spustiť plán",
     "tryAgain": "Skúsiť znova"
   },
   "planPairing": {
+    "connected": "Pripojené!",
     "generateFailed": "Nepodarilo sa vygenerovať párovací kód. Skúste to znova.",
     "generating": "Generuje sa párovací kód...",
-    "tryAgain": "Skúsiť znova",
     "instructions": "Zadajte tento kód v sekcii Typ plánu v B1Admin",
-    "waiting": "Čaká sa na pripojenie",
-    "searchByName": "alebo vyhľadajte podľa názvu kostola"
-  },
-  "selectPairingMode": {
-    "header": "Vyberte režim párovania",
-    "classroomTitle": "Spárovať s učebňou",
-    "classroomDescription": "Pripojte sa ku konkrétnej TV v učebni a automaticky zobrazujte naplánované lekcie",
-    "planTitle": "Spárovať s plánom",
-    "planDescription": "Sledujte týždenný plán svojho kostola a prehliadajte obsah na požiadanie"
-  },
-  "selectChurch": {
-    "header": "Nájdite svoj kostol",
-    "searchPlaceholder": "Hľadať názov kostola",
-    "minLetters": "Na začatie vyhľadávania zadajte aspoň štyri písmená názvu vášho kostola.",
-    "noResults": "Nenašli sa žiadne výsledky. Hľadajte znova alebo zaregistrujte svoj kostol na https://freeplay.church/."
-  },
-  "selectRoom": {
-    "header": "Vyberte učebňu",
-    "noClassrooms": "Nenašli sa žiadne učebne",
-    "configureRooms": "Nakonfigurujte svoje učebne na freeplay.church."
-  },
-  "offline": {
-    "title": "Offline:",
-    "subtitle": "Prístup na internet nie je momentálne k dispozícii",
-    "canPlayDownloaded": "Stále môžete prehrať lekciu, ktorá bola stiahnutá vopred.",
-    "notDownloaded": "Bohužiaľ, lekcia ešte nebola stiahnutá na offline prehrávanie. Skontrolujte pripojenie a skúste to znova.",
-    "startLesson": "Začať lekciu"
-  },
-  "lessons": {
-    "header": "Vyberte lekciu",
-    "noLessons": "Žiadne lekcie nie sú k dispozícii"
-  },
-  "lessonDetails": {
-    "version": "Verzia: {{version}}"
-  },
-  "studies": {
-    "header": "Vyberte štúdium",
-    "noStudies": "Žiadne štúdiá nie sú k dispozícii"
-  },
-  "programs": {
-    "header": "Prehliadať programy",
-    "noPrograms": "Žiadne programy nie sú k dispozícii"
+    "loadingPlan": "Načítava sa váš plán...",
+    "regenerate": "Vygenerovať Nový Kód",
+    "secondary": "Po prijatí sa automaticky pripojíme",
+    "tryAgain": "Skúsiť znova",
+    "waiting": "Čaká sa na pripojenie"
   },
   "privacyPolicy": {
     "header": "Zásady ochrany osobných údajov",
-    "viewFullPolicy": "Ak si chcete pozrieť naše úplné zásady ochrany osobných údajov, navštívte:",
-    "url": "churchapps.org/privacy"
+    "url": "churchapps.org/privacy",
+    "viewFullPolicy": "Ak si chcete pozrieť naše úplné zásady ochrany osobných údajov, navštívte:"
+  },
+  "providerDeviceAuth": {
+    "authFailed": "Overovanie zlyhalo alebo bolo zamietnuté.",
+    "cancel": "Zrušiť",
+    "codeExpired": "Overovací kód vypršal. Skúste to znova.",
+    "connectTo": "Pripojiť sa k {{name}}",
+    "connected": "Pripojené!",
+    "enterCode": "Zadajte tento kód:",
+    "expiresIn": "Kód vyprší o {{minutes}} min.",
+    "fallbackProvider": "Poskytovateľ",
+    "initFailed": "Nepodarilo sa inicializovať overovanie. Skúste to znova.",
+    "initializing": "Inicializuje sa overovanie...",
+    "instructions": "Naskenujte QR kód telefónom alebo navštívte",
+    "instructionsLine2": "a zadajte kód nižšie",
+    "loadingContent": "Načítava sa obsah...",
+    "providerNotFound": "Poskytovateľ nebol nájdený.",
+    "regenerate": "Vygenerovať Nový Kód",
+    "secondary": "Skontrolujte telefón na potvrdenie",
+    "tryAgain": "Skúsiť znova",
+    "unexpectedError": "Vyskytla sa neočakávaná chyba. Skúste to znova.",
+    "waiting": "Čaká sa na autorizáciu"
+  },
+  "providerDownload": {
+    "download": "Stiahnuť",
+    "downloadingItem": "Sťahovanie položky {{current}} z {{total}}",
+    "fallbackTitle": "Obsah",
+    "start": "Spustiť",
+    "stream": "Streamovať"
+  },
+  "providerFormLogin": {
+    "cancel": "Zrušiť",
+    "connected": "Pripojené!",
+    "email": "E-mail",
+    "emailPlaceholder": "email@example.com",
+    "enterCredentials": "Zadajte svoje prihlasovacie údaje na pripojenie",
+    "fallbackProvider": "Poskytovateľ",
+    "loadingContent": "Načítava sa obsah...",
+    "loggingIn": "Prihlasovanie...",
+    "loginFailed": "Prihlásenie zlyhalo. Skontrolujte svoje prihlasovacie údaje.",
+    "loginTo": "Prihlásiť sa do {{name}}",
+    "missingCredentials": "Zadajte e-mail a heslo",
+    "notSupported": "Tento poskytovateľ nepodporuje prihlásenie formulárom",
+    "password": "Heslo",
+    "passwordPlaceholder": "Heslo",
+    "providerNotFound": "Poskytovateľ nebol nájdený",
+    "signIn": "Prihlásiť sa",
+    "unexpectedError": "Vyskytla sa neočakávaná chyba. Skúste to znova."
+  },
+  "providerOAuth": {
+    "cancel": "Zrušiť",
+    "connectTo": "Pripojiť sa k {{name}}",
+    "connected": "Pripojené!",
+    "connecting": "Pripájanie...",
+    "exchangeFailed": "Nepodarilo sa vymeniť autorizačný kód za tokeny.",
+    "expiresIn": "Relácia vyprší o {{minutes}} min.",
+    "fallbackProvider": "Poskytovateľ",
+    "initializing": "Inicializuje sa overovanie...",
+    "instructionsLine1": "Naskenujte QR kód telefónom na autorizáciu prístupu.",
+    "instructionsLine2": "Vaša TV sa po schválení automaticky pripojí.",
+    "loadingContent": "Načítava sa obsah...",
+    "providerNotFound": "Poskytovateľ nebol nájdený.",
+    "secondary": "Skontrolujte telefón na potvrdenie",
+    "sessionExpired": "Autorizačná relácia vypršala. Skúste to znova.",
+    "sessionFailed": "Nepodarilo sa vytvoriť autorizačnú reláciu. Skúste to znova.",
+    "tokenExchangeFailed": "Výmena tokenov zlyhala. Skúste to znova.",
+    "tryAgain": "Skúsiť znova",
+    "unexpectedError": "Vyskytla sa neočakávaná chyba. Skúste to znova.",
+    "waiting": "Čaká sa na autorizáciu"
+  },
+  "providerSettings": {
+    "autoDownload": {
+      "description": "Použite tohto poskytovateľa ako zdroj dnešnej lekcie a vopred stiahnite súbory",
+      "label": "Automaticky Stiahnuť Dnešnú Lekciu"
+    },
+    "disconnect": "Odpojiť",
+    "header": "Nastavenia Poskytovateľa",
+    "library": {
+      "description": "Zobraziť knižnicu obsahu tohto poskytovateľa v ponuke",
+      "label": "Prehľadávať Knižnicu"
+    }
+  },
+  "providers": {
+    "comingSoonAlert": {
+      "message": "{{name}} ešte nie je k dispozícii.",
+      "title": "Už čoskoro"
+    },
+    "errorAlert": {
+      "providerNotFound": "Poskytovateľ {{name}} nebol nájdený.",
+      "title": "Chyba"
+    },
+    "header": "Poskytovatelia obsahu",
+    "notSupported": {
+      "message": "Overenie {{name}} ešte nie je podporované.",
+      "title": "Nepodporované"
+    }
   },
   "selectMessage": {
-    "header": "Vyberte správu"
+    "header": "Vyberte správu",
+    "nowPlaying": "PRÁVE SA PREHRÁVA"
   },
-  "message": {
-    "loadingVideo": "Načítava sa video...",
-    "videoFailed": "Video sa nepodarilo načítať",
-    "skippingNext": "Preskakovanie na ďalšiu položku..."
-  },
-  "menu": {
-    "back": "Späť"
+  "splash": {
+    "connecting": "Pripája sa..."
   }
 }

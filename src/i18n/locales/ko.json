@@ -1,190 +1,169 @@
 {
   "common": {
-    "cancel": "취소",
     "comingSoon": "출시 예정",
     "connected": "연결됨",
-    "tryAgain": "다시 시도",
     "version": "버전: {{version}}"
   },
-  "nav": {
-    "downloads": "다운로드",
-    "providers": "공급자"
-  },
-  "providers": {
-    "header": "콘텐츠 공급자",
-    "comingSoonAlert": {
-      "title": "출시 예정",
-      "message": "{{name}}은(는) 아직 사용할 수 없습니다."
-    },
-    "disconnect": {
-      "title": "공급자 연결 해제",
-      "message": "{{name}}에서 연결을 해제하시겠습니까?",
-      "action": "연결 해제"
-    },
-    "errorAlert": {
-      "title": "오류",
-      "providerNotFound": "공급자 {{name}}을(를) 찾을 수 없습니다."
-    },
-    "notSupported": {
-      "title": "지원되지 않음",
-      "message": "{{name}} 인증은 아직 지원되지 않습니다."
-    }
-  },
   "contentBrowser": {
+    "fileType": {
+      "image": "이미지",
+      "video": "동영상"
+    },
     "header": "콘텐츠 찾아보기",
     "noContent": "사용 가능한 콘텐츠가 없습니다",
-    "tryDifferentFolder": "다른 폴더로 이동해 보세요",
-    "fileType": {
-      "video": "동영상",
-      "image": "이미지"
-    }
-  },
-  "providerDownload": {
-    "fallbackTitle": "콘텐츠",
-    "download": "다운로드",
-    "stream": "스트리밍",
-    "start": "시작",
-    "downloadingItem": "{{total}}개 중 {{current}}개 항목 다운로드 중"
-  },
-  "providerDeviceAuth": {
-    "providerNotFound": "공급자를 찾을 수 없습니다.",
-    "initFailed": "인증을 초기화하지 못했습니다. 다시 시도해 주세요.",
-    "unexpectedError": "예기치 않은 오류가 발생했습니다. 다시 시도해 주세요.",
-    "codeExpired": "인증 코드가 만료되었습니다. 다시 시도해 주세요.",
-    "authFailed": "인증에 실패했거나 거부되었습니다.",
-    "initializing": "인증 초기화 중...",
-    "tryAgain": "다시 시도",
-    "connected": "연결되었습니다!",
-    "loadingContent": "콘텐츠 로드 중...",
-    "connectTo": "{{name}}에 연결",
-    "fallbackProvider": "공급자",
-    "instructions": "휴대폰으로 QR 코드를 스캔하거나 다음을 방문하세요",
-    "instructionsLine2": "그리고 아래 코드를 입력하세요",
-    "enterCode": "이 코드를 입력하세요:",
-    "waiting": "승인 대기 중",
-    "expiresIn": "코드는 {{minutes}}분 후에 만료됩니다",
-    "cancel": "취소"
-  },
-  "providerOAuth": {
-    "providerNotFound": "공급자를 찾을 수 없습니다.",
-    "sessionFailed": "인증 세션을 만들지 못했습니다. 다시 시도해 주세요.",
-    "unexpectedError": "예기치 않은 오류가 발생했습니다. 다시 시도해 주세요.",
-    "sessionExpired": "인증 세션이 만료되었습니다. 다시 시도해 주세요.",
-    "exchangeFailed": "토큰을 위한 인증 코드 교환에 실패했습니다.",
-    "tokenExchangeFailed": "토큰 교환에 실패했습니다. 다시 시도해 주세요.",
-    "initializing": "인증 초기화 중...",
-    "connecting": "연결 중...",
-    "tryAgain": "다시 시도",
-    "connected": "연결되었습니다!",
-    "loadingContent": "콘텐츠 로드 중...",
-    "connectTo": "{{name}}에 연결",
-    "fallbackProvider": "공급자",
-    "instructionsLine1": "액세스를 승인하려면 휴대폰으로 QR 코드를 스캔하세요.",
-    "instructionsLine2": "승인하면 TV가 자동으로 연결됩니다.",
-    "waiting": "승인 대기 중",
-    "expiresIn": "세션은 {{minutes}}분 후에 만료됩니다",
-    "cancel": "취소"
-  },
-  "providerFormLogin": {
-    "missingCredentials": "이메일과 비밀번호를 입력하세요",
-    "providerNotFound": "공급자를 찾을 수 없습니다",
-    "notSupported": "이 공급자는 양식 로그인을 지원하지 않습니다",
-    "loginFailed": "로그인 실패. 자격 증명을 확인하세요.",
-    "unexpectedError": "예기치 않은 오류가 발생했습니다. 다시 시도해 주세요.",
-    "loggingIn": "로그인 중...",
-    "connected": "연결되었습니다!",
-    "loadingContent": "콘텐츠 로드 중...",
-    "loginTo": "{{name}}에 로그인",
-    "fallbackProvider": "공급자",
-    "enterCredentials": "연결하려면 자격 증명을 입력하세요",
-    "email": "이메일",
-    "emailPlaceholder": "email@example.com",
-    "password": "비밀번호",
-    "passwordPlaceholder": "비밀번호",
-    "signIn": "로그인",
-    "cancel": "취소"
-  },
-  "download": {
-    "startLesson": "수업 시작",
-    "downloadingItem": "{{total}}개 중 {{current}}개 항목 다운로드 중",
-    "scheduleLoadFailed": "일정을 로드할 수 없습니다.",
-    "scheduleLoadFailedSub": "이 클래스에 수업이 예약되어 있는지 확인하세요.",
-    "tryAgain": "다시 시도"
+    "tryDifferentFolder": "다른 폴더로 이동해 보세요"
   },
   "downloads": {
     "header": "다운로드",
     "noDownloads": "아직 다운로드한 항목이 없습니다"
   },
+  "menu": {
+    "back": "뒤로"
+  },
+  "message": {
+    "loadingImage": "이미지 로딩 중...",
+    "loadingVideo": "동영상 로드 중...",
+    "playbackFailed": "재생 실패",
+    "playbackFailedSub": "뒤로 눌러서 돌아가기",
+    "skippingNext": "다음 항목으로 건너뛰는 중...",
+    "videoFailed": "동영상 로드 실패"
+  },
+  "nav": {
+    "downloads": "다운로드",
+    "plan": "오늘의 플랜",
+    "providers": "공급자"
+  },
+  "offline": {
+    "canPlayDownloaded": "미리 다운로드한 수업은 계속 재생할 수 있습니다.",
+    "notDownloaded": "안타깝게도 수업이 아직 오프라인 재생을 위해 다운로드되지 않았습니다. 연결을 확인하고 다시 시도하세요.",
+    "start": "시작",
+    "subtitle": "현재 인터넷에 액세스할 수 없습니다",
+    "title": "오프라인:"
+  },
   "planDownload": {
-    "fallbackName": "예배 계획",
-    "startPlan": "계획 시작",
     "downloadingItem": "{{total}}개 중 {{current}}개 항목 다운로드 중",
+    "fallbackName": "예배 계획",
     "loadFailed": "계획을 로드할 수 없습니다.",
     "loadFailedSub": "이 계획 유형에 계획이 예약되어 있는지 확인하세요.",
+    "startPlan": "계획 시작",
     "tryAgain": "다시 시도"
   },
   "planPairing": {
+    "connected": "연결됨!",
     "generateFailed": "페어링 코드를 생성하지 못했습니다. 다시 시도해 주세요.",
     "generating": "페어링 코드 생성 중...",
-    "tryAgain": "다시 시도",
     "instructions": "B1Admin의 계획 유형 섹션에 이 코드를 입력하세요",
-    "waiting": "연결 대기 중",
-    "searchByName": "또는 교회 이름으로 검색"
-  },
-  "selectPairingMode": {
-    "header": "페어링 모드 선택",
-    "classroomTitle": "교실에 페어링",
-    "classroomDescription": "특정 교실 TV에 연결하고 예약된 수업을 자동으로 표시합니다",
-    "planTitle": "계획에 페어링",
-    "planDescription": "교회의 주간 계획을 따르고 콘텐츠를 주문형으로 탐색합니다"
-  },
-  "selectChurch": {
-    "header": "교회 찾기",
-    "searchPlaceholder": "교회 이름 검색",
-    "minLetters": "검색을 시작하려면 교회 이름의 4글자 이상을 입력하세요.",
-    "noResults": "결과를 찾을 수 없습니다. 다시 검색하거나 https://freeplay.church/에서 교회를 등록하세요."
-  },
-  "selectRoom": {
-    "header": "교실 선택",
-    "noClassrooms": "교실을 찾을 수 없습니다",
-    "configureRooms": "freeplay.church에서 교실을 구성하세요."
-  },
-  "offline": {
-    "title": "오프라인:",
-    "subtitle": "현재 인터넷에 액세스할 수 없습니다",
-    "canPlayDownloaded": "미리 다운로드한 수업은 계속 재생할 수 있습니다.",
-    "notDownloaded": "안타깝게도 수업이 아직 오프라인 재생을 위해 다운로드되지 않았습니다. 연결을 확인하고 다시 시도하세요.",
-    "startLesson": "수업 시작"
-  },
-  "lessons": {
-    "header": "수업 선택",
-    "noLessons": "사용 가능한 수업이 없습니다"
-  },
-  "lessonDetails": {
-    "version": "버전: {{version}}"
-  },
-  "studies": {
-    "header": "학습 선택",
-    "noStudies": "사용 가능한 학습이 없습니다"
-  },
-  "programs": {
-    "header": "프로그램 찾아보기",
-    "noPrograms": "사용 가능한 프로그램이 없습니다"
+    "loadingPlan": "플랜 로딩 중...",
+    "regenerate": "새 코드 생성",
+    "secondary": "수락되면 자동으로 연결됩니다",
+    "tryAgain": "다시 시도",
+    "waiting": "연결 대기 중"
   },
   "privacyPolicy": {
     "header": "개인정보 보호정책",
-    "viewFullPolicy": "전체 개인정보 보호정책을 보려면 다음을 방문하세요:",
-    "url": "churchapps.org/privacy"
+    "url": "churchapps.org/privacy",
+    "viewFullPolicy": "전체 개인정보 보호정책을 보려면 다음을 방문하세요:"
+  },
+  "providerDeviceAuth": {
+    "authFailed": "인증에 실패했거나 거부되었습니다.",
+    "cancel": "취소",
+    "codeExpired": "인증 코드가 만료되었습니다. 다시 시도해 주세요.",
+    "connectTo": "{{name}}에 연결",
+    "connected": "연결되었습니다!",
+    "enterCode": "이 코드를 입력하세요:",
+    "expiresIn": "코드는 {{minutes}}분 후에 만료됩니다",
+    "fallbackProvider": "공급자",
+    "initFailed": "인증을 초기화하지 못했습니다. 다시 시도해 주세요.",
+    "initializing": "인증 초기화 중...",
+    "instructions": "휴대폰으로 QR 코드를 스캔하거나 다음을 방문하세요",
+    "instructionsLine2": "그리고 아래 코드를 입력하세요",
+    "loadingContent": "콘텐츠 로드 중...",
+    "providerNotFound": "공급자를 찾을 수 없습니다.",
+    "regenerate": "새 코드 생성",
+    "secondary": "확인을 위해 휴대폰을 확인하세요",
+    "tryAgain": "다시 시도",
+    "unexpectedError": "예기치 않은 오류가 발생했습니다. 다시 시도해 주세요.",
+    "waiting": "승인 대기 중"
+  },
+  "providerDownload": {
+    "download": "다운로드",
+    "downloadingItem": "{{total}}개 중 {{current}}개 항목 다운로드 중",
+    "fallbackTitle": "콘텐츠",
+    "start": "시작",
+    "stream": "스트리밍"
+  },
+  "providerFormLogin": {
+    "cancel": "취소",
+    "connected": "연결되었습니다!",
+    "email": "이메일",
+    "emailPlaceholder": "email@example.com",
+    "enterCredentials": "연결하려면 자격 증명을 입력하세요",
+    "fallbackProvider": "공급자",
+    "loadingContent": "콘텐츠 로드 중...",
+    "loggingIn": "로그인 중...",
+    "loginFailed": "로그인 실패. 자격 증명을 확인하세요.",
+    "loginTo": "{{name}}에 로그인",
+    "missingCredentials": "이메일과 비밀번호를 입력하세요",
+    "notSupported": "이 공급자는 양식 로그인을 지원하지 않습니다",
+    "password": "비밀번호",
+    "passwordPlaceholder": "비밀번호",
+    "providerNotFound": "공급자를 찾을 수 없습니다",
+    "signIn": "로그인",
+    "unexpectedError": "예기치 않은 오류가 발생했습니다. 다시 시도해 주세요."
+  },
+  "providerOAuth": {
+    "cancel": "취소",
+    "connectTo": "{{name}}에 연결",
+    "connected": "연결되었습니다!",
+    "connecting": "연결 중...",
+    "exchangeFailed": "토큰을 위한 인증 코드 교환에 실패했습니다.",
+    "expiresIn": "세션은 {{minutes}}분 후에 만료됩니다",
+    "fallbackProvider": "공급자",
+    "initializing": "인증 초기화 중...",
+    "instructionsLine1": "액세스를 승인하려면 휴대폰으로 QR 코드를 스캔하세요.",
+    "instructionsLine2": "승인하면 TV가 자동으로 연결됩니다.",
+    "loadingContent": "콘텐츠 로드 중...",
+    "providerNotFound": "공급자를 찾을 수 없습니다.",
+    "secondary": "확인을 위해 휴대폰을 확인하세요",
+    "sessionExpired": "인증 세션이 만료되었습니다. 다시 시도해 주세요.",
+    "sessionFailed": "인증 세션을 만들지 못했습니다. 다시 시도해 주세요.",
+    "tokenExchangeFailed": "토큰 교환에 실패했습니다. 다시 시도해 주세요.",
+    "tryAgain": "다시 시도",
+    "unexpectedError": "예기치 않은 오류가 발생했습니다. 다시 시도해 주세요.",
+    "waiting": "승인 대기 중"
+  },
+  "providerSettings": {
+    "autoDownload": {
+      "description": "이 제공업체를 오늘의 레슨 소스로 사용하고 파일을 미리 다운로드하세요",
+      "label": "오늘의 레슨 자동 다운로드"
+    },
+    "disconnect": "연결 해제",
+    "header": "제공업체 설정",
+    "library": {
+      "description": "메뉴에 이 제공업체의 콘텐츠 라이브러리 표시",
+      "label": "라이브러리 찾아보기"
+    }
+  },
+  "providers": {
+    "comingSoonAlert": {
+      "message": "{{name}}은(는) 아직 사용할 수 없습니다.",
+      "title": "출시 예정"
+    },
+    "errorAlert": {
+      "providerNotFound": "공급자 {{name}}을(를) 찾을 수 없습니다.",
+      "title": "오류"
+    },
+    "header": "콘텐츠 공급자",
+    "notSupported": {
+      "message": "{{name}} 인증은 아직 지원되지 않습니다.",
+      "title": "지원되지 않음"
+    }
   },
   "selectMessage": {
-    "header": "메시지 선택"
+    "header": "메시지 선택",
+    "nowPlaying": "지금 재생 중"
   },
-  "message": {
-    "loadingVideo": "동영상 로드 중...",
-    "videoFailed": "동영상 로드 실패",
-    "skippingNext": "다음 항목으로 건너뛰는 중..."
-  },
-  "menu": {
-    "back": "뒤로"
+  "splash": {
+    "connecting": "연결 중..."
   }
 }

@@ -1,190 +1,169 @@
 {
   "common": {
-    "cancel": "İptal",
     "comingSoon": "Yakında",
     "connected": "Bağlandı",
-    "tryAgain": "Tekrar Dene",
     "version": "Sürüm: {{version}}"
   },
-  "nav": {
-    "downloads": "İndirilenler",
-    "providers": "Sağlayıcılar"
-  },
-  "providers": {
-    "header": "İçerik Sağlayıcıları",
-    "comingSoonAlert": {
-      "title": "Yakında",
-      "message": "{{name}} henüz kullanılamıyor."
-    },
-    "disconnect": {
-      "title": "Sağlayıcının Bağlantısını Kes",
-      "message": "{{name}} bağlantısını kesmek istediğinizden emin misiniz?",
-      "action": "Bağlantıyı Kes"
-    },
-    "errorAlert": {
-      "title": "Hata",
-      "providerNotFound": "Sağlayıcı {{name}} bulunamadı."
-    },
-    "notSupported": {
-      "title": "Desteklenmiyor",
-      "message": "{{name}} kimlik doğrulaması henüz desteklenmiyor."
-    }
-  },
   "contentBrowser": {
+    "fileType": {
+      "image": "Görüntü",
+      "video": "Video"
+    },
     "header": "İçeriğe Göz At",
     "noContent": "Kullanılabilir içerik yok",
-    "tryDifferentFolder": "Farklı bir klasöre gitmeyi deneyin",
-    "fileType": {
-      "video": "Video",
-      "image": "Görüntü"
-    }
-  },
-  "providerDownload": {
-    "fallbackTitle": "İçerik",
-    "download": "İndir",
-    "stream": "Yayınla",
-    "start": "Başlat",
-    "downloadingItem": "{{total}} öğeden {{current}}. öğe indiriliyor"
-  },
-  "providerDeviceAuth": {
-    "providerNotFound": "Sağlayıcı bulunamadı.",
-    "initFailed": "Kimlik doğrulama başlatılamadı. Lütfen tekrar deneyin.",
-    "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
-    "codeExpired": "Kimlik doğrulama kodunun süresi doldu. Lütfen tekrar deneyin.",
-    "authFailed": "Kimlik doğrulama başarısız oldu veya reddedildi.",
-    "initializing": "Kimlik doğrulama başlatılıyor...",
-    "tryAgain": "Tekrar Dene",
-    "connected": "Bağlandı!",
-    "loadingContent": "İçeriğiniz yükleniyor...",
-    "connectTo": "{{name}} bağlan",
-    "fallbackProvider": "Sağlayıcı",
-    "instructions": "QR kodunu telefonunuzla tarayın veya şuraya gidin",
-    "instructionsLine2": "ve aşağıdaki kodu girin",
-    "enterCode": "Bu kodu girin:",
-    "waiting": "Yetkilendirme bekleniyor",
-    "expiresIn": "Kodun süresi {{minutes}} dakika içinde dolacak",
-    "cancel": "İptal"
-  },
-  "providerOAuth": {
-    "providerNotFound": "Sağlayıcı bulunamadı.",
-    "sessionFailed": "Yetkilendirme oturumu oluşturulamadı. Lütfen tekrar deneyin.",
-    "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
-    "sessionExpired": "Yetkilendirme oturumunun süresi doldu. Lütfen tekrar deneyin.",
-    "exchangeFailed": "Yetkilendirme kodu belirteçlerle değiştirilemedi.",
-    "tokenExchangeFailed": "Belirteç değişimi başarısız oldu. Lütfen tekrar deneyin.",
-    "initializing": "Kimlik doğrulama başlatılıyor...",
-    "connecting": "Bağlanıyor...",
-    "tryAgain": "Tekrar Dene",
-    "connected": "Bağlandı!",
-    "loadingContent": "İçeriğiniz yükleniyor...",
-    "connectTo": "{{name}} bağlan",
-    "fallbackProvider": "Sağlayıcı",
-    "instructionsLine1": "Erişimi yetkilendirmek için QR kodunu telefonunuzla tarayın.",
-    "instructionsLine2": "Onayladığınızda TV'niz otomatik olarak bağlanacaktır.",
-    "waiting": "Yetkilendirme bekleniyor",
-    "expiresIn": "Oturumun süresi {{minutes}} dakika içinde dolacak",
-    "cancel": "İptal"
-  },
-  "providerFormLogin": {
-    "missingCredentials": "Lütfen e-posta ve şifre girin",
-    "providerNotFound": "Sağlayıcı bulunamadı",
-    "notSupported": "Bu sağlayıcı form girişini desteklemiyor",
-    "loginFailed": "Giriş başarısız. Kimlik bilgilerinizi kontrol edin.",
-    "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
-    "loggingIn": "Giriş yapılıyor...",
-    "connected": "Bağlandı!",
-    "loadingContent": "İçeriğiniz yükleniyor...",
-    "loginTo": "{{name}} oturum aç",
-    "fallbackProvider": "Sağlayıcı",
-    "enterCredentials": "Bağlanmak için kimlik bilgilerinizi girin",
-    "email": "E-posta",
-    "emailPlaceholder": "email@example.com",
-    "password": "Şifre",
-    "passwordPlaceholder": "Şifre",
-    "signIn": "Oturum Aç",
-    "cancel": "İptal"
-  },
-  "download": {
-    "startLesson": "Dersi Başlat",
-    "downloadingItem": "{{total}} öğeden {{current}}. öğe indiriliyor",
-    "scheduleLoadFailed": "Program yüklenemedi.",
-    "scheduleLoadFailedSub": "Bu sınıf için bir ders planlandığından emin olun.",
-    "tryAgain": "Tekrar Dene"
+    "tryDifferentFolder": "Farklı bir klasöre gitmeyi deneyin"
   },
   "downloads": {
     "header": "İndirilenler",
     "noDownloads": "Henüz indirilen yok"
   },
+  "menu": {
+    "back": "Geri"
+  },
+  "message": {
+    "loadingImage": "Görsel yükleniyor...",
+    "loadingVideo": "Video yükleniyor...",
+    "playbackFailed": "Oynatma başarısız oldu",
+    "playbackFailedSub": "Geri dönmek için geri basın",
+    "skippingNext": "Sonraki öğeye atlanıyor...",
+    "videoFailed": "Video yüklenemedi"
+  },
+  "nav": {
+    "downloads": "İndirilenler",
+    "plan": "Bugünün Planı",
+    "providers": "Sağlayıcılar"
+  },
+  "offline": {
+    "canPlayDownloaded": "Önceden indirilen dersi yine de oynatabilirsiniz.",
+    "notDownloaded": "Maalesef ders henüz çevrimdışı oynatma için indirilmedi. Bağlantınızı kontrol edin ve tekrar deneyin.",
+    "start": "Başlat",
+    "subtitle": "İnternet erişimi şu anda kullanılamıyor",
+    "title": "Çevrimdışı:"
+  },
   "planDownload": {
-    "fallbackName": "İbadet Planı",
-    "startPlan": "Planı Başlat",
     "downloadingItem": "{{total}} öğeden {{current}}. öğe indiriliyor",
+    "fallbackName": "İbadet Planı",
     "loadFailed": "Plan yüklenemedi.",
     "loadFailedSub": "Bu plan türü için bir plan planlandığından emin olun.",
+    "startPlan": "Planı Başlat",
     "tryAgain": "Tekrar Dene"
   },
   "planPairing": {
+    "connected": "Bağlandı!",
     "generateFailed": "Eşleştirme kodu oluşturulamadı. Lütfen tekrar deneyin.",
     "generating": "Eşleştirme kodu oluşturuluyor...",
-    "tryAgain": "Tekrar Dene",
     "instructions": "Bu kodu B1Admin'in Plan Türü bölümüne girin",
-    "waiting": "Bağlantı bekleniyor",
-    "searchByName": "veya kilise adına göre arayın"
-  },
-  "selectPairingMode": {
-    "header": "Eşleştirme Modu Seçin",
-    "classroomTitle": "Sınıf ile Eşleştir",
-    "classroomDescription": "Belirli bir sınıf TV'sine bağlanın ve planlanan dersleri otomatik olarak görüntüleyin",
-    "planTitle": "Plan ile Eşleştir",
-    "planDescription": "Kilisenizin haftalık planını izleyin ve isteğe bağlı içeriğe göz atın"
-  },
-  "selectChurch": {
-    "header": "Kilisenizi Bulun",
-    "searchPlaceholder": "Kilise adı arayın",
-    "minLetters": "Aramaya başlamak için kilisenizin adının en az dört harfini girin.",
-    "noResults": "Sonuç bulunamadı. Tekrar arayın veya kilisenizi https://freeplay.church/ adresinde kaydedin."
-  },
-  "selectRoom": {
-    "header": "Sınıf Seçin",
-    "noClassrooms": "Sınıf bulunamadı",
-    "configureRooms": "Sınıflarınızı freeplay.church adresinde yapılandırın."
-  },
-  "offline": {
-    "title": "Çevrimdışı:",
-    "subtitle": "İnternet erişimi şu anda kullanılamıyor",
-    "canPlayDownloaded": "Önceden indirilen dersi yine de oynatabilirsiniz.",
-    "notDownloaded": "Maalesef ders henüz çevrimdışı oynatma için indirilmedi. Bağlantınızı kontrol edin ve tekrar deneyin.",
-    "startLesson": "Dersi Başlat"
-  },
-  "lessons": {
-    "header": "Bir Ders Seçin",
-    "noLessons": "Kullanılabilir ders yok"
-  },
-  "lessonDetails": {
-    "version": "Sürüm: {{version}}"
-  },
-  "studies": {
-    "header": "Bir Çalışma Seçin",
-    "noStudies": "Kullanılabilir çalışma yok"
-  },
-  "programs": {
-    "header": "Programlara Göz At",
-    "noPrograms": "Kullanılabilir program yok"
+    "loadingPlan": "Planınız yükleniyor...",
+    "regenerate": "Yeni Kod Oluştur",
+    "secondary": "Kabul edildikten sonra otomatik olarak bağlanacağız",
+    "tryAgain": "Tekrar Dene",
+    "waiting": "Bağlantı bekleniyor"
   },
   "privacyPolicy": {
     "header": "Gizlilik Politikası",
-    "viewFullPolicy": "Tam gizlilik politikamızı görüntülemek için lütfen şu adresi ziyaret edin:",
-    "url": "churchapps.org/privacy"
+    "url": "churchapps.org/privacy",
+    "viewFullPolicy": "Tam gizlilik politikamızı görüntülemek için lütfen şu adresi ziyaret edin:"
+  },
+  "providerDeviceAuth": {
+    "authFailed": "Kimlik doğrulama başarısız oldu veya reddedildi.",
+    "cancel": "İptal",
+    "codeExpired": "Kimlik doğrulama kodunun süresi doldu. Lütfen tekrar deneyin.",
+    "connectTo": "{{name}} bağlan",
+    "connected": "Bağlandı!",
+    "enterCode": "Bu kodu girin:",
+    "expiresIn": "Kodun süresi {{minutes}} dakika içinde dolacak",
+    "fallbackProvider": "Sağlayıcı",
+    "initFailed": "Kimlik doğrulama başlatılamadı. Lütfen tekrar deneyin.",
+    "initializing": "Kimlik doğrulama başlatılıyor...",
+    "instructions": "QR kodunu telefonunuzla tarayın veya şuraya gidin",
+    "instructionsLine2": "ve aşağıdaki kodu girin",
+    "loadingContent": "İçeriğiniz yükleniyor...",
+    "providerNotFound": "Sağlayıcı bulunamadı.",
+    "regenerate": "Yeni Kod Oluştur",
+    "secondary": "Onaylamak için telefonunuzu kontrol edin",
+    "tryAgain": "Tekrar Dene",
+    "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
+    "waiting": "Yetkilendirme bekleniyor"
+  },
+  "providerDownload": {
+    "download": "İndir",
+    "downloadingItem": "{{total}} öğeden {{current}}. öğe indiriliyor",
+    "fallbackTitle": "İçerik",
+    "start": "Başlat",
+    "stream": "Yayınla"
+  },
+  "providerFormLogin": {
+    "cancel": "İptal",
+    "connected": "Bağlandı!",
+    "email": "E-posta",
+    "emailPlaceholder": "email@example.com",
+    "enterCredentials": "Bağlanmak için kimlik bilgilerinizi girin",
+    "fallbackProvider": "Sağlayıcı",
+    "loadingContent": "İçeriğiniz yükleniyor...",
+    "loggingIn": "Giriş yapılıyor...",
+    "loginFailed": "Giriş başarısız. Kimlik bilgilerinizi kontrol edin.",
+    "loginTo": "{{name}} oturum aç",
+    "missingCredentials": "Lütfen e-posta ve şifre girin",
+    "notSupported": "Bu sağlayıcı form girişini desteklemiyor",
+    "password": "Şifre",
+    "passwordPlaceholder": "Şifre",
+    "providerNotFound": "Sağlayıcı bulunamadı",
+    "signIn": "Oturum Aç",
+    "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin."
+  },
+  "providerOAuth": {
+    "cancel": "İptal",
+    "connectTo": "{{name}} bağlan",
+    "connected": "Bağlandı!",
+    "connecting": "Bağlanıyor...",
+    "exchangeFailed": "Yetkilendirme kodu belirteçlerle değiştirilemedi.",
+    "expiresIn": "Oturumun süresi {{minutes}} dakika içinde dolacak",
+    "fallbackProvider": "Sağlayıcı",
+    "initializing": "Kimlik doğrulama başlatılıyor...",
+    "instructionsLine1": "Erişimi yetkilendirmek için QR kodunu telefonunuzla tarayın.",
+    "instructionsLine2": "Onayladığınızda TV'niz otomatik olarak bağlanacaktır.",
+    "loadingContent": "İçeriğiniz yükleniyor...",
+    "providerNotFound": "Sağlayıcı bulunamadı.",
+    "secondary": "Onaylamak için telefonunuzu kontrol edin",
+    "sessionExpired": "Yetkilendirme oturumunun süresi doldu. Lütfen tekrar deneyin.",
+    "sessionFailed": "Yetkilendirme oturumu oluşturulamadı. Lütfen tekrar deneyin.",
+    "tokenExchangeFailed": "Belirteç değişimi başarısız oldu. Lütfen tekrar deneyin.",
+    "tryAgain": "Tekrar Dene",
+    "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
+    "waiting": "Yetkilendirme bekleniyor"
+  },
+  "providerSettings": {
+    "autoDownload": {
+      "description": "Bu sağlayıcıyı bugünün dersinin kaynağı olarak kullanın ve dosyaları önceden indirin",
+      "label": "Bugünün Dersini Otomatik İndir"
+    },
+    "disconnect": "Bağlantıyı Kes",
+    "header": "Sağlayıcı Ayarları",
+    "library": {
+      "description": "Bu sağlayıcının içerik kitaplığını menüde göster",
+      "label": "Kitaplığa Göz At"
+    }
+  },
+  "providers": {
+    "comingSoonAlert": {
+      "message": "{{name}} henüz kullanılamıyor.",
+      "title": "Yakında"
+    },
+    "errorAlert": {
+      "providerNotFound": "Sağlayıcı {{name}} bulunamadı.",
+      "title": "Hata"
+    },
+    "header": "İçerik Sağlayıcıları",
+    "notSupported": {
+      "message": "{{name}} kimlik doğrulaması henüz desteklenmiyor.",
+      "title": "Desteklenmiyor"
+    }
   },
   "selectMessage": {
-    "header": "Bir Mesaj Seçin"
+    "header": "Bir Mesaj Seçin",
+    "nowPlaying": "ŞİMDİ OYNATILIYOR"
   },
-  "message": {
-    "loadingVideo": "Video yükleniyor...",
-    "videoFailed": "Video yüklenemedi",
-    "skippingNext": "Sonraki öğeye atlanıyor..."
-  },
-  "menu": {
-    "back": "Geri"
+  "splash": {
+    "connecting": "Bağlanıyor..."
   }
 }

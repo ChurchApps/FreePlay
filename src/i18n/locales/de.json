@@ -1,190 +1,169 @@
 {
   "common": {
-    "cancel": "Abbrechen",
     "comingSoon": "Demnächst verfügbar",
     "connected": "Verbunden",
-    "tryAgain": "Erneut versuchen",
     "version": "Version: {{version}}"
   },
-  "nav": {
-    "downloads": "Downloads",
-    "providers": "Anbieter"
-  },
-  "providers": {
-    "header": "Inhaltsanbieter",
-    "comingSoonAlert": {
-      "title": "Demnächst verfügbar",
-      "message": "{{name}} ist noch nicht verfügbar."
-    },
-    "disconnect": {
-      "title": "Anbieter trennen",
-      "message": "Sind Sie sicher, dass Sie die Verbindung zu {{name}} trennen möchten?",
-      "action": "Trennen"
-    },
-    "errorAlert": {
-      "title": "Fehler",
-      "providerNotFound": "Anbieter {{name}} nicht gefunden."
-    },
-    "notSupported": {
-      "title": "Nicht unterstützt",
-      "message": "Die Authentifizierung von {{name}} wird noch nicht unterstützt."
-    }
-  },
   "contentBrowser": {
+    "fileType": {
+      "image": "Bild",
+      "video": "Video"
+    },
     "header": "Inhalte durchsuchen",
     "noContent": "Keine Inhalte verfügbar",
-    "tryDifferentFolder": "Versuchen Sie, zu einem anderen Ordner zu navigieren",
-    "fileType": {
-      "video": "Video",
-      "image": "Bild"
-    }
-  },
-  "providerDownload": {
-    "fallbackTitle": "Inhalt",
-    "download": "Herunterladen",
-    "stream": "Streamen",
-    "start": "Starten",
-    "downloadingItem": "Element {{current}} von {{total}} wird heruntergeladen"
-  },
-  "providerDeviceAuth": {
-    "providerNotFound": "Anbieter nicht gefunden.",
-    "initFailed": "Authentifizierung konnte nicht initialisiert werden. Bitte versuchen Sie es erneut.",
-    "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
-    "codeExpired": "Authentifizierungscode abgelaufen. Bitte versuchen Sie es erneut.",
-    "authFailed": "Authentifizierung fehlgeschlagen oder verweigert.",
-    "initializing": "Authentifizierung wird initialisiert...",
-    "tryAgain": "Erneut versuchen",
-    "connected": "Verbunden!",
-    "loadingContent": "Ihre Inhalte werden geladen...",
-    "connectTo": "Mit {{name}} verbinden",
-    "fallbackProvider": "Anbieter",
-    "instructions": "Scannen Sie den QR-Code mit Ihrem Telefon oder besuchen Sie",
-    "instructionsLine2": "und geben Sie den unten stehenden Code ein",
-    "enterCode": "Geben Sie diesen Code ein:",
-    "waiting": "Warte auf Autorisierung",
-    "expiresIn": "Code läuft in {{minutes}} Minuten ab",
-    "cancel": "Abbrechen"
-  },
-  "providerOAuth": {
-    "providerNotFound": "Anbieter nicht gefunden.",
-    "sessionFailed": "Autorisierungssitzung konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
-    "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
-    "sessionExpired": "Autorisierungssitzung abgelaufen. Bitte versuchen Sie es erneut.",
-    "exchangeFailed": "Austausch des Autorisierungscodes gegen Token fehlgeschlagen.",
-    "tokenExchangeFailed": "Token-Austausch fehlgeschlagen. Bitte versuchen Sie es erneut.",
-    "initializing": "Authentifizierung wird initialisiert...",
-    "connecting": "Verbinde...",
-    "tryAgain": "Erneut versuchen",
-    "connected": "Verbunden!",
-    "loadingContent": "Ihre Inhalte werden geladen...",
-    "connectTo": "Mit {{name}} verbinden",
-    "fallbackProvider": "Anbieter",
-    "instructionsLine1": "Scannen Sie den QR-Code mit Ihrem Telefon, um den Zugriff zu autorisieren.",
-    "instructionsLine2": "Ihr Fernseher verbindet sich automatisch, sobald Sie zustimmen.",
-    "waiting": "Warte auf Autorisierung",
-    "expiresIn": "Sitzung läuft in {{minutes}} Minuten ab",
-    "cancel": "Abbrechen"
-  },
-  "providerFormLogin": {
-    "missingCredentials": "Bitte geben Sie E-Mail und Passwort ein",
-    "providerNotFound": "Anbieter nicht gefunden",
-    "notSupported": "Dieser Anbieter unterstützt keine Formularanmeldung",
-    "loginFailed": "Anmeldung fehlgeschlagen. Überprüfen Sie Ihre Anmeldedaten.",
-    "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
-    "loggingIn": "Anmeldung läuft...",
-    "connected": "Verbunden!",
-    "loadingContent": "Ihre Inhalte werden geladen...",
-    "loginTo": "Bei {{name}} anmelden",
-    "fallbackProvider": "Anbieter",
-    "enterCredentials": "Geben Sie Ihre Anmeldedaten ein, um sich zu verbinden",
-    "email": "E-Mail",
-    "emailPlaceholder": "email@example.com",
-    "password": "Passwort",
-    "passwordPlaceholder": "Passwort",
-    "signIn": "Anmelden",
-    "cancel": "Abbrechen"
-  },
-  "download": {
-    "startLesson": "Lektion starten",
-    "downloadingItem": "Element {{current}} von {{total}} wird heruntergeladen",
-    "scheduleLoadFailed": "Der Zeitplan konnte nicht geladen werden.",
-    "scheduleLoadFailedSub": "Stellen Sie sicher, dass eine Lektion für diese Klasse geplant ist.",
-    "tryAgain": "Erneut versuchen"
+    "tryDifferentFolder": "Versuchen Sie, zu einem anderen Ordner zu navigieren"
   },
   "downloads": {
     "header": "Downloads",
     "noDownloads": "Noch keine Downloads"
   },
+  "menu": {
+    "back": "Zurück"
+  },
+  "message": {
+    "loadingImage": "Bild wird geladen...",
+    "loadingVideo": "Video wird geladen...",
+    "playbackFailed": "Wiedergabe fehlgeschlagen",
+    "playbackFailedSub": "Zurück drücken, um zurückzukehren",
+    "skippingNext": "Springe zum nächsten Element...",
+    "videoFailed": "Video konnte nicht geladen werden"
+  },
+  "nav": {
+    "downloads": "Downloads",
+    "plan": "Heutiger Plan",
+    "providers": "Anbieter"
+  },
+  "offline": {
+    "canPlayDownloaded": "Sie können die zuvor heruntergeladene Lektion weiterhin abspielen.",
+    "notDownloaded": "Leider wurde die Lektion noch nicht für die Offline-Wiedergabe heruntergeladen.  Bitte überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+    "start": "Start",
+    "subtitle": "Internetzugang ist derzeit nicht verfügbar",
+    "title": "Offline:"
+  },
   "planDownload": {
-    "fallbackName": "Gottesdienstplan",
-    "startPlan": "Plan starten",
     "downloadingItem": "Element {{current}} von {{total}} wird heruntergeladen",
+    "fallbackName": "Gottesdienstplan",
     "loadFailed": "Der Plan konnte nicht geladen werden.",
     "loadFailedSub": "Stellen Sie sicher, dass ein Plan für diesen Plantyp geplant ist.",
+    "startPlan": "Plan starten",
     "tryAgain": "Erneut versuchen"
   },
   "planPairing": {
+    "connected": "Verbunden!",
     "generateFailed": "Kopplungscode konnte nicht generiert werden. Bitte versuchen Sie es erneut.",
     "generating": "Kopplungscode wird generiert...",
-    "tryAgain": "Erneut versuchen",
     "instructions": "Geben Sie diesen Code im Abschnitt Plantyp von B1Admin ein",
-    "waiting": "Warte auf Verbindung",
-    "searchByName": "oder nach Kirchennamen suchen"
-  },
-  "selectPairingMode": {
-    "header": "Kopplungsmodus auswählen",
-    "classroomTitle": "Mit Klassenzimmer koppeln",
-    "classroomDescription": "Verbinden Sie sich mit einem bestimmten Klassenzimmer-Fernseher und zeigen Sie geplante Lektionen automatisch an",
-    "planTitle": "Mit Plan koppeln",
-    "planDescription": "Folgen Sie dem wöchentlichen Plan Ihrer Kirche und durchsuchen Sie Inhalte nach Bedarf"
-  },
-  "selectChurch": {
-    "header": "Finden Sie Ihre Kirche",
-    "searchPlaceholder": "Kirchennamen suchen",
-    "minLetters": "Geben Sie mindestens vier Buchstaben des Namens Ihrer Kirche ein, um mit der Suche zu beginnen.",
-    "noResults": "Keine Ergebnisse gefunden.  Suchen Sie erneut oder registrieren Sie Ihre Kirche unter https://freeplay.church/."
-  },
-  "selectRoom": {
-    "header": "Klassenzimmer auswählen",
-    "noClassrooms": "Keine Klassenzimmer gefunden",
-    "configureRooms": "Konfigurieren Sie Ihre Klassenzimmer unter freeplay.church."
-  },
-  "offline": {
-    "title": "Offline:",
-    "subtitle": "Internetzugang ist derzeit nicht verfügbar",
-    "canPlayDownloaded": "Sie können die zuvor heruntergeladene Lektion weiterhin abspielen.",
-    "notDownloaded": "Leider wurde die Lektion noch nicht für die Offline-Wiedergabe heruntergeladen.  Bitte überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
-    "startLesson": "Lektion starten"
-  },
-  "lessons": {
-    "header": "Lektion auswählen",
-    "noLessons": "Keine Lektionen verfügbar"
-  },
-  "lessonDetails": {
-    "version": "Version: {{version}}"
-  },
-  "studies": {
-    "header": "Studie auswählen",
-    "noStudies": "Keine Studien verfügbar"
-  },
-  "programs": {
-    "header": "Programme durchsuchen",
-    "noPrograms": "Keine Programme verfügbar"
+    "loadingPlan": "Ihr Plan wird geladen...",
+    "regenerate": "Neuen Code Generieren",
+    "secondary": "Wir verbinden uns automatisch, sobald akzeptiert",
+    "tryAgain": "Erneut versuchen",
+    "waiting": "Warte auf Verbindung"
   },
   "privacyPolicy": {
     "header": "Datenschutzerklärung",
-    "viewFullPolicy": "Um unsere vollständige Datenschutzerklärung anzuzeigen, besuchen Sie bitte:",
-    "url": "churchapps.org/privacy"
+    "url": "churchapps.org/privacy",
+    "viewFullPolicy": "Um unsere vollständige Datenschutzerklärung anzuzeigen, besuchen Sie bitte:"
+  },
+  "providerDeviceAuth": {
+    "authFailed": "Authentifizierung fehlgeschlagen oder verweigert.",
+    "cancel": "Abbrechen",
+    "codeExpired": "Authentifizierungscode abgelaufen. Bitte versuchen Sie es erneut.",
+    "connectTo": "Mit {{name}} verbinden",
+    "connected": "Verbunden!",
+    "enterCode": "Geben Sie diesen Code ein:",
+    "expiresIn": "Code läuft in {{minutes}} Minuten ab",
+    "fallbackProvider": "Anbieter",
+    "initFailed": "Authentifizierung konnte nicht initialisiert werden. Bitte versuchen Sie es erneut.",
+    "initializing": "Authentifizierung wird initialisiert...",
+    "instructions": "Scannen Sie den QR-Code mit Ihrem Telefon oder besuchen Sie",
+    "instructionsLine2": "und geben Sie den unten stehenden Code ein",
+    "loadingContent": "Ihre Inhalte werden geladen...",
+    "providerNotFound": "Anbieter nicht gefunden.",
+    "regenerate": "Neuen Code Generieren",
+    "secondary": "Überprüfen Sie Ihr Telefon zur Bestätigung",
+    "tryAgain": "Erneut versuchen",
+    "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+    "waiting": "Warte auf Autorisierung"
+  },
+  "providerDownload": {
+    "download": "Herunterladen",
+    "downloadingItem": "Element {{current}} von {{total}} wird heruntergeladen",
+    "fallbackTitle": "Inhalt",
+    "start": "Starten",
+    "stream": "Streamen"
+  },
+  "providerFormLogin": {
+    "cancel": "Abbrechen",
+    "connected": "Verbunden!",
+    "email": "E-Mail",
+    "emailPlaceholder": "email@example.com",
+    "enterCredentials": "Geben Sie Ihre Anmeldedaten ein, um sich zu verbinden",
+    "fallbackProvider": "Anbieter",
+    "loadingContent": "Ihre Inhalte werden geladen...",
+    "loggingIn": "Anmeldung läuft...",
+    "loginFailed": "Anmeldung fehlgeschlagen. Überprüfen Sie Ihre Anmeldedaten.",
+    "loginTo": "Bei {{name}} anmelden",
+    "missingCredentials": "Bitte geben Sie E-Mail und Passwort ein",
+    "notSupported": "Dieser Anbieter unterstützt keine Formularanmeldung",
+    "password": "Passwort",
+    "passwordPlaceholder": "Passwort",
+    "providerNotFound": "Anbieter nicht gefunden",
+    "signIn": "Anmelden",
+    "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+  },
+  "providerOAuth": {
+    "cancel": "Abbrechen",
+    "connectTo": "Mit {{name}} verbinden",
+    "connected": "Verbunden!",
+    "connecting": "Verbinde...",
+    "exchangeFailed": "Austausch des Autorisierungscodes gegen Token fehlgeschlagen.",
+    "expiresIn": "Sitzung läuft in {{minutes}} Minuten ab",
+    "fallbackProvider": "Anbieter",
+    "initializing": "Authentifizierung wird initialisiert...",
+    "instructionsLine1": "Scannen Sie den QR-Code mit Ihrem Telefon, um den Zugriff zu autorisieren.",
+    "instructionsLine2": "Ihr Fernseher verbindet sich automatisch, sobald Sie zustimmen.",
+    "loadingContent": "Ihre Inhalte werden geladen...",
+    "providerNotFound": "Anbieter nicht gefunden.",
+    "secondary": "Überprüfen Sie Ihr Telefon zur Bestätigung",
+    "sessionExpired": "Autorisierungssitzung abgelaufen. Bitte versuchen Sie es erneut.",
+    "sessionFailed": "Autorisierungssitzung konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
+    "tokenExchangeFailed": "Token-Austausch fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    "tryAgain": "Erneut versuchen",
+    "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+    "waiting": "Warte auf Autorisierung"
+  },
+  "providerSettings": {
+    "autoDownload": {
+      "description": "Diesen Anbieter als Quelle für die heutige Lektion verwenden und Dateien vorab herunterladen",
+      "label": "Heutige Lektion Automatisch Herunterladen"
+    },
+    "disconnect": "Trennen",
+    "header": "Anbietereinstellungen",
+    "library": {
+      "description": "Inhaltsbibliothek dieses Anbieters im Menü anzeigen",
+      "label": "Bibliothek Durchsuchen"
+    }
+  },
+  "providers": {
+    "comingSoonAlert": {
+      "message": "{{name}} ist noch nicht verfügbar.",
+      "title": "Demnächst verfügbar"
+    },
+    "errorAlert": {
+      "providerNotFound": "Anbieter {{name}} nicht gefunden.",
+      "title": "Fehler"
+    },
+    "header": "Inhaltsanbieter",
+    "notSupported": {
+      "message": "Die Authentifizierung von {{name}} wird noch nicht unterstützt.",
+      "title": "Nicht unterstützt"
+    }
   },
   "selectMessage": {
-    "header": "Nachricht auswählen"
+    "header": "Nachricht auswählen",
+    "nowPlaying": "LÄUFT GERADE"
   },
-  "message": {
-    "loadingVideo": "Video wird geladen...",
-    "videoFailed": "Video konnte nicht geladen werden",
-    "skippingNext": "Springe zum nächsten Element..."
-  },
-  "menu": {
-    "back": "Zurück"
+  "splash": {
+    "connecting": "Verbindung wird hergestellt..."
   }
 }

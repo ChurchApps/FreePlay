@@ -1,190 +1,169 @@
 {
   "common": {
-    "cancel": "Anuluj",
     "comingSoon": "Wkrótce",
     "connected": "Połączono",
-    "tryAgain": "Spróbuj ponownie",
     "version": "Wersja: {{version}}"
   },
-  "nav": {
-    "downloads": "Pobrane",
-    "providers": "Dostawcy"
-  },
-  "providers": {
-    "header": "Dostawcy treści",
-    "comingSoonAlert": {
-      "title": "Wkrótce",
-      "message": "{{name}} nie jest jeszcze dostępny."
-    },
-    "disconnect": {
-      "title": "Rozłącz dostawcę",
-      "message": "Czy na pewno chcesz odłączyć się od {{name}}?",
-      "action": "Rozłącz"
-    },
-    "errorAlert": {
-      "title": "Błąd",
-      "providerNotFound": "Dostawca {{name}} nie znaleziony."
-    },
-    "notSupported": {
-      "title": "Nieobsługiwane",
-      "message": "Uwierzytelnianie {{name}} nie jest jeszcze obsługiwane."
-    }
-  },
   "contentBrowser": {
+    "fileType": {
+      "image": "Obraz",
+      "video": "Wideo"
+    },
     "header": "Przeglądaj treści",
     "noContent": "Brak dostępnych treści",
-    "tryDifferentFolder": "Spróbuj przejść do innego folderu",
-    "fileType": {
-      "video": "Wideo",
-      "image": "Obraz"
-    }
-  },
-  "providerDownload": {
-    "fallbackTitle": "Treść",
-    "download": "Pobierz",
-    "stream": "Strumieniuj",
-    "start": "Rozpocznij",
-    "downloadingItem": "Pobieranie elementu {{current}} z {{total}}"
-  },
-  "providerDeviceAuth": {
-    "providerNotFound": "Nie znaleziono dostawcy.",
-    "initFailed": "Nie udało się zainicjować uwierzytelniania. Spróbuj ponownie.",
-    "unexpectedError": "Wystąpił nieoczekiwany błąd. Spróbuj ponownie.",
-    "codeExpired": "Kod uwierzytelniający wygasł. Spróbuj ponownie.",
-    "authFailed": "Uwierzytelnianie nie powiodło się lub zostało odrzucone.",
-    "initializing": "Inicjowanie uwierzytelniania...",
-    "tryAgain": "Spróbuj ponownie",
-    "connected": "Połączono!",
-    "loadingContent": "Ładowanie treści...",
-    "connectTo": "Połącz z {{name}}",
-    "fallbackProvider": "Dostawca",
-    "instructions": "Zeskanuj kod QR telefonem lub odwiedź",
-    "instructionsLine2": "i wprowadź poniższy kod",
-    "enterCode": "Wprowadź ten kod:",
-    "waiting": "Oczekiwanie na autoryzację",
-    "expiresIn": "Kod wygaśnie za {{minutes}} min.",
-    "cancel": "Anuluj"
-  },
-  "providerOAuth": {
-    "providerNotFound": "Nie znaleziono dostawcy.",
-    "sessionFailed": "Nie udało się utworzyć sesji autoryzacji. Spróbuj ponownie.",
-    "unexpectedError": "Wystąpił nieoczekiwany błąd. Spróbuj ponownie.",
-    "sessionExpired": "Sesja autoryzacji wygasła. Spróbuj ponownie.",
-    "exchangeFailed": "Nie udało się wymienić kodu autoryzacji na tokeny.",
-    "tokenExchangeFailed": "Wymiana tokenów nie powiodła się. Spróbuj ponownie.",
-    "initializing": "Inicjowanie uwierzytelniania...",
-    "connecting": "Łączenie...",
-    "tryAgain": "Spróbuj ponownie",
-    "connected": "Połączono!",
-    "loadingContent": "Ładowanie treści...",
-    "connectTo": "Połącz z {{name}}",
-    "fallbackProvider": "Dostawca",
-    "instructionsLine1": "Zeskanuj kod QR telefonem, aby autoryzować dostęp.",
-    "instructionsLine2": "Twój telewizor połączy się automatycznie po zatwierdzeniu.",
-    "waiting": "Oczekiwanie na autoryzację",
-    "expiresIn": "Sesja wygaśnie za {{minutes}} min.",
-    "cancel": "Anuluj"
-  },
-  "providerFormLogin": {
-    "missingCredentials": "Wprowadź adres e-mail i hasło",
-    "providerNotFound": "Nie znaleziono dostawcy",
-    "notSupported": "Ten dostawca nie obsługuje logowania formularzem",
-    "loginFailed": "Logowanie nie powiodło się. Sprawdź swoje dane logowania.",
-    "unexpectedError": "Wystąpił nieoczekiwany błąd. Spróbuj ponownie.",
-    "loggingIn": "Logowanie...",
-    "connected": "Połączono!",
-    "loadingContent": "Ładowanie treści...",
-    "loginTo": "Zaloguj się do {{name}}",
-    "fallbackProvider": "Dostawca",
-    "enterCredentials": "Wprowadź swoje dane logowania, aby się połączyć",
-    "email": "E-mail",
-    "emailPlaceholder": "email@example.com",
-    "password": "Hasło",
-    "passwordPlaceholder": "Hasło",
-    "signIn": "Zaloguj się",
-    "cancel": "Anuluj"
-  },
-  "download": {
-    "startLesson": "Rozpocznij lekcję",
-    "downloadingItem": "Pobieranie elementu {{current}} z {{total}}",
-    "scheduleLoadFailed": "Nie można załadować harmonogramu.",
-    "scheduleLoadFailedSub": "Upewnij się, że dla tej klasy zaplanowano lekcję.",
-    "tryAgain": "Spróbuj ponownie"
+    "tryDifferentFolder": "Spróbuj przejść do innego folderu"
   },
   "downloads": {
     "header": "Pobrane",
     "noDownloads": "Jeszcze brak pobranych"
   },
+  "menu": {
+    "back": "Wstecz"
+  },
+  "message": {
+    "loadingImage": "Ładowanie obrazu...",
+    "loadingVideo": "Ładowanie wideo...",
+    "playbackFailed": "Odtwarzanie nie powiodło się",
+    "playbackFailedSub": "Naciśnij wstecz, aby powrócić",
+    "skippingNext": "Przechodzenie do następnego elementu...",
+    "videoFailed": "Nie udało się załadować wideo"
+  },
+  "nav": {
+    "downloads": "Pobrane",
+    "plan": "Dzisiejszy Plan",
+    "providers": "Dostawcy"
+  },
+  "offline": {
+    "canPlayDownloaded": "Nadal możesz odtworzyć lekcję, która została wcześniej pobrana.",
+    "notDownloaded": "Niestety lekcja nie została jeszcze pobrana do odtwarzania offline. Sprawdź połączenie i spróbuj ponownie.",
+    "start": "Rozpocznij",
+    "subtitle": "Dostęp do Internetu jest obecnie niedostępny",
+    "title": "Offline:"
+  },
   "planDownload": {
-    "fallbackName": "Plan nabożeństwa",
-    "startPlan": "Rozpocznij plan",
     "downloadingItem": "Pobieranie elementu {{current}} z {{total}}",
+    "fallbackName": "Plan nabożeństwa",
     "loadFailed": "Nie można załadować planu.",
     "loadFailedSub": "Upewnij się, że dla tego typu planu zaplanowano plan.",
+    "startPlan": "Rozpocznij plan",
     "tryAgain": "Spróbuj ponownie"
   },
   "planPairing": {
+    "connected": "Połączono!",
     "generateFailed": "Nie udało się wygenerować kodu parowania. Spróbuj ponownie.",
     "generating": "Generowanie kodu parowania...",
-    "tryAgain": "Spróbuj ponownie",
     "instructions": "Wprowadź ten kod w sekcji Typ planu w B1Admin",
-    "waiting": "Oczekiwanie na połączenie",
-    "searchByName": "lub wyszukaj według nazwy kościoła"
-  },
-  "selectPairingMode": {
-    "header": "Wybierz tryb parowania",
-    "classroomTitle": "Sparuj z klasą",
-    "classroomDescription": "Połącz się z konkretnym telewizorem klasy i wyświetlaj zaplanowane lekcje automatycznie",
-    "planTitle": "Sparuj z planem",
-    "planDescription": "Postępuj zgodnie z tygodniowym planem swojego kościoła i przeglądaj treści na żądanie"
-  },
-  "selectChurch": {
-    "header": "Znajdź swój kościół",
-    "searchPlaceholder": "Wyszukaj nazwę kościoła",
-    "minLetters": "Wprowadź co najmniej cztery litery nazwy swojego kościoła, aby rozpocząć wyszukiwanie.",
-    "noResults": "Nie znaleziono wyników. Wyszukaj ponownie lub zarejestruj swój kościół pod adresem https://freeplay.church/."
-  },
-  "selectRoom": {
-    "header": "Wybierz klasę",
-    "noClassrooms": "Nie znaleziono klas",
-    "configureRooms": "Skonfiguruj swoje klasy pod adresem freeplay.church."
-  },
-  "offline": {
-    "title": "Offline:",
-    "subtitle": "Dostęp do Internetu jest obecnie niedostępny",
-    "canPlayDownloaded": "Nadal możesz odtworzyć lekcję, która została wcześniej pobrana.",
-    "notDownloaded": "Niestety lekcja nie została jeszcze pobrana do odtwarzania offline. Sprawdź połączenie i spróbuj ponownie.",
-    "startLesson": "Rozpocznij lekcję"
-  },
-  "lessons": {
-    "header": "Wybierz lekcję",
-    "noLessons": "Brak dostępnych lekcji"
-  },
-  "lessonDetails": {
-    "version": "Wersja: {{version}}"
-  },
-  "studies": {
-    "header": "Wybierz studium",
-    "noStudies": "Brak dostępnych studiów"
-  },
-  "programs": {
-    "header": "Przeglądaj programy",
-    "noPrograms": "Brak dostępnych programów"
+    "loadingPlan": "Ładowanie twojego planu...",
+    "regenerate": "Generuj Nowy Kod",
+    "secondary": "Połączymy się automatycznie po zaakceptowaniu",
+    "tryAgain": "Spróbuj ponownie",
+    "waiting": "Oczekiwanie na połączenie"
   },
   "privacyPolicy": {
     "header": "Polityka prywatności",
-    "viewFullPolicy": "Aby zobaczyć naszą pełną politykę prywatności, odwiedź:",
-    "url": "churchapps.org/privacy"
+    "url": "churchapps.org/privacy",
+    "viewFullPolicy": "Aby zobaczyć naszą pełną politykę prywatności, odwiedź:"
+  },
+  "providerDeviceAuth": {
+    "authFailed": "Uwierzytelnianie nie powiodło się lub zostało odrzucone.",
+    "cancel": "Anuluj",
+    "codeExpired": "Kod uwierzytelniający wygasł. Spróbuj ponownie.",
+    "connectTo": "Połącz z {{name}}",
+    "connected": "Połączono!",
+    "enterCode": "Wprowadź ten kod:",
+    "expiresIn": "Kod wygaśnie za {{minutes}} min.",
+    "fallbackProvider": "Dostawca",
+    "initFailed": "Nie udało się zainicjować uwierzytelniania. Spróbuj ponownie.",
+    "initializing": "Inicjowanie uwierzytelniania...",
+    "instructions": "Zeskanuj kod QR telefonem lub odwiedź",
+    "instructionsLine2": "i wprowadź poniższy kod",
+    "loadingContent": "Ładowanie treści...",
+    "providerNotFound": "Nie znaleziono dostawcy.",
+    "regenerate": "Generuj Nowy Kod",
+    "secondary": "Sprawdź telefon, aby potwierdzić",
+    "tryAgain": "Spróbuj ponownie",
+    "unexpectedError": "Wystąpił nieoczekiwany błąd. Spróbuj ponownie.",
+    "waiting": "Oczekiwanie na autoryzację"
+  },
+  "providerDownload": {
+    "download": "Pobierz",
+    "downloadingItem": "Pobieranie elementu {{current}} z {{total}}",
+    "fallbackTitle": "Treść",
+    "start": "Rozpocznij",
+    "stream": "Strumieniuj"
+  },
+  "providerFormLogin": {
+    "cancel": "Anuluj",
+    "connected": "Połączono!",
+    "email": "E-mail",
+    "emailPlaceholder": "email@example.com",
+    "enterCredentials": "Wprowadź swoje dane logowania, aby się połączyć",
+    "fallbackProvider": "Dostawca",
+    "loadingContent": "Ładowanie treści...",
+    "loggingIn": "Logowanie...",
+    "loginFailed": "Logowanie nie powiodło się. Sprawdź swoje dane logowania.",
+    "loginTo": "Zaloguj się do {{name}}",
+    "missingCredentials": "Wprowadź adres e-mail i hasło",
+    "notSupported": "Ten dostawca nie obsługuje logowania formularzem",
+    "password": "Hasło",
+    "passwordPlaceholder": "Hasło",
+    "providerNotFound": "Nie znaleziono dostawcy",
+    "signIn": "Zaloguj się",
+    "unexpectedError": "Wystąpił nieoczekiwany błąd. Spróbuj ponownie."
+  },
+  "providerOAuth": {
+    "cancel": "Anuluj",
+    "connectTo": "Połącz z {{name}}",
+    "connected": "Połączono!",
+    "connecting": "Łączenie...",
+    "exchangeFailed": "Nie udało się wymienić kodu autoryzacji na tokeny.",
+    "expiresIn": "Sesja wygaśnie za {{minutes}} min.",
+    "fallbackProvider": "Dostawca",
+    "initializing": "Inicjowanie uwierzytelniania...",
+    "instructionsLine1": "Zeskanuj kod QR telefonem, aby autoryzować dostęp.",
+    "instructionsLine2": "Twój telewizor połączy się automatycznie po zatwierdzeniu.",
+    "loadingContent": "Ładowanie treści...",
+    "providerNotFound": "Nie znaleziono dostawcy.",
+    "secondary": "Sprawdź telefon, aby potwierdzić",
+    "sessionExpired": "Sesja autoryzacji wygasła. Spróbuj ponownie.",
+    "sessionFailed": "Nie udało się utworzyć sesji autoryzacji. Spróbuj ponownie.",
+    "tokenExchangeFailed": "Wymiana tokenów nie powiodła się. Spróbuj ponownie.",
+    "tryAgain": "Spróbuj ponownie",
+    "unexpectedError": "Wystąpił nieoczekiwany błąd. Spróbuj ponownie.",
+    "waiting": "Oczekiwanie na autoryzację"
+  },
+  "providerSettings": {
+    "autoDownload": {
+      "description": "Użyj tego dostawcy jako źródła dzisiejszej lekcji i pobierz pliki z wyprzedzeniem",
+      "label": "Automatycznie Pobierz Dzisiejszą Lekcję"
+    },
+    "disconnect": "Rozłącz",
+    "header": "Ustawienia Dostawcy",
+    "library": {
+      "description": "Pokaż bibliotekę treści tego dostawcy w menu",
+      "label": "Przeglądaj Bibliotekę"
+    }
+  },
+  "providers": {
+    "comingSoonAlert": {
+      "message": "{{name}} nie jest jeszcze dostępny.",
+      "title": "Wkrótce"
+    },
+    "errorAlert": {
+      "providerNotFound": "Dostawca {{name}} nie znaleziony.",
+      "title": "Błąd"
+    },
+    "header": "Dostawcy treści",
+    "notSupported": {
+      "message": "Uwierzytelnianie {{name}} nie jest jeszcze obsługiwane.",
+      "title": "Nieobsługiwane"
+    }
   },
   "selectMessage": {
-    "header": "Wybierz wiadomość"
+    "header": "Wybierz wiadomość",
+    "nowPlaying": "TERAZ ODTWARZANE"
   },
-  "message": {
-    "loadingVideo": "Ładowanie wideo...",
-    "videoFailed": "Nie udało się załadować wideo",
-    "skippingNext": "Przechodzenie do następnego elementu..."
-  },
-  "menu": {
-    "back": "Wstecz"
+  "splash": {
+    "connecting": "Łączenie..."
   }
 }

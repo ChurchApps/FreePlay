@@ -1,9 +1,7 @@
 {
   "common": {
-    "cancel": "Cancel",
     "comingSoon": "Coming Soon",
     "connected": "Connected",
-    "tryAgain": "Try Again",
     "version": "Version: {{version}}"
   },
   "nav": {
@@ -16,11 +14,6 @@
     "comingSoonAlert": {
       "title": "Coming Soon",
       "message": "{{name}} is not yet available."
-    },
-    "disconnect": {
-      "title": "Disconnect Provider",
-      "message": "Are you sure you want to disconnect from {{name}}?",
-      "action": "Disconnect"
     },
     "errorAlert": {
       "title": "Error",

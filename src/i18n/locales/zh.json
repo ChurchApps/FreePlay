@@ -1,190 +1,169 @@
 {
   "common": {
-    "cancel": "取消",
     "comingSoon": "即将推出",
     "connected": "已连接",
-    "tryAgain": "重试",
     "version": "版本: {{version}}"
   },
-  "nav": {
-    "downloads": "下载",
-    "providers": "提供商"
-  },
-  "providers": {
-    "header": "内容提供商",
-    "comingSoonAlert": {
-      "title": "即将推出",
-      "message": "{{name}}尚未可用。"
-    },
-    "disconnect": {
-      "title": "断开提供商连接",
-      "message": "确定要断开与{{name}}的连接吗?",
-      "action": "断开连接"
-    },
-    "errorAlert": {
-      "title": "错误",
-      "providerNotFound": "未找到提供商{{name}}。"
-    },
-    "notSupported": {
-      "title": "不支持",
-      "message": "尚不支持{{name}}身份验证。"
-    }
-  },
   "contentBrowser": {
+    "fileType": {
+      "image": "图像",
+      "video": "视频"
+    },
     "header": "浏览内容",
     "noContent": "没有可用内容",
-    "tryDifferentFolder": "尝试导航到其他文件夹",
-    "fileType": {
-      "video": "视频",
-      "image": "图像"
-    }
-  },
-  "providerDownload": {
-    "fallbackTitle": "内容",
-    "download": "下载",
-    "stream": "流式传输",
-    "start": "开始",
-    "downloadingItem": "正在下载第{{current}}项,共{{total}}项"
-  },
-  "providerDeviceAuth": {
-    "providerNotFound": "未找到提供商。",
-    "initFailed": "无法初始化身份验证。请重试。",
-    "unexpectedError": "发生意外错误。请重试。",
-    "codeExpired": "身份验证代码已过期。请重试。",
-    "authFailed": "身份验证失败或被拒绝。",
-    "initializing": "正在初始化身份验证...",
-    "tryAgain": "重试",
-    "connected": "已连接!",
-    "loadingContent": "正在加载您的内容...",
-    "connectTo": "连接到{{name}}",
-    "fallbackProvider": "提供商",
-    "instructions": "用手机扫描二维码,或访问",
-    "instructionsLine2": "并输入下面的代码",
-    "enterCode": "输入此代码:",
-    "waiting": "等待授权",
-    "expiresIn": "代码将在{{minutes}}分钟后过期",
-    "cancel": "取消"
-  },
-  "providerOAuth": {
-    "providerNotFound": "未找到提供商。",
-    "sessionFailed": "无法创建授权会话。请重试。",
-    "unexpectedError": "发生意外错误。请重试。",
-    "sessionExpired": "授权会话已过期。请重试。",
-    "exchangeFailed": "无法用授权代码交换令牌。",
-    "tokenExchangeFailed": "令牌交换失败。请重试。",
-    "initializing": "正在初始化身份验证...",
-    "connecting": "正在连接...",
-    "tryAgain": "重试",
-    "connected": "已连接!",
-    "loadingContent": "正在加载您的内容...",
-    "connectTo": "连接到{{name}}",
-    "fallbackProvider": "提供商",
-    "instructionsLine1": "使用手机扫描二维码以授权访问。",
-    "instructionsLine2": "您批准后,电视将自动连接。",
-    "waiting": "等待授权",
-    "expiresIn": "会话将在{{minutes}}分钟后过期",
-    "cancel": "取消"
-  },
-  "providerFormLogin": {
-    "missingCredentials": "请输入电子邮件和密码",
-    "providerNotFound": "未找到提供商",
-    "notSupported": "此提供商不支持表单登录",
-    "loginFailed": "登录失败。请检查您的凭据。",
-    "unexpectedError": "发生意外错误。请重试。",
-    "loggingIn": "正在登录...",
-    "connected": "已连接!",
-    "loadingContent": "正在加载您的内容...",
-    "loginTo": "登录到{{name}}",
-    "fallbackProvider": "提供商",
-    "enterCredentials": "输入您的凭据以连接",
-    "email": "电子邮件",
-    "emailPlaceholder": "email@example.com",
-    "password": "密码",
-    "passwordPlaceholder": "密码",
-    "signIn": "登录",
-    "cancel": "取消"
-  },
-  "download": {
-    "startLesson": "开始课程",
-    "downloadingItem": "正在下载第{{current}}项,共{{total}}项",
-    "scheduleLoadFailed": "无法加载日程表。",
-    "scheduleLoadFailedSub": "请确保为此班级安排了课程。",
-    "tryAgain": "重试"
+    "tryDifferentFolder": "尝试导航到其他文件夹"
   },
   "downloads": {
     "header": "下载",
     "noDownloads": "暂无下载"
   },
+  "menu": {
+    "back": "返回"
+  },
+  "message": {
+    "loadingImage": "正在加载图片...",
+    "loadingVideo": "正在加载视频...",
+    "playbackFailed": "播放失败",
+    "playbackFailedSub": "按返回键返回",
+    "skippingNext": "正在跳到下一项...",
+    "videoFailed": "视频加载失败"
+  },
+  "nav": {
+    "downloads": "下载",
+    "plan": "今日计划",
+    "providers": "提供商"
+  },
+  "offline": {
+    "canPlayDownloaded": "您仍然可以播放预先下载的课程。",
+    "notDownloaded": "很遗憾,该课程尚未下载以供离线播放。请检查您的连接并重试。",
+    "start": "开始",
+    "subtitle": "目前无法访问互联网",
+    "title": "离线:"
+  },
   "planDownload": {
-    "fallbackName": "崇拜计划",
-    "startPlan": "开始计划",
     "downloadingItem": "正在下载第{{current}}项,共{{total}}项",
+    "fallbackName": "崇拜计划",
     "loadFailed": "无法加载计划。",
     "loadFailedSub": "请确保为此计划类型安排了计划。",
+    "startPlan": "开始计划",
     "tryAgain": "重试"
   },
   "planPairing": {
+    "connected": "已连接！",
     "generateFailed": "无法生成配对代码。请重试。",
     "generating": "正在生成配对代码...",
-    "tryAgain": "重试",
     "instructions": "在B1Admin的计划类型部分输入此代码",
-    "waiting": "等待连接",
-    "searchByName": "或按教会名称搜索"
-  },
-  "selectPairingMode": {
-    "header": "选择配对模式",
-    "classroomTitle": "与教室配对",
-    "classroomDescription": "连接到特定的教室电视并自动显示已安排的课程",
-    "planTitle": "与计划配对",
-    "planDescription": "遵循您教会的每周计划并按需浏览内容"
-  },
-  "selectChurch": {
-    "header": "找到您的教会",
-    "searchPlaceholder": "搜索教会名称",
-    "minLetters": "输入您教会名称的至少四个字母以开始搜索。",
-    "noResults": "未找到结果。请重新搜索或在https://freeplay.church/注册您的教会。"
-  },
-  "selectRoom": {
-    "header": "选择教室",
-    "noClassrooms": "未找到教室",
-    "configureRooms": "在freeplay.church上配置您的教室。"
-  },
-  "offline": {
-    "title": "离线:",
-    "subtitle": "目前无法访问互联网",
-    "canPlayDownloaded": "您仍然可以播放预先下载的课程。",
-    "notDownloaded": "很遗憾,该课程尚未下载以供离线播放。请检查您的连接并重试。",
-    "startLesson": "开始课程"
-  },
-  "lessons": {
-    "header": "选择课程",
-    "noLessons": "没有可用课程"
-  },
-  "lessonDetails": {
-    "version": "版本: {{version}}"
-  },
-  "studies": {
-    "header": "选择学习",
-    "noStudies": "没有可用学习"
-  },
-  "programs": {
-    "header": "浏览程序",
-    "noPrograms": "没有可用程序"
+    "loadingPlan": "正在加载您的计划...",
+    "regenerate": "生成新代码",
+    "secondary": "接受后我们将自动连接",
+    "tryAgain": "重试",
+    "waiting": "等待连接"
   },
   "privacyPolicy": {
     "header": "隐私政策",
-    "viewFullPolicy": "要查看我们的完整隐私政策,请访问:",
-    "url": "churchapps.org/privacy"
+    "url": "churchapps.org/privacy",
+    "viewFullPolicy": "要查看我们的完整隐私政策,请访问:"
+  },
+  "providerDeviceAuth": {
+    "authFailed": "身份验证失败或被拒绝。",
+    "cancel": "取消",
+    "codeExpired": "身份验证代码已过期。请重试。",
+    "connectTo": "连接到{{name}}",
+    "connected": "已连接!",
+    "enterCode": "输入此代码:",
+    "expiresIn": "代码将在{{minutes}}分钟后过期",
+    "fallbackProvider": "提供商",
+    "initFailed": "无法初始化身份验证。请重试。",
+    "initializing": "正在初始化身份验证...",
+    "instructions": "用手机扫描二维码,或访问",
+    "instructionsLine2": "并输入下面的代码",
+    "loadingContent": "正在加载您的内容...",
+    "providerNotFound": "未找到提供商。",
+    "regenerate": "生成新代码",
+    "secondary": "请查看手机以确认",
+    "tryAgain": "重试",
+    "unexpectedError": "发生意外错误。请重试。",
+    "waiting": "等待授权"
+  },
+  "providerDownload": {
+    "download": "下载",
+    "downloadingItem": "正在下载第{{current}}项,共{{total}}项",
+    "fallbackTitle": "内容",
+    "start": "开始",
+    "stream": "流式传输"
+  },
+  "providerFormLogin": {
+    "cancel": "取消",
+    "connected": "已连接!",
+    "email": "电子邮件",
+    "emailPlaceholder": "email@example.com",
+    "enterCredentials": "输入您的凭据以连接",
+    "fallbackProvider": "提供商",
+    "loadingContent": "正在加载您的内容...",
+    "loggingIn": "正在登录...",
+    "loginFailed": "登录失败。请检查您的凭据。",
+    "loginTo": "登录到{{name}}",
+    "missingCredentials": "请输入电子邮件和密码",
+    "notSupported": "此提供商不支持表单登录",
+    "password": "密码",
+    "passwordPlaceholder": "密码",
+    "providerNotFound": "未找到提供商",
+    "signIn": "登录",
+    "unexpectedError": "发生意外错误。请重试。"
+  },
+  "providerOAuth": {
+    "cancel": "取消",
+    "connectTo": "连接到{{name}}",
+    "connected": "已连接!",
+    "connecting": "正在连接...",
+    "exchangeFailed": "无法用授权代码交换令牌。",
+    "expiresIn": "会话将在{{minutes}}分钟后过期",
+    "fallbackProvider": "提供商",
+    "initializing": "正在初始化身份验证...",
+    "instructionsLine1": "使用手机扫描二维码以授权访问。",
+    "instructionsLine2": "您批准后,电视将自动连接。",
+    "loadingContent": "正在加载您的内容...",
+    "providerNotFound": "未找到提供商。",
+    "secondary": "请查看手机以确认",
+    "sessionExpired": "授权会话已过期。请重试。",
+    "sessionFailed": "无法创建授权会话。请重试。",
+    "tokenExchangeFailed": "令牌交换失败。请重试。",
+    "tryAgain": "重试",
+    "unexpectedError": "发生意外错误。请重试。",
+    "waiting": "等待授权"
+  },
+  "providerSettings": {
+    "autoDownload": {
+      "description": "使用此提供商作为今日课程的来源并预先下载文件",
+      "label": "自动下载今日课程"
+    },
+    "disconnect": "断开连接",
+    "header": "提供商设置",
+    "library": {
+      "description": "在菜单中显示此提供商的内容库",
+      "label": "浏览资料库"
+    }
+  },
+  "providers": {
+    "comingSoonAlert": {
+      "message": "{{name}}尚未可用。",
+      "title": "即将推出"
+    },
+    "errorAlert": {
+      "providerNotFound": "未找到提供商{{name}}。",
+      "title": "错误"
+    },
+    "header": "内容提供商",
+    "notSupported": {
+      "message": "尚不支持{{name}}身份验证。",
+      "title": "不支持"
+    }
   },
   "selectMessage": {
-    "header": "选择消息"
+    "header": "选择消息",
+    "nowPlaying": "正在播放"
   },
-  "message": {
-    "loadingVideo": "正在加载视频...",
-    "videoFailed": "视频加载失败",
-    "skippingNext": "正在跳到下一项..."
-  },
-  "menu": {
-    "back": "返回"
+  "splash": {
+    "connecting": "正在连接..."
   }
 }
