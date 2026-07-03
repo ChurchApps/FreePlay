@@ -25,7 +25,6 @@ export const PlanPairingScreen = (props: Props) => {
   const deviceIdRef = useRef<string>("");
   const pollGenerationRef = useRef<number>(0);
 
-  // Animated values for the pulsing glow effect
   const pulseAnim = useRef(new Animated.Value(0.3)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -156,7 +155,6 @@ export const PlanPairingScreen = (props: Props) => {
 
   useEffect(init, []);
 
-  // Loading state
   if (loading) {
     return (
       <View style={Styles.menuScreen}>
@@ -180,7 +178,6 @@ export const PlanPairingScreen = (props: Props) => {
     );
   }
 
-  // Success state
   if (success) {
     return (
       <View style={Styles.menuScreen}>
@@ -211,7 +208,6 @@ export const PlanPairingScreen = (props: Props) => {
     );
   }
 
-  // Error state
   if (error) {
     return (
       <View style={Styles.menuScreen}>
@@ -256,7 +252,6 @@ export const PlanPairingScreen = (props: Props) => {
     );
   }
 
-  // Main pairing screen
   return (
     <View style={Styles.menuScreen}>
       <LinearGradient
@@ -272,7 +267,6 @@ export const PlanPairingScreen = (props: Props) => {
             paddingBottom: DimensionHelper.hp("8%")
           }}
         >
-          {/* Instructional text - subtle and secondary */}
           <Text
             style={{
               color: "rgba(255, 255, 255, 0.5)",
@@ -284,10 +278,8 @@ export const PlanPairingScreen = (props: Props) => {
             {t("planPairing.instructions")}
           </Text>
 
-          {/* Hero pairing code */}
           <PairingCode code={pairingCode} />
 
-          {/* Waiting indicator with pulsing animation */}
           <Animated.View
             style={{
               marginTop: DimensionHelper.hp("5%"),
@@ -316,7 +308,6 @@ export const PlanPairingScreen = (props: Props) => {
             </Text>
           </Animated.View>
 
-          {/* Secondary instruction */}
           <Text
             style={{
               color: "rgba(255, 255, 255, 0.5)",
@@ -328,7 +319,6 @@ export const PlanPairingScreen = (props: Props) => {
             {t("planPairing.secondary")}
           </Text>
 
-          {/* Low-focus regenerate button */}
           <TouchableHighlight
             onPress={initPairing}
             underlayColor="rgba(255, 255, 255, 0.1)"

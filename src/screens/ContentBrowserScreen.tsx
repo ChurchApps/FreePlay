@@ -56,7 +56,6 @@ export const ContentBrowserScreen = (props: Props) => {
   const folderStack = props.folderStack || [];
   const currentFolder = folderStack.length > 0 ? folderStack[folderStack.length - 1] : null;
 
-  // Build a unique key for focus memory based on provider + folder path
   const screenKey = `contentBrowser_${props.providerId}_${currentFolder?.id || "root"}`;
 
   const styles: any = {
@@ -110,9 +109,7 @@ export const ContentBrowserScreen = (props: Props) => {
     const auth = await ProviderAuthHelper.refreshIfNeeded(props.providerId);
     if (version !== requestVersionRef.current) return;
 
-    // Check if this is a leaf folder (end of browse tree)
     if (folder.isLeaf) {
-      // Leaf folder - fetch playlist directly instead of browsing
       console.log(`[ContentBrowser] handleSelectFolder: leaf folder "${folder.title}" path=${folder.path}`);
       const files = await provider.getPlaylist(folder.path, auth);
       console.log(`[ContentBrowser] handleSelectFolder: getPlaylist returned ${files ? files.length + " files" : "null"}`);
@@ -129,7 +126,6 @@ export const ContentBrowserScreen = (props: Props) => {
           folderStack: [...folderStack, folder]
         });
       } else {
-        // No files in playlist - navigate into folder to show empty state
         console.warn(`[ContentBrowser] handleSelectFolder: no files for leaf "${folder.title}" — showing empty state`);
         props.navigateTo("contentBrowser", {
           providerId: props.providerId,
@@ -139,14 +135,12 @@ export const ContentBrowserScreen = (props: Props) => {
       return;
     }
 
-    // Non-leaf folder - fetch contents to check if it has files
     const contents = await provider.browse(folder.path, auth);
     if (version !== requestVersionRef.current) return;
 
     const files = contents.filter((item): item is ContentFile => item.type === "file");
 
     if (files.length > 0) {
-      // Folder has files - go to download screen
       CachedData.messageFiles = files.map(toMessageFile);
 
       props.navigateTo("providerDownload", {
@@ -157,7 +151,6 @@ export const ContentBrowserScreen = (props: Props) => {
         folderStack: [...folderStack, folder]
       });
     } else {
-      // Folder only has subfolders - navigate into it
       props.navigateTo("contentBrowser", {
         providerId: props.providerId,
         folderStack: [...folderStack, folder]
@@ -166,13 +159,10 @@ export const ContentBrowserScreen = (props: Props) => {
   };
 
   const handleSelectFile = (file: ContentFile) => {
-    // Get all files in current folder for playlist
     const files = items.filter((item): item is ContentFile => item.type === "file");
 
-    // Convert to playlist format
     CachedData.messageFiles = files.map(toMessageFile);
 
-    // Find selected file index
     const startIndex = files.findIndex(f => f.id === file.id);
 
     props.navigateTo("providerDownload", {
@@ -488,8 +478,7 @@ export const ContentBrowserScreen = (props: Props) => {
 
   const init = () => {
     CachedData.activeProvider = props.providerId;
-    initialFocusSet.current = false; // Reset focus tracking for new folder
-    // Prevent sidebar from expanding via focus until content loads
+    initialFocusSet.current = false;
     CachedData.preventSidebarExpand = true;
     props.sidebarState(false);
     loadData();
@@ -502,13 +491,11 @@ export const ContentBrowserScreen = (props: Props) => {
 
   useEffect(init, [currentFolder?.id, props.providerId]);
 
-  // Determine header text
   let headerText = provider?.name || t("contentBrowser.header");
   if (currentFolder) {
     headerText = currentFolder.title;
   }
 
-  // Breadcrumb trail: "Provider › Folder1 › Folder2"
   const breadcrumbs = [provider?.name || t("contentBrowser.header"), ...folderStack.map(f => f.title)];
 
   return (

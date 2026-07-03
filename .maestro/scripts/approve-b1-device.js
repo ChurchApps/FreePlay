@@ -1,17 +1,5 @@
-// Maestro runScript helper: completes the B1Church OAuth device-flow approval
-// step that would normally require a separate device. Runs on the host (not the
-// emulator), so localhost:8084 here is the local ChurchApps Api directly.
-//
-// Inputs:
-//   maestro.copiedText -- expected to be the user_code string copied from the
-//     ProviderDeviceAuthScreen via copyTextFrom on id "provider-device-auth-user-code"
-//
-// Steps:
-//   1. POST /membership/users/login with the demo credentials -> JWT
-//   2. POST /membership/oauth/device/approve with the user_code + church id
-//
-// On success, the FreePlay app's polling loop on /oauth/token will return an
-// access_token within ~5s and the app navigates to contentBrowser.
+// Maestro runScript helper for B1Church OAuth device-flow approval via Maestro.copiedText user_code.
+// Runs on host (not emulator), POST /membership/users/login and POST /membership/oauth/device/approve.
 
 const userCode = (maestro.copiedText || "").trim();
 if (!userCode) {

@@ -33,7 +33,6 @@ export const NavWrapper = (props: Props) => {
   const recentlyCollapsed = useRef(false);
   const sidebarMounted = useRef(false);
 
-  // Screens where sidebar fully hides when collapsed
   const fullScreenModeScreens = ["planDownload"];
   const isFullScreenMode = fullScreenModeScreens.includes(CachedData.currentScreen);
 
@@ -176,7 +175,6 @@ export const NavWrapper = (props: Props) => {
             }
           />
         )}
-        {/* Connected content provider nav items */}
         {connectedProviders.map((providerId: string, index: number) => {
           const provider = getProvider(providerId);
           if (!provider) return null;

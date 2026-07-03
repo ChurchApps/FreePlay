@@ -18,7 +18,6 @@ function withAndroidTVManifestFixes(config) {
 
       let manifest = fs.readFileSync(manifestPath, "utf-8");
 
-      // Ensure tools namespace is declared
       if (!manifest.includes("xmlns:tools")) {
         manifest = manifest.replace(
           "xmlns:android=",
@@ -32,7 +31,6 @@ function withAndroidTVManifestFixes(config) {
         ""
       );
 
-      // Insert faketouch with required=false after touchscreen declaration.
       manifest = manifest.replace(
         /(<uses-feature[^>]*android\.hardware\.touchscreen[^>]*\/>)/,
         '$1\n  <uses-feature android:name="android.hardware.faketouch" android:required="false"/>'
@@ -40,7 +38,7 @@ function withAndroidTVManifestFixes(config) {
 
       fs.writeFileSync(manifestPath, manifest, "utf-8");
       return config;
-    },
+    }
   ]);
 }
 

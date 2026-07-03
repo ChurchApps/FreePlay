@@ -108,7 +108,6 @@ export const ProviderFormLoginScreen = (props: Props) => {
     }
   };
 
-  // Loading state
   if (flowState.status === "loading") {
     return (
       <View style={Styles.menuScreen}>
@@ -135,7 +134,6 @@ export const ProviderFormLoginScreen = (props: Props) => {
     );
   }
 
-  // Success state
   if (flowState.status === "success") {
     return (
       <View style={Styles.menuScreen}>
@@ -168,7 +166,6 @@ export const ProviderFormLoginScreen = (props: Props) => {
     );
   }
 
-  // Main login form
   return (
     <View style={Styles.menuScreen}>
       <LinearGradient
@@ -185,7 +182,6 @@ export const ProviderFormLoginScreen = (props: Props) => {
               opacity: fadeAnim,
               paddingHorizontal: DimensionHelper.wp("5%")
             }}>
-            {/* Provider name */}
             <Text
               style={{
                 color: "rgba(255, 255, 255, 0.7)",
@@ -196,7 +192,6 @@ export const ProviderFormLoginScreen = (props: Props) => {
               {t("providerFormLogin.loginTo", { name: providerConfig?.name || t("providerFormLogin.fallbackProvider") })}
             </Text>
 
-            {/* Instructions */}
             <Text
               style={{
                 color: "rgba(255, 255, 255, 0.5)",
@@ -208,7 +203,6 @@ export const ProviderFormLoginScreen = (props: Props) => {
               {t("providerFormLogin.enterCredentials")}
             </Text>
 
-            {/* Error message */}
             {flowState.status === "error" && (
               <View
                 style={{
@@ -230,13 +224,11 @@ export const ProviderFormLoginScreen = (props: Props) => {
               </View>
             )}
 
-            {/* Login Form */}
             <View
               style={{
                 width: "100%",
                 maxWidth: 400
               }}>
-              {/* Email input */}
               <View style={{ marginBottom: DimensionHelper.hp("2%") }}>
                 <Text
                   style={{
@@ -268,7 +260,6 @@ export const ProviderFormLoginScreen = (props: Props) => {
                 />
               </View>
 
-              {/* Password input */}
               <View style={{ marginBottom: DimensionHelper.hp("3%") }}>
                 <Text
                   style={{
@@ -299,7 +290,6 @@ export const ProviderFormLoginScreen = (props: Props) => {
                 />
               </View>
 
-              {/* Login button */}
               <TouchableHighlight
                 onPress={handleLogin}
                 underlayColor="rgba(233, 30, 99, 0.8)"
@@ -323,7 +313,6 @@ export const ProviderFormLoginScreen = (props: Props) => {
             </View>
           </Animated.View>
 
-          {/* Cancel button at bottom */}
           <View
             style={{
               position: "absolute",

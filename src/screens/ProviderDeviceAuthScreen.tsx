@@ -167,7 +167,6 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
         return;
       }
 
-      // Success - store auth
       await ProviderAuthHelper.setAuth(props.providerId, result as ContentProviderAuthData);
       await ProviderAuthHelper.setConnectionState(props.providerId, true);
       setFlowState({ status: "success" });
@@ -210,7 +209,6 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
     };
   }, []);
 
-  // Loading state
   if (flowState.status === "loading") {
     return (
       <View style={Styles.menuScreen} testID="provider-device-auth-loading">
@@ -237,7 +235,6 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
     );
   }
 
-  // Error or expired state
   if (flowState.status === "error" || flowState.status === "expired") {
     return (
       <View style={Styles.menuScreen}>
@@ -283,7 +280,6 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
     );
   }
 
-  // Success state
   if (flowState.status === "success") {
     return (
       <View style={Styles.menuScreen}>
@@ -316,7 +312,6 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
     );
   }
 
-  // Main awaiting_user / polling state
   const deviceAuth = flowState.deviceAuth!;
   const verificationUrl =
     deviceAuth.verification_uri_complete || deviceAuth.verification_uri;
@@ -334,7 +329,6 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
             opacity: fadeAnim,
             paddingBottom: DimensionHelper.hp("5%")
           }}>
-          {/* Provider name */}
           <Text
             style={{
               color: "rgba(255, 255, 255, 0.7)",
@@ -345,7 +339,6 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
             {t("providerDeviceAuth.connectTo", { name: providerConfig?.name || t("providerDeviceAuth.fallbackProvider") })}
           </Text>
 
-          {/* Instructions */}
           <Text
             style={{
               color: "rgba(255, 255, 255, 0.5)",
@@ -360,7 +353,6 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
             {"\n"}{t("providerDeviceAuth.instructionsLine2")}
           </Text>
 
-          {/* QR Code */}
           <View
             style={{
               backgroundColor: "#ffffff",
@@ -376,7 +368,6 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
             />
           </View>
 
-          {/* User Code */}
           <View style={{ alignItems: "center" }} testID="provider-device-auth-user-code" accessibilityLabel={deviceAuth.user_code}>
             <Text
               style={{
@@ -389,7 +380,6 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
             <PairingCode code={deviceAuth.user_code} />
           </View>
 
-          {/* Waiting indicator with pulse animation */}
           <Animated.View
             style={{
               marginTop: DimensionHelper.hp("5%"),
@@ -416,7 +406,6 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
             </Text>
           </Animated.View>
 
-          {/* Secondary instruction */}
           <Text
             style={{
               color: "rgba(255, 255, 255, 0.5)",
@@ -427,7 +416,6 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
             {t("providerDeviceAuth.secondary")}
           </Text>
 
-          {/* Low-focus regenerate button */}
           <TouchableHighlight
             onPress={initDeviceFlow}
             underlayColor="rgba(255, 255, 255, 0.1)"
@@ -450,7 +438,6 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
             </Text>
           </TouchableHighlight>
 
-          {/* Expiration notice */}
           <Text
             style={{
               color: "rgba(255, 255, 255, 0.3)",
@@ -461,7 +448,6 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
           </Text>
         </Animated.View>
 
-        {/* Cancel button at bottom */}
         <View
           style={{
             position: "absolute",

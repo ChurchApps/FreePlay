@@ -76,7 +76,6 @@ export const ProviderOAuthScreen = (props: Props) => {
     }).start();
   };
 
-  // Generate PKCE code verifier using expo-crypto (React Native compatible)
   const generateCodeVerifier = (): string => {
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~";
     const randomBytes = Crypto.getRandomBytes(64);
@@ -87,7 +86,6 @@ export const ProviderOAuthScreen = (props: Props) => {
     return result;
   };
 
-  // Generate S256 code challenge using expo-crypto (React Native compatible)
   const generateCodeChallenge = async (verifier: string): Promise<string> => {
     const digest = await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, verifier, { encoding: Crypto.CryptoEncoding.BASE64 });
     // Convert standard base64 to base64url
@@ -110,7 +108,6 @@ export const ProviderOAuthScreen = (props: Props) => {
         return;
       }
 
-      // Step 1: Create a relay session on the API
       const relayData = await ApiHelper.post("/oauth/relay/sessions", { provider: props.providerId }, "MembershipApi");
       if (!relayData?.sessionCode || !relayData?.redirectUri) {
         setFlowState({ status: "error", error: t("providerOAuth.sessionFailed") });
@@ -120,7 +117,6 @@ export const ProviderOAuthScreen = (props: Props) => {
       const { sessionCode, redirectUri, expiresIn } = relayData;
       redirectUriRef.current = redirectUri;
 
-      // Step 2: Generate PKCE code verifier and build auth URL using expo-crypto
       const codeVerifier = generateCodeVerifier();
       codeVerifierRef.current = codeVerifier;
 
@@ -132,7 +128,6 @@ export const ProviderOAuthScreen = (props: Props) => {
       fadeIn();
       startPulseAnimation();
 
-      // Step 3: Start polling the relay for the auth code
       startPolling(sessionCode, expiresIn, currentGeneration);
     } catch (error) {
       console.error("OAuth flow init error:", error);
@@ -157,13 +152,11 @@ export const ProviderOAuthScreen = (props: Props) => {
         if (generation !== pollGenerationRef.current) return;
 
         if (result?.status === "completed" && result?.authCode) {
-          // Got the auth code from the relay — exchange for tokens
           setFlowState({ status: "exchanging" });
           await exchangeCodeForTokens(result.authCode);
           return;
         }
 
-        // Still pending — poll again
         pollTimeoutRef.current = setTimeout(poll, 5000);
       } catch (error) {
         console.error("Polling error:", error);
@@ -190,7 +183,6 @@ export const ProviderOAuthScreen = (props: Props) => {
         return;
       }
 
-      // Success — store auth and navigate
       await ProviderAuthHelper.setAuth(props.providerId, authData);
       await ProviderAuthHelper.setConnectionState(props.providerId, true);
       setFlowState({ status: "success" });
@@ -233,7 +225,6 @@ export const ProviderOAuthScreen = (props: Props) => {
     };
   }, []);
 
-  // Loading state
   if (flowState.status === "loading" || flowState.status === "exchanging") {
     const message = flowState.status === "exchanging" ? t("providerOAuth.connecting") : t("providerOAuth.initializing");
     return (
@@ -261,7 +252,6 @@ export const ProviderOAuthScreen = (props: Props) => {
     );
   }
 
-  // Error or expired state
   if (flowState.status === "error" || flowState.status === "expired") {
     return (
       <View style={Styles.menuScreen}>
@@ -307,7 +297,6 @@ export const ProviderOAuthScreen = (props: Props) => {
     );
   }
 
-  // Success state
   if (flowState.status === "success") {
     return (
       <View style={Styles.menuScreen}>
@@ -340,7 +329,6 @@ export const ProviderOAuthScreen = (props: Props) => {
     );
   }
 
-  // Main awaiting_user state — show QR code
   const { authUrl } = flowState;
 
   return (
@@ -356,7 +344,6 @@ export const ProviderOAuthScreen = (props: Props) => {
             opacity: fadeAnim,
             paddingBottom: DimensionHelper.hp("5%")
           }}>
-          {/* Provider name */}
           <Text
             style={{
               color: "rgba(255, 255, 255, 0.7)",
@@ -367,7 +354,6 @@ export const ProviderOAuthScreen = (props: Props) => {
             {t("providerOAuth.connectTo", { name: providerConfig?.name || t("providerOAuth.fallbackProvider") })}
           </Text>
 
-          {/* Instructions */}
           <Text
             style={{
               color: "rgba(255, 255, 255, 0.5)",
@@ -381,7 +367,6 @@ export const ProviderOAuthScreen = (props: Props) => {
             {t("providerOAuth.instructionsLine2")}
           </Text>
 
-          {/* QR Code */}
           <View
             style={{
               backgroundColor: "#ffffff",
@@ -397,7 +382,6 @@ export const ProviderOAuthScreen = (props: Props) => {
             />
           </View>
 
-          {/* Waiting indicator with pulse animation */}
           <Animated.View
             style={{
               marginTop: DimensionHelper.hp("3%"),
@@ -424,7 +408,6 @@ export const ProviderOAuthScreen = (props: Props) => {
             </Text>
           </Animated.View>
 
-          {/* Secondary instruction */}
           <Text
             style={{
               color: "rgba(255, 255, 255, 0.5)",
@@ -435,7 +418,6 @@ export const ProviderOAuthScreen = (props: Props) => {
             {t("providerOAuth.secondary")}
           </Text>
 
-          {/* Expiration notice */}
           <Text
             style={{
               color: "rgba(255, 255, 255, 0.3)",
@@ -446,7 +428,6 @@ export const ProviderOAuthScreen = (props: Props) => {
           </Text>
         </Animated.View>
 
-        {/* Cancel button at bottom */}
         <View
           style={{
             position: "absolute",
