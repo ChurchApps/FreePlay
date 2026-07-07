@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import {
+  ActivityIndicator,
   Image,
   View,
   FlatList,
@@ -46,6 +47,7 @@ export const ContentBrowserScreen = (props: Props) => {
   const { t } = useTranslation();
   const [items, setItems] = React.useState<ContentItem[]>([]);
   const [loading, setLoading] = React.useState(true);
+  const [fetching, setFetching] = React.useState(false);
   const [focusedItemId, setFocusedItemId] = React.useState<string | null>(null);
   const initialFocusSet = React.useRef(false);
   const focusedIndexRef = React.useRef<number>(0);
@@ -102,20 +104,47 @@ export const ContentBrowserScreen = (props: Props) => {
   };
 
   const handleSelectFolder = async (folder: ContentFolder) => {
-    if (!provider) return;
+    if (!provider || fetching) return;
 
     const version = ++requestVersionRef.current;
+    setFetching(true);
 
-    const auth = await ProviderAuthHelper.refreshIfNeeded(props.providerId);
-    if (version !== requestVersionRef.current) return;
-
-    if (folder.isLeaf) {
-      console.log(`[ContentBrowser] handleSelectFolder: leaf folder "${folder.title}" path=${folder.path}`);
-      const files = await provider.getPlaylist(folder.path, auth);
-      console.log(`[ContentBrowser] handleSelectFolder: getPlaylist returned ${files ? files.length + " files" : "null"}`);
+    try {
+      const auth = await ProviderAuthHelper.refreshIfNeeded(props.providerId);
       if (version !== requestVersionRef.current) return;
 
-      if (files && files.length > 0) {
+      if (folder.isLeaf) {
+        console.log(`[ContentBrowser] handleSelectFolder: leaf folder "${folder.title}" path=${folder.path}`);
+        const files = await provider.getPlaylist(folder.path, auth);
+        console.log(`[ContentBrowser] handleSelectFolder: getPlaylist returned ${files ? files.length + " files" : "null"}`);
+        if (version !== requestVersionRef.current) return;
+
+        if (files && files.length > 0) {
+          CachedData.messageFiles = files.map(toMessageFile);
+
+          props.navigateTo("providerDownload", {
+            providerId: props.providerId,
+            coverImage: folder.thumbnail,
+            title: folder.title,
+            startIndex: 0,
+            folderStack: [...folderStack, folder]
+          });
+        } else {
+          console.warn(`[ContentBrowser] handleSelectFolder: no files for leaf "${folder.title}" — showing empty state`);
+          props.navigateTo("contentBrowser", {
+            providerId: props.providerId,
+            folderStack: [...folderStack, folder]
+          });
+        }
+        return;
+      }
+
+      const contents = await provider.browse(folder.path, auth);
+      if (version !== requestVersionRef.current) return;
+
+      const files = contents.filter((item): item is ContentFile => item.type === "file");
+
+      if (files.length > 0) {
         CachedData.messageFiles = files.map(toMessageFile);
 
         props.navigateTo("providerDownload", {
@@ -126,35 +155,13 @@ export const ContentBrowserScreen = (props: Props) => {
           folderStack: [...folderStack, folder]
         });
       } else {
-        console.warn(`[ContentBrowser] handleSelectFolder: no files for leaf "${folder.title}" — showing empty state`);
         props.navigateTo("contentBrowser", {
           providerId: props.providerId,
           folderStack: [...folderStack, folder]
         });
       }
-      return;
-    }
-
-    const contents = await provider.browse(folder.path, auth);
-    if (version !== requestVersionRef.current) return;
-
-    const files = contents.filter((item): item is ContentFile => item.type === "file");
-
-    if (files.length > 0) {
-      CachedData.messageFiles = files.map(toMessageFile);
-
-      props.navigateTo("providerDownload", {
-        providerId: props.providerId,
-        coverImage: folder.thumbnail,
-        title: folder.title,
-        startIndex: 0,
-        folderStack: [...folderStack, folder]
-      });
-    } else {
-      props.navigateTo("contentBrowser", {
-        providerId: props.providerId,
-        folderStack: [...folderStack, folder]
-      });
+    } finally {
+      setFetching(false);
     }
   };
 
@@ -540,6 +547,26 @@ export const ContentBrowserScreen = (props: Props) => {
         </View>
       )}
       <View style={{ ...Styles.menuWrapper, flex: 90 }}>{getCards()}</View>
+      {fetching && (
+        <View
+          testID="cb-fetching-overlay"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0,0,0,0.65)",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 10
+          }}>
+          <ActivityIndicator size="large" color={Colors.primary} />
+          <Text style={{ color: Colors.textPrimary, fontSize: Typography.bodySmall, marginTop: DimensionHelper.hp("2%") }}>
+            {t("contentBrowser.loadingContent")}
+          </Text>
+        </View>
+      )}
     </View>
   );
 };

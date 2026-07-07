@@ -1094,16 +1094,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@churchapps/content-providers@npm:^0.3.1":
-  version: 0.3.1
-  resolution: "@churchapps/content-providers@npm:0.3.1"
-  checksum: 10c0/9fe16677d57fd443efb92d5c28eba9d6ddd4d31c0ea0349e4cb45e046be1369d7470592dc8e2b49444e16d87f7b57b94a696ead0e3ac47012fdfb6b0295a3128
+"@churchapps/content-providers@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "@churchapps/content-providers@npm:0.5.1"
+  checksum: 10c0/00e97adeb25d2fffae5ad18e5dc52a50a8f30c988ef336edb53fec48f21d7a80a0861b3ec0956e58e148a85cef9e7c5854fb59245c194e19b946f1e31a69023f
   languageName: node
   linkType: hard
 
-"@churchapps/helpers@npm:^1.6.1":
-  version: 1.6.1
-  resolution: "@churchapps/helpers@npm:1.6.1"
+"@churchapps/helpers@npm:^1.10.1":
+  version: 1.10.1
+  resolution: "@churchapps/helpers@npm:1.10.1"
   dependencies:
     dayjs: "npm:^1.11.20"
   peerDependencies:
@@ -1111,7 +1111,7 @@ __metadata:
   peerDependenciesMeta:
     rrule:
       optional: true
-  checksum: 10c0/b2a90eacd94ee369947c477f79f8d38bfc4ff4c8fd82ad7a0e2fbddcb36e5e4f3722e47069bfd7a61be0cd31358cdb594fdaca8e3af260560f108c5cbae02184
+  checksum: 10c0/d2abb501fd8100231bd5e2142a4029e0189565958eb160a7b8c1ef9670599ed80660cb33a6a89fdd05003086843a76484ec14e9c81ad50ab3d76a31ac579d026
   languageName: node
   linkType: hard
 
@@ -5718,8 +5718,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "freeplay@workspace:."
   dependencies:
-    "@churchapps/content-providers": "npm:^0.3.1"
-    "@churchapps/helpers": "npm:^1.6.1"
+    "@churchapps/content-providers": "npm:^0.5.1"
+    "@churchapps/helpers": "npm:^1.10.1"
     "@eslint/js": "npm:^10.0.1"
     "@expo/metro-runtime": "npm:~6.1.1"
     "@react-native-async-storage/async-storage": "npm:1.24.0"

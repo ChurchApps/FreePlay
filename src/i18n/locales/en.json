@@ -38,6 +38,7 @@
   },
   "contentBrowser": {
     "header": "Browse Content",
+    "loadingContent": "Loading content...",
     "noContent": "No content available",
     "tryDifferentFolder": "Try navigating to a different folder",
     "fileType": {
