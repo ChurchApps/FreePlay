@@ -80,7 +80,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
     setFlowState({ status: "loading" });
 
     try {
-      if (!provider) {
+      if (!provider?.initiateDeviceFlow || !provider.pollDeviceFlowToken) {
         setFlowState({
           status: "error",
           error: t("providerDeviceAuth.providerNotFound")
@@ -88,7 +88,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
         return;
       }
 
-      const deviceAuth = await deviceFlowHelper.initiateDeviceFlow(provider.config);
+      const deviceAuth = await provider.initiateDeviceFlow();
 
       if (!deviceAuth) {
         setFlowState({
@@ -135,7 +135,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
 
       setFlowState(prev => ({ ...prev, status: "polling" }));
 
-      const result = await deviceFlowHelper.pollDeviceFlowToken(provider!.config, deviceAuth.device_code);
+      const result = await provider!.pollDeviceFlowToken!(deviceAuth.device_code);
 
       if (generation !== pollGenerationRef.current) return;
 

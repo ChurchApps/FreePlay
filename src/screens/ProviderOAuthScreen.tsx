@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 import { Styles, CachedData, ProviderAuthHelper, Colors, Typography } from "../helpers";
 import { SoundHelper } from "../helpers/SoundHelper";
 import { ApiHelper } from "../helpers/ApiHelper";
-import { ContentProviderAuthData, DropboxProvider } from "../interfaces";
+import { ContentProviderAuthData } from "../interfaces";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import LinearGradient from "react-native-linear-gradient";
 import { getProvider } from "../providers";
@@ -32,7 +32,7 @@ type FlowState =
   | { status: "exchanging" }
   | { status: "success" }
   | { status: "error"; error: string }
-  | { status: "expired" };
+  | { status: "expired"; error: string };
 
 export const ProviderOAuthScreen = (props: Props) => {
   const { t } = useTranslation();
@@ -103,7 +103,7 @@ export const ProviderOAuthScreen = (props: Props) => {
     setFlowState({ status: "loading" });
 
     try {
-      if (!provider) {
+      if (!provider?.buildAuthUrlFromChallenge || !provider.exchangeCodeForTokens) {
         setFlowState({ status: "error", error: t("providerOAuth.providerNotFound") });
         return;
       }
@@ -121,8 +121,7 @@ export const ProviderOAuthScreen = (props: Props) => {
       codeVerifierRef.current = codeVerifier;
 
       const codeChallenge = await generateCodeChallenge(codeVerifier);
-      const dropboxProvider = provider as DropboxProvider;
-      const authUrl = dropboxProvider.buildAuthUrlFromChallenge(codeChallenge, redirectUri, sessionCode);
+      const authUrl = provider.buildAuthUrlFromChallenge(codeChallenge, redirectUri, sessionCode);
 
       setFlowState({ status: "awaiting_user", authUrl, expiresIn });
       fadeIn();
@@ -142,7 +141,7 @@ export const ProviderOAuthScreen = (props: Props) => {
       if (generation !== pollGenerationRef.current) return;
 
       if (Date.now() >= expiresAt) {
-        setFlowState({ status: "expired", error: t("providerOAuth.sessionExpired") } as any);
+        setFlowState({ status: "expired", error: t("providerOAuth.sessionExpired") });
         return;
       }
 
@@ -171,8 +170,11 @@ export const ProviderOAuthScreen = (props: Props) => {
 
   const exchangeCodeForTokens = async (authCode: string) => {
     try {
-      const dropboxProvider = provider as DropboxProvider;
-      const authData: ContentProviderAuthData | null = await dropboxProvider.exchangeCodeForTokens(
+      if (!provider?.exchangeCodeForTokens) {
+        setFlowState({ status: "error", error: t("providerOAuth.providerNotFound") });
+        return;
+      }
+      const authData: ContentProviderAuthData | null = await provider.exchangeCodeForTokens(
         authCode,
         codeVerifierRef.current,
         redirectUriRef.current

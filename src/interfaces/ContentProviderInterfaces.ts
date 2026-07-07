@@ -22,6 +22,5 @@ export {
   MediaLicenseResult,
   type IProvider,
   TokenHelper,
-  DeviceFlowHelper,
-  DropboxProvider
+  DeviceFlowHelper
 } from "@churchapps/content-providers";

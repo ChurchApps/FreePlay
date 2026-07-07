@@ -115,7 +115,7 @@ export const ContentBrowserScreen = (props: Props) => {
 
       if (folder.isLeaf) {
         console.log(`[ContentBrowser] handleSelectFolder: leaf folder "${folder.title}" path=${folder.path}`);
-        const files = await provider.getPlaylist(folder.path, auth);
+        const files = provider.getPlaylist ? await provider.getPlaylist(folder.path, auth) : null;
         console.log(`[ContentBrowser] handleSelectFolder: getPlaylist returned ${files ? files.length + " files" : "null"}`);
         if (version !== requestVersionRef.current) return;
 
