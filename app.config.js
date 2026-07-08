@@ -69,7 +69,8 @@ const buildPlugins = () => [
     }
   ],
   "./plugins/withSoundAssets",
-  "./plugins/withTVManifestFixes"
+  "./plugins/withTVManifestFixes",
+  "./plugins/withReleaseSigning"
 ];
 
 module.exports = () => {
@@ -137,7 +138,10 @@ module.exports = () => {
       url: branding.eas.updatesUrl,
       enabled: true,
       checkAutomatically: "ON_LOAD",
-      fallbackToCacheTimeout: 5000
+      fallbackToCacheTimeout: 5000,
+      requestHeaders: {
+        "expo-channel-name": "production"
+      }
     },
     owner: branding.owner
   };

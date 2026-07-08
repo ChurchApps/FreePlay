@@ -42,11 +42,13 @@ If you'd like to set up the project locally, see our [development guide](https:/
 
 ## Release build
 
-1. Make sure the environment variables point to the production servers in EnvironmentHelper.ts
-2. Increment the version number in android/app/build.gradle
-3. Run `cd android` followed by `gradlew bundleRelease` to produce the release bundle. (If fails, File->Invalidate Caches in Android Studio)
-4. Run `cd..` followed by `react-native run-android --variant=release` to generate an apk file. You can close the node window when it completes.
-5. The apk file is located at `android/app/build/outputs/apk/release/app-release.apk`. Publish it to the Amazon and Google Play stores.
+Android and Amazon release builds run locally by default (`yarn build:android:eas` / `yarn build:amazon:eas` still build on EAS if preferred); iOS/tvOS always uses EAS Build.
+
+1. **One-time:** download the release keystore from EAS — run `npx eas-cli credentials -p android` and choose "credentials.json: Download credentials from EAS". This writes `credentials.json` (gitignored) at the repo root; release builds are signed from it automatically.
+2. Increment `version` and `android.versionCode` in `branding.json`.
+3. `yarn build:android` — Play Store bundle at `android/app/build/outputs/bundle/release/app-release.aab`
+4. `yarn build:amazon` — Amazon Appstore apk at `android/app/build/outputs/apk/release/app-release.apk`
+5. Upload to the store consoles, or submit via `npx eas-cli submit -p android --path <file>`.
 
 ## White-Labeling (Forking for Your Church / Org)
 

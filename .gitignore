@@ -39,3 +39,4 @@ expo-env.d.ts
 
 # npm is blocked (see preinstall guard); never commit an npm lockfile
 package-lock.json
+credentials.json
