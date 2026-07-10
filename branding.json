@@ -3,7 +3,7 @@
   "slug": "freeplay",
   "scheme": "church.freeplay",
   "owner": "churchapps",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "android": {
     "package": "church.freeplay",
     "versionCode": 18
@@ -26,7 +26,8 @@
     "b1church",
     "bibleproject",
     "dropbox",
-    "jesusfilm"
+    "jesusfilm",
+    "gocurriculum"
   ],
   "colors": {
     "primary": "#E91E63",
