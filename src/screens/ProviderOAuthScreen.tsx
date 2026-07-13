@@ -34,6 +34,9 @@ type FlowState =
   | { status: "error"; error: string }
   | { status: "expired"; error: string };
 
+type PendingSession = { sessionCode: string; redirectUri: string; codeVerifier: string; authUrl: string; expiresAt: number };
+const pendingSessions: Record<string, PendingSession> = {};
+
 export const ProviderOAuthScreen = (props: Props) => {
   const { t } = useTranslation();
   const [flowState, setFlowState] = useState<FlowState>({ status: "loading" });
@@ -108,20 +111,24 @@ export const ProviderOAuthScreen = (props: Props) => {
         return;
       }
 
-      const relayData = await ApiHelper.post("/oauth/relay/sessions", { provider: props.providerId }, "MembershipApi");
-      if (!relayData?.sessionCode || !relayData?.redirectUri) {
-        setFlowState({ status: "error", error: t("providerOAuth.sessionFailed") });
-        return;
+      let pending = pendingSessions[props.providerId];
+      if (!pending || pending.expiresAt - Date.now() < 60000) {
+        const relayData = await ApiHelper.post("/oauth/relay/sessions", { provider: props.providerId }, "MembershipApi");
+        if (!relayData?.sessionCode || !relayData?.redirectUri) {
+          setFlowState({ status: "error", error: t("providerOAuth.sessionFailed") });
+          return;
+        }
+        const codeVerifier = generateCodeVerifier();
+        const codeChallenge = await generateCodeChallenge(codeVerifier);
+        const authUrl = provider.buildAuthUrlFromChallenge(codeChallenge, relayData.redirectUri, relayData.sessionCode);
+        pending = { sessionCode: relayData.sessionCode, redirectUri: relayData.redirectUri, codeVerifier, authUrl, expiresAt: Date.now() + relayData.expiresIn * 1000 };
+        pendingSessions[props.providerId] = pending;
       }
 
-      const { sessionCode, redirectUri, expiresIn } = relayData;
+      const { sessionCode, redirectUri, codeVerifier, authUrl } = pending;
+      const expiresIn = Math.floor((pending.expiresAt - Date.now()) / 1000);
       redirectUriRef.current = redirectUri;
-
-      const codeVerifier = generateCodeVerifier();
       codeVerifierRef.current = codeVerifier;
-
-      const codeChallenge = await generateCodeChallenge(codeVerifier);
-      const authUrl = provider.buildAuthUrlFromChallenge(codeChallenge, redirectUri, sessionCode);
 
       setFlowState({ status: "awaiting_user", authUrl, expiresIn });
       fadeIn();
@@ -141,6 +148,7 @@ export const ProviderOAuthScreen = (props: Props) => {
       if (generation !== pollGenerationRef.current) return;
 
       if (Date.now() >= expiresAt) {
+        delete pendingSessions[props.providerId];
         setFlowState({ status: "expired", error: t("providerOAuth.sessionExpired") });
         return;
       }
@@ -151,6 +159,7 @@ export const ProviderOAuthScreen = (props: Props) => {
         if (generation !== pollGenerationRef.current) return;
 
         if (result?.status === "completed" && result?.authCode) {
+          delete pendingSessions[props.providerId];
           setFlowState({ status: "exchanging" });
           await exchangeCodeForTokens(result.authCode);
           return;
@@ -158,10 +167,15 @@ export const ProviderOAuthScreen = (props: Props) => {
 
         pollTimeoutRef.current = setTimeout(poll, 5000);
       } catch (error) {
-        console.error("Polling error:", error);
-        if (generation === pollGenerationRef.current) {
-          pollTimeoutRef.current = setTimeout(poll, 5000);
+        if (generation !== pollGenerationRef.current) return;
+        if (String((error as Error)?.message).includes("not_found")) {
+          // Session died server-side; a fresh QR beats dead-polling for 15 minutes.
+          delete pendingSessions[props.providerId];
+          initOAuthFlow();
+          return;
         }
+        console.error("Polling error:", error);
+        pollTimeoutRef.current = setTimeout(poll, 5000);
       }
     };
 
