@@ -177,8 +177,19 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
       }
       CachedData.activeProvider = props.providerId;
 
+      // Approver may have bound this screen to a plan type — enables "Today's Plan"
+      const planTypeId = (result as { planTypeId?: string }).planTypeId;
+      if (planTypeId) {
+        CachedData.providerId = props.providerId;
+        CachedData.pairingData = { planTypeId };
+        await CachedData.setAsyncStorage("providerId", props.providerId);
+        await CachedData.setAsyncStorage("pairingData", CachedData.pairingData);
+        provider?.setPairingData?.(CachedData.pairingData);
+      }
+
       setTimeout(() => {
-        props.navigateTo("contentBrowser", { providerId: props.providerId, folderStack: [] });
+        if (planTypeId) props.navigateTo("planDownload");
+        else props.navigateTo("contentBrowser", { providerId: props.providerId, folderStack: [] });
       }, 2000);
     };
 

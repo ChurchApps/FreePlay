@@ -110,12 +110,13 @@ export const PlanPairingScreen = (props: Props) => {
 
         console.log("Polling deviceId:", currentDeviceId, "status:", JSON.stringify(status));
 
-        if (status.paired && status.providerId) {
-          CachedData.providerId = status.providerId;
-          CachedData.pairingData = status.pairingData ?? null;
-          await CachedData.setAsyncStorage("providerId", status.providerId);
+        // The Api echoes the pairing claim as contentType (providerId) + contentId (plan type)
+        if (status.paired && status.contentType) {
+          CachedData.providerId = status.contentType;
+          CachedData.pairingData = status.contentId ? { planTypeId: status.contentId } : null;
+          await CachedData.setAsyncStorage("providerId", CachedData.providerId);
           await CachedData.setAsyncStorage("pairingData", CachedData.pairingData);
-          const provider = getProvider(status.providerId);
+          const provider = getProvider(CachedData.providerId);
           provider?.setPairingData?.(CachedData.pairingData);
           pollGenerationRef.current += 1;
           setSuccess(true);
