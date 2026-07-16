@@ -150,7 +150,6 @@ export const ProviderDownloadScreen = (props: Props) => {
   };
 
   const handleBack = () => {
-    CachedData.cancelAllDownloads();
     props.navigateTo("contentBrowser", {
       providerId: props.providerId,
       folderStack: props.folderStack?.slice(0, -1) || []
@@ -175,7 +174,6 @@ export const ProviderDownloadScreen = (props: Props) => {
 
     return () => {
       backHandler.remove();
-      CachedData.cancelAllDownloads();
     };
   };
 

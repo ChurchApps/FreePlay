@@ -45,9 +45,6 @@ export class CachedData {
     }
   }
 
-  // Track active downloads for cleanup
-  private static activeDownloads: Map<string, { jobId: number }> = new Map();
-
   static async getAsyncStorage(key: string) {
     try {
       const json = await AsyncStorage.getItem(key);
@@ -177,17 +174,9 @@ export class CachedData {
       progressDivider: 1 // Report progress frequently
     });
 
-    // Track the download so it can be cancelled if needed
-    this.activeDownloads.set(file.url, { jobId: downloadResponse.jobId });
-
-    try {
-      const result = await downloadResponse.promise;
-      if (result.statusCode !== 200) {
-        throw new Error(`Download failed with status ${result.statusCode}`);
-      }
-    } finally {
-      // Clean up tracking
-      this.activeDownloads.delete(file.url);
+    const result = await downloadResponse.promise;
+    if (result.statusCode !== 200) {
+      throw new Error(`Download failed with status ${result.statusCode}`);
     }
   }
 
@@ -199,19 +188,6 @@ export class CachedData {
       if (!await RNFS.exists(fullPath)) return false;
     }
     return true;
-  }
-
-  // Cancel all active downloads (useful when navigating away)
-  static cancelAllDownloads() {
-    this.activeDownloads.forEach((download, url) => {
-      try {
-        RNFS.stopDownload(download.jobId);
-        console.log("Cancelled download:", url);
-      } catch {
-        // Ignore errors when cancelling
-      }
-    });
-    this.activeDownloads.clear();
   }
 
 }
