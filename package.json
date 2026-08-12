@@ -19,6 +19,8 @@
     "submit:tvos": "eas submit --platform ios --profile tvos-production --latest",
     "update": "eas update --branch production",
     "lint": "eslint --fix src/ App.tsx",
+    "test": "jest",
+    "test:e2e:tv": "node e2e/tv-smoke.mjs",
     "reset-provisioning": "cross-env EXPO_TV=1 eas credentials --platform ios"
   },
   "dependencies": {
@@ -63,6 +65,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@react-native-tvos/config-tv": "^0.1.4",
+    "@types/jest": "^30.0.0",
     "@types/react": "~19.1.10",
     "@typescript-eslint/eslint-plugin": "^8.55.0",
     "@typescript-eslint/parser": "^8.55.0",
@@ -71,6 +74,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-native": "^5.0.0",
     "eslint-plugin-unused-imports": "^4.4.1",
+    "jest": "^30.4.2",
     "react-native-dotenv": "^3.4.11",
     "typescript": "~5.9.2"
   },

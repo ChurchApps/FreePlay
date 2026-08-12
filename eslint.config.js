@@ -9,6 +9,10 @@ export default [
   { ignores: ["node_modules/", "dist/", "build/", ".next/", "coverage/", "*.config.js"] },
   js.configs.recommended,
   {
+    files: ["e2e/**/*.mjs", "scripts/**/*.js"],
+    languageOptions: { globals: { process: "readonly", console: "readonly", setTimeout: "readonly", require: "readonly", module: "writable", __dirname: "readonly" } }
+  },
+  {
     files: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
     languageOptions: {
       parser: tseslintParser,
