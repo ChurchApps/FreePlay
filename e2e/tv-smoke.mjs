@@ -37,6 +37,27 @@ const dumpUi = () => {
   }
 };
 
+// Label of the currently focused card: first non-empty text under the focused node.
+const focusedText = () => {
+  const ui = dumpUi();
+  const idx = ui.indexOf('focused="true"');
+  if (idx < 0) return "";
+  const m = ui.slice(idx, idx + 2000).match(/text="([^"]+)"/);
+  return m ? m[1] : "";
+};
+
+// DPad-walk the provider grid until the target card is focused.
+async function walkToCard(target, maxMoves = 20) {
+  let prev = "";
+  for (let i = 0; i < maxMoves; i++) {
+    const label = focusedText();
+    if (label === target) return true;
+    if (label === prev) await press("down"); else await press("right");
+    prev = label;
+  }
+  return false;
+}
+
 const screenshot = (name) => {
   const png = adbBin("exec-out", "screencap", "-p");
   fs.writeFileSync(path.join(artifacts, `${name}.png`), png);
@@ -120,6 +141,11 @@ async function main() {
   await expectAny("providers-screen-after-splash", ["Content Providers"], 240000);
   assertAppAlive("app-process-alive");
 
+  if (process.argv[2] === "googledrive") {
+    await scenarioGoogleDrive();
+    return finish();
+  }
+
   // Provider cards render
   await expectAny("provider-cards-listed", ["Lessons.church", "SignPresenter", "B1 Church", "BibleProject"], 15000);
 
@@ -172,7 +198,26 @@ async function main() {
   await expectAny("provider-shows-connected", ["Connected"], 15000);
 
   assertAppAlive("app-process-alive-end");
+  finish();
+}
 
+// Google Drive is OAuth (QR + phone sign-in via the MembershipApi relay), so the
+// automated check stops at a healthy "waiting for confirmation" QR screen.
+async function scenarioGoogleDrive() {
+  await expectAny("googledrive-card-listed", ["Google Drive"], 15000);
+  const found = await walkToCard("Google Drive");
+  results.push({ name: "focus-googledrive-card", pass: found });
+  console.log(`  ${found ? "PASS" : "FAIL"} focus-googledrive-card`);
+  if (!found) return;
+  await press("enter");
+  await expectAny("googledrive-oauth-screen", ["Connect to Google Drive"], 30000);
+  await expectAny("googledrive-qr-waiting", ["Waiting for confirmation"], 30000);
+  await sleep(12000);
+  await expectAny("googledrive-polling-stable", ["Waiting for confirmation"], 10000);
+  assertAppAlive("googledrive-app-alive");
+}
+
+function finish() {
   const failed = results.filter((r) => !r.pass);
   console.log(`\n${results.length - failed.length}/${results.length} checks passed. Artifacts in e2e/artifacts/`);
   if (failed.length) {

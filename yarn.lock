@@ -1135,10 +1135,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@churchapps/content-providers@npm:^0.8.0":
-  version: 0.8.0
-  resolution: "@churchapps/content-providers@npm:0.8.0"
-  checksum: 10c0/ec5d509f9a87cb66592a51d7eb6614f933bb618fcc6f89a13cfd6e114d4ee3ab2e6cbeeb8e7800ac123119520283a0473c21611c06ee8eb03310b13d0a1e1029
+"@churchapps/content-providers@npm:^0.9.1":
+  version: 0.9.1
+  resolution: "@churchapps/content-providers@npm:0.9.1"
+  checksum: 10c0/74c8b4ed8d610740e56ddc346294fb9f5335f639f8e7012e6ee7b85fc3a0a8e9d49e5b5df5547861ec4b91d81f77eedf9f224ba55b924af4f802d10f5c2a9d12
   languageName: node
   linkType: hard
 
@@ -6479,7 +6479,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "freeplay@workspace:."
   dependencies:
-    "@churchapps/content-providers": "npm:^0.8.0"
+    "@churchapps/content-providers": "npm:^0.9.1"
     "@churchapps/helpers": "npm:^1.10.1"
     "@eslint/js": "npm:^10.0.1"
     "@expo/metro-runtime": "npm:~6.1.1"

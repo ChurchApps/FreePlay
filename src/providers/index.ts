@@ -2,6 +2,7 @@ import { Branding } from "../branding";
 import { setProviderSecret } from "@churchapps/content-providers";
 
 setProviderSecret("gocurriculum", process.env.EXPO_PUBLIC_GOCURRICULUM_CLIENT_SECRET || "");
+setProviderSecret("googledrive", process.env.EXPO_PUBLIC_GOOGLEDRIVE_CLIENT_SECRET || "");
 
 export {
   getProvider,
