@@ -10,6 +10,7 @@
       "video": "Videó"
     },
     "header": "Tartalom böngészése",
+    "loadingContent": "Tartalom betöltése...",
     "noContent": "Nincs elérhető tartalom",
     "tryDifferentFolder": "Próbáljon meg egy másik mappára navigálni"
   },

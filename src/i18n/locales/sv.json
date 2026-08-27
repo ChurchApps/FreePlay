@@ -10,6 +10,7 @@
       "video": "Video"
     },
     "header": "Bläddra i innehåll",
+    "loadingContent": "Laddar innehåll...",
     "noContent": "Inget innehåll tillgängligt",
     "tryDifferentFolder": "Försök navigera till en annan mapp"
   },

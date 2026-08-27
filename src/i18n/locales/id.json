@@ -10,6 +10,7 @@
       "video": "Video"
     },
     "header": "Jelajahi Konten",
+    "loadingContent": "Memuat konten...",
     "noContent": "Tidak ada konten yang tersedia",
     "tryDifferentFolder": "Coba navigasi ke folder lain"
   },

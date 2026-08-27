@@ -10,6 +10,7 @@
       "video": "Video"
     },
     "header": "Brskaj po vsebini",
+    "loadingContent": "Nalagam vsebino...",
     "noContent": "Vsebina ni na voljo",
     "tryDifferentFolder": "Poskusite se pomakniti v drugo mapo"
   },

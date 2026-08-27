@@ -10,6 +10,7 @@
       "video": "Vidéo"
     },
     "header": "Parcourir le contenu",
+    "loadingContent": "Chargement du contenu...",
     "noContent": "Aucun contenu disponible",
     "tryDifferentFolder": "Essayez de naviguer dans un autre dossier"
   },

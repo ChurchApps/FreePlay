@@ -10,6 +10,7 @@
       "video": "動画"
     },
     "header": "コンテンツを閲覧",
+    "loadingContent": "コンテンツを読み込み中...",
     "noContent": "利用可能なコンテンツがありません",
     "tryDifferentFolder": "別のフォルダーに移動してみてください"
   },

@@ -10,6 +10,7 @@
       "video": "فيديو"
     },
     "header": "تصفح المحتوى",
+    "loadingContent": "جاري تحميل المحتوى...",
     "noContent": "لا يوجد محتوى متاح",
     "tryDifferentFolder": "حاول التنقل إلى مجلد مختلف"
   },

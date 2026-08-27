@@ -10,6 +10,7 @@
       "video": "Video"
     },
     "header": "Bla gjennom innhold",
+    "loadingContent": "Laster innhold...",
     "noContent": "Ingen innhold tilgjengelig",
     "tryDifferentFolder": "Prøv å navigere til en annen mappe"
   },

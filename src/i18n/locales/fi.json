@@ -10,6 +10,7 @@
       "video": "Video"
     },
     "header": "Selaa sisältöä",
+    "loadingContent": "Ladataan sisältöä...",
     "noContent": "Sisältöä ei ole saatavilla",
     "tryDifferentFolder": "Yritä siirtyä toiseen kansioon"
   },

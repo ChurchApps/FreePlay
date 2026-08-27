@@ -10,6 +10,7 @@
       "video": "视频"
     },
     "header": "浏览内容",
+    "loadingContent": "正在加载内容...",
     "noContent": "没有可用内容",
     "tryDifferentFolder": "尝试导航到其他文件夹"
   },

@@ -10,6 +10,7 @@
       "video": "동영상"
     },
     "header": "콘텐츠 찾아보기",
+    "loadingContent": "콘텐츠 로드 중...",
     "noContent": "사용 가능한 콘텐츠가 없습니다",
     "tryDifferentFolder": "다른 폴더로 이동해 보세요"
   },

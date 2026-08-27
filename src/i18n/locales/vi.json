@@ -10,6 +10,7 @@
       "video": "Video"
     },
     "header": "Duyệt nội dung",
+    "loadingContent": "Đang tải nội dung...",
     "noContent": "Không có nội dung khả dụng",
     "tryDifferentFolder": "Hãy thử điều hướng đến một thư mục khác"
   },

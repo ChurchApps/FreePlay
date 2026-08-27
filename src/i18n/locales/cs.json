@@ -10,6 +10,7 @@
       "video": "Video"
     },
     "header": "Procházet obsah",
+    "loadingContent": "Načítání obsahu...",
     "noContent": "Není k dispozici žádný obsah",
     "tryDifferentFolder": "Zkuste přejít do jiné složky"
   },

@@ -10,6 +10,7 @@
       "video": "Video"
     },
     "header": "Gennemse indhold",
+    "loadingContent": "Indlæser indhold...",
     "noContent": "Intet indhold tilgængeligt",
     "tryDifferentFolder": "Prøv at navigere til en anden mappe"
   },

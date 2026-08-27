@@ -10,6 +10,7 @@
       "video": "Video"
     },
     "header": "Prehliadať obsah",
+    "loadingContent": "Načítavanie obsahu...",
     "noContent": "Nie je k dispozícii žiadny obsah",
     "tryDifferentFolder": "Skúste prejsť do iného priečinka"
   },

@@ -10,6 +10,7 @@
       "video": "Video"
     },
     "header": "Mag-browse ng Nilalaman",
+    "loadingContent": "Naglo-load ng nilalaman...",
     "noContent": "Walang available na nilalaman",
     "tryDifferentFolder": "Subukang mag-navigate sa ibang folder"
   },

@@ -10,6 +10,7 @@
       "video": "Video"
     },
     "header": "İçeriğe Göz At",
+    "loadingContent": "İçerik yükleniyor...",
     "noContent": "Kullanılabilir içerik yok",
     "tryDifferentFolder": "Farklı bir klasöre gitmeyi deneyin"
   },

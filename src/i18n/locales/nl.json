@@ -10,6 +10,7 @@
       "video": "Video"
     },
     "header": "Inhoud doorzoeken",
+    "loadingContent": "Inhoud laden...",
     "noContent": "Geen inhoud beschikbaar",
     "tryDifferentFolder": "Probeer naar een andere map te navigeren"
   },
