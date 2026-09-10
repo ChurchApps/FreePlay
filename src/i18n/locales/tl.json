@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "Malapit Nang Dumating",
-    "connected": "Nakakonekta",
-    "version": "Bersyon: {{version}}"
+    "connected": "Nakakonekta"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "Mag-browse ng Nilalaman",
     "loadingContent": "Naglo-load ng nilalaman...",
-    "noContent": "Walang available na nilalaman",
-    "tryDifferentFolder": "Subukang mag-navigate sa ibang folder"
+    "noContent": "Walang available na nilalaman"
   },
   "downloads": {
     "header": "Mga Download",
@@ -42,7 +40,6 @@
     "title": "Offline:"
   },
   "planDownload": {
-    "downloadingItem": "Dina-download ang item {{current}} ng {{total}}",
     "fallbackName": "Plano ng Serbisyo",
     "loadFailed": "Hindi ma-load ang plano.",
     "loadFailedSub": "Siguraduhing may planong naka-iskedyul para sa uri ng planong ito.",
@@ -69,10 +66,8 @@
     "authFailed": "Nabigo o tinanggihan ang authentication.",
     "cancel": "Kanselahin",
     "codeExpired": "Nag-expire na ang authentication code. Pakisubukan muli.",
-    "connectTo": "Kumonekta sa {{name}}",
     "connected": "Nakakonekta!",
     "enterCode": "Ilagay ang code na ito:",
-    "expiresIn": "Mag-e-expire ang code sa loob ng {{minutes}} minuto",
     "fallbackProvider": "Provider",
     "initFailed": "Nabigong simulan ang authentication. Pakisubukan muli.",
     "initializing": "Sinisimulan ang authentication...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "I-download",
-    "downloadingItem": "Dina-download ang item {{current}} ng {{total}}",
     "fallbackTitle": "Nilalaman",
     "start": "Simulan",
     "stream": "I-stream"
@@ -103,7 +97,6 @@
     "loadingContent": "Naglo-load ng iyong nilalaman...",
     "loggingIn": "Naglo-log in...",
     "loginFailed": "Nabigo ang pag-login. Suriin ang iyong mga kredensyal.",
-    "loginTo": "Mag-log in sa {{name}}",
     "missingCredentials": "Pakilagay ang email at password",
     "notSupported": "Hindi sinusuportahan ng provider na ito ang form login",
     "password": "Password",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "Kanselahin",
-    "connectTo": "Kumonekta sa {{name}}",
     "connected": "Nakakonekta!",
     "connecting": "Kumokonekta...",
     "exchangeFailed": "Nabigong palitan ang authorization code para sa mga token.",
-    "expiresIn": "Mag-e-expire ang sesyon sa loob ng {{minutes}} minuto",
     "fallbackProvider": "Provider",
     "initializing": "Sinisimulan ang authentication...",
     "instructionsLine1": "I-scan ang QR code gamit ang iyong telepono upang awtorisahin ang access.",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "Hindi pa available ang {{name}}.",
       "title": "Malapit Nang Dumating"
     },
     "errorAlert": {
-      "providerNotFound": "Hindi nahanap ang provider {{name}}.",
       "title": "Error"
     },
     "header": "Mga Provider ng Nilalaman",
     "notSupported": {
-      "message": "Hindi pa sinusuportahan ang authentication ng {{name}}.",
       "title": "Hindi Sinusuportahan"
     }
   },

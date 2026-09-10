@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "Kmalu",
-    "connected": "Povezano",
-    "version": "Različica: {{version}}"
+    "connected": "Povezano"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "Brskaj po vsebini",
     "loadingContent": "Nalagam vsebino...",
-    "noContent": "Vsebina ni na voljo",
-    "tryDifferentFolder": "Poskusite se pomakniti v drugo mapo"
+    "noContent": "Vsebina ni na voljo"
   },
   "downloads": {
     "header": "Prenosi",
@@ -42,7 +40,6 @@
     "title": "Brez povezave:"
   },
   "planDownload": {
-    "downloadingItem": "Prenašanje elementa {{current}} od {{total}}",
     "fallbackName": "Načrt bogoslužja",
     "loadFailed": "Načrta ni bilo mogoče naložiti.",
     "loadFailedSub": "Prepričajte se, da je za to vrsto načrta načrtovan načrt.",
@@ -69,10 +66,8 @@
     "authFailed": "Preverjanje pristnosti ni uspelo ali je bilo zavrnjeno.",
     "cancel": "Prekliči",
     "codeExpired": "Koda za preverjanje pristnosti je potekla. Poskusite znova.",
-    "connectTo": "Poveži se z {{name}}",
     "connected": "Povezano!",
     "enterCode": "Vnesite to kodo:",
-    "expiresIn": "Koda poteče čez {{minutes}} min.",
     "fallbackProvider": "Ponudnik",
     "initFailed": "Inicializacija preverjanja pristnosti ni uspela. Poskusite znova.",
     "initializing": "Inicializacija preverjanja pristnosti...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "Prenesi",
-    "downloadingItem": "Prenašanje elementa {{current}} od {{total}}",
     "fallbackTitle": "Vsebina",
     "start": "Začni",
     "stream": "Pretakaj"
@@ -103,7 +97,6 @@
     "loadingContent": "Nalaganje vaše vsebine...",
     "loggingIn": "Prijavljanje...",
     "loginFailed": "Prijava ni uspela. Preverite svoje poverilnice.",
-    "loginTo": "Prijavi se v {{name}}",
     "missingCredentials": "Vnesite e-pošto in geslo",
     "notSupported": "Ta ponudnik ne podpira prijave z obrazcem",
     "password": "Geslo",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "Prekliči",
-    "connectTo": "Poveži se z {{name}}",
     "connected": "Povezano!",
     "connecting": "Povezovanje...",
     "exchangeFailed": "Zamenjava avtorizacijske kode za žetone ni uspela.",
-    "expiresIn": "Seja poteče čez {{minutes}} min.",
     "fallbackProvider": "Ponudnik",
     "initializing": "Inicializacija preverjanja pristnosti...",
     "instructionsLine1": "Skenirajte QR kodo s telefonom za odobritev dostopa.",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}} še ni na voljo.",
       "title": "Kmalu"
     },
     "errorAlert": {
-      "providerNotFound": "Ponudnik {{name}} ni bil najden.",
       "title": "Napaka"
     },
     "header": "Ponudniki vsebin",
     "notSupported": {
-      "message": "Preverjanje pristnosti za {{name}} še ni podprto.",
       "title": "Ni podprto"
     }
   },

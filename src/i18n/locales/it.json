@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "Prossimamente",
-    "connected": "Connesso",
-    "version": "Versione: {{version}}"
+    "connected": "Connesso"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "Sfoglia contenuti",
     "loadingContent": "Caricamento contenuti...",
-    "noContent": "Nessun contenuto disponibile",
-    "tryDifferentFolder": "Prova a navigare in una cartella diversa"
+    "noContent": "Nessun contenuto disponibile"
   },
   "downloads": {
     "header": "Download",
@@ -42,7 +40,6 @@
     "title": "Offline:"
   },
   "planDownload": {
-    "downloadingItem": "Download elemento {{current}} di {{total}}",
     "fallbackName": "Piano del servizio",
     "loadFailed": "Impossibile caricare il piano.",
     "loadFailedSub": "Assicurati che sia programmato un piano per questo tipo di piano.",
@@ -69,10 +66,8 @@
     "authFailed": "Autenticazione non riuscita o negata.",
     "cancel": "Annulla",
     "codeExpired": "Codice di autenticazione scaduto. Riprova.",
-    "connectTo": "Connetti a {{name}}",
     "connected": "Connesso!",
     "enterCode": "Inserisci questo codice:",
-    "expiresIn": "Il codice scade tra {{minutes}} minuti",
     "fallbackProvider": "Fornitore",
     "initFailed": "Inizializzazione dell'autenticazione non riuscita. Riprova.",
     "initializing": "Inizializzazione dell'autenticazione...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "Scarica",
-    "downloadingItem": "Download elemento {{current}} di {{total}}",
     "fallbackTitle": "Contenuto",
     "start": "Avvia",
     "stream": "Trasmetti"
@@ -103,7 +97,6 @@
     "loadingContent": "Caricamento dei tuoi contenuti...",
     "loggingIn": "Accesso in corso...",
     "loginFailed": "Accesso non riuscito. Controlla le tue credenziali.",
-    "loginTo": "Accedi a {{name}}",
     "missingCredentials": "Inserisci email e password",
     "notSupported": "Questo fornitore non supporta l'accesso tramite modulo",
     "password": "Password",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "Annulla",
-    "connectTo": "Connetti a {{name}}",
     "connected": "Connesso!",
     "connecting": "Connessione in corso...",
     "exchangeFailed": "Scambio del codice di autorizzazione con i token non riuscito.",
-    "expiresIn": "La sessione scade tra {{minutes}} minuti",
     "fallbackProvider": "Fornitore",
     "initializing": "Inizializzazione dell'autenticazione...",
     "instructionsLine1": "Scansiona il codice QR con il telefono per autorizzare l'accesso.",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}} non è ancora disponibile.",
       "title": "Prossimamente"
     },
     "errorAlert": {
-      "providerNotFound": "Fornitore {{name}} non trovato.",
       "title": "Errore"
     },
     "header": "Fornitori di contenuti",
     "notSupported": {
-      "message": "L'autenticazione di {{name}} non è ancora supportata.",
       "title": "Non supportato"
     }
   },

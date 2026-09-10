@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "Hamarosan",
-    "connected": "Kapcsolódva",
-    "version": "Verzió: {{version}}"
+    "connected": "Kapcsolódva"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "Tartalom böngészése",
     "loadingContent": "Tartalom betöltése...",
-    "noContent": "Nincs elérhető tartalom",
-    "tryDifferentFolder": "Próbáljon meg egy másik mappára navigálni"
+    "noContent": "Nincs elérhető tartalom"
   },
   "downloads": {
     "header": "Letöltések",
@@ -42,7 +40,6 @@
     "title": "Offline:"
   },
   "planDownload": {
-    "downloadingItem": "{{current}}. elem letöltése a következőből: {{total}}",
     "fallbackName": "Istentisztelet terve",
     "loadFailed": "A terv nem tölthető be.",
     "loadFailedSub": "Győződjön meg róla, hogy ehhez a terv típushoz van ütemezett terv.",
@@ -69,10 +66,8 @@
     "authFailed": "A hitelesítés sikertelen volt vagy elutasítva.",
     "cancel": "Mégse",
     "codeExpired": "A hitelesítési kód lejárt. Próbálja újra.",
-    "connectTo": "Kapcsolódás a következőhöz: {{name}}",
     "connected": "Kapcsolódva!",
     "enterCode": "Adja meg ezt a kódot:",
-    "expiresIn": "A kód {{minutes}} perc múlva lejár",
     "fallbackProvider": "Szolgáltató",
     "initFailed": "Nem sikerült inicializálni a hitelesítést. Próbálja újra.",
     "initializing": "Hitelesítés inicializálása...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "Letöltés",
-    "downloadingItem": "{{current}}. elem letöltése a következőből: {{total}}",
     "fallbackTitle": "Tartalom",
     "start": "Indítás",
     "stream": "Streamelés"
@@ -103,7 +97,6 @@
     "loadingContent": "Tartalom betöltése...",
     "loggingIn": "Bejelentkezés...",
     "loginFailed": "A bejelentkezés sikertelen. Ellenőrizze a hitelesítő adatait.",
-    "loginTo": "Bejelentkezés ide: {{name}}",
     "missingCredentials": "Adja meg az e-mail-címet és a jelszót",
     "notSupported": "Ez a szolgáltató nem támogatja az űrlapos bejelentkezést",
     "password": "Jelszó",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "Mégse",
-    "connectTo": "Kapcsolódás a következőhöz: {{name}}",
     "connected": "Kapcsolódva!",
     "connecting": "Kapcsolódás...",
     "exchangeFailed": "Nem sikerült az engedélyezési kód cseréje tokenekre.",
-    "expiresIn": "A munkamenet {{minutes}} perc múlva lejár",
     "fallbackProvider": "Szolgáltató",
     "initializing": "Hitelesítés inicializálása...",
     "instructionsLine1": "Olvassa be a QR-kódot a telefonjával a hozzáférés engedélyezéséhez.",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}} még nem érhető el.",
       "title": "Hamarosan"
     },
     "errorAlert": {
-      "providerNotFound": "{{name}} szolgáltató nem található.",
       "title": "Hiba"
     },
     "header": "Tartalomszolgáltatók",
     "notSupported": {
-      "message": "A {{name}} hitelesítés még nem támogatott.",
       "title": "Nem támogatott"
     }
   },

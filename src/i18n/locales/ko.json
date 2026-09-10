@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "출시 예정",
-    "connected": "연결됨",
-    "version": "버전: {{version}}"
+    "connected": "연결됨"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "콘텐츠 찾아보기",
     "loadingContent": "콘텐츠 로드 중...",
-    "noContent": "사용 가능한 콘텐츠가 없습니다",
-    "tryDifferentFolder": "다른 폴더로 이동해 보세요"
+    "noContent": "사용 가능한 콘텐츠가 없습니다"
   },
   "downloads": {
     "header": "다운로드",
@@ -42,7 +40,6 @@
     "title": "오프라인:"
   },
   "planDownload": {
-    "downloadingItem": "{{total}}개 중 {{current}}개 항목 다운로드 중",
     "fallbackName": "예배 계획",
     "loadFailed": "계획을 로드할 수 없습니다.",
     "loadFailedSub": "이 계획 유형에 계획이 예약되어 있는지 확인하세요.",
@@ -69,10 +66,8 @@
     "authFailed": "인증에 실패했거나 거부되었습니다.",
     "cancel": "취소",
     "codeExpired": "인증 코드가 만료되었습니다. 다시 시도해 주세요.",
-    "connectTo": "{{name}}에 연결",
     "connected": "연결되었습니다!",
     "enterCode": "이 코드를 입력하세요:",
-    "expiresIn": "코드는 {{minutes}}분 후에 만료됩니다",
     "fallbackProvider": "공급자",
     "initFailed": "인증을 초기화하지 못했습니다. 다시 시도해 주세요.",
     "initializing": "인증 초기화 중...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "다운로드",
-    "downloadingItem": "{{total}}개 중 {{current}}개 항목 다운로드 중",
     "fallbackTitle": "콘텐츠",
     "start": "시작",
     "stream": "스트리밍"
@@ -103,7 +97,6 @@
     "loadingContent": "콘텐츠 로드 중...",
     "loggingIn": "로그인 중...",
     "loginFailed": "로그인 실패. 자격 증명을 확인하세요.",
-    "loginTo": "{{name}}에 로그인",
     "missingCredentials": "이메일과 비밀번호를 입력하세요",
     "notSupported": "이 공급자는 양식 로그인을 지원하지 않습니다",
     "password": "비밀번호",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "취소",
-    "connectTo": "{{name}}에 연결",
     "connected": "연결되었습니다!",
     "connecting": "연결 중...",
     "exchangeFailed": "토큰을 위한 인증 코드 교환에 실패했습니다.",
-    "expiresIn": "세션은 {{minutes}}분 후에 만료됩니다",
     "fallbackProvider": "공급자",
     "initializing": "인증 초기화 중...",
     "instructionsLine1": "액세스를 승인하려면 휴대폰으로 QR 코드를 스캔하세요.",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}}은(는) 아직 사용할 수 없습니다.",
       "title": "출시 예정"
     },
     "errorAlert": {
-      "providerNotFound": "공급자 {{name}}을(를) 찾을 수 없습니다.",
       "title": "오류"
     },
     "header": "콘텐츠 공급자",
     "notSupported": {
-      "message": "{{name}} 인증은 아직 지원되지 않습니다.",
       "title": "지원되지 않음"
     }
   },

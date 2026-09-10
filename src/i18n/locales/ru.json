@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "Скоро",
-    "connected": "Подключено",
-    "version": "Версия: {{version}}"
+    "connected": "Подключено"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "Просмотр контента",
     "loadingContent": "Загрузка контента...",
-    "noContent": "Нет доступного контента",
-    "tryDifferentFolder": "Попробуйте перейти в другую папку"
+    "noContent": "Нет доступного контента"
   },
   "downloads": {
     "header": "Загрузки",
@@ -42,7 +40,6 @@
     "title": "Не в сети:"
   },
   "planDownload": {
-    "downloadingItem": "Загрузка элемента {{current}} из {{total}}",
     "fallbackName": "План служения",
     "loadFailed": "Не удалось загрузить план.",
     "loadFailedSub": "Убедитесь, что для этого типа плана запланирован план.",
@@ -69,10 +66,8 @@
     "authFailed": "Аутентификация не удалась или была отклонена.",
     "cancel": "Отмена",
     "codeExpired": "Срок действия кода аутентификации истёк. Повторите попытку.",
-    "connectTo": "Подключиться к {{name}}",
     "connected": "Подключено!",
     "enterCode": "Введите этот код:",
-    "expiresIn": "Срок действия кода истечёт через {{minutes}} мин.",
     "fallbackProvider": "Поставщик",
     "initFailed": "Не удалось инициализировать аутентификацию. Повторите попытку.",
     "initializing": "Инициализация аутентификации...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "Загрузить",
-    "downloadingItem": "Загрузка элемента {{current}} из {{total}}",
     "fallbackTitle": "Контент",
     "start": "Начать",
     "stream": "Транслировать"
@@ -103,7 +97,6 @@
     "loadingContent": "Загрузка вашего контента...",
     "loggingIn": "Вход...",
     "loginFailed": "Не удалось войти. Проверьте свои учётные данные.",
-    "loginTo": "Войти в {{name}}",
     "missingCredentials": "Введите электронную почту и пароль",
     "notSupported": "Этот поставщик не поддерживает вход через форму",
     "password": "Пароль",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "Отмена",
-    "connectTo": "Подключиться к {{name}}",
     "connected": "Подключено!",
     "connecting": "Подключение...",
     "exchangeFailed": "Не удалось обменять код авторизации на токены.",
-    "expiresIn": "Срок действия сеанса истечёт через {{minutes}} мин.",
     "fallbackProvider": "Поставщик",
     "initializing": "Инициализация аутентификации...",
     "instructionsLine1": "Отсканируйте QR-код телефоном, чтобы авторизовать доступ.",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}} пока недоступен.",
       "title": "Скоро"
     },
     "errorAlert": {
-      "providerNotFound": "Поставщик {{name}} не найден.",
       "title": "Ошибка"
     },
     "header": "Поставщики контента",
     "notSupported": {
-      "message": "Аутентификация {{name}} пока не поддерживается.",
       "title": "Не поддерживается"
     }
   },

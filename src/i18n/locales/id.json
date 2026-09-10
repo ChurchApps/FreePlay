@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "Segera Hadir",
-    "connected": "Terhubung",
-    "version": "Versi: {{version}}"
+    "connected": "Terhubung"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "Jelajahi Konten",
     "loadingContent": "Memuat konten...",
-    "noContent": "Tidak ada konten yang tersedia",
-    "tryDifferentFolder": "Coba navigasi ke folder lain"
+    "noContent": "Tidak ada konten yang tersedia"
   },
   "downloads": {
     "header": "Unduhan",
@@ -42,7 +40,6 @@
     "title": "Offline:"
   },
   "planDownload": {
-    "downloadingItem": "Mengunduh item {{current}} dari {{total}}",
     "fallbackName": "Rencana Ibadah",
     "loadFailed": "Rencana tidak dapat dimuat.",
     "loadFailedSub": "Pastikan ada rencana yang dijadwalkan untuk jenis rencana ini.",
@@ -69,10 +66,8 @@
     "authFailed": "Otentikasi gagal atau ditolak.",
     "cancel": "Batal",
     "codeExpired": "Kode otentikasi kedaluwarsa. Silakan coba lagi.",
-    "connectTo": "Hubungkan ke {{name}}",
     "connected": "Terhubung!",
     "enterCode": "Masukkan kode ini:",
-    "expiresIn": "Kode kedaluwarsa dalam {{minutes}} menit",
     "fallbackProvider": "Penyedia",
     "initFailed": "Gagal menginisialisasi otentikasi. Silakan coba lagi.",
     "initializing": "Menginisialisasi otentikasi...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "Unduh",
-    "downloadingItem": "Mengunduh item {{current}} dari {{total}}",
     "fallbackTitle": "Konten",
     "start": "Mulai",
     "stream": "Streaming"
@@ -103,7 +97,6 @@
     "loadingContent": "Memuat konten Anda...",
     "loggingIn": "Sedang masuk...",
     "loginFailed": "Login gagal. Periksa kredensial Anda.",
-    "loginTo": "Login ke {{name}}",
     "missingCredentials": "Silakan masukkan email dan kata sandi",
     "notSupported": "Penyedia ini tidak mendukung login formulir",
     "password": "Kata Sandi",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "Batal",
-    "connectTo": "Hubungkan ke {{name}}",
     "connected": "Terhubung!",
     "connecting": "Menghubungkan...",
     "exchangeFailed": "Gagal menukar kode otorisasi dengan token.",
-    "expiresIn": "Sesi kedaluwarsa dalam {{minutes}} menit",
     "fallbackProvider": "Penyedia",
     "initializing": "Menginisialisasi otentikasi...",
     "instructionsLine1": "Pindai kode QR dengan ponsel Anda untuk mengotorisasi akses.",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}} belum tersedia.",
       "title": "Segera Hadir"
     },
     "errorAlert": {
-      "providerNotFound": "Penyedia {{name}} tidak ditemukan.",
       "title": "Kesalahan"
     },
     "header": "Penyedia Konten",
     "notSupported": {
-      "message": "Otentikasi {{name}} belum didukung.",
       "title": "Tidak Didukung"
     }
   },

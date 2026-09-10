@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "Už čoskoro",
-    "connected": "Pripojené",
-    "version": "Verzia: {{version}}"
+    "connected": "Pripojené"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "Prehliadať obsah",
     "loadingContent": "Načítavanie obsahu...",
-    "noContent": "Nie je k dispozícii žiadny obsah",
-    "tryDifferentFolder": "Skúste prejsť do iného priečinka"
+    "noContent": "Nie je k dispozícii žiadny obsah"
   },
   "downloads": {
     "header": "Stiahnuté súbory",
@@ -42,7 +40,6 @@
     "title": "Offline:"
   },
   "planDownload": {
-    "downloadingItem": "Sťahovanie položky {{current}} z {{total}}",
     "fallbackName": "Plán bohoslužby",
     "loadFailed": "Plán sa nepodarilo načítať.",
     "loadFailedSub": "Uistite sa, že pre tento typ plánu je naplánovaný plán.",
@@ -69,10 +66,8 @@
     "authFailed": "Overovanie zlyhalo alebo bolo zamietnuté.",
     "cancel": "Zrušiť",
     "codeExpired": "Overovací kód vypršal. Skúste to znova.",
-    "connectTo": "Pripojiť sa k {{name}}",
     "connected": "Pripojené!",
     "enterCode": "Zadajte tento kód:",
-    "expiresIn": "Kód vyprší o {{minutes}} min.",
     "fallbackProvider": "Poskytovateľ",
     "initFailed": "Nepodarilo sa inicializovať overovanie. Skúste to znova.",
     "initializing": "Inicializuje sa overovanie...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "Stiahnuť",
-    "downloadingItem": "Sťahovanie položky {{current}} z {{total}}",
     "fallbackTitle": "Obsah",
     "start": "Spustiť",
     "stream": "Streamovať"
@@ -103,7 +97,6 @@
     "loadingContent": "Načítava sa obsah...",
     "loggingIn": "Prihlasovanie...",
     "loginFailed": "Prihlásenie zlyhalo. Skontrolujte svoje prihlasovacie údaje.",
-    "loginTo": "Prihlásiť sa do {{name}}",
     "missingCredentials": "Zadajte e-mail a heslo",
     "notSupported": "Tento poskytovateľ nepodporuje prihlásenie formulárom",
     "password": "Heslo",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "Zrušiť",
-    "connectTo": "Pripojiť sa k {{name}}",
     "connected": "Pripojené!",
     "connecting": "Pripájanie...",
     "exchangeFailed": "Nepodarilo sa vymeniť autorizačný kód za tokeny.",
-    "expiresIn": "Relácia vyprší o {{minutes}} min.",
     "fallbackProvider": "Poskytovateľ",
     "initializing": "Inicializuje sa overovanie...",
     "instructionsLine1": "Naskenujte QR kód telefónom na autorizáciu prístupu.",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}} ešte nie je k dispozícii.",
       "title": "Už čoskoro"
     },
     "errorAlert": {
-      "providerNotFound": "Poskytovateľ {{name}} nebol nájdený.",
       "title": "Chyba"
     },
     "header": "Poskytovatelia obsahu",
     "notSupported": {
-      "message": "Overenie {{name}} ešte nie je podporované.",
       "title": "Nepodporované"
     }
   },

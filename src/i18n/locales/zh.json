@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "即将推出",
-    "connected": "已连接",
-    "version": "版本: {{version}}"
+    "connected": "已连接"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "浏览内容",
     "loadingContent": "正在加载内容...",
-    "noContent": "没有可用内容",
-    "tryDifferentFolder": "尝试导航到其他文件夹"
+    "noContent": "没有可用内容"
   },
   "downloads": {
     "header": "下载",
@@ -42,7 +40,6 @@
     "title": "离线:"
   },
   "planDownload": {
-    "downloadingItem": "正在下载第{{current}}项,共{{total}}项",
     "fallbackName": "崇拜计划",
     "loadFailed": "无法加载计划。",
     "loadFailedSub": "请确保为此计划类型安排了计划。",
@@ -69,10 +66,8 @@
     "authFailed": "身份验证失败或被拒绝。",
     "cancel": "取消",
     "codeExpired": "身份验证代码已过期。请重试。",
-    "connectTo": "连接到{{name}}",
     "connected": "已连接!",
     "enterCode": "输入此代码:",
-    "expiresIn": "代码将在{{minutes}}分钟后过期",
     "fallbackProvider": "提供商",
     "initFailed": "无法初始化身份验证。请重试。",
     "initializing": "正在初始化身份验证...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "下载",
-    "downloadingItem": "正在下载第{{current}}项,共{{total}}项",
     "fallbackTitle": "内容",
     "start": "开始",
     "stream": "流式传输"
@@ -103,7 +97,6 @@
     "loadingContent": "正在加载您的内容...",
     "loggingIn": "正在登录...",
     "loginFailed": "登录失败。请检查您的凭据。",
-    "loginTo": "登录到{{name}}",
     "missingCredentials": "请输入电子邮件和密码",
     "notSupported": "此提供商不支持表单登录",
     "password": "密码",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "取消",
-    "connectTo": "连接到{{name}}",
     "connected": "已连接!",
     "connecting": "正在连接...",
     "exchangeFailed": "无法用授权代码交换令牌。",
-    "expiresIn": "会话将在{{minutes}}分钟后过期",
     "fallbackProvider": "提供商",
     "initializing": "正在初始化身份验证...",
     "instructionsLine1": "使用手机扫描二维码以授权访问。",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}}尚未可用。",
       "title": "即将推出"
     },
     "errorAlert": {
-      "providerNotFound": "未找到提供商{{name}}。",
       "title": "错误"
     },
     "header": "内容提供商",
     "notSupported": {
-      "message": "尚不支持{{name}}身份验证。",
       "title": "不支持"
     }
   },

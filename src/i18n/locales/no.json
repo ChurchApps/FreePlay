@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "Kommer snart",
-    "connected": "Tilkoblet",
-    "version": "Versjon: {{version}}"
+    "connected": "Tilkoblet"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "Bla gjennom innhold",
     "loadingContent": "Laster innhold...",
-    "noContent": "Ingen innhold tilgjengelig",
-    "tryDifferentFolder": "Prøv å navigere til en annen mappe"
+    "noContent": "Ingen innhold tilgjengelig"
   },
   "downloads": {
     "header": "Nedlastinger",
@@ -42,7 +40,6 @@
     "title": "Frakoblet:"
   },
   "planDownload": {
-    "downloadingItem": "Laster ned element {{current}} av {{total}}",
     "fallbackName": "Gudstjenesteplan",
     "loadFailed": "Planen kunne ikke lastes.",
     "loadFailedSub": "Sørg for at en plan er planlagt for denne plantypen.",
@@ -69,10 +66,8 @@
     "authFailed": "Autentisering mislyktes eller ble nektet.",
     "cancel": "Avbryt",
     "codeExpired": "Autentiseringskode utløpt. Prøv igjen.",
-    "connectTo": "Koble til {{name}}",
     "connected": "Tilkoblet!",
     "enterCode": "Skriv inn denne koden:",
-    "expiresIn": "Koden utløper om {{minutes}} minutter",
     "fallbackProvider": "Leverandør",
     "initFailed": "Kunne ikke initialisere autentisering. Prøv igjen.",
     "initializing": "Initialiserer autentisering...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "Last ned",
-    "downloadingItem": "Laster ned element {{current}} av {{total}}",
     "fallbackTitle": "Innhold",
     "start": "Start",
     "stream": "Strøm"
@@ -103,7 +97,6 @@
     "loadingContent": "Laster innholdet ditt...",
     "loggingIn": "Logger inn...",
     "loginFailed": "Innlogging mislyktes. Sjekk legitimasjonen din.",
-    "loginTo": "Logg inn på {{name}}",
     "missingCredentials": "Vennligst skriv inn e-post og passord",
     "notSupported": "Denne leverandøren støtter ikke skjemainnlogging",
     "password": "Passord",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "Avbryt",
-    "connectTo": "Koble til {{name}}",
     "connected": "Tilkoblet!",
     "connecting": "Kobler til...",
     "exchangeFailed": "Kunne ikke utveksle autorisasjonskode for tokens.",
-    "expiresIn": "Økten utløper om {{minutes}} minutter",
     "fallbackProvider": "Leverandør",
     "initializing": "Initialiserer autentisering...",
     "instructionsLine1": "Skann QR-koden med telefonen for å autorisere tilgang.",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}} er ikke tilgjengelig ennå.",
       "title": "Kommer snart"
     },
     "errorAlert": {
-      "providerNotFound": "Leverandør {{name}} ikke funnet.",
       "title": "Feil"
     },
     "header": "Innholdsleverandører",
     "notSupported": {
-      "message": "{{name}}-autentisering støttes ikke ennå.",
       "title": "Ikke støttet"
     }
   },

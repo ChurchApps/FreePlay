@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "Již brzy",
-    "connected": "Připojeno",
-    "version": "Verze: {{version}}"
+    "connected": "Připojeno"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "Procházet obsah",
     "loadingContent": "Načítání obsahu...",
-    "noContent": "Není k dispozici žádný obsah",
-    "tryDifferentFolder": "Zkuste přejít do jiné složky"
+    "noContent": "Není k dispozici žádný obsah"
   },
   "downloads": {
     "header": "Stažené soubory",
@@ -42,7 +40,6 @@
     "title": "Offline:"
   },
   "planDownload": {
-    "downloadingItem": "Stahování položky {{current}} z {{total}}",
     "fallbackName": "Plán bohoslužby",
     "loadFailed": "Plán se nepodařilo načíst.",
     "loadFailedSub": "Ujistěte se, že je pro tento typ plánu naplánován plán.",
@@ -69,10 +66,8 @@
     "authFailed": "Ověření selhalo nebo bylo zamítnuto.",
     "cancel": "Zrušit",
     "codeExpired": "Ověřovací kód vypršel. Zkuste to znovu.",
-    "connectTo": "Připojit k {{name}}",
     "connected": "Připojeno!",
     "enterCode": "Zadejte tento kód:",
-    "expiresIn": "Kód vyprší za {{minutes}} minut",
     "fallbackProvider": "Poskytovatel",
     "initFailed": "Nepodařilo se inicializovat ověření. Zkuste to znovu.",
     "initializing": "Inicializace ověření...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "Stáhnout",
-    "downloadingItem": "Stahování položky {{current}} z {{total}}",
     "fallbackTitle": "Obsah",
     "start": "Spustit",
     "stream": "Streamovat"
@@ -103,7 +97,6 @@
     "loadingContent": "Načítání obsahu...",
     "loggingIn": "Přihlašování...",
     "loginFailed": "Přihlášení selhalo. Zkontrolujte své přihlašovací údaje.",
-    "loginTo": "Přihlásit se do {{name}}",
     "missingCredentials": "Zadejte e-mail a heslo",
     "notSupported": "Tento poskytovatel nepodporuje přihlášení formulářem",
     "password": "Heslo",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "Zrušit",
-    "connectTo": "Připojit k {{name}}",
     "connected": "Připojeno!",
     "connecting": "Připojování...",
     "exchangeFailed": "Nepodařilo se vyměnit autorizační kód za tokeny.",
-    "expiresIn": "Relace vyprší za {{minutes}} minut",
     "fallbackProvider": "Poskytovatel",
     "initializing": "Inicializace ověření...",
     "instructionsLine1": "Naskenujte QR kód telefonem pro autorizaci přístupu.",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}} ještě není k dispozici.",
       "title": "Již brzy"
     },
     "errorAlert": {
-      "providerNotFound": "Poskytovatel {{name}} nebyl nalezen.",
       "title": "Chyba"
     },
     "header": "Poskytovatelé obsahu",
     "notSupported": {
-      "message": "Ověření {{name}} ještě není podporováno.",
       "title": "Nepodporováno"
     }
   },

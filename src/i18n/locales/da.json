@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "Kommer snart",
-    "connected": "Forbundet",
-    "version": "Version: {{version}}"
+    "connected": "Forbundet"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "Gennemse indhold",
     "loadingContent": "Indlæser indhold...",
-    "noContent": "Intet indhold tilgængeligt",
-    "tryDifferentFolder": "Prøv at navigere til en anden mappe"
+    "noContent": "Intet indhold tilgængeligt"
   },
   "downloads": {
     "header": "Downloads",
@@ -42,7 +40,6 @@
     "title": "Offline:"
   },
   "planDownload": {
-    "downloadingItem": "Downloader element {{current}} af {{total}}",
     "fallbackName": "Gudstjenesteplan",
     "loadFailed": "Planen kunne ikke indlæses.",
     "loadFailedSub": "Sørg for, at en plan er planlagt for denne plantype.",
@@ -69,10 +66,8 @@
     "authFailed": "Godkendelse mislykkedes eller blev nægtet.",
     "cancel": "Annuller",
     "codeExpired": "Godkendelseskode udløbet. Prøv igen.",
-    "connectTo": "Forbind til {{name}}",
     "connected": "Forbundet!",
     "enterCode": "Indtast denne kode:",
-    "expiresIn": "Koden udløber om {{minutes}} minutter",
     "fallbackProvider": "Udbyder",
     "initFailed": "Kunne ikke initialisere godkendelse. Prøv igen.",
     "initializing": "Initialiserer godkendelse...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "Download",
-    "downloadingItem": "Downloader element {{current}} af {{total}}",
     "fallbackTitle": "Indhold",
     "start": "Start",
     "stream": "Stream"
@@ -103,7 +97,6 @@
     "loadingContent": "Indlæser dit indhold...",
     "loggingIn": "Logger ind...",
     "loginFailed": "Login mislykkedes. Tjek dine legitimationsoplysninger.",
-    "loginTo": "Log ind på {{name}}",
     "missingCredentials": "Indtast venligst e-mail og adgangskode",
     "notSupported": "Denne udbyder understøtter ikke formular-login",
     "password": "Adgangskode",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "Annuller",
-    "connectTo": "Forbind til {{name}}",
     "connected": "Forbundet!",
     "connecting": "Forbinder...",
     "exchangeFailed": "Kunne ikke udveksle godkendelseskode for tokens.",
-    "expiresIn": "Sessionen udløber om {{minutes}} minutter",
     "fallbackProvider": "Udbyder",
     "initializing": "Initialiserer godkendelse...",
     "instructionsLine1": "Scan QR-koden med din telefon for at godkende adgang.",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}} er endnu ikke tilgængelig.",
       "title": "Kommer snart"
     },
     "errorAlert": {
-      "providerNotFound": "Udbyder {{name}} blev ikke fundet.",
       "title": "Fejl"
     },
     "header": "Indholdsudbydere",
     "notSupported": {
-      "message": "{{name}} godkendelse understøttes endnu ikke.",
       "title": "Ikke understøttet"
     }
   },

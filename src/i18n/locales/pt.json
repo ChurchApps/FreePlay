@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "Em breve",
-    "connected": "Conectado",
-    "version": "Versão: {{version}}"
+    "connected": "Conectado"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "Navegar pelo conteúdo",
     "loadingContent": "Carregando conteúdo...",
-    "noContent": "Nenhum conteúdo disponível",
-    "tryDifferentFolder": "Tente navegar para uma pasta diferente"
+    "noContent": "Nenhum conteúdo disponível"
   },
   "downloads": {
     "header": "Downloads",
@@ -42,7 +40,6 @@
     "title": "Offline:"
   },
   "planDownload": {
-    "downloadingItem": "Baixando item {{current}} de {{total}}",
     "fallbackName": "Plano de serviço",
     "loadFailed": "Não foi possível carregar o plano.",
     "loadFailedSub": "Certifique-se de que há um plano programado para este tipo de plano.",
@@ -69,10 +66,8 @@
     "authFailed": "A autenticação falhou ou foi negada.",
     "cancel": "Cancelar",
     "codeExpired": "Código de autenticação expirado. Tente novamente.",
-    "connectTo": "Conectar a {{name}}",
     "connected": "Conectado!",
     "enterCode": "Digite este código:",
-    "expiresIn": "O código expira em {{minutes}} minutos",
     "fallbackProvider": "Provedor",
     "initFailed": "Falha ao inicializar a autenticação. Tente novamente.",
     "initializing": "Inicializando autenticação...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "Baixar",
-    "downloadingItem": "Baixando item {{current}} de {{total}}",
     "fallbackTitle": "Conteúdo",
     "start": "Iniciar",
     "stream": "Transmitir"
@@ -103,7 +97,6 @@
     "loadingContent": "Carregando seu conteúdo...",
     "loggingIn": "Entrando...",
     "loginFailed": "Falha no login. Verifique suas credenciais.",
-    "loginTo": "Entrar em {{name}}",
     "missingCredentials": "Por favor, digite e-mail e senha",
     "notSupported": "Este provedor não suporta login por formulário",
     "password": "Senha",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "Cancelar",
-    "connectTo": "Conectar a {{name}}",
     "connected": "Conectado!",
     "connecting": "Conectando...",
     "exchangeFailed": "Falha na troca do código de autorização por tokens.",
-    "expiresIn": "A sessão expira em {{minutes}} minutos",
     "fallbackProvider": "Provedor",
     "initializing": "Inicializando autenticação...",
     "instructionsLine1": "Leia o código QR com o telefone para autorizar o acesso.",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}} ainda não está disponível.",
       "title": "Em breve"
     },
     "errorAlert": {
-      "providerNotFound": "Provedor {{name}} não encontrado.",
       "title": "Erro"
     },
     "header": "Provedores de conteúdo",
     "notSupported": {
-      "message": "A autenticação de {{name}} ainda não é suportada.",
       "title": "Não suportado"
     }
   },

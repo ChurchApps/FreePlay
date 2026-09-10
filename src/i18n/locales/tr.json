@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "Yakında",
-    "connected": "Bağlandı",
-    "version": "Sürüm: {{version}}"
+    "connected": "Bağlandı"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "İçeriğe Göz At",
     "loadingContent": "İçerik yükleniyor...",
-    "noContent": "Kullanılabilir içerik yok",
-    "tryDifferentFolder": "Farklı bir klasöre gitmeyi deneyin"
+    "noContent": "Kullanılabilir içerik yok"
   },
   "downloads": {
     "header": "İndirilenler",
@@ -42,7 +40,6 @@
     "title": "Çevrimdışı:"
   },
   "planDownload": {
-    "downloadingItem": "{{total}} öğeden {{current}}. öğe indiriliyor",
     "fallbackName": "İbadet Planı",
     "loadFailed": "Plan yüklenemedi.",
     "loadFailedSub": "Bu plan türü için bir plan planlandığından emin olun.",
@@ -69,10 +66,8 @@
     "authFailed": "Kimlik doğrulama başarısız oldu veya reddedildi.",
     "cancel": "İptal",
     "codeExpired": "Kimlik doğrulama kodunun süresi doldu. Lütfen tekrar deneyin.",
-    "connectTo": "{{name}} bağlan",
     "connected": "Bağlandı!",
     "enterCode": "Bu kodu girin:",
-    "expiresIn": "Kodun süresi {{minutes}} dakika içinde dolacak",
     "fallbackProvider": "Sağlayıcı",
     "initFailed": "Kimlik doğrulama başlatılamadı. Lütfen tekrar deneyin.",
     "initializing": "Kimlik doğrulama başlatılıyor...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "İndir",
-    "downloadingItem": "{{total}} öğeden {{current}}. öğe indiriliyor",
     "fallbackTitle": "İçerik",
     "start": "Başlat",
     "stream": "Yayınla"
@@ -103,7 +97,6 @@
     "loadingContent": "İçeriğiniz yükleniyor...",
     "loggingIn": "Giriş yapılıyor...",
     "loginFailed": "Giriş başarısız. Kimlik bilgilerinizi kontrol edin.",
-    "loginTo": "{{name}} oturum aç",
     "missingCredentials": "Lütfen e-posta ve şifre girin",
     "notSupported": "Bu sağlayıcı form girişini desteklemiyor",
     "password": "Şifre",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "İptal",
-    "connectTo": "{{name}} bağlan",
     "connected": "Bağlandı!",
     "connecting": "Bağlanıyor...",
     "exchangeFailed": "Yetkilendirme kodu belirteçlerle değiştirilemedi.",
-    "expiresIn": "Oturumun süresi {{minutes}} dakika içinde dolacak",
     "fallbackProvider": "Sağlayıcı",
     "initializing": "Kimlik doğrulama başlatılıyor...",
     "instructionsLine1": "Erişimi yetkilendirmek için QR kodunu telefonunuzla tarayın.",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}} henüz kullanılamıyor.",
       "title": "Yakında"
     },
     "errorAlert": {
-      "providerNotFound": "Sağlayıcı {{name}} bulunamadı.",
       "title": "Hata"
     },
     "header": "İçerik Sağlayıcıları",
     "notSupported": {
-      "message": "{{name}} kimlik doğrulaması henüz desteklenmiyor.",
       "title": "Desteklenmiyor"
     }
   },

@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "Ускоро",
-    "connected": "Повезано",
-    "version": "Верзија: {{version}}"
+    "connected": "Повезано"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "Прегледај садржај",
     "loadingContent": "Учитавање садржаја...",
-    "noContent": "Нема доступног садржаја",
-    "tryDifferentFolder": "Покушајте да пређете у другу фасциклу"
+    "noContent": "Нема доступног садржаја"
   },
   "downloads": {
     "header": "Преузимања",
@@ -42,7 +40,6 @@
     "title": "Ван мреже:"
   },
   "planDownload": {
-    "downloadingItem": "Преузимање ставке {{current}} од {{total}}",
     "fallbackName": "План богослужења",
     "loadFailed": "План није могао да се учита.",
     "loadFailedSub": "Уверите се да је за ову врсту плана заказан план.",
@@ -69,10 +66,8 @@
     "authFailed": "Аутентификација није успела или је одбијена.",
     "cancel": "Откажи",
     "codeExpired": "Аутентификациони код је истекао. Покушајте поново.",
-    "connectTo": "Повежи се са {{name}}",
     "connected": "Повезано!",
     "enterCode": "Унесите овај код:",
-    "expiresIn": "Код истиче за {{minutes}} мин.",
     "fallbackProvider": "Добављач",
     "initFailed": "Иницијализација аутентификације није успела. Покушајте поново.",
     "initializing": "Иницијализација аутентификације...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "Преузми",
-    "downloadingItem": "Преузимање ставке {{current}} од {{total}}",
     "fallbackTitle": "Садржај",
     "start": "Почни",
     "stream": "Стримуј"
@@ -103,7 +97,6 @@
     "loadingContent": "Учитавање вашег садржаја...",
     "loggingIn": "Пријављивање...",
     "loginFailed": "Пријава није успела. Проверите своје акредитиве.",
-    "loginTo": "Пријави се на {{name}}",
     "missingCredentials": "Унесите имејл и лозинку",
     "notSupported": "Овај добављач не подржава пријаву преко обрасца",
     "password": "Лозинка",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "Откажи",
-    "connectTo": "Повежи се са {{name}}",
     "connected": "Повезано!",
     "connecting": "Повезивање...",
     "exchangeFailed": "Размена ауторизационог кода за токене није успела.",
-    "expiresIn": "Сесија истиче за {{minutes}} мин.",
     "fallbackProvider": "Добављач",
     "initializing": "Иницијализација аутентификације...",
     "instructionsLine1": "Скенирајте QR код телефоном да бисте овластили приступ.",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}} још увек није доступан.",
       "title": "Ускоро"
     },
     "errorAlert": {
-      "providerNotFound": "Добављач {{name}} није пронађен.",
       "title": "Грешка"
     },
     "header": "Добављачи садржаја",
     "notSupported": {
-      "message": "Аутентификација {{name}} још увек није подржана.",
       "title": "Није подржано"
     }
   },

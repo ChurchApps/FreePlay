@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "Tulossa pian",
-    "connected": "Yhdistetty",
-    "version": "Versio: {{version}}"
+    "connected": "Yhdistetty"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "Selaa sisältöä",
     "loadingContent": "Ladataan sisältöä...",
-    "noContent": "Sisältöä ei ole saatavilla",
-    "tryDifferentFolder": "Yritä siirtyä toiseen kansioon"
+    "noContent": "Sisältöä ei ole saatavilla"
   },
   "downloads": {
     "header": "Lataukset",
@@ -42,7 +40,6 @@
     "title": "Offline-tila:"
   },
   "planDownload": {
-    "downloadingItem": "Ladataan kohdetta {{current}}/{{total}}",
     "fallbackName": "Jumalanpalvelussuunnitelma",
     "loadFailed": "Suunnitelmaa ei voitu ladata.",
     "loadFailedSub": "Varmista, että tälle suunnitelmatyypille on ajastettu suunnitelma.",
@@ -69,10 +66,8 @@
     "authFailed": "Todennus epäonnistui tai evättiin.",
     "cancel": "Peruuta",
     "codeExpired": "Todennuskoodi vanhentunut. Yritä uudelleen.",
-    "connectTo": "Yhdistä palveluun {{name}}",
     "connected": "Yhdistetty!",
     "enterCode": "Syötä tämä koodi:",
-    "expiresIn": "Koodi vanhenee {{minutes}} minuutin kuluttua",
     "fallbackProvider": "Tarjoaja",
     "initFailed": "Todennuksen alustaminen epäonnistui. Yritä uudelleen.",
     "initializing": "Alustetaan todennusta...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "Lataa",
-    "downloadingItem": "Ladataan kohdetta {{current}}/{{total}}",
     "fallbackTitle": "Sisältö",
     "start": "Aloita",
     "stream": "Suoratoista"
@@ -103,7 +97,6 @@
     "loadingContent": "Ladataan sisältöäsi...",
     "loggingIn": "Kirjaudutaan sisään...",
     "loginFailed": "Kirjautuminen epäonnistui. Tarkista tunnuksesi.",
-    "loginTo": "Kirjaudu palveluun {{name}}",
     "missingCredentials": "Anna sähköposti ja salasana",
     "notSupported": "Tämä tarjoaja ei tue lomakkeella kirjautumista",
     "password": "Salasana",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "Peruuta",
-    "connectTo": "Yhdistä palveluun {{name}}",
     "connected": "Yhdistetty!",
     "connecting": "Yhdistetään...",
     "exchangeFailed": "Valtuutuskoodin vaihto tunnuksiin epäonnistui.",
-    "expiresIn": "Istunto vanhenee {{minutes}} minuutin kuluttua",
     "fallbackProvider": "Tarjoaja",
     "initializing": "Alustetaan todennusta...",
     "instructionsLine1": "Skannaa QR-koodi puhelimellasi käytön valtuuttamiseksi.",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}} ei ole vielä saatavilla.",
       "title": "Tulossa pian"
     },
     "errorAlert": {
-      "providerNotFound": "Tarjoajaa {{name}} ei löytynyt.",
       "title": "Virhe"
     },
     "header": "Sisältötarjoajat",
     "notSupported": {
-      "message": "{{name}}-todennusta ei vielä tueta.",
       "title": "Ei tuettu"
     }
   },

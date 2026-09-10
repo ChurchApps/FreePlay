@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "Wkrótce",
-    "connected": "Połączono",
-    "version": "Wersja: {{version}}"
+    "connected": "Połączono"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "Przeglądaj treści",
     "loadingContent": "Ładowanie zawartości...",
-    "noContent": "Brak dostępnych treści",
-    "tryDifferentFolder": "Spróbuj przejść do innego folderu"
+    "noContent": "Brak dostępnych treści"
   },
   "downloads": {
     "header": "Pobrane",
@@ -42,7 +40,6 @@
     "title": "Offline:"
   },
   "planDownload": {
-    "downloadingItem": "Pobieranie elementu {{current}} z {{total}}",
     "fallbackName": "Plan nabożeństwa",
     "loadFailed": "Nie można załadować planu.",
     "loadFailedSub": "Upewnij się, że dla tego typu planu zaplanowano plan.",
@@ -69,10 +66,8 @@
     "authFailed": "Uwierzytelnianie nie powiodło się lub zostało odrzucone.",
     "cancel": "Anuluj",
     "codeExpired": "Kod uwierzytelniający wygasł. Spróbuj ponownie.",
-    "connectTo": "Połącz z {{name}}",
     "connected": "Połączono!",
     "enterCode": "Wprowadź ten kod:",
-    "expiresIn": "Kod wygaśnie za {{minutes}} min.",
     "fallbackProvider": "Dostawca",
     "initFailed": "Nie udało się zainicjować uwierzytelniania. Spróbuj ponownie.",
     "initializing": "Inicjowanie uwierzytelniania...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "Pobierz",
-    "downloadingItem": "Pobieranie elementu {{current}} z {{total}}",
     "fallbackTitle": "Treść",
     "start": "Rozpocznij",
     "stream": "Strumieniuj"
@@ -103,7 +97,6 @@
     "loadingContent": "Ładowanie treści...",
     "loggingIn": "Logowanie...",
     "loginFailed": "Logowanie nie powiodło się. Sprawdź swoje dane logowania.",
-    "loginTo": "Zaloguj się do {{name}}",
     "missingCredentials": "Wprowadź adres e-mail i hasło",
     "notSupported": "Ten dostawca nie obsługuje logowania formularzem",
     "password": "Hasło",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "Anuluj",
-    "connectTo": "Połącz z {{name}}",
     "connected": "Połączono!",
     "connecting": "Łączenie...",
     "exchangeFailed": "Nie udało się wymienić kodu autoryzacji na tokeny.",
-    "expiresIn": "Sesja wygaśnie za {{minutes}} min.",
     "fallbackProvider": "Dostawca",
     "initializing": "Inicjowanie uwierzytelniania...",
     "instructionsLine1": "Zeskanuj kod QR telefonem, aby autoryzować dostęp.",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}} nie jest jeszcze dostępny.",
       "title": "Wkrótce"
     },
     "errorAlert": {
-      "providerNotFound": "Dostawca {{name}} nie znaleziony.",
       "title": "Błąd"
     },
     "header": "Dostawcy treści",
     "notSupported": {
-      "message": "Uwierzytelnianie {{name}} nie jest jeszcze obsługiwane.",
       "title": "Nieobsługiwane"
     }
   },

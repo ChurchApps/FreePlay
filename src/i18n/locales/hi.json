@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "जल्द आ रहा है",
-    "connected": "कनेक्ट हो गया",
-    "version": "संस्करण: {{version}}"
+    "connected": "कनेक्ट हो गया"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "सामग्री ब्राउज़ करें",
     "loadingContent": "सामग्री लोड हो रही है...",
-    "noContent": "कोई सामग्री उपलब्ध नहीं है",
-    "tryDifferentFolder": "किसी अन्य फ़ोल्डर पर जाने का प्रयास करें"
+    "noContent": "कोई सामग्री उपलब्ध नहीं है"
   },
   "downloads": {
     "header": "डाउनलोड",
@@ -42,7 +40,6 @@
     "title": "ऑफलाइन:"
   },
   "planDownload": {
-    "downloadingItem": "{{total}} में से {{current}} आइटम डाउनलोड हो रहा है",
     "fallbackName": "सेवा योजना",
     "loadFailed": "योजना लोड नहीं हो सकी।",
     "loadFailedSub": "सुनिश्चित करें कि इस योजना प्रकार के लिए एक योजना निर्धारित है।",
@@ -69,10 +66,8 @@
     "authFailed": "प्रमाणीकरण विफल हुआ या अस्वीकृत किया गया।",
     "cancel": "रद्द करें",
     "codeExpired": "प्रमाणीकरण कोड समाप्त हो गया। कृपया पुनः प्रयास करें।",
-    "connectTo": "{{name}} से कनेक्ट करें",
     "connected": "कनेक्ट हो गया!",
     "enterCode": "यह कोड दर्ज करें:",
-    "expiresIn": "कोड {{minutes}} मिनट में समाप्त हो जाएगा",
     "fallbackProvider": "प्रदाता",
     "initFailed": "प्रमाणीकरण आरंभ करने में विफल। कृपया पुनः प्रयास करें।",
     "initializing": "प्रमाणीकरण आरंभ हो रहा है...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "डाउनलोड करें",
-    "downloadingItem": "{{total}} में से {{current}} आइटम डाउनलोड हो रहा है",
     "fallbackTitle": "सामग्री",
     "start": "प्रारंभ करें",
     "stream": "स्ट्रीम"
@@ -103,7 +97,6 @@
     "loadingContent": "आपकी सामग्री लोड हो रही है...",
     "loggingIn": "लॉग इन हो रहा है...",
     "loginFailed": "लॉगिन विफल। अपनी क्रेडेंशियल जांचें।",
-    "loginTo": "{{name}} में लॉग इन करें",
     "missingCredentials": "कृपया ईमेल और पासवर्ड दर्ज करें",
     "notSupported": "यह प्रदाता फॉर्म लॉगिन का समर्थन नहीं करता",
     "password": "पासवर्ड",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "रद्द करें",
-    "connectTo": "{{name}} से कनेक्ट करें",
     "connected": "कनेक्ट हो गया!",
     "connecting": "कनेक्ट हो रहा है...",
     "exchangeFailed": "टोकन के लिए प्राधिकरण कोड का आदान-प्रदान करने में विफल।",
-    "expiresIn": "सत्र {{minutes}} मिनट में समाप्त हो जाएगा",
     "fallbackProvider": "प्रदाता",
     "initializing": "प्रमाणीकरण आरंभ हो रहा है...",
     "instructionsLine1": "एक्सेस अधिकृत करने के लिए अपने फोन से QR कोड स्कैन करें।",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}} अभी उपलब्ध नहीं है।",
       "title": "जल्द आ रहा है"
     },
     "errorAlert": {
-      "providerNotFound": "प्रदाता {{name}} नहीं मिला।",
       "title": "त्रुटि"
     },
     "header": "सामग्री प्रदाता",
     "notSupported": {
-      "message": "{{name}} प्रमाणीकरण अभी समर्थित नहीं है।",
       "title": "समर्थित नहीं"
     }
   },

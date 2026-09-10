@@ -1,8 +1,7 @@
 {
   "common": {
     "comingSoon": "Sắp ra mắt",
-    "connected": "Đã kết nối",
-    "version": "Phiên bản: {{version}}"
+    "connected": "Đã kết nối"
   },
   "contentBrowser": {
     "fileType": {
@@ -11,8 +10,7 @@
     },
     "header": "Duyệt nội dung",
     "loadingContent": "Đang tải nội dung...",
-    "noContent": "Không có nội dung khả dụng",
-    "tryDifferentFolder": "Hãy thử điều hướng đến một thư mục khác"
+    "noContent": "Không có nội dung khả dụng"
   },
   "downloads": {
     "header": "Tải xuống",
@@ -42,7 +40,6 @@
     "title": "Ngoại tuyến:"
   },
   "planDownload": {
-    "downloadingItem": "Đang tải xuống mục {{current}} trong số {{total}}",
     "fallbackName": "Kế hoạch buổi lễ",
     "loadFailed": "Không thể tải kế hoạch.",
     "loadFailedSub": "Đảm bảo rằng có một kế hoạch được lên lịch cho loại kế hoạch này.",
@@ -69,10 +66,8 @@
     "authFailed": "Xác thực không thành công hoặc bị từ chối.",
     "cancel": "Hủy",
     "codeExpired": "Mã xác thực đã hết hạn. Vui lòng thử lại.",
-    "connectTo": "Kết nối với {{name}}",
     "connected": "Đã kết nối!",
     "enterCode": "Nhập mã này:",
-    "expiresIn": "Mã sẽ hết hạn sau {{minutes}} phút",
     "fallbackProvider": "Nhà cung cấp",
     "initFailed": "Không thể khởi tạo xác thực. Vui lòng thử lại.",
     "initializing": "Đang khởi tạo xác thực...",
@@ -88,7 +83,6 @@
   },
   "providerDownload": {
     "download": "Tải xuống",
-    "downloadingItem": "Đang tải xuống mục {{current}} trong số {{total}}",
     "fallbackTitle": "Nội dung",
     "start": "Bắt đầu",
     "stream": "Phát trực tuyến"
@@ -103,7 +97,6 @@
     "loadingContent": "Đang tải nội dung của bạn...",
     "loggingIn": "Đang đăng nhập...",
     "loginFailed": "Đăng nhập không thành công. Kiểm tra thông tin đăng nhập của bạn.",
-    "loginTo": "Đăng nhập vào {{name}}",
     "missingCredentials": "Vui lòng nhập email và mật khẩu",
     "notSupported": "Nhà cung cấp này không hỗ trợ đăng nhập bằng biểu mẫu",
     "password": "Mật khẩu",
@@ -114,11 +107,9 @@
   },
   "providerOAuth": {
     "cancel": "Hủy",
-    "connectTo": "Kết nối với {{name}}",
     "connected": "Đã kết nối!",
     "connecting": "Đang kết nối...",
     "exchangeFailed": "Không thể đổi mã ủy quyền lấy token.",
-    "expiresIn": "Phiên sẽ hết hạn sau {{minutes}} phút",
     "fallbackProvider": "Nhà cung cấp",
     "initializing": "Đang khởi tạo xác thực...",
     "instructionsLine1": "Quét mã QR bằng điện thoại của bạn để ủy quyền truy cập.",
@@ -147,16 +138,13 @@
   },
   "providers": {
     "comingSoonAlert": {
-      "message": "{{name}} chưa khả dụng.",
       "title": "Sắp ra mắt"
     },
     "errorAlert": {
-      "providerNotFound": "Không tìm thấy nhà cung cấp {{name}}.",
       "title": "Lỗi"
     },
     "header": "Nhà cung cấp nội dung",
     "notSupported": {
-      "message": "Xác thực {{name}} chưa được hỗ trợ.",
       "title": "Không được hỗ trợ"
     }
   },

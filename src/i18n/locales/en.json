@@ -1,168 +1,156 @@
 {
   "common": {
     "comingSoon": "Coming Soon",
-    "connected": "Connected",
-    "version": "Version: {{version}}"
-  },
-  "nav": {
-    "plan": "Today's Plan",
-    "downloads": "Downloads",
-    "providers": "Providers"
-  },
-  "providers": {
-    "header": "Content Providers",
-    "comingSoonAlert": {
-      "title": "Coming Soon",
-      "message": "{{name}} is not yet available."
-    },
-    "errorAlert": {
-      "title": "Error",
-      "providerNotFound": "Provider {{name}} not found."
-    },
-    "notSupported": {
-      "title": "Not Supported",
-      "message": "{{name}} authentication is not yet supported."
-    }
-  },
-  "providerSettings": {
-    "header": "Provider Settings",
-    "library": {
-      "label": "Browse Library",
-      "description": "Show this provider's content library in the menu"
-    },
-    "autoDownload": {
-      "label": "Auto-Download Today's Lesson",
-      "description": "Use this provider as the source of today's lesson and pre-download files"
-    },
-    "disconnect": "Disconnect"
+    "connected": "Connected"
   },
   "contentBrowser": {
+    "fileType": {
+      "image": "Image",
+      "video": "Video"
+    },
     "header": "Browse Content",
     "loadingContent": "Loading content...",
-    "noContent": "No content available",
-    "tryDifferentFolder": "Try navigating to a different folder",
-    "fileType": {
-      "video": "Video",
-      "image": "Image"
-    }
-  },
-  "providerDownload": {
-    "fallbackTitle": "Content",
-    "download": "Download",
-    "stream": "Stream",
-    "start": "Start",
-    "downloadingItem": "Downloading item {{current}} of {{total}}"
-  },
-  "providerDeviceAuth": {
-    "providerNotFound": "Provider not found.",
-    "initFailed": "Failed to initialize authentication. Please try again.",
-    "unexpectedError": "An unexpected error occurred. Please try again.",
-    "codeExpired": "Authentication code expired. Please try again.",
-    "authFailed": "Authentication failed or was denied.",
-    "initializing": "Initializing authentication...",
-    "tryAgain": "Try Again",
-    "connected": "Connected!",
-    "loadingContent": "Loading your content...",
-    "connectTo": "Connect to {{name}}",
-    "fallbackProvider": "Provider",
-    "instructions": "Scan the QR code with your phone, or visit",
-    "instructionsLine2": "and enter the code below",
-    "enterCode": "Enter this code:",
-    "waiting": "Waiting for confirmation",
-    "secondary": "Check your phone to confirm",
-    "regenerate": "Generate New Code",
-    "expiresIn": "Code expires in {{minutes}} minutes",
-    "cancel": "Cancel"
-  },
-  "providerOAuth": {
-    "providerNotFound": "Provider not found.",
-    "sessionFailed": "Failed to create authorization session. Please try again.",
-    "unexpectedError": "An unexpected error occurred. Please try again.",
-    "sessionExpired": "Authorization session expired. Please try again.",
-    "exchangeFailed": "Failed to exchange authorization code for tokens.",
-    "tokenExchangeFailed": "Token exchange failed. Please try again.",
-    "initializing": "Initializing authentication...",
-    "connecting": "Connecting...",
-    "tryAgain": "Try Again",
-    "connected": "Connected!",
-    "loadingContent": "Loading your content...",
-    "connectTo": "Connect to {{name}}",
-    "fallbackProvider": "Provider",
-    "instructionsLine1": "Scan the QR code with your phone to authorize access.",
-    "instructionsLine2": "Your TV will connect automatically once you approve.",
-    "waiting": "Waiting for confirmation",
-    "secondary": "Check your phone to confirm",
-    "expiresIn": "Session expires in {{minutes}} minutes",
-    "cancel": "Cancel"
-  },
-  "providerFormLogin": {
-    "missingCredentials": "Please enter email and password",
-    "providerNotFound": "Provider not found",
-    "notSupported": "This provider does not support form login",
-    "loginFailed": "Login failed. Check your credentials.",
-    "unexpectedError": "An unexpected error occurred. Please try again.",
-    "loggingIn": "Logging in...",
-    "connected": "Connected!",
-    "loadingContent": "Loading your content...",
-    "loginTo": "Login to {{name}}",
-    "fallbackProvider": "Provider",
-    "enterCredentials": "Enter your credentials to connect",
-    "email": "Email",
-    "emailPlaceholder": "email@example.com",
-    "password": "Password",
-    "passwordPlaceholder": "Password",
-    "signIn": "Sign In",
-    "cancel": "Cancel"
+    "noContent": "No content available"
   },
   "downloads": {
     "header": "Downloads",
     "noDownloads": "No downloads yet"
   },
+  "menu": {
+    "back": "Back"
+  },
+  "message": {
+    "loadingImage": "Loading image...",
+    "loadingVideo": "Loading video...",
+    "playbackFailed": "Playback failed",
+    "playbackFailedSub": "Press back to return",
+    "skippingNext": "Skipping to next item...",
+    "videoFailed": "Video failed to load"
+  },
+  "nav": {
+    "downloads": "Downloads",
+    "plan": "Today's Plan",
+    "providers": "Providers"
+  },
+  "offline": {
+    "canPlayDownloaded": "You can still play what was downloaded in advance.",
+    "notDownloaded": "Nothing has been downloaded for offline play yet. Please check your connection and try again.",
+    "start": "Start",
+    "subtitle": "Internet access is currently unavailable",
+    "title": "Offline:"
+  },
   "planDownload": {
     "fallbackName": "Service Plan",
-    "startPlan": "Start Plan",
-    "downloadingItem": "Downloading item {{current}} of {{total}}",
     "loadFailed": "The plan could not be loaded.",
     "loadFailedSub": "Make sure a plan is scheduled for this plan type.",
+    "startPlan": "Start Plan",
     "tryAgain": "Try Again"
   },
   "planPairing": {
+    "connected": "Connected!",
     "generateFailed": "Failed to generate pairing code. Please try again.",
     "generating": "Generating pairing code...",
-    "tryAgain": "Try Again",
     "instructions": "Enter this code in the Plan Type section of B1Admin",
-    "waiting": "Waiting for confirmation",
-    "secondary": "We'll connect automatically once accepted",
+    "loadingPlan": "Loading your plan...",
     "regenerate": "Generate New Code",
-    "connected": "Connected!",
-    "loadingPlan": "Loading your plan..."
-  },
-  "offline": {
-    "title": "Offline:",
-    "subtitle": "Internet access is currently unavailable",
-    "canPlayDownloaded": "You can still play what was downloaded in advance.",
-    "notDownloaded": "Nothing has been downloaded for offline play yet. Please check your connection and try again.",
-    "start": "Start"
+    "secondary": "We'll connect automatically once accepted",
+    "tryAgain": "Try Again",
+    "waiting": "Waiting for confirmation"
   },
   "privacyPolicy": {
     "header": "Privacy Policy",
-    "viewFullPolicy": "To view our full privacy policy, please visit:",
-    "url": "churchapps.org/privacy"
+    "url": "churchapps.org/privacy",
+    "viewFullPolicy": "To view our full privacy policy, please visit:"
+  },
+  "providerDeviceAuth": {
+    "authFailed": "Authentication failed or was denied.",
+    "cancel": "Cancel",
+    "codeExpired": "Authentication code expired. Please try again.",
+    "connected": "Connected!",
+    "enterCode": "Enter this code:",
+    "fallbackProvider": "Provider",
+    "initFailed": "Failed to initialize authentication. Please try again.",
+    "initializing": "Initializing authentication...",
+    "instructions": "Scan the QR code with your phone, or visit",
+    "instructionsLine2": "and enter the code below",
+    "loadingContent": "Loading your content...",
+    "providerNotFound": "Provider not found.",
+    "regenerate": "Generate New Code",
+    "secondary": "Check your phone to confirm",
+    "tryAgain": "Try Again",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "waiting": "Waiting for confirmation"
+  },
+  "providerDownload": {
+    "download": "Download",
+    "fallbackTitle": "Content",
+    "start": "Start",
+    "stream": "Stream"
+  },
+  "providerFormLogin": {
+    "cancel": "Cancel",
+    "connected": "Connected!",
+    "email": "Email",
+    "emailPlaceholder": "email@example.com",
+    "enterCredentials": "Enter your credentials to connect",
+    "fallbackProvider": "Provider",
+    "loadingContent": "Loading your content...",
+    "loggingIn": "Logging in...",
+    "loginFailed": "Login failed. Check your credentials.",
+    "missingCredentials": "Please enter email and password",
+    "notSupported": "This provider does not support form login",
+    "password": "Password",
+    "passwordPlaceholder": "Password",
+    "providerNotFound": "Provider not found",
+    "signIn": "Sign In",
+    "unexpectedError": "An unexpected error occurred. Please try again."
+  },
+  "providerOAuth": {
+    "cancel": "Cancel",
+    "connected": "Connected!",
+    "connecting": "Connecting...",
+    "exchangeFailed": "Failed to exchange authorization code for tokens.",
+    "fallbackProvider": "Provider",
+    "initializing": "Initializing authentication...",
+    "instructionsLine1": "Scan the QR code with your phone to authorize access.",
+    "instructionsLine2": "Your TV will connect automatically once you approve.",
+    "loadingContent": "Loading your content...",
+    "providerNotFound": "Provider not found.",
+    "secondary": "Check your phone to confirm",
+    "sessionExpired": "Authorization session expired. Please try again.",
+    "sessionFailed": "Failed to create authorization session. Please try again.",
+    "tokenExchangeFailed": "Token exchange failed. Please try again.",
+    "tryAgain": "Try Again",
+    "unexpectedError": "An unexpected error occurred. Please try again.",
+    "waiting": "Waiting for confirmation"
+  },
+  "providerSettings": {
+    "autoDownload": {
+      "description": "Use this provider as the source of today's lesson and pre-download files",
+      "label": "Auto-Download Today's Lesson"
+    },
+    "disconnect": "Disconnect",
+    "header": "Provider Settings",
+    "library": {
+      "description": "Show this provider's content library in the menu",
+      "label": "Browse Library"
+    }
+  },
+  "providers": {
+    "comingSoonAlert": {
+      "title": "Coming Soon"
+    },
+    "errorAlert": {
+      "title": "Error"
+    },
+    "header": "Content Providers",
+    "notSupported": {
+      "title": "Not Supported"
+    }
   },
   "selectMessage": {
     "header": "Select a Message",
     "nowPlaying": "NOW PLAYING"
-  },
-  "message": {
-    "loadingVideo": "Loading video...",
-    "loadingImage": "Loading image...",
-    "videoFailed": "Video failed to load",
-    "skippingNext": "Skipping to next item...",
-    "playbackFailed": "Playback failed",
-    "playbackFailedSub": "Press back to return"
-  },
-  "menu": {
-    "back": "Back"
   },
   "splash": {
     "connecting": "Connecting..."
