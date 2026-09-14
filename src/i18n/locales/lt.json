@@ -10,7 +10,8 @@
     },
     "header": "Naršyti turinį",
     "loadingContent": "Kraunamas turinys...",
-    "noContent": "Turinys neprieinamas"
+    "noContent": "Turinys neprieinamas",
+    "tryDifferentFolder": "Pabandykite kitą aplanką"
   },
   "downloads": {
     "header": "Atsisiuntimai",

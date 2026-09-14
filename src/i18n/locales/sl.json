@@ -10,7 +10,8 @@
     },
     "header": "Brskaj po vsebini",
     "loadingContent": "Nalagam vsebino...",
-    "noContent": "Vsebina ni na voljo"
+    "noContent": "Vsebina ni na voljo",
+    "tryDifferentFolder": "Poskusite drugo mapo"
   },
   "downloads": {
     "header": "Prenosi",

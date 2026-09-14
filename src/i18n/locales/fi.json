@@ -10,7 +10,8 @@
     },
     "header": "Selaa sisältöä",
     "loadingContent": "Ladataan sisältöä...",
-    "noContent": "Sisältöä ei ole saatavilla"
+    "noContent": "Sisältöä ei ole saatavilla",
+    "tryDifferentFolder": "Kokeile eri kansiota"
   },
   "downloads": {
     "header": "Lataukset",

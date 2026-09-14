@@ -10,7 +10,8 @@
     },
     "header": "Navegar pelo conteúdo",
     "loadingContent": "Carregando conteúdo...",
-    "noContent": "Nenhum conteúdo disponível"
+    "noContent": "Nenhum conteúdo disponível",
+    "tryDifferentFolder": "Tente uma pasta diferente"
   },
   "downloads": {
     "header": "Downloads",

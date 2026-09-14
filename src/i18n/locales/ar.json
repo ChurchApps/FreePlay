@@ -10,7 +10,8 @@
     },
     "header": "تصفح المحتوى",
     "loadingContent": "جاري تحميل المحتوى...",
-    "noContent": "لا يوجد محتوى متاح"
+    "noContent": "لا يوجد محتوى متاح",
+    "tryDifferentFolder": "جرب مجلد مختلف"
   },
   "downloads": {
     "header": "التنزيلات",

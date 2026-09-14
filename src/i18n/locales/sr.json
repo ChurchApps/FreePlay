@@ -10,7 +10,8 @@
     },
     "header": "Прегледај садржај",
     "loadingContent": "Учитавање садржаја...",
-    "noContent": "Нема доступног садржаја"
+    "noContent": "Нема доступног садржаја",
+    "tryDifferentFolder": "Pokušajte drugačitu fasciklu"
   },
   "downloads": {
     "header": "Преузимања",

@@ -10,7 +10,8 @@
     },
     "header": "Gennemse indhold",
     "loadingContent": "Indlæser indhold...",
-    "noContent": "Intet indhold tilgængeligt"
+    "noContent": "Intet indhold tilgængeligt",
+    "tryDifferentFolder": "Prøv en anden mappe"
   },
   "downloads": {
     "header": "Downloads",

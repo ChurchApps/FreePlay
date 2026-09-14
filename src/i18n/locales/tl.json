@@ -10,7 +10,8 @@
     },
     "header": "Mag-browse ng Nilalaman",
     "loadingContent": "Naglo-load ng nilalaman...",
-    "noContent": "Walang available na nilalaman"
+    "noContent": "Walang available na nilalaman",
+    "tryDifferentFolder": "Subukan ang ibang folder"
   },
   "downloads": {
     "header": "Mga Download",

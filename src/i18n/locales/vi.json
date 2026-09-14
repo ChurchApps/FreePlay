@@ -10,7 +10,8 @@
     },
     "header": "Duyệt nội dung",
     "loadingContent": "Đang tải nội dung...",
-    "noContent": "Không có nội dung khả dụng"
+    "noContent": "Không có nội dung khả dụng",
+    "tryDifferentFolder": "Hãy thử một thư mục khác"
   },
   "downloads": {
     "header": "Tải xuống",

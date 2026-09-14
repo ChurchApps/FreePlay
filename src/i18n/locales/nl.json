@@ -10,7 +10,8 @@
     },
     "header": "Inhoud doorzoeken",
     "loadingContent": "Inhoud laden...",
-    "noContent": "Geen inhoud beschikbaar"
+    "noContent": "Geen inhoud beschikbaar",
+    "tryDifferentFolder": "Probeer een ander mapje"
   },
   "downloads": {
     "header": "Downloads",

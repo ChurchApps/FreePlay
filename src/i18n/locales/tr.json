@@ -10,7 +10,8 @@
     },
     "header": "İçeriğe Göz At",
     "loadingContent": "İçerik yükleniyor...",
-    "noContent": "Kullanılabilir içerik yok"
+    "noContent": "Kullanılabilir içerik yok",
+    "tryDifferentFolder": "Farklı bir klasör deneyin"
   },
   "downloads": {
     "header": "İndirilenler",

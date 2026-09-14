@@ -10,7 +10,8 @@
     },
     "header": "Procházet obsah",
     "loadingContent": "Načítání obsahu...",
-    "noContent": "Není k dispozici žádný obsah"
+    "noContent": "Není k dispozici žádný obsah",
+    "tryDifferentFolder": "Zkuste jinou složku"
   },
   "downloads": {
     "header": "Stažené soubory",

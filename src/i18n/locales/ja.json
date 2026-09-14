@@ -10,7 +10,8 @@
     },
     "header": "コンテンツを閲覧",
     "loadingContent": "コンテンツを読み込み中...",
-    "noContent": "利用可能なコンテンツがありません"
+    "noContent": "利用可能なコンテンツがありません",
+    "tryDifferentFolder": "別のフォルダを試す"
   },
   "downloads": {
     "header": "ダウンロード",

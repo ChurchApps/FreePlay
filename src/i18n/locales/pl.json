@@ -10,7 +10,8 @@
     },
     "header": "Przeglądaj treści",
     "loadingContent": "Ładowanie zawartości...",
-    "noContent": "Brak dostępnych treści"
+    "noContent": "Brak dostępnych treści",
+    "tryDifferentFolder": "Spróbuj innego folderu"
   },
   "downloads": {
     "header": "Pobrane",

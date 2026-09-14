@@ -10,7 +10,8 @@
     },
     "header": "Tartalom böngészése",
     "loadingContent": "Tartalom betöltése...",
-    "noContent": "Nincs elérhető tartalom"
+    "noContent": "Nincs elérhető tartalom",
+    "tryDifferentFolder": "Próbálja meg egy másik mappát"
   },
   "downloads": {
     "header": "Letöltések",

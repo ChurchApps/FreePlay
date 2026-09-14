@@ -10,7 +10,8 @@
     },
     "header": "Bla gjennom innhold",
     "loadingContent": "Laster innhold...",
-    "noContent": "Ingen innhold tilgjengelig"
+    "noContent": "Ingen innhold tilgjengelig",
+    "tryDifferentFolder": "Prøv en annen mappe"
   },
   "downloads": {
     "header": "Nedlastinger",
