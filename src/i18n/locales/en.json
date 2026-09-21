@@ -1,7 +1,8 @@
 {
   "common": {
     "comingSoon": "Coming Soon",
-    "connected": "Connected"
+    "connected": "Connected",
+    "version": "Version"
   },
   "contentBrowser": {
     "fileType": {
@@ -41,6 +42,7 @@
     "title": "Offline:"
   },
   "planDownload": {
+    "downloadingItem": "Downloading Item",
     "fallbackName": "Service Plan",
     "loadFailed": "The plan could not be loaded.",
     "loadFailedSub": "Make sure a plan is scheduled for this plan type.",
@@ -67,8 +69,10 @@
     "authFailed": "Authentication failed or was denied.",
     "cancel": "Cancel",
     "codeExpired": "Authentication code expired. Please try again.",
+    "connectTo": "Connect To",
     "connected": "Connected!",
     "enterCode": "Enter this code:",
+    "expiresIn": "Expires In",
     "fallbackProvider": "Provider",
     "initFailed": "Failed to initialize authentication. Please try again.",
     "initializing": "Initializing authentication...",
@@ -84,6 +88,7 @@
   },
   "providerDownload": {
     "download": "Download",
+    "downloadingItem": "Downloading Item",
     "fallbackTitle": "Content",
     "start": "Start",
     "stream": "Stream"
@@ -98,6 +103,7 @@
     "loadingContent": "Loading your content...",
     "loggingIn": "Logging in...",
     "loginFailed": "Login failed. Check your credentials.",
+    "loginTo": "Login To",
     "missingCredentials": "Please enter email and password",
     "notSupported": "This provider does not support form login",
     "password": "Password",
@@ -108,9 +114,11 @@
   },
   "providerOAuth": {
     "cancel": "Cancel",
+    "connectTo": "Connect To",
     "connected": "Connected!",
     "connecting": "Connecting...",
     "exchangeFailed": "Failed to exchange authorization code for tokens.",
+    "expiresIn": "Expires In",
     "fallbackProvider": "Provider",
     "initializing": "Initializing authentication...",
     "instructionsLine1": "Scan the QR code with your phone to authorize access.",
@@ -139,13 +147,16 @@
   },
   "providers": {
     "comingSoonAlert": {
+      "message": "Message",
       "title": "Coming Soon"
     },
     "errorAlert": {
+      "providerNotFound": "Provider Not Found",
       "title": "Error"
     },
     "header": "Content Providers",
     "notSupported": {
+      "message": "Message",
       "title": "Not Supported"
     }
   },

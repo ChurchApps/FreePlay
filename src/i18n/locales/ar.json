@@ -1,7 +1,8 @@
 {
   "common": {
     "comingSoon": "قريباً",
-    "connected": "متصل"
+    "connected": "متصل",
+    "version": "الإصدار"
   },
   "contentBrowser": {
     "fileType": {

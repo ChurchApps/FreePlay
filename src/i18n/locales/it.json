@@ -1,7 +1,8 @@
 {
   "common": {
     "comingSoon": "Prossimamente",
-    "connected": "Connesso"
+    "connected": "Connesso",
+    "version": "Versione"
   },
   "contentBrowser": {
     "fileType": {

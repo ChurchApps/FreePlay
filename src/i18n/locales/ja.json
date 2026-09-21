@@ -1,7 +1,8 @@
 {
   "common": {
     "comingSoon": "近日公開",
-    "connected": "接続済み"
+    "connected": "接続済み",
+    "version": "バージョン"
   },
   "contentBrowser": {
     "fileType": {
