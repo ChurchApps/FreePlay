@@ -42,6 +42,7 @@
     "title": "オフライン:"
   },
   "planDownload": {
+    "downloadingItem": "{{total}}個中{{current}}個目をダウンロード中",
     "fallbackName": "礼拝計画",
     "loadFailed": "計画を読み込めませんでした。",
     "loadFailedSub": "この計画タイプの計画が予定されていることを確認してください。",
@@ -68,8 +69,10 @@
     "authFailed": "認証に失敗したか、拒否されました。",
     "cancel": "キャンセル",
     "codeExpired": "認証コードの有効期限が切れました。再度お試しください。",
+    "connectTo": "{{name}}に接続",
     "connected": "接続しました!",
     "enterCode": "このコードを入力してください:",
+    "expiresIn": "コードは{{minutes}}分後に期限切れになります",
     "fallbackProvider": "プロバイダー",
     "initFailed": "認証の初期化に失敗しました。再度お試しください。",
     "initializing": "認証を初期化中...",
@@ -85,6 +88,7 @@
   },
   "providerDownload": {
     "download": "ダウンロード",
+    "downloadingItem": "{{total}}個中{{current}}個目をダウンロード中",
     "fallbackTitle": "コンテンツ",
     "start": "開始",
     "stream": "ストリーミング"
@@ -99,6 +103,7 @@
     "loadingContent": "コンテンツを読み込み中...",
     "loggingIn": "ログイン中...",
     "loginFailed": "ログインに失敗しました。資格情報を確認してください。",
+    "loginTo": "{{name}}にログイン",
     "missingCredentials": "メールアドレスとパスワードを入力してください",
     "notSupported": "このプロバイダーはフォームログインをサポートしていません",
     "password": "パスワード",
@@ -109,9 +114,11 @@
   },
   "providerOAuth": {
     "cancel": "キャンセル",
+    "connectTo": "{{name}}に接続",
     "connected": "接続しました!",
     "connecting": "接続中...",
     "exchangeFailed": "認証コードとトークンの交換に失敗しました。",
+    "expiresIn": "セッションは{{minutes}}分後に期限切れになります",
     "fallbackProvider": "プロバイダー",
     "initializing": "認証を初期化中...",
     "instructionsLine1": "アクセスを承認するために携帯電話でQRコードをスキャンしてください。",
@@ -140,13 +147,16 @@
   },
   "providers": {
     "comingSoonAlert": {
+      "message": "{{name}}はまだ利用できません。",
       "title": "近日公開"
     },
     "errorAlert": {
+      "providerNotFound": "プロバイダー{{name}}が見つかりません。",
       "title": "エラー"
     },
     "header": "コンテンツプロバイダー",
     "notSupported": {
+      "message": "{{name}}認証はまだサポートされていません。",
       "title": "サポートされていません"
     }
   },

@@ -1,7 +1,8 @@
 {
   "common": {
     "comingSoon": "Binnenkort beschikbaar",
-    "connected": "Verbonden"
+    "connected": "Verbonden",
+    "version": "Versie: {{version}}"
   },
   "contentBrowser": {
     "fileType": {
@@ -41,6 +42,7 @@
     "title": "Offline:"
   },
   "planDownload": {
+    "downloadingItem": "Item {{current}} van {{total}} wordt gedownload",
     "fallbackName": "Dienstplan",
     "loadFailed": "Het plan kon niet worden geladen.",
     "loadFailedSub": "Zorg ervoor dat er een plan is gepland voor dit plantype.",
@@ -67,8 +69,10 @@
     "authFailed": "Authenticatie is mislukt of geweigerd.",
     "cancel": "Annuleren",
     "codeExpired": "Authenticatiecode verlopen. Probeer het opnieuw.",
+    "connectTo": "Verbinden met {{name}}",
     "connected": "Verbonden!",
     "enterCode": "Voer deze code in:",
+    "expiresIn": "Code verloopt over {{minutes}} minuten",
     "fallbackProvider": "Aanbieder",
     "initFailed": "Kan authenticatie niet initialiseren. Probeer het opnieuw.",
     "initializing": "Authenticatie wordt geïnitialiseerd...",
@@ -84,6 +88,7 @@
   },
   "providerDownload": {
     "download": "Downloaden",
+    "downloadingItem": "Item {{current}} van {{total}} wordt gedownload",
     "fallbackTitle": "Inhoud",
     "start": "Starten",
     "stream": "Streamen"
@@ -98,6 +103,7 @@
     "loadingContent": "Uw inhoud wordt geladen...",
     "loggingIn": "Aanmelden...",
     "loginFailed": "Aanmelden mislukt. Controleer uw inloggegevens.",
+    "loginTo": "Aanmelden bij {{name}}",
     "missingCredentials": "Voer e-mail en wachtwoord in",
     "notSupported": "Deze aanbieder ondersteunt geen formulier-login",
     "password": "Wachtwoord",
@@ -108,9 +114,11 @@
   },
   "providerOAuth": {
     "cancel": "Annuleren",
+    "connectTo": "Verbinden met {{name}}",
     "connected": "Verbonden!",
     "connecting": "Verbinden...",
     "exchangeFailed": "Kan autorisatiecode niet inwisselen voor tokens.",
+    "expiresIn": "Sessie verloopt over {{minutes}} minuten",
     "fallbackProvider": "Aanbieder",
     "initializing": "Authenticatie wordt geïnitialiseerd...",
     "instructionsLine1": "Scan de QR-code met uw telefoon om toegang te autoriseren.",
@@ -139,13 +147,16 @@
   },
   "providers": {
     "comingSoonAlert": {
+      "message": "{{name}} is nog niet beschikbaar.",
       "title": "Binnenkort beschikbaar"
     },
     "errorAlert": {
+      "providerNotFound": "Aanbieder {{name}} niet gevonden.",
       "title": "Fout"
     },
     "header": "Inhoudsaanbieders",
     "notSupported": {
+      "message": "Authenticatie van {{name}} wordt nog niet ondersteund.",
       "title": "Niet ondersteund"
     }
   },

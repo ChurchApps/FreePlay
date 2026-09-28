@@ -1,7 +1,8 @@
 {
   "common": {
     "comingSoon": "Kommer snart",
-    "connected": "Ansluten"
+    "connected": "Ansluten",
+    "version": "Version: {{version}}"
   },
   "contentBrowser": {
     "fileType": {
@@ -41,6 +42,7 @@
     "title": "Offline:"
   },
   "planDownload": {
+    "downloadingItem": "Laddar ner objekt {{current}} av {{total}}",
     "fallbackName": "Gudstjänstplan",
     "loadFailed": "Planen kunde inte laddas.",
     "loadFailedSub": "Se till att en plan är schemalagd för denna plantyp.",
@@ -67,8 +69,10 @@
     "authFailed": "Autentisering misslyckades eller nekades.",
     "cancel": "Avbryt",
     "codeExpired": "Autentiseringskoden har gått ut. Försök igen.",
+    "connectTo": "Anslut till {{name}}",
     "connected": "Ansluten!",
     "enterCode": "Ange denna kod:",
+    "expiresIn": "Koden går ut om {{minutes}} minuter",
     "fallbackProvider": "Leverantör",
     "initFailed": "Det gick inte att initiera autentisering. Försök igen.",
     "initializing": "Initierar autentisering...",
@@ -84,6 +88,7 @@
   },
   "providerDownload": {
     "download": "Ladda ner",
+    "downloadingItem": "Laddar ner objekt {{current}} av {{total}}",
     "fallbackTitle": "Innehåll",
     "start": "Starta",
     "stream": "Strömma"
@@ -98,6 +103,7 @@
     "loadingContent": "Laddar ditt innehåll...",
     "loggingIn": "Loggar in...",
     "loginFailed": "Inloggningen misslyckades. Kontrollera dina inloggningsuppgifter.",
+    "loginTo": "Logga in på {{name}}",
     "missingCredentials": "Ange e-post och lösenord",
     "notSupported": "Den här leverantören stöder inte formulärinloggning",
     "password": "Lösenord",
@@ -108,9 +114,11 @@
   },
   "providerOAuth": {
     "cancel": "Avbryt",
+    "connectTo": "Anslut till {{name}}",
     "connected": "Ansluten!",
     "connecting": "Ansluter...",
     "exchangeFailed": "Det gick inte att byta auktoriseringskod mot tokens.",
+    "expiresIn": "Sessionen går ut om {{minutes}} minuter",
     "fallbackProvider": "Leverantör",
     "initializing": "Initierar autentisering...",
     "instructionsLine1": "Skanna QR-koden med din telefon för att auktorisera åtkomst.",
@@ -139,13 +147,16 @@
   },
   "providers": {
     "comingSoonAlert": {
+      "message": "{{name}} är inte tillgänglig ännu.",
       "title": "Kommer snart"
     },
     "errorAlert": {
+      "providerNotFound": "Leverantör {{name}} hittades inte.",
       "title": "Fel"
     },
     "header": "Innehållsleverantörer",
     "notSupported": {
+      "message": "{{name}}-autentisering stöds inte ännu.",
       "title": "Stöds inte"
     }
   },

@@ -1,7 +1,8 @@
 {
   "common": {
     "comingSoon": "Незабаром",
-    "connected": "Підключено"
+    "connected": "Підключено",
+    "version": "Версія: {{version}}"
   },
   "contentBrowser": {
     "fileType": {
@@ -41,6 +42,7 @@
     "title": "Офлайн:"
   },
   "planDownload": {
+    "downloadingItem": "Завантаження елемента {{current}} з {{total}}",
     "fallbackName": "План богослужіння",
     "loadFailed": "Не вдалося завантажити план.",
     "loadFailedSub": "Переконайтеся, що для цього типу плану заплановано план.",
@@ -67,8 +69,10 @@
     "authFailed": "Автентифікація не вдалася або була відхилена.",
     "cancel": "Скасувати",
     "codeExpired": "Термін дії коду автентифікації минув. Спробуйте ще раз.",
+    "connectTo": "Підключитися до {{name}}",
     "connected": "Підключено!",
     "enterCode": "Введіть цей код:",
+    "expiresIn": "Термін дії коду закінчиться через {{minutes}} хв.",
     "fallbackProvider": "Постачальник",
     "initFailed": "Не вдалося ініціалізувати автентифікацію. Спробуйте ще раз.",
     "initializing": "Ініціалізація автентифікації...",
@@ -84,6 +88,7 @@
   },
   "providerDownload": {
     "download": "Завантажити",
+    "downloadingItem": "Завантаження елемента {{current}} з {{total}}",
     "fallbackTitle": "Контент",
     "start": "Почати",
     "stream": "Транслювати"
@@ -98,6 +103,7 @@
     "loadingContent": "Завантаження вашого контенту...",
     "loggingIn": "Вхід...",
     "loginFailed": "Не вдалося ввійти. Перевірте свої облікові дані.",
+    "loginTo": "Увійти до {{name}}",
     "missingCredentials": "Введіть електронну пошту та пароль",
     "notSupported": "Цей постачальник не підтримує вхід через форму",
     "password": "Пароль",
@@ -108,9 +114,11 @@
   },
   "providerOAuth": {
     "cancel": "Скасувати",
+    "connectTo": "Підключитися до {{name}}",
     "connected": "Підключено!",
     "connecting": "Підключення...",
     "exchangeFailed": "Не вдалося обміняти код авторизації на токени.",
+    "expiresIn": "Термін дії сеансу закінчиться через {{minutes}} хв.",
     "fallbackProvider": "Постачальник",
     "initializing": "Ініціалізація автентифікації...",
     "instructionsLine1": "Скануйте QR-код телефоном, щоб авторизувати доступ.",
@@ -139,13 +147,16 @@
   },
   "providers": {
     "comingSoonAlert": {
+      "message": "{{name}} ще не доступний.",
       "title": "Незабаром"
     },
     "errorAlert": {
+      "providerNotFound": "Постачальника {{name}} не знайдено.",
       "title": "Помилка"
     },
     "header": "Постачальники контенту",
     "notSupported": {
+      "message": "Автентифікація {{name}} ще не підтримується.",
       "title": "Не підтримується"
     }
   },

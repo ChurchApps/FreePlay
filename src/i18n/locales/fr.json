@@ -42,6 +42,7 @@
     "title": "Hors ligne :"
   },
   "planDownload": {
+    "downloadingItem": "Téléchargement de l'élément {{current}} sur {{total}}",
     "fallbackName": "Plan de service",
     "loadFailed": "Le plan n'a pas pu être chargé.",
     "loadFailedSub": "Assurez-vous qu'un plan est programmé pour ce type de plan.",
@@ -68,8 +69,10 @@
     "authFailed": "L'authentification a échoué ou a été refusée.",
     "cancel": "Annuler",
     "codeExpired": "Code d'authentification expiré. Veuillez réessayer.",
+    "connectTo": "Se connecter à {{name}}",
     "connected": "Connecté !",
     "enterCode": "Entrez ce code :",
+    "expiresIn": "Le code expire dans {{minutes}} minutes",
     "fallbackProvider": "Fournisseur",
     "initFailed": "Échec de l'initialisation de l'authentification. Veuillez réessayer.",
     "initializing": "Initialisation de l'authentification...",
@@ -85,6 +88,7 @@
   },
   "providerDownload": {
     "download": "Télécharger",
+    "downloadingItem": "Téléchargement de l'élément {{current}} sur {{total}}",
     "fallbackTitle": "Contenu",
     "start": "Démarrer",
     "stream": "Diffuser"
@@ -99,6 +103,7 @@
     "loadingContent": "Chargement de votre contenu...",
     "loggingIn": "Connexion en cours...",
     "loginFailed": "Échec de la connexion. Vérifiez vos identifiants.",
+    "loginTo": "Se connecter à {{name}}",
     "missingCredentials": "Veuillez saisir l'e-mail et le mot de passe",
     "notSupported": "Ce fournisseur ne prend pas en charge la connexion par formulaire",
     "password": "Mot de passe",
@@ -109,9 +114,11 @@
   },
   "providerOAuth": {
     "cancel": "Annuler",
+    "connectTo": "Se connecter à {{name}}",
     "connected": "Connecté !",
     "connecting": "Connexion en cours...",
     "exchangeFailed": "Échec de l'échange du code d'autorisation contre des jetons.",
+    "expiresIn": "La session expire dans {{minutes}} minutes",
     "fallbackProvider": "Fournisseur",
     "initializing": "Initialisation de l'authentification...",
     "instructionsLine1": "Scannez le code QR avec votre téléphone pour autoriser l'accès.",
@@ -140,13 +147,16 @@
   },
   "providers": {
     "comingSoonAlert": {
+      "message": "{{name}} n'est pas encore disponible.",
       "title": "Bientôt disponible"
     },
     "errorAlert": {
+      "providerNotFound": "Fournisseur {{name}} introuvable.",
       "title": "Erreur"
     },
     "header": "Fournisseurs de contenu",
     "notSupported": {
+      "message": "L'authentification {{name}} n'est pas encore prise en charge.",
       "title": "Non pris en charge"
     }
   },

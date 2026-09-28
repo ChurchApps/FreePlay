@@ -42,6 +42,7 @@
     "title": "غير متصل:"
   },
   "planDownload": {
+    "downloadingItem": "جاري تنزيل العنصر {{current}} من {{total}}",
     "fallbackName": "خطة الخدمة",
     "loadFailed": "تعذر تحميل الخطة.",
     "loadFailedSub": "تأكد من جدولة خطة لنوع الخطة هذا.",
@@ -68,8 +69,10 @@
     "authFailed": "فشلت المصادقة أو تم رفضها.",
     "cancel": "إلغاء",
     "codeExpired": "انتهت صلاحية رمز المصادقة. يرجى المحاولة مرة أخرى.",
+    "connectTo": "الاتصال بـ {{name}}",
     "connected": "متصل!",
     "enterCode": "أدخل هذا الرمز:",
+    "expiresIn": "تنتهي صلاحية الرمز خلال {{minutes}} دقيقة",
     "fallbackProvider": "الموفر",
     "initFailed": "فشل في تهيئة المصادقة. يرجى المحاولة مرة أخرى.",
     "initializing": "جاري تهيئة المصادقة...",
@@ -85,6 +88,7 @@
   },
   "providerDownload": {
     "download": "تنزيل",
+    "downloadingItem": "جاري تنزيل العنصر {{current}} من {{total}}",
     "fallbackTitle": "محتوى",
     "start": "ابدأ",
     "stream": "بث"
@@ -99,6 +103,7 @@
     "loadingContent": "جاري تحميل المحتوى الخاص بك...",
     "loggingIn": "جاري تسجيل الدخول...",
     "loginFailed": "فشل تسجيل الدخول. تحقق من بيانات الاعتماد الخاصة بك.",
+    "loginTo": "تسجيل الدخول إلى {{name}}",
     "missingCredentials": "يرجى إدخال البريد الإلكتروني وكلمة المرور",
     "notSupported": "هذا الموفر لا يدعم تسجيل الدخول عبر النموذج",
     "password": "كلمة المرور",
@@ -109,9 +114,11 @@
   },
   "providerOAuth": {
     "cancel": "إلغاء",
+    "connectTo": "الاتصال بـ {{name}}",
     "connected": "متصل!",
     "connecting": "جاري الاتصال...",
     "exchangeFailed": "فشل في تبادل رمز التفويض بالرموز المميزة.",
+    "expiresIn": "تنتهي الجلسة خلال {{minutes}} دقيقة",
     "fallbackProvider": "الموفر",
     "initializing": "جاري تهيئة المصادقة...",
     "instructionsLine1": "امسح رمز QR بهاتفك للسماح بالوصول.",
@@ -140,13 +147,16 @@
   },
   "providers": {
     "comingSoonAlert": {
+      "message": "{{name}} غير متاح بعد.",
       "title": "قريباً"
     },
     "errorAlert": {
+      "providerNotFound": "الموفر {{name}} غير موجود.",
       "title": "خطأ"
     },
     "header": "موفرو المحتوى",
     "notSupported": {
+      "message": "مصادقة {{name}} غير مدعومة بعد.",
       "title": "غير مدعوم"
     }
   },

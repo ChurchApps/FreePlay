@@ -42,6 +42,7 @@
     "title": "Offline:"
   },
   "planDownload": {
+    "downloadingItem": "Element {{current}} von {{total}} wird heruntergeladen",
     "fallbackName": "Gottesdienstplan",
     "loadFailed": "Der Plan konnte nicht geladen werden.",
     "loadFailedSub": "Stellen Sie sicher, dass ein Plan für diesen Plantyp geplant ist.",
@@ -68,8 +69,10 @@
     "authFailed": "Authentifizierung fehlgeschlagen oder verweigert.",
     "cancel": "Abbrechen",
     "codeExpired": "Authentifizierungscode abgelaufen. Bitte versuchen Sie es erneut.",
+    "connectTo": "Mit {{name}} verbinden",
     "connected": "Verbunden!",
     "enterCode": "Geben Sie diesen Code ein:",
+    "expiresIn": "Code läuft in {{minutes}} Minuten ab",
     "fallbackProvider": "Anbieter",
     "initFailed": "Authentifizierung konnte nicht initialisiert werden. Bitte versuchen Sie es erneut.",
     "initializing": "Authentifizierung wird initialisiert...",
@@ -85,6 +88,7 @@
   },
   "providerDownload": {
     "download": "Herunterladen",
+    "downloadingItem": "Element {{current}} von {{total}} wird heruntergeladen",
     "fallbackTitle": "Inhalt",
     "start": "Starten",
     "stream": "Streamen"
@@ -99,6 +103,7 @@
     "loadingContent": "Ihre Inhalte werden geladen...",
     "loggingIn": "Anmeldung läuft...",
     "loginFailed": "Anmeldung fehlgeschlagen. Überprüfen Sie Ihre Anmeldedaten.",
+    "loginTo": "Bei {{name}} anmelden",
     "missingCredentials": "Bitte geben Sie E-Mail und Passwort ein",
     "notSupported": "Dieser Anbieter unterstützt keine Formularanmeldung",
     "password": "Passwort",
@@ -109,9 +114,11 @@
   },
   "providerOAuth": {
     "cancel": "Abbrechen",
+    "connectTo": "Mit {{name}} verbinden",
     "connected": "Verbunden!",
     "connecting": "Verbinde...",
     "exchangeFailed": "Austausch des Autorisierungscodes gegen Token fehlgeschlagen.",
+    "expiresIn": "Sitzung läuft in {{minutes}} Minuten ab",
     "fallbackProvider": "Anbieter",
     "initializing": "Authentifizierung wird initialisiert...",
     "instructionsLine1": "Scannen Sie den QR-Code mit Ihrem Telefon, um den Zugriff zu autorisieren.",
@@ -140,13 +147,16 @@
   },
   "providers": {
     "comingSoonAlert": {
+      "message": "{{name}} ist noch nicht verfügbar.",
       "title": "Demnächst verfügbar"
     },
     "errorAlert": {
+      "providerNotFound": "Anbieter {{name}} nicht gefunden.",
       "title": "Fehler"
     },
     "header": "Inhaltsanbieter",
     "notSupported": {
+      "message": "Die Authentifizierung von {{name}} wird noch nicht unterstützt.",
       "title": "Nicht unterstützt"
     }
   },

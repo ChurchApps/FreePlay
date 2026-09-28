@@ -42,6 +42,7 @@
     "title": "Sin conexión:"
   },
   "planDownload": {
+    "downloadingItem": "Descargando elemento {{current}} de {{total}}",
     "fallbackName": "Plan de servicio",
     "loadFailed": "No se pudo cargar el plan.",
     "loadFailedSub": "Asegúrese de que haya un plan programado para este tipo de plan.",
@@ -68,8 +69,10 @@
     "authFailed": "La autenticación falló o fue denegada.",
     "cancel": "Cancelar",
     "codeExpired": "Código de autenticación caducado. Inténtelo de nuevo.",
+    "connectTo": "Conectar a {{name}}",
     "connected": "¡Conectado!",
     "enterCode": "Ingrese este código:",
+    "expiresIn": "El código caduca en {{minutes}} minutos",
     "fallbackProvider": "Proveedor",
     "initFailed": "Error al inicializar la autenticación. Inténtelo de nuevo.",
     "initializing": "Inicializando autenticación...",
@@ -85,6 +88,7 @@
   },
   "providerDownload": {
     "download": "Descargar",
+    "downloadingItem": "Descargando elemento {{current}} de {{total}}",
     "fallbackTitle": "Contenido",
     "start": "Iniciar",
     "stream": "Transmitir"
@@ -99,6 +103,7 @@
     "loadingContent": "Cargando su contenido...",
     "loggingIn": "Iniciando sesión...",
     "loginFailed": "Error al iniciar sesión. Verifique sus credenciales.",
+    "loginTo": "Iniciar sesión en {{name}}",
     "missingCredentials": "Por favor ingrese correo electrónico y contraseña",
     "notSupported": "Este proveedor no admite el inicio de sesión por formulario",
     "password": "Contraseña",
@@ -109,9 +114,11 @@
   },
   "providerOAuth": {
     "cancel": "Cancelar",
+    "connectTo": "Conectar a {{name}}",
     "connected": "¡Conectado!",
     "connecting": "Conectando...",
     "exchangeFailed": "Error al intercambiar el código de autorización por tokens.",
+    "expiresIn": "La sesión caduca en {{minutes}} minutos",
     "fallbackProvider": "Proveedor",
     "initializing": "Inicializando autenticación...",
     "instructionsLine1": "Escanee el código QR con su teléfono para autorizar el acceso.",
@@ -140,13 +147,16 @@
   },
   "providers": {
     "comingSoonAlert": {
+      "message": "{{name}} aún no está disponible.",
       "title": "Próximamente"
     },
     "errorAlert": {
+      "providerNotFound": "Proveedor {{name}} no encontrado.",
       "title": "Error"
     },
     "header": "Proveedores de contenido",
     "notSupported": {
+      "message": "La autenticación de {{name}} aún no es compatible.",
       "title": "No compatible"
     }
   },

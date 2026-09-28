@@ -1,7 +1,8 @@
 {
   "common": {
     "comingSoon": "Netrukus",
-    "connected": "Prisijungta"
+    "connected": "Prisijungta",
+    "version": "Versija: {{version}}"
   },
   "contentBrowser": {
     "fileType": {
@@ -41,6 +42,7 @@
     "title": "Neprisijungus:"
   },
   "planDownload": {
+    "downloadingItem": "Atsisiunčiama {{current}} iš {{total}}",
     "fallbackName": "Pamaldų planas",
     "loadFailed": "Nepavyko įkelti plano.",
     "loadFailedSub": "Įsitikinkite, kad šiam plano tipui suplanuotas planas.",
@@ -67,8 +69,10 @@
     "authFailed": "Autentifikavimas nepavyko arba buvo atmestas.",
     "cancel": "Atšaukti",
     "codeExpired": "Autentifikavimo kodo galiojimas baigėsi. Bandykite dar kartą.",
+    "connectTo": "Prisijungti prie {{name}}",
     "connected": "Prisijungta!",
     "enterCode": "Įveskite šį kodą:",
+    "expiresIn": "Kodo galiojimas baigsis po {{minutes}} min.",
     "fallbackProvider": "Tiekėjas",
     "initFailed": "Nepavyko inicijuoti autentifikavimo. Bandykite dar kartą.",
     "initializing": "Inicijuojamas autentifikavimas...",
@@ -84,6 +88,7 @@
   },
   "providerDownload": {
     "download": "Atsisiųsti",
+    "downloadingItem": "Atsisiunčiama {{current}} iš {{total}}",
     "fallbackTitle": "Turinys",
     "start": "Pradėti",
     "stream": "Transliuoti"
@@ -98,6 +103,7 @@
     "loadingContent": "Įkeliamas turinys...",
     "loggingIn": "Jungiamasi...",
     "loginFailed": "Nepavyko prisijungti. Patikrinkite savo prisijungimo duomenis.",
+    "loginTo": "Prisijungti prie {{name}}",
     "missingCredentials": "Įveskite el. paštą ir slaptažodį",
     "notSupported": "Šis tiekėjas nepalaiko prisijungimo per formą",
     "password": "Slaptažodis",
@@ -108,9 +114,11 @@
   },
   "providerOAuth": {
     "cancel": "Atšaukti",
+    "connectTo": "Prisijungti prie {{name}}",
     "connected": "Prisijungta!",
     "connecting": "Jungiamasi...",
     "exchangeFailed": "Nepavyko iškeisti autorizavimo kodo į žetonus.",
+    "expiresIn": "Sesijos galiojimas baigsis po {{minutes}} min.",
     "fallbackProvider": "Tiekėjas",
     "initializing": "Inicijuojamas autentifikavimas...",
     "instructionsLine1": "Nuskaitykite QR kodą telefonu, kad autorizuotumėte prieigą.",
@@ -139,13 +147,16 @@
   },
   "providers": {
     "comingSoonAlert": {
+      "message": "{{name}} dar neprieinamas.",
       "title": "Netrukus"
     },
     "errorAlert": {
+      "providerNotFound": "Tiekėjas {{name}} nerastas.",
       "title": "Klaida"
     },
     "header": "Turinio tiekėjai",
     "notSupported": {
+      "message": "{{name}} autentifikavimas dar nepalaikomas.",
       "title": "Nepalaikoma"
     }
   },
