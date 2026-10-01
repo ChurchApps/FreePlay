@@ -12,6 +12,7 @@
     "header": "Browse Content",
     "loadingContent": "Loading content...",
     "noContent": "No content available",
+    "pickAnnouncements": "Choose the Announcements Folder",
     "tryDifferentFolder": "Try Different Folder"
   },
   "downloads": {
@@ -30,6 +31,7 @@
     "videoFailed": "Video failed to load"
   },
   "nav": {
+    "announcements": "Announcements",
     "downloads": "Downloads",
     "plan": "Today's Plan",
     "providers": "Providers"
@@ -86,6 +88,16 @@
     "unexpectedError": "An unexpected error occurred. Please try again.",
     "waiting": "Waiting for confirmation"
   },
+  "providerDiscovery": {
+    "connectFailed": "Could not connect to that FreeShow machine.",
+    "header": "Find {{name}}",
+    "noneFound": "No FreeShow machines were found.",
+    "notSupported": "This provider does not support network discovery.",
+    "rescan": "Scan Again",
+    "scanFailed": "Could not scan the network. Try again.",
+    "scanning": "Looking for FreeShow on your network…",
+    "scanningHint": "Make sure FreeShow is running on a computer on this network."
+  },
   "providerDownload": {
     "download": "Download",
     "downloadingItem": "Downloading Item",
@@ -134,6 +146,18 @@
     "waiting": "Waiting for confirmation"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Pick a folder from this provider to loop from the Announcements menu",
+      "label": "Use for Announcements",
+      "selected": "Looping \"{{folder}}\" — {{count}} slides downloaded"
+    },
+    "announcementsUpdate": {
+      "checking": "Checking…",
+      "description": "Download new slides and remove deleted ones. Also runs each time the app starts.",
+      "failed": "Could not update. Check the connection and that the folder still has slides.",
+      "label": "Check for Announcement Updates",
+      "updated": "Up to date — {{count}} slides"
+    },
     "autoDownload": {
       "description": "Use this provider as the source of today's lesson and pre-download files",
       "label": "Auto-Download Today's Lesson"

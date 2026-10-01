@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { SvgUri } from "react-native-svg";
 import { DimensionHelper } from "../helpers/DimensionHelper";
-import { Styles, CachedData, Colors, Typography, ProviderAuthHelper, ProviderSettingsHelper } from "../helpers";
+import { Styles, CachedData, Colors, Typography, ProviderAuthHelper, ProviderSettingsHelper, AnnouncementsHelper } from "../helpers";
 import { MenuHeader } from "../components";
 import { getProvider, FREEPLAY_PROVIDER_IDS, getAvailableProviders } from "../providers";
 import { isLocked } from "../branding";
@@ -17,7 +17,7 @@ type Props = {
   providerId: string;
 };
 
-type RowKey = "library" | "autoDownload" | "disconnect";
+type RowKey = "library" | "autoDownload" | "announcements" | "announcementsUpdate" | "disconnect";
 
 export const ProviderSettingsScreen = (props: Props) => {
   const { t } = useTranslation();
@@ -27,6 +27,8 @@ export const ProviderSettingsScreen = (props: Props) => {
   const [libraryEnabled, setLibraryEnabled] = useState<boolean>(true);
   const [autoDownloadEnabled, setAutoDownloadEnabled] = useState<boolean>(false);
   const [focusedRow, setFocusedRow] = useState<RowKey | null>(null);
+  const [announcements, setAnnouncements] = useState(CachedData.announcements?.providerId === props.providerId ? CachedData.announcements : null);
+  const [updateStatus, setUpdateStatus] = useState<"checking" | "updated" | "failed" | null>(null);
 
   const supportsAutoDownload = !!provider?.getCurrentPlan;
 
@@ -63,7 +65,25 @@ export const ProviderSettingsScreen = (props: Props) => {
     await ProviderSettingsHelper.setAutoDownloadEnabled(props.providerId, next);
   };
 
+  const toggleAnnouncements = async () => {
+    if (!announcements) {
+      props.navigateTo("contentBrowser", { providerId: props.providerId, folderStack: [], pickAnnouncements: true });
+      return;
+    }
+    setAnnouncements(null);
+    await AnnouncementsHelper.clear();
+  };
+
+  const checkAnnouncements = async () => {
+    if (updateStatus === "checking") return;
+    setUpdateStatus("checking");
+    const ok = await AnnouncementsHelper.sync();
+    if (CachedData.announcements?.providerId === props.providerId) setAnnouncements(CachedData.announcements);
+    setUpdateStatus(ok ? "updated" : "failed");
+  };
+
   const handleDisconnect = async () => {
+    if (CachedData.announcements?.providerId === props.providerId) await AnnouncementsHelper.clear();
     await ProviderAuthHelper.clearAuth(props.providerId);
     await ProviderAuthHelper.setConnectionState(props.providerId, false);
     await ProviderSettingsHelper.clearSettings(props.providerId);
@@ -90,7 +110,7 @@ export const ProviderSettingsScreen = (props: Props) => {
     );
   };
 
-  const renderToggleRow = (key: RowKey, label: string, description: string, value: boolean, onPress: () => void, autoFocus = false) => {
+  const renderToggleRow = (key: RowKey, label: string, description: string, value: boolean, onPress: () => void, autoFocus = false, icon?: string) => {
     const isFocused = focusedRow === key;
     return (
       <TouchableHighlight
@@ -111,7 +131,7 @@ export const ProviderSettingsScreen = (props: Props) => {
           backgroundColor: Colors.surface
         }}>
         <View style={{ flexDirection: "row", alignItems: "center", flex: 1 }}>
-          <Icon name={value ? "check-box" : "check-box-outline-blank"} size={DimensionHelper.wp("3%")} color={value ? Colors.primary : Colors.textSubtle} />
+          <Icon name={icon || (value ? "check-box" : "check-box-outline-blank")} size={DimensionHelper.wp("3%")} color={value ? Colors.primary : Colors.textSubtle} />
           <View style={{ flex: 1, marginLeft: DimensionHelper.wp("1.5%") }}>
             <Text style={{ color: Colors.textPrimary, fontSize: Typography.titleLarge }}>{label}</Text>
             <Text style={{ color: Colors.textSubtle, fontSize: Typography.bodySmall, marginTop: 2 }}>{description}</Text>
@@ -174,6 +194,26 @@ export const ProviderSettingsScreen = (props: Props) => {
           t("providerSettings.autoDownload.description"),
           autoDownloadEnabled,
           toggleAutoDownload
+        )}
+        {renderToggleRow(
+          "announcements",
+          t("providerSettings.announcements.label"),
+          announcements
+            ? t("providerSettings.announcements.selected", { folder: announcements.folder.title, count: announcements.files.length })
+            : t("providerSettings.announcements.description"),
+          !!announcements,
+          toggleAnnouncements
+        )}
+        {announcements && renderToggleRow(
+          "announcementsUpdate",
+          t("providerSettings.announcementsUpdate.label"),
+          updateStatus
+            ? t(`providerSettings.announcementsUpdate.${updateStatus}`, { count: announcements.files.length })
+            : t("providerSettings.announcementsUpdate.description"),
+          true,
+          checkAnnouncements,
+          false,
+          "refresh"
         )}
         {renderDisconnectRow()}
       </View>

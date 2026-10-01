@@ -28,6 +28,7 @@ export const NavWrapper = (props: Props) => {
   const _browseRef = useRef(null);
   const planRef = useRef(null);
   const downloadsRef = useRef(null);
+  const announcementsRef = useRef(null);
   const providersRef = useRef(null);
   const providerRefs = useRef<{[key: string]: any}>({});
   const recentlyCollapsed = useRef(false);
@@ -137,6 +138,10 @@ export const NavWrapper = (props: Props) => {
   const pairedProvider = CachedData.providerId ? getProvider(CachedData.providerId) : null;
   const showPlanNav = !!(CachedData.providerId && pairedProvider?.getCurrentPlan);
 
+  const showAnnouncements = !!CachedData.announcements?.files?.length;
+  const afterProvidersRef = showAnnouncements ? announcementsRef : downloadsRef;
+  const lastProviderRef = connectedProviders.length > 0 ? providerRefs.current[connectedProviders[connectedProviders.length - 1]] : null;
+
   const getContent = () => (
     <View
       style={{
@@ -171,7 +176,7 @@ export const NavWrapper = (props: Props) => {
             nextFocusDown={
               connectedProviders.length > 0
                 ? findNodeHandle(providerRefs.current[connectedProviders[0]])
-                : findNodeHandle(downloadsRef.current)
+                : findNodeHandle(afterProvidersRef.current)
             }
           />
         )}
@@ -183,7 +188,7 @@ export const NavWrapper = (props: Props) => {
           const prevRef = index === 0
             ? (showPlanNav ? planRef.current : null)
             : providerRefs.current[connectedProviders[index - 1]];
-          const nextRef = index === connectedProviders.length - 1 ? downloadsRef.current : providerRefs.current[connectedProviders[index + 1]];
+          const nextRef = index === connectedProviders.length - 1 ? afterProvidersRef.current : providerRefs.current[connectedProviders[index + 1]];
 
           return (
             <NavItem
@@ -205,6 +210,27 @@ export const NavWrapper = (props: Props) => {
             />
           );
         })}
+        {showAnnouncements && (
+          <NavItem
+            testID="nav-item-announcements"
+            icon={"campaign"}
+            text={t("nav.announcements")}
+            expanded={props.sidebarExpanded}
+            setExpanded={handleSidebarExpand}
+            selected={false}
+            onPress={() => {
+              CachedData.messageFiles = CachedData.announcements?.files || [];
+              props.navigateTo("player", { announcements: true });
+            }}
+            ref={announcementsRef}
+            nextFocusUp={
+              lastProviderRef
+                ? findNodeHandle(lastProviderRef)
+                : (showPlanNav ? findNodeHandle(planRef.current) : undefined)
+            }
+            nextFocusDown={findNodeHandle(downloadsRef.current)}
+          />
+        )}
       </View>
       <View style={{ marginBottom: DimensionHelper.hp("2%") }}>
         <NavItem
@@ -219,9 +245,9 @@ export const NavWrapper = (props: Props) => {
           }}
           ref={downloadsRef}
           nextFocusUp={
-            connectedProviders.length > 0
-              ? findNodeHandle(providerRefs.current[connectedProviders[connectedProviders.length - 1]])
-              : undefined
+            showAnnouncements
+              ? findNodeHandle(announcementsRef.current)
+              : (lastProviderRef ? findNodeHandle(lastProviderRef) : undefined)
           }
           nextFocusDown={isLocked ? undefined : findNodeHandle(providersRef.current)}
         />

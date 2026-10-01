@@ -41,7 +41,7 @@ export const PlayerScreen = (props: Props) => {
 
   const isVideoFile = (file: any) => {
     if (!file || !file.url) return false;
-    if (file.fileType === "video") return true;
+    if (file.fileType === "video" || file.fileType === "audio") return true;
     const parts = file.url.split("?")[0].split(".");
     const ext = parts[parts.length - 1].toLowerCase();
     return ext === "webm" || ext === "mp4" || file.url.includes("externalVideos") || file.url.includes("stream.mux.com");
@@ -143,13 +143,14 @@ export const PlayerScreen = (props: Props) => {
   const goForward = () => {
     if (paused) setPaused(false);
     feedbackAnim.setValue(0);
-    // Guard against null/undefined messageFiles
-    if (!CachedData.messageFiles || CachedData.messageFiles.length === 0) {
+    const files = CachedData.messageFiles;
+    if (!files || files.length === 0) {
       handleBack();
       return;
     }
     const idx = messageIndex + 1;
-    if (idx < CachedData.messageFiles.length) setMessageIndex(idx);
+    if (idx < files.length) setMessageIndex(idx);
+    else if (files.some(file => file.loop)) setMessageIndex(0);
     else handleBack();
   };
 
@@ -174,8 +175,13 @@ export const PlayerScreen = (props: Props) => {
   };
 
   const startTimer = () => {
-    if (PlayerHelper.timer) clearTimeout(PlayerHelper.timer);
-    // No timer needed - videos advance on completion, images don't auto-advance
+    stopTimer();
+    const file = CachedData.messageFiles?.[messageIndex];
+    if (!file) return;
+    const video = isVideoFile(file);
+    const seconds = file.seconds && file.seconds > 0 ? file.seconds : (video ? 0 : 5);
+    if (seconds <= 0) return;
+    PlayerHelper.timer = setTimeout(() => goForward(), seconds * 1000);
   };
 
   const handleVideoEnd = () => {
@@ -198,7 +204,7 @@ export const PlayerScreen = (props: Props) => {
 
   React.useEffect(init, []);
   React.useEffect(() => { showSelectMessageRef.current = showSelectMessage; }, [showSelectMessage]);
-  React.useEffect(startTimer, [messageIndex]);
+  React.useEffect(() => { if (!paused) startTimer(); else stopTimer(); }, [messageIndex, paused]);
   React.useEffect(() => { if (PlayerHelper.pendingPause !== paused) handlePlayPause(); }, [triggerPauseCheck]);
 
   const handleProgress = (data: { currentTime: number, playableDuration: number }) => {

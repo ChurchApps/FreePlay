@@ -55,6 +55,18 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
     return () => { if (timer) clearTimeout(timer); };
   }, [isLoading, hasError]);
 
+  const sourceUrl = props.file.url || "";
+  const needsRemoteSource = !props.downloaded && CachedData.needsRemoteSource(sourceUrl);
+  const [remoteSource, setRemoteSource] = React.useState<{ uri: string; headers?: Record<string, string> } | null>(null);
+
+  React.useEffect(() => {
+    setRemoteSource(null);
+    if (!needsRemoteSource) return;
+    let cancelled = false;
+    CachedData.remoteSource(sourceUrl).then((source) => { if (!cancelled) setRemoteSource(source); });
+    return () => { cancelled = true; };
+  }, [needsRemoteSource, sourceUrl]);
+
   const handleVideoError = (_error: any) => {
     setIsLoading(false);
     setHasError(true);
@@ -70,8 +82,8 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   React.useEffect(() => {
     if (!isLoading || hasError) return;
     const url = props.file.url || "";
-    const isVideo = props.file.fileType === "video"
-      || /\.(mp4|webm)$/i.test(url.split("?")[0])
+    const isVideo = props.file.fileType === "video" || props.file.fileType === "audio"
+      || /\.(mp4|webm|mp3|m4a)$/i.test(url.split("?")[0])
       || url.includes("externalVideos");
     if (!isVideo) return;
 
@@ -101,7 +113,7 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   // }
 
   const getMessageType = (): "image" | "video" => {
-    if (props.file.fileType === "video") return "video";
+    if (props.file.fileType === "video" || props.file.fileType === "audio") return "video";
 
     const url = props.file.url || "";
     const parts = url.split("?")[0].split(".");
@@ -125,12 +137,21 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   //   return result
   // }
 
+  const mediaSource = (): { uri: string; headers?: Record<string, string> } | null => {
+    if (props.downloaded) {
+      const localPath = decodeURIComponent(CachedData.getFilePath(sourceUrl, props.file.fileType));
+      return { uri: "file://" + localPath };
+    }
+    if (needsRemoteSource) return remoteSource;
+    return sourceUrl ? { uri: sourceUrl } : null;
+  };
+
   const getVideo = () => {
-    const localPath = decodeURIComponent(CachedData.getFilePath(props.file.url));
-    const filePath = props.downloaded ? "file://" + localPath : props.file.url;
+    const source = mediaSource();
+    if (!source) return <View style={{ width: DimensionHelper.wp("100%"), height: DimensionHelper.hp("100%") }} />;
     return (<Video
       ref={videoRef}
-      source={{ uri: filePath }}
+      source={source}
       repeat={props.file.loopVideo}
       resizeMode="cover"
       style={{ width: DimensionHelper.wp("100%"), height: DimensionHelper.hp("100%") }}
@@ -148,10 +169,10 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   };
 
   const getImage = () => {
-    const localPath = decodeURIComponent(CachedData.getFilePath(props.file.url));
-    const filePath = props.downloaded ? "file://" + localPath : props.file.url;
+    const source = mediaSource();
+    if (!source) return <View style={{ width: DimensionHelper.wp("100%"), height: DimensionHelper.hp("100%") }} />;
     return (<Image
-      source={{ uri: filePath }}
+      source={source}
       style={{ width: DimensionHelper.wp("100%"), height: DimensionHelper.hp("100%") }}
       onLoad={() => setIsLoading(false)}
       onError={() => handleVideoError({ error: "image load failed" })}
@@ -160,7 +181,7 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
 
   const content = React.useMemo(() => {
     return getMessageType() === "video" ? getVideo() : getImage();
-  }, [props.file, internalPaused, props.downloaded]);
+  }, [props.file, internalPaused, props.downloaded, remoteSource]);
 
   const loadingOverlay = (
     <View style={styles.loadingOverlay}>

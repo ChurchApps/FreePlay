@@ -3,7 +3,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { View, Text, Animated, Easing } from "react-native";
 import { useTranslation } from "react-i18next";
 import { CachedData, Styles, Colors, Typography, PlanSync } from "../helpers";
-import { ProviderAuthHelper, ProviderSettingsHelper } from "../helpers";
+import { ProviderAuthHelper, ProviderSettingsHelper, AnnouncementsHelper } from "../helpers";
 import { getAvailableProviders, FREEPLAY_PROVIDER_IDS, getProvider } from "../providers";
 import { isLocked, lockedProviderId } from "../branding";
 import SoundPlayer from "react-native-sound-player";
@@ -25,6 +25,7 @@ export const SplashScreen = (props: Props) => {
     CachedData.pairingData = await CachedData.getAsyncStorage("pairingData");
     CachedData.currentPlan = await CachedData.getAsyncStorage("currentPlan");
     await ProviderSettingsHelper.loadAll();
+    await AnnouncementsHelper.load();
     if (CachedData.providerId && CachedData.pairingData) {
       const provider = getProvider(CachedData.providerId);
       provider?.setPairingData?.(CachedData.pairingData);
@@ -61,7 +62,8 @@ export const SplashScreen = (props: Props) => {
       const authType = provider?.authTypes?.[0];
       const authScreen = authType === "oauth_pkce" ? "providerOAuth"
         : authType === "form_login" ? "providerFormLogin"
-          : "providerDeviceAuth";
+          : authType === "network_discovery" ? "providerDiscovery"
+            : "providerDeviceAuth";
       props.navigateTo(authScreen, { providerId: lockedProviderId });
       return;
     }
@@ -121,6 +123,7 @@ export const SplashScreen = (props: Props) => {
     Promise.all([minDisplayTime, loadData()]).then(([, connectedProviders]) => {
       navigate(connectedProviders);
       PlanSync.syncCurrentPlan();
+      AnnouncementsHelper.sync();
     });
 
     return () => { clearTimeout(dotTimer); clearTimeout(connectingTimer); };
