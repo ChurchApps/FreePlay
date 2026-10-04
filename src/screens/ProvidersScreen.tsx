@@ -295,7 +295,7 @@ export const ProvidersScreen = (props: Props) => {
   };
 
   const handleBack = () => {
-    props.sidebarState(true);
+    props.navigateTo("settings");
     return true;
   };
 

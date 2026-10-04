@@ -26,7 +26,6 @@ notes.md
 
 expo-env.d.ts
 # @end expo-cli
-.env
 
 # Yarn Berry (Corepack-managed, node-modules linker + global cache)
 .yarn/*
@@ -41,3 +40,4 @@ expo-env.d.ts
 package-lock.json
 credentials.json
 e2e/artifacts/
+config.bat

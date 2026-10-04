@@ -11,3 +11,4 @@ export { ProvidersScreen } from "./ProvidersScreen";
 export { ProviderSettingsScreen } from "./ProviderSettingsScreen";
 export { ProviderDownloadScreen } from "./ProviderDownloadScreen";
 export { DownloadsScreen } from "./DownloadsScreen";
+export { SettingsScreen } from "./SettingsScreen";

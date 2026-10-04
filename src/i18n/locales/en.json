@@ -32,9 +32,9 @@
   },
   "nav": {
     "announcements": "Announcements",
-    "downloads": "Downloads",
+    "browse": "Browse",
     "plan": "Today's Plan",
-    "providers": "Providers"
+    "settings": "Settings"
   },
   "offline": {
     "canPlayDownloaded": "You can still play what was downloaded in advance.",
@@ -187,6 +187,16 @@
   "selectMessage": {
     "header": "Select a Message",
     "nowPlaying": "NOW PLAYING"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Play or delete content saved on this device",
+      "label": "Downloads"
+    },
+    "providers": {
+      "description": "Connect content providers and choose the announcements folder",
+      "label": "Providers"
+    }
   },
   "splash": {
     "connecting": "Connecting..."
