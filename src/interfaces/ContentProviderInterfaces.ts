@@ -13,6 +13,7 @@ export {
   ProviderLogos,
   ProviderCapabilities,
   AuthType,
+  NetworkInstance,
   Plan,
   PlanSection,
   PlanPresentation,

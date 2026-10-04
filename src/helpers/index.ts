@@ -11,3 +11,4 @@ export { ProviderSettingsHelper } from "./ProviderSettingsHelper";
 export { DownloadIndex } from "./DownloadIndex";
 export { StorageManager } from "./StorageManager";
 export { PlanSync } from "./PlanSync";
+export { AnnouncementsHelper } from "./AnnouncementsHelper";

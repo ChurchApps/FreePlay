@@ -43,7 +43,7 @@ export class DownloadIndex {
   static async verifyFiles(entry: DownloadedItemInterface): Promise<boolean> {
     for (const f of entry.messageFiles) {
       if (!f.url || f.url.trim() === "") continue;
-      const fullPath = decodeURIComponent(CachedData.getFilePath(f.url));
+      const fullPath = decodeURIComponent(CachedData.getFilePath(f.url, f.fileType));
       if (!await RNFS.exists(fullPath)) return false;
     }
     return true;
@@ -74,7 +74,7 @@ export class DownloadIndex {
     let bytesReclaimed = 0;
     for (const f of entry.messageFiles) {
       if (!f.url || f.url.trim() === "") continue;
-      const fullPath = decodeURIComponent(CachedData.getFilePath(f.url));
+      const fullPath = decodeURIComponent(CachedData.getFilePath(f.url, f.fileType));
       try {
         const stat = await RNFS.stat(fullPath);
         bytesReclaimed += Number(stat.size) || 0;

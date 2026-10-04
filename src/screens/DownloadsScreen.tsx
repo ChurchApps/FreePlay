@@ -19,6 +19,7 @@ export const DownloadsScreen = (props: Props) => {
   const [downloads, setDownloads] = React.useState<DownloadedItemInterface[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [focusedKey, setFocusedKey] = React.useState<string | null>(null);
+  const initialFocusSet = React.useRef(false);
 
   const styles: any = {
     list: {
@@ -69,9 +70,9 @@ export const DownloadsScreen = (props: Props) => {
         style={{ ...styles.item }}
         underlayColor={Colors.pressedBackground}
         onPress={() => { handleSelect(entry); }}
-        onFocus={() => setFocusedKey(entry.downloadKey)}
+        onFocus={() => { initialFocusSet.current = true; setFocusedKey(entry.downloadKey); }}
         onBlur={() => setFocusedKey(null)}
-        hasTVPreferredFocus={!props.sidebarExpanded && data.index === 0 && focusedKey !== entry.downloadKey}
+        hasTVPreferredFocus={!props.sidebarExpanded && data.index === 0 && !initialFocusSet.current}
         onLongPress={() => { handleDelete(entry); }}
       >
         <View style={{
@@ -138,7 +139,7 @@ export const DownloadsScreen = (props: Props) => {
   };
 
   const handleBack = () => {
-    props.sidebarState(true);
+    props.navigateTo("settings");
   };
 
   const init = () => {

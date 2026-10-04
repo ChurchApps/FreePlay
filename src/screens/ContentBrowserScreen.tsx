@@ -19,7 +19,7 @@ import {
   isContentFolder,
   isContentFile
 } from "../interfaces";
-import { Styles, CachedData, ProviderAuthHelper, ProviderSettingsHelper, Colors, Typography } from "../helpers";
+import { Styles, CachedData, ProviderAuthHelper, ProviderSettingsHelper, AnnouncementsHelper, Colors, Typography } from "../helpers";
 import { MenuHeader, SkeletonCard, EmptyState } from "../components";
 import { getProvider } from "../providers";
 
@@ -41,6 +41,8 @@ type Props = {
   providerId: string;
   /** Navigation stack of folders (empty = root level) */
   folderStack?: ContentFolder[];
+  /** Folder-picker mode: choosing a folder with files sets it as the announcements folder */
+  pickAnnouncements?: boolean;
 };
 
 export const ContentBrowserScreen = (props: Props) => {
@@ -83,7 +85,7 @@ export const ContentBrowserScreen = (props: Props) => {
       return;
     }
 
-    if (!ProviderSettingsHelper.getLibraryEnabledSync(props.providerId)) {
+    if (!props.pickAnnouncements && !ProviderSettingsHelper.getLibraryEnabledSync(props.providerId)) {
       props.navigateTo("providers");
       return;
     }
@@ -103,6 +105,12 @@ export const ContentBrowserScreen = (props: Props) => {
     CachedData.preventSidebarExpand = false;
   };
 
+  const pickAnnouncementsFolder = async (folder: ContentFolder) => {
+    setFetching(true);
+    await AnnouncementsHelper.setFolder(props.providerId, folder);
+    props.navigateTo("providerSettings", { providerId: props.providerId });
+  };
+
   const handleSelectFolder = async (folder: ContentFolder) => {
     if (!provider || fetching) return;
 
@@ -110,6 +118,11 @@ export const ContentBrowserScreen = (props: Props) => {
     setFetching(true);
 
     try {
+      if (props.pickAnnouncements && folder.isLeaf) {
+        await pickAnnouncementsFolder(folder);
+        return;
+      }
+
       const auth = await ProviderAuthHelper.refreshIfNeeded(props.providerId);
       if (version !== requestVersionRef.current) return;
 
@@ -133,7 +146,8 @@ export const ContentBrowserScreen = (props: Props) => {
           console.warn(`[ContentBrowser] handleSelectFolder: no files for leaf "${folder.title}" — showing empty state`);
           props.navigateTo("contentBrowser", {
             providerId: props.providerId,
-            folderStack: [...folderStack, folder]
+            folderStack: [...folderStack, folder],
+            pickAnnouncements: props.pickAnnouncements
           });
         }
         return;
@@ -144,7 +158,9 @@ export const ContentBrowserScreen = (props: Props) => {
 
       const files = contents.filter((item): item is ContentFile => item.type === "file");
 
-      if (files.length > 0) {
+      if (files.length > 0 && props.pickAnnouncements) {
+        await pickAnnouncementsFolder(folder);
+      } else if (files.length > 0) {
         CachedData.messageFiles = files.map(toMessageFile);
 
         props.navigateTo("providerDownload", {
@@ -157,7 +173,8 @@ export const ContentBrowserScreen = (props: Props) => {
       } else {
         props.navigateTo("contentBrowser", {
           providerId: props.providerId,
-          folderStack: [...folderStack, folder]
+          folderStack: [...folderStack, folder],
+          pickAnnouncements: props.pickAnnouncements
         });
       }
     } finally {
@@ -166,6 +183,11 @@ export const ContentBrowserScreen = (props: Props) => {
   };
 
   const handleSelectFile = (file: ContentFile) => {
+    if (props.pickAnnouncements) {
+      if (currentFolder && !fetching) pickAnnouncementsFolder(currentFolder);
+      return;
+    }
+
     const files = items.filter((item): item is ContentFile => item.type === "file");
 
     CachedData.messageFiles = files.map(toMessageFile);
@@ -464,19 +486,13 @@ export const ContentBrowserScreen = (props: Props) => {
   const handleBack = () => {
     if (folderStack.length > 0) {
       // Go up one level
-      const newStack = folderStack.slice(0, -1);
-      if (newStack.length === 0) {
-        // Return to root
-        props.navigateTo("contentBrowser", {
-          providerId: props.providerId,
-          folderStack: []
-        });
-      } else {
-        props.navigateTo("contentBrowser", {
-          providerId: props.providerId,
-          folderStack: newStack
-        });
-      }
+      props.navigateTo("contentBrowser", {
+        providerId: props.providerId,
+        folderStack: folderStack.slice(0, -1),
+        pickAnnouncements: props.pickAnnouncements
+      });
+    } else if (props.pickAnnouncements) {
+      props.navigateTo("providerSettings", { providerId: props.providerId });
     } else {
       // At root level, expand sidebar
       props.sidebarState(true);
@@ -484,7 +500,7 @@ export const ContentBrowserScreen = (props: Props) => {
   };
 
   const init = () => {
-    CachedData.activeProvider = props.providerId;
+    if (!props.pickAnnouncements) CachedData.activeProvider = props.providerId;
     initialFocusSet.current = false;
     CachedData.preventSidebarExpand = true;
     props.sidebarState(false);
@@ -502,6 +518,7 @@ export const ContentBrowserScreen = (props: Props) => {
   if (currentFolder) {
     headerText = currentFolder.title;
   }
+  if (props.pickAnnouncements) headerText = t("contentBrowser.pickAnnouncements");
 
   const breadcrumbs = [provider?.name || t("contentBrowser.header"), ...folderStack.map(f => f.title)];
 

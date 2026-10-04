@@ -117,6 +117,8 @@ export const ProvidersScreen = (props: Props) => {
       props.navigateTo("providerFormLogin", { providerId: providerInfo.id });
     } else if (provider.authTypes.includes("oauth_pkce")) {
       props.navigateTo("providerOAuth", { providerId: providerInfo.id });
+    } else if (provider.authTypes.includes("network_discovery")) {
+      props.navigateTo("providerDiscovery", { providerId: providerInfo.id });
     } else {
       Alert.alert(t("providers.notSupported.title"), t("providers.notSupported.message", { name: providerInfo.name }));
     }
@@ -293,7 +295,7 @@ export const ProvidersScreen = (props: Props) => {
   };
 
   const handleBack = () => {
-    props.sidebarState(true);
+    props.navigateTo("settings");
     return true;
   };
 
