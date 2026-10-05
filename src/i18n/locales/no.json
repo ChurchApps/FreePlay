@@ -12,6 +12,7 @@
     "header": "Bla gjennom innhold",
     "loadingContent": "Laster innhold...",
     "noContent": "Ingen innhold tilgjengelig",
+    "pickAnnouncements": "Velg Mappen for Kunngjøringer",
     "tryDifferentFolder": "Prøv en annen mappe"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Videoen kunne ikke lastes"
   },
   "nav": {
-    "downloads": "Nedlastinger",
+    "announcements": "Kunngjøringer",
+    "browse": "Bla gjennom",
     "plan": "Dagens Plan",
-    "providers": "Leverandører"
+    "settings": "Innstillinger"
   },
   "offline": {
     "canPlayDownloaded": "Du kan fremdeles spille av leksjonen som ble lastet ned på forhånd.",
@@ -86,6 +88,16 @@
     "unexpectedError": "En uventet feil oppstod. Prøv igjen.",
     "waiting": "Venter på autorisasjon"
   },
+  "providerDiscovery": {
+    "connectFailed": "Kunne ikke koble til den FreeShow-maskinen.",
+    "header": "Finn {{name}}",
+    "noneFound": "Fant ingen FreeShow-maskiner.",
+    "notSupported": "Denne leverandøren støtter ikke nettverkssøk.",
+    "rescan": "Søk Igjen",
+    "scanFailed": "Kunne ikke skanne nettverket. Prøv igjen.",
+    "scanning": "Ser etter FreeShow på nettverket ditt…",
+    "scanningHint": "Sørg for at FreeShow kjører på en datamaskin på dette nettverket."
+  },
   "providerDownload": {
     "download": "Last ned",
     "downloadingItem": "Laster ned element {{current}} av {{total}}",
@@ -134,6 +146,18 @@
     "waiting": "Venter på autorisasjon"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Velg en mappe fra denne leverandøren som skal spilles i løkke fra Kunngjøringer-menyen",
+      "label": "Bruk for Kunngjøringer",
+      "selected": "Spiller «{{folder}}» i løkke — {{count}} lysbilder lastet ned"
+    },
+    "announcementsUpdate": {
+      "checking": "Sjekker…",
+      "description": "Last ned nye lysbilder og fjern slettede. Kjører også hver gang appen starter.",
+      "failed": "Kunne ikke oppdatere. Sjekk tilkoblingen og at mappen fortsatt har lysbilder.",
+      "label": "Se etter Oppdateringer for Kunngjøringer",
+      "updated": "Oppdatert — {{count}} lysbilder"
+    },
     "autoDownload": {
       "description": "Bruk denne leverandøren som kilde for dagens leksjon og forhåndslast filer",
       "label": "Last Ned Dagens Leksjon Automatisk"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Velg en melding",
     "nowPlaying": "SPILLER NÅ"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Spill av eller slett innhold som er lagret på denne enheten",
+      "label": "Nedlastinger"
+    },
+    "providers": {
+      "description": "Koble til innholdsleverandører og velg mappen for kunngjøringer",
+      "label": "Leverandører"
+    }
   },
   "splash": {
     "connecting": "Kobler til..."

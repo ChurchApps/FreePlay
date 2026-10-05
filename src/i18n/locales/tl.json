@@ -12,6 +12,7 @@
     "header": "Mag-browse ng Nilalaman",
     "loadingContent": "Naglo-load ng nilalaman...",
     "noContent": "Walang available na nilalaman",
+    "pickAnnouncements": "Piliin ang Folder ng mga Anunsyo",
     "tryDifferentFolder": "Subukan ang ibang folder"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Nabigong i-load ang video"
   },
   "nav": {
-    "downloads": "Mga Download",
+    "announcements": "Mga Anunsyo",
+    "browse": "Mag-browse",
     "plan": "Plano Ngayong Araw",
-    "providers": "Mga Provider"
+    "settings": "Mga Setting"
   },
   "offline": {
     "canPlayDownloaded": "Maaari mo pa ring i-play ang aralin na na-download nang maaga.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Naganap ang hindi inaasahang error. Pakisubukan muli.",
     "waiting": "Naghihintay ng awtorisasyon"
   },
+  "providerDiscovery": {
+    "connectFailed": "Hindi makakonekta sa FreeShow machine na iyon.",
+    "header": "Hanapin ang {{name}}",
+    "noneFound": "Walang nakitang FreeShow machine.",
+    "notSupported": "Hindi sinusuportahan ng provider na ito ang network discovery.",
+    "rescan": "I-scan Muli",
+    "scanFailed": "Hindi ma-scan ang network. Subukang muli.",
+    "scanning": "Hinahanap ang FreeShow sa iyong network…",
+    "scanningHint": "Tiyaking tumatakbo ang FreeShow sa isang computer sa network na ito."
+  },
   "providerDownload": {
     "download": "I-download",
     "downloadingItem": "Dina-download ang item {{current}} ng {{total}}",
@@ -134,6 +146,18 @@
     "waiting": "Naghihintay ng awtorisasyon"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Pumili ng folder mula sa provider na ito na paulit-ulit na ipapakita mula sa menu ng Mga Anunsyo",
+      "label": "Gamitin para sa mga Anunsyo",
+      "selected": "Paulit-ulit na ipinapakita ang \"{{folder}}\" — {{count}} slide ang na-download"
+    },
+    "announcementsUpdate": {
+      "checking": "Sinusuri…",
+      "description": "Mag-download ng mga bagong slide at alisin ang mga binura. Tumatakbo rin tuwing magsisimula ang app.",
+      "failed": "Hindi ma-update. Suriin ang koneksyon at kung may mga slide pa ang folder.",
+      "label": "Tingnan ang mga Update sa Anunsyo",
+      "updated": "Napapanahon — {{count}} slide"
+    },
     "autoDownload": {
       "description": "Gamitin ang provider na ito bilang pinagmulan ng aralin ngayong araw at i-download nang maaga ang mga file",
       "label": "Awtomatikong I-download ang Aralin Ngayong Araw"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Pumili ng Mensahe",
     "nowPlaying": "PINAPATUGTOG NGAYON"
+  },
+  "settings": {
+    "downloads": {
+      "description": "I-play o burahin ang nilalamang naka-save sa device na ito",
+      "label": "Mga Download"
+    },
+    "providers": {
+      "description": "Ikonekta ang mga content provider at piliin ang folder ng mga anunsyo",
+      "label": "Mga Provider"
+    }
   },
   "splash": {
     "connecting": "Kumokonekta..."

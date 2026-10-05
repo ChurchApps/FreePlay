@@ -12,6 +12,7 @@
     "header": "Sfoglia contenuti",
     "loadingContent": "Caricamento contenuti...",
     "noContent": "Nessun contenuto disponibile",
+    "pickAnnouncements": "Scegli la Cartella degli Annunci",
     "tryDifferentFolder": "Prova una cartella diversa"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Caricamento video non riuscito"
   },
   "nav": {
-    "downloads": "Download",
+    "announcements": "Annunci",
+    "browse": "Sfoglia",
     "plan": "Piano di Oggi",
-    "providers": "Fornitori"
+    "settings": "Impostazioni"
   },
   "offline": {
     "canPlayDownloaded": "Puoi comunque riprodurre la lezione che è stata scaricata in anticipo.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Si è verificato un errore imprevisto. Riprova.",
     "waiting": "In attesa di autorizzazione"
   },
+  "providerDiscovery": {
+    "connectFailed": "Impossibile connettersi a quel computer FreeShow.",
+    "header": "Trova {{name}}",
+    "noneFound": "Nessun computer FreeShow trovato.",
+    "notSupported": "Questo provider non supporta il rilevamento di rete.",
+    "rescan": "Cerca di Nuovo",
+    "scanFailed": "Impossibile analizzare la rete. Riprova.",
+    "scanning": "Ricerca di FreeShow sulla tua rete…",
+    "scanningHint": "Assicurati che FreeShow sia in esecuzione su un computer di questa rete."
+  },
   "providerDownload": {
     "download": "Scarica",
     "downloadingItem": "Download elemento {{current}} di {{total}}",
@@ -134,6 +146,18 @@
     "waiting": "In attesa di autorizzazione"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Scegli una cartella di questo provider da riprodurre in loop dal menu Annunci",
+      "label": "Usa per gli Annunci",
+      "selected": "Riproduzione in loop di \"{{folder}}\" — {{count}} slide scaricate"
+    },
+    "announcementsUpdate": {
+      "checking": "Verifica in corso…",
+      "description": "Scarica le nuove slide e rimuove quelle eliminate. Viene eseguito anche a ogni avvio dell'app.",
+      "failed": "Impossibile aggiornare. Controlla la connessione e che la cartella contenga ancora delle slide.",
+      "label": "Controlla Aggiornamenti degli Annunci",
+      "updated": "Aggiornato — {{count}} slide"
+    },
     "autoDownload": {
       "description": "Usa questo provider come fonte della lezione di oggi e precarica i file",
       "label": "Scarica Automaticamente la Lezione di Oggi"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Seleziona un messaggio",
     "nowPlaying": "IN RIPRODUZIONE ORA"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Riproduci o elimina i contenuti salvati su questo dispositivo",
+      "label": "Download"
+    },
+    "providers": {
+      "description": "Collega i provider di contenuti e scegli la cartella degli annunci",
+      "label": "Fornitori"
+    }
   },
   "splash": {
     "connecting": "Connessione in corso..."

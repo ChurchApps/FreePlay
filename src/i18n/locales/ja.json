@@ -12,6 +12,7 @@
     "header": "コンテンツを閲覧",
     "loadingContent": "コンテンツを読み込み中...",
     "noContent": "利用可能なコンテンツがありません",
+    "pickAnnouncements": "お知らせフォルダーを選択",
     "tryDifferentFolder": "別のフォルダを試す"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "動画の読み込みに失敗しました"
   },
   "nav": {
-    "downloads": "ダウンロード",
+    "announcements": "お知らせ",
+    "browse": "閲覧",
     "plan": "本日のプラン",
-    "providers": "プロバイダー"
+    "settings": "設定"
   },
   "offline": {
     "canPlayDownloaded": "事前にダウンロードしたレッスンは引き続き再生できます。",
@@ -86,6 +88,16 @@
     "unexpectedError": "予期しないエラーが発生しました。再度お試しください。",
     "waiting": "認証を待機中"
   },
+  "providerDiscovery": {
+    "connectFailed": "その FreeShow マシンに接続できませんでした。",
+    "header": "{{name}} を検索",
+    "noneFound": "FreeShow マシンが見つかりませんでした。",
+    "notSupported": "このプロバイダーはネットワーク検出に対応していません。",
+    "rescan": "再スキャン",
+    "scanFailed": "ネットワークをスキャンできませんでした。もう一度お試しください。",
+    "scanning": "ネットワーク上の FreeShow を検索しています…",
+    "scanningHint": "このネットワーク上のコンピューターで FreeShow が実行されていることを確認してください。"
+  },
   "providerDownload": {
     "download": "ダウンロード",
     "downloadingItem": "{{total}}個中{{current}}個目をダウンロード中",
@@ -134,6 +146,18 @@
     "waiting": "認証を待機中"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "お知らせメニューからループ再生する、このプロバイダーのフォルダーを選択します",
+      "label": "お知らせに使用",
+      "selected": "「{{folder}}」をループ再生中 — {{count}} 枚のスライドをダウンロード済み"
+    },
+    "announcementsUpdate": {
+      "checking": "確認中…",
+      "description": "新しいスライドをダウンロードし、削除されたスライドを取り除きます。アプリの起動時にも毎回実行されます。",
+      "failed": "更新できませんでした。接続と、フォルダーにまだスライドがあることを確認してください。",
+      "label": "お知らせの更新を確認",
+      "updated": "最新です — スライド {{count}} 枚"
+    },
     "autoDownload": {
       "description": "このプロバイダーを本日のレッスンのソースとして使用し、ファイルを事前にダウンロードします",
       "label": "本日のレッスンを自動ダウンロード"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "メッセージを選択",
     "nowPlaying": "再生中"
+  },
+  "settings": {
+    "downloads": {
+      "description": "このデバイスに保存されたコンテンツを再生または削除します",
+      "label": "ダウンロード"
+    },
+    "providers": {
+      "description": "コンテンツプロバイダーを接続し、お知らせフォルダーを選択します",
+      "label": "プロバイダー"
+    }
   },
   "splash": {
     "connecting": "接続中..."

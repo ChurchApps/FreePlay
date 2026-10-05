@@ -12,6 +12,7 @@
     "header": "Duyệt nội dung",
     "loadingContent": "Đang tải nội dung...",
     "noContent": "Không có nội dung khả dụng",
+    "pickAnnouncements": "Chọn Thư Mục Thông Báo",
     "tryDifferentFolder": "Hãy thử một thư mục khác"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Không thể tải video"
   },
   "nav": {
-    "downloads": "Tải xuống",
+    "announcements": "Thông báo",
+    "browse": "Duyệt",
     "plan": "Kế Hoạch Hôm Nay",
-    "providers": "Nhà cung cấp"
+    "settings": "Cài đặt"
   },
   "offline": {
     "canPlayDownloaded": "Bạn vẫn có thể phát bài học đã được tải xuống trước.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Đã xảy ra lỗi không mong muốn. Vui lòng thử lại.",
     "waiting": "Đang chờ ủy quyền"
   },
+  "providerDiscovery": {
+    "connectFailed": "Không thể kết nối với máy FreeShow đó.",
+    "header": "Tìm {{name}}",
+    "noneFound": "Không tìm thấy máy FreeShow nào.",
+    "notSupported": "Nhà cung cấp này không hỗ trợ dò tìm qua mạng.",
+    "rescan": "Quét Lại",
+    "scanFailed": "Không thể quét mạng. Hãy thử lại.",
+    "scanning": "Đang tìm FreeShow trên mạng của bạn…",
+    "scanningHint": "Hãy đảm bảo FreeShow đang chạy trên một máy tính trong mạng này."
+  },
   "providerDownload": {
     "download": "Tải xuống",
     "downloadingItem": "Đang tải xuống mục {{current}} trong số {{total}}",
@@ -134,6 +146,18 @@
     "waiting": "Đang chờ ủy quyền"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Chọn một thư mục từ nhà cung cấp này để phát lặp lại từ menu Thông báo",
+      "label": "Dùng cho Thông Báo",
+      "selected": "Đang phát lặp \"{{folder}}\" — đã tải xuống {{count}} trang chiếu"
+    },
+    "announcementsUpdate": {
+      "checking": "Đang kiểm tra…",
+      "description": "Tải xuống trang chiếu mới và xóa các trang đã bị xóa. Cũng chạy mỗi khi ứng dụng khởi động.",
+      "failed": "Không thể cập nhật. Hãy kiểm tra kết nối và thư mục vẫn còn trang chiếu.",
+      "label": "Kiểm Tra Cập Nhật Thông Báo",
+      "updated": "Đã cập nhật — {{count}} trang chiếu"
+    },
     "autoDownload": {
       "description": "Sử dụng nhà cung cấp này làm nguồn cho bài học hôm nay và tải trước tệp",
       "label": "Tự Động Tải Bài Học Hôm Nay"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Chọn một tin nhắn",
     "nowPlaying": "ĐANG PHÁT"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Phát hoặc xóa nội dung đã lưu trên thiết bị này",
+      "label": "Tải xuống"
+    },
+    "providers": {
+      "description": "Kết nối nhà cung cấp nội dung và chọn thư mục thông báo",
+      "label": "Nhà cung cấp"
+    }
   },
   "splash": {
     "connecting": "Đang kết nối..."

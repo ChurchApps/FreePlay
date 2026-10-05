@@ -12,6 +12,7 @@
     "header": "Inhoud doorzoeken",
     "loadingContent": "Inhoud laden...",
     "noContent": "Geen inhoud beschikbaar",
+    "pickAnnouncements": "Kies de Map voor Mededelingen",
     "tryDifferentFolder": "Probeer een ander mapje"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Video kon niet worden geladen"
   },
   "nav": {
-    "downloads": "Downloads",
+    "announcements": "Mededelingen",
+    "browse": "Bladeren",
     "plan": "Plan van Vandaag",
-    "providers": "Aanbieders"
+    "settings": "Instellingen"
   },
   "offline": {
     "canPlayDownloaded": "U kunt de les die vooraf is gedownload nog steeds afspelen.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
     "waiting": "Wachten op autorisatie"
   },
+  "providerDiscovery": {
+    "connectFailed": "Kan geen verbinding maken met die FreeShow-computer.",
+    "header": "{{name}} Zoeken",
+    "noneFound": "Er zijn geen FreeShow-computers gevonden.",
+    "notSupported": "Deze aanbieder ondersteunt geen netwerkdetectie.",
+    "rescan": "Opnieuw Zoeken",
+    "scanFailed": "Kan het netwerk niet scannen. Probeer het opnieuw.",
+    "scanning": "Zoeken naar FreeShow op uw netwerk…",
+    "scanningHint": "Zorg ervoor dat FreeShow draait op een computer in dit netwerk."
+  },
   "providerDownload": {
     "download": "Downloaden",
     "downloadingItem": "Item {{current}} van {{total}} wordt gedownload",
@@ -134,6 +146,18 @@
     "waiting": "Wachten op autorisatie"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Kies een map van deze aanbieder om in een lus af te spelen vanuit het menu Mededelingen",
+      "label": "Gebruiken voor Mededelingen",
+      "selected": "\"{{folder}}\" wordt herhaald — {{count}} dia's gedownload"
+    },
+    "announcementsUpdate": {
+      "checking": "Controleren…",
+      "description": "Download nieuwe dia's en verwijder verwijderde dia's. Wordt ook uitgevoerd bij elke start van de app.",
+      "failed": "Kan niet bijwerken. Controleer de verbinding en of de map nog dia's bevat.",
+      "label": "Controleren op Updates voor Mededelingen",
+      "updated": "Bijgewerkt — {{count}} dia's"
+    },
     "autoDownload": {
       "description": "Gebruik deze provider als bron voor de les van vandaag en download bestanden vooraf",
       "label": "Les van Vandaag Automatisch Downloaden"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Selecteer een bericht",
     "nowPlaying": "NU AAN HET SPELEN"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Inhoud die op dit apparaat is opgeslagen afspelen of verwijderen",
+      "label": "Downloads"
+    },
+    "providers": {
+      "description": "Verbind inhoudsaanbieders en kies de map voor mededelingen",
+      "label": "Aanbieders"
+    }
   },
   "splash": {
     "connecting": "Verbinden..."

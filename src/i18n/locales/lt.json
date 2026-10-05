@@ -12,6 +12,7 @@
     "header": "Naršyti turinį",
     "loadingContent": "Kraunamas turinys...",
     "noContent": "Turinys neprieinamas",
+    "pickAnnouncements": "Pasirinkite Skelbimų Aplanką",
     "tryDifferentFolder": "Pabandykite kitą aplanką"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Nepavyko įkelti vaizdo įrašo"
   },
   "nav": {
-    "downloads": "Atsisiuntimai",
+    "announcements": "Skelbimai",
+    "browse": "Naršyti",
     "plan": "Šiandienos Planas",
-    "providers": "Tiekėjai"
+    "settings": "Nustatymai"
   },
   "offline": {
     "canPlayDownloaded": "Vis tiek galite atkurti pamoką, kuri buvo atsisiųsta iš anksto.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Įvyko netikėta klaida. Bandykite dar kartą.",
     "waiting": "Laukiama autorizavimo"
   },
+  "providerDiscovery": {
+    "connectFailed": "Nepavyko prisijungti prie to FreeShow kompiuterio.",
+    "header": "Rasti {{name}}",
+    "noneFound": "FreeShow kompiuterių nerasta.",
+    "notSupported": "Šis tiekėjas nepalaiko tinklo aptikimo.",
+    "rescan": "Ieškoti Dar Kartą",
+    "scanFailed": "Nepavyko nuskaityti tinklo. Bandykite dar kartą.",
+    "scanning": "Ieškoma FreeShow jūsų tinkle…",
+    "scanningHint": "Įsitikinkite, kad FreeShow veikia šio tinklo kompiuteryje."
+  },
   "providerDownload": {
     "download": "Atsisiųsti",
     "downloadingItem": "Atsisiunčiama {{current}} iš {{total}}",
@@ -134,6 +146,18 @@
     "waiting": "Laukiama autorizavimo"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Pasirinkite šio tiekėjo aplanką, kuris bus kartojamas iš meniu Skelbimai",
+      "label": "Naudoti Skelbimams",
+      "selected": "Kartojamas „{{folder}}“ — atsisiųsta skaidrių: {{count}}"
+    },
+    "announcementsUpdate": {
+      "checking": "Tikrinama…",
+      "description": "Atsisiunčia naujas skaidres ir pašalina ištrintas. Taip pat vykdoma kaskart paleidus programėlę.",
+      "failed": "Nepavyko atnaujinti. Patikrinkite ryšį ir ar aplanke vis dar yra skaidrių.",
+      "label": "Tikrinti Skelbimų Atnaujinimus",
+      "updated": "Naujausia — skaidrių: {{count}}"
+    },
     "autoDownload": {
       "description": "Naudokite šį teikėją kaip šiandienos pamokos šaltinį ir iš anksto atsisiųskite failus",
       "label": "Automatiškai Atsisiųsti Šiandienos Pamoką"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Pasirinkite žinutę",
     "nowPlaying": "DABAR GROJAMA"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Paleiskite arba ištrinkite šiame įrenginyje išsaugotą turinį",
+      "label": "Atsisiuntimai"
+    },
+    "providers": {
+      "description": "Prijunkite turinio tiekėjus ir pasirinkite skelbimų aplanką",
+      "label": "Tiekėjai"
+    }
   },
   "splash": {
     "connecting": "Jungiamasi..."

@@ -12,6 +12,7 @@
     "header": "Jelajahi Konten",
     "loadingContent": "Memuat konten...",
     "noContent": "Tidak ada konten yang tersedia",
+    "pickAnnouncements": "Pilih Folder Pengumuman",
     "tryDifferentFolder": "Coba folder yang berbeda"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Video gagal dimuat"
   },
   "nav": {
-    "downloads": "Unduhan",
+    "announcements": "Pengumuman",
+    "browse": "Jelajahi",
     "plan": "Rencana Hari Ini",
-    "providers": "Penyedia"
+    "settings": "Pengaturan"
   },
   "offline": {
     "canPlayDownloaded": "Anda masih dapat memutar pelajaran yang telah diunduh sebelumnya.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Terjadi kesalahan tak terduga. Silakan coba lagi.",
     "waiting": "Menunggu otorisasi"
   },
+  "providerDiscovery": {
+    "connectFailed": "Tidak dapat terhubung ke mesin FreeShow tersebut.",
+    "header": "Cari {{name}}",
+    "noneFound": "Tidak ada mesin FreeShow yang ditemukan.",
+    "notSupported": "Penyedia ini tidak mendukung penemuan jaringan.",
+    "rescan": "Pindai Lagi",
+    "scanFailed": "Tidak dapat memindai jaringan. Coba lagi.",
+    "scanning": "Mencari FreeShow di jaringan Anda…",
+    "scanningHint": "Pastikan FreeShow berjalan di komputer pada jaringan ini."
+  },
   "providerDownload": {
     "download": "Unduh",
     "downloadingItem": "Mengunduh item {{current}} dari {{total}}",
@@ -134,6 +146,18 @@
     "waiting": "Menunggu otorisasi"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Pilih folder dari penyedia ini untuk diputar berulang dari menu Pengumuman",
+      "label": "Gunakan untuk Pengumuman",
+      "selected": "Memutar berulang \"{{folder}}\" — {{count}} slide diunduh"
+    },
+    "announcementsUpdate": {
+      "checking": "Memeriksa…",
+      "description": "Unduh slide baru dan hapus slide yang telah dihapus. Juga berjalan setiap kali aplikasi dimulai.",
+      "failed": "Tidak dapat memperbarui. Periksa koneksi dan pastikan folder masih berisi slide.",
+      "label": "Periksa Pembaruan Pengumuman",
+      "updated": "Terbaru — {{count}} slide"
+    },
     "autoDownload": {
       "description": "Gunakan penyedia ini sebagai sumber pelajaran hari ini dan unduh file terlebih dahulu",
       "label": "Unduh Otomatis Pelajaran Hari Ini"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Pilih Pesan",
     "nowPlaying": "SEDANG DIPUTAR"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Putar atau hapus konten yang disimpan di perangkat ini",
+      "label": "Unduhan"
+    },
+    "providers": {
+      "description": "Hubungkan penyedia konten dan pilih folder pengumuman",
+      "label": "Penyedia"
+    }
   },
   "splash": {
     "connecting": "Menghubungkan..."

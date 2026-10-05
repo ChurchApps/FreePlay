@@ -12,6 +12,7 @@
     "header": "Gennemse indhold",
     "loadingContent": "Indlæser indhold...",
     "noContent": "Intet indhold tilgængeligt",
+    "pickAnnouncements": "Vælg mappen til meddelelser",
     "tryDifferentFolder": "Prøv en anden mappe"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Videoen kunne ikke indlæses"
   },
   "nav": {
-    "downloads": "Downloads",
+    "announcements": "Meddelelser",
+    "browse": "Gennemse",
     "plan": "Dagens Plan",
-    "providers": "Udbydere"
+    "settings": "Indstillinger"
   },
   "offline": {
     "canPlayDownloaded": "Du kan stadig afspille lektionen, der blev downloadet på forhånd.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Der opstod en uventet fejl. Prøv igen.",
     "waiting": "Venter på godkendelse"
   },
+  "providerDiscovery": {
+    "connectFailed": "Kunne ikke oprette forbindelse til den FreeShow-maskine.",
+    "header": "Find {{name}}",
+    "noneFound": "Der blev ikke fundet nogen FreeShow-maskiner.",
+    "notSupported": "Denne udbyder understøtter ikke netværkssøgning.",
+    "rescan": "Søg igen",
+    "scanFailed": "Kunne ikke scanne netværket. Prøv igen.",
+    "scanning": "Leder efter FreeShow på dit netværk…",
+    "scanningHint": "Sørg for, at FreeShow kører på en computer på dette netværk."
+  },
   "providerDownload": {
     "download": "Download",
     "downloadingItem": "Downloader element {{current}} af {{total}}",
@@ -134,6 +146,18 @@
     "waiting": "Venter på godkendelse"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Vælg en mappe fra denne udbyder, der skal afspilles i løkke fra menuen Meddelelser",
+      "label": "Brug til meddelelser",
+      "selected": "Afspiller \"{{folder}}\" i løkke — {{count}} dias downloadet"
+    },
+    "announcementsUpdate": {
+      "checking": "Kontrollerer…",
+      "description": "Download nye dias og fjern slettede. Kører også hver gang appen starter.",
+      "failed": "Kunne ikke opdatere. Kontrollér forbindelsen, og at mappen stadig indeholder dias.",
+      "label": "Søg efter opdateringer til meddelelser",
+      "updated": "Opdateret — {{count}} dias"
+    },
     "autoDownload": {
       "description": "Brug denne udbyder som kilde til dagens lektion og forhåndsdownload filer",
       "label": "Download Automatisk Dagens Lektion"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Vælg en besked",
     "nowPlaying": "AFSPILLES NU"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Afspil eller slet indhold, der er gemt på denne enhed",
+      "label": "Downloads"
+    },
+    "providers": {
+      "description": "Forbind indholdsudbydere, og vælg mappen til meddelelser",
+      "label": "Udbydere"
+    }
   },
   "splash": {
     "connecting": "Opretter forbindelse..."

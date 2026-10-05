@@ -12,6 +12,7 @@
     "header": "Tartalom böngészése",
     "loadingContent": "Tartalom betöltése...",
     "noContent": "Nincs elérhető tartalom",
+    "pickAnnouncements": "Hirdetések Mappájának Kiválasztása",
     "tryDifferentFolder": "Próbálja meg egy másik mappát"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "A videó nem töltődött be"
   },
   "nav": {
-    "downloads": "Letöltések",
+    "announcements": "Hirdetések",
+    "browse": "Böngészés",
     "plan": "Mai Terv",
-    "providers": "Szolgáltatók"
+    "settings": "Beállítások"
   },
   "offline": {
     "canPlayDownloaded": "Még mindig lejátszhatja az előre letöltött leckét.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Váratlan hiba történt. Próbálja újra.",
     "waiting": "Várakozás engedélyezésre"
   },
+  "providerDiscovery": {
+    "connectFailed": "Nem sikerült csatlakozni ehhez a FreeShow-géphez.",
+    "header": "{{name}} Keresése",
+    "noneFound": "Nem található FreeShow-gép.",
+    "notSupported": "Ez a szolgáltató nem támogatja a hálózati keresést.",
+    "rescan": "Keresés Újra",
+    "scanFailed": "Nem sikerült átvizsgálni a hálózatot. Próbálja újra.",
+    "scanning": "FreeShow keresése a hálózaton…",
+    "scanningHint": "Győződjön meg arról, hogy a FreeShow fut egy ezen a hálózaton lévő számítógépen."
+  },
   "providerDownload": {
     "download": "Letöltés",
     "downloadingItem": "{{current}}. elem letöltése a következőből: {{total}}",
@@ -134,6 +146,18 @@
     "waiting": "Várakozás engedélyezésre"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Válasszon egy mappát ettől a szolgáltatótól, amely ismétlődve fut a Hirdetések menüből",
+      "label": "Használat Hirdetésekhez",
+      "selected": "„{{folder}}” ismétlése — {{count}} dia letöltve"
+    },
+    "announcementsUpdate": {
+      "checking": "Ellenőrzés…",
+      "description": "Új diák letöltése és a törölt diák eltávolítása. Az alkalmazás minden indításakor is lefut.",
+      "failed": "Nem sikerült frissíteni. Ellenőrizze a kapcsolatot, és hogy a mappában vannak-e még diák.",
+      "label": "Hirdetésfrissítések Keresése",
+      "updated": "Naprakész — {{count}} dia"
+    },
     "autoDownload": {
       "description": "Használja ezt a szolgáltatót a mai lecke forrásaként, és töltse le előre a fájlokat",
       "label": "Mai Lecke Automatikus Letöltése"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Válasszon üzenetet",
     "nowPlaying": "MOST JÁTSSZIK"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Az eszközön mentett tartalom lejátszása vagy törlése",
+      "label": "Letöltések"
+    },
+    "providers": {
+      "description": "Tartalomszolgáltatók csatlakoztatása és a hirdetések mappájának kiválasztása",
+      "label": "Szolgáltatók"
+    }
   },
   "splash": {
     "connecting": "Csatlakozás..."

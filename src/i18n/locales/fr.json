@@ -12,6 +12,7 @@
     "header": "Parcourir le contenu",
     "loadingContent": "Chargement du contenu...",
     "noContent": "Aucun contenu disponible",
+    "pickAnnouncements": "Choisir le dossier des annonces",
     "tryDifferentFolder": "Essayez un dossier différent"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Échec du chargement de la vidéo"
   },
   "nav": {
-    "downloads": "Téléchargements",
+    "announcements": "Annonces",
+    "browse": "Parcourir",
     "plan": "Plan du Jour",
-    "providers": "Fournisseurs"
+    "settings": "Paramètres"
   },
   "offline": {
     "canPlayDownloaded": "Vous pouvez toujours lire la leçon qui a été téléchargée à l'avance.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Une erreur inattendue s'est produite. Veuillez réessayer.",
     "waiting": "En attente d'autorisation"
   },
+  "providerDiscovery": {
+    "connectFailed": "Impossible de se connecter à cette machine FreeShow.",
+    "header": "Rechercher {{name}}",
+    "noneFound": "Aucune machine FreeShow n'a été trouvée.",
+    "notSupported": "Ce fournisseur ne prend pas en charge la découverte réseau.",
+    "rescan": "Rechercher à nouveau",
+    "scanFailed": "Impossible d'analyser le réseau. Réessayez.",
+    "scanning": "Recherche de FreeShow sur votre réseau…",
+    "scanningHint": "Assurez-vous que FreeShow est en cours d'exécution sur un ordinateur de ce réseau."
+  },
   "providerDownload": {
     "download": "Télécharger",
     "downloadingItem": "Téléchargement de l'élément {{current}} sur {{total}}",
@@ -134,6 +146,18 @@
     "waiting": "En attente d'autorisation"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Choisissez un dossier de ce fournisseur à diffuser en boucle depuis le menu Annonces",
+      "label": "Utiliser pour les annonces",
+      "selected": "Diffusion en boucle de « {{folder}} » — {{count}} diapositives téléchargées"
+    },
+    "announcementsUpdate": {
+      "checking": "Vérification…",
+      "description": "Télécharge les nouvelles diapositives et supprime celles qui ont été effacées. S'exécute aussi à chaque démarrage de l'application.",
+      "failed": "Mise à jour impossible. Vérifiez la connexion et que le dossier contient toujours des diapositives.",
+      "label": "Rechercher des mises à jour des annonces",
+      "updated": "À jour — {{count}} diapositives"
+    },
     "autoDownload": {
       "description": "Utiliser ce fournisseur comme source de la leçon du jour et précharger les fichiers",
       "label": "Téléchargement Automatique de la Leçon du Jour"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Sélectionner un message",
     "nowPlaying": "EN COURS DE LECTURE"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Lire ou supprimer le contenu enregistré sur cet appareil",
+      "label": "Téléchargements"
+    },
+    "providers": {
+      "description": "Connectez des fournisseurs de contenu et choisissez le dossier des annonces",
+      "label": "Fournisseurs"
+    }
   },
   "splash": {
     "connecting": "Connexion..."

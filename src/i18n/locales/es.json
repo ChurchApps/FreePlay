@@ -12,6 +12,7 @@
     "header": "Explorar contenido",
     "loadingContent": "Cargando contenido...",
     "noContent": "No hay contenido disponible",
+    "pickAnnouncements": "Elegir la carpeta de anuncios",
     "tryDifferentFolder": "Intenta una carpeta diferente"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Error al cargar el video"
   },
   "nav": {
-    "downloads": "Descargas",
+    "announcements": "Anuncios",
+    "browse": "Explorar",
     "plan": "Plan de Hoy",
-    "providers": "Proveedores"
+    "settings": "Configuración"
   },
   "offline": {
     "canPlayDownloaded": "Aún puede reproducir la lección que se descargó previamente.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Se produjo un error inesperado. Inténtelo de nuevo.",
     "waiting": "Esperando autorización"
   },
+  "providerDiscovery": {
+    "connectFailed": "No se pudo conectar con ese equipo de FreeShow.",
+    "header": "Buscar {{name}}",
+    "noneFound": "No se encontraron equipos de FreeShow.",
+    "notSupported": "Este proveedor no admite la detección en red.",
+    "rescan": "Buscar de nuevo",
+    "scanFailed": "No se pudo escanear la red. Inténtalo de nuevo.",
+    "scanning": "Buscando FreeShow en tu red…",
+    "scanningHint": "Asegúrate de que FreeShow se esté ejecutando en una computadora de esta red."
+  },
   "providerDownload": {
     "download": "Descargar",
     "downloadingItem": "Descargando elemento {{current}} de {{total}}",
@@ -134,6 +146,18 @@
     "waiting": "Esperando autorización"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Elige una carpeta de este proveedor para reproducir en bucle desde el menú Anuncios",
+      "label": "Usar para anuncios",
+      "selected": "Reproduciendo en bucle «{{folder}}» — {{count}} diapositivas descargadas"
+    },
+    "announcementsUpdate": {
+      "checking": "Comprobando…",
+      "description": "Descarga diapositivas nuevas y elimina las borradas. También se ejecuta cada vez que se inicia la aplicación.",
+      "failed": "No se pudo actualizar. Comprueba la conexión y que la carpeta todavía tenga diapositivas.",
+      "label": "Buscar actualizaciones de anuncios",
+      "updated": "Actualizado — {{count}} diapositivas"
+    },
     "autoDownload": {
       "description": "Usa este proveedor como fuente de la lección de hoy y precarga los archivos",
       "label": "Descargar Automáticamente la Lección de Hoy"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Seleccione un mensaje",
     "nowPlaying": "REPRODUCIENDO AHORA"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Reproduce o elimina el contenido guardado en este dispositivo",
+      "label": "Descargas"
+    },
+    "providers": {
+      "description": "Conecta proveedores de contenido y elige la carpeta de anuncios",
+      "label": "Proveedores"
+    }
   },
   "splash": {
     "connecting": "Conectando..."

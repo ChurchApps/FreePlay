@@ -12,6 +12,7 @@
     "header": "Przeglądaj treści",
     "loadingContent": "Ładowanie zawartości...",
     "noContent": "Brak dostępnych treści",
+    "pickAnnouncements": "Wybierz Folder Ogłoszeń",
     "tryDifferentFolder": "Spróbuj innego folderu"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Nie udało się załadować wideo"
   },
   "nav": {
-    "downloads": "Pobrane",
+    "announcements": "Ogłoszenia",
+    "browse": "Przeglądaj",
     "plan": "Dzisiejszy Plan",
-    "providers": "Dostawcy"
+    "settings": "Ustawienia"
   },
   "offline": {
     "canPlayDownloaded": "Nadal możesz odtworzyć lekcję, która została wcześniej pobrana.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Wystąpił nieoczekiwany błąd. Spróbuj ponownie.",
     "waiting": "Oczekiwanie na autoryzację"
   },
+  "providerDiscovery": {
+    "connectFailed": "Nie można połączyć się z tym komputerem FreeShow.",
+    "header": "Znajdź {{name}}",
+    "noneFound": "Nie znaleziono żadnych komputerów FreeShow.",
+    "notSupported": "Ten dostawca nie obsługuje wykrywania w sieci.",
+    "rescan": "Skanuj Ponownie",
+    "scanFailed": "Nie można przeskanować sieci. Spróbuj ponownie.",
+    "scanning": "Wyszukiwanie FreeShow w Twojej sieci…",
+    "scanningHint": "Upewnij się, że FreeShow działa na komputerze w tej sieci."
+  },
   "providerDownload": {
     "download": "Pobierz",
     "downloadingItem": "Pobieranie elementu {{current}} z {{total}}",
@@ -134,6 +146,18 @@
     "waiting": "Oczekiwanie na autoryzację"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Wybierz folder tego dostawcy, który będzie odtwarzany w pętli z menu Ogłoszenia",
+      "label": "Użyj do Ogłoszeń",
+      "selected": "Odtwarzanie w pętli „{{folder}}” — pobrane slajdy: {{count}}"
+    },
+    "announcementsUpdate": {
+      "checking": "Sprawdzanie…",
+      "description": "Pobiera nowe slajdy i usuwa skasowane. Uruchamia się także przy każdym starcie aplikacji.",
+      "failed": "Nie można zaktualizować. Sprawdź połączenie i czy folder nadal zawiera slajdy.",
+      "label": "Sprawdź Aktualizacje Ogłoszeń",
+      "updated": "Aktualne — slajdy: {{count}}"
+    },
     "autoDownload": {
       "description": "Użyj tego dostawcy jako źródła dzisiejszej lekcji i pobierz pliki z wyprzedzeniem",
       "label": "Automatycznie Pobierz Dzisiejszą Lekcję"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Wybierz wiadomość",
     "nowPlaying": "TERAZ ODTWARZANE"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Odtwarzaj lub usuwaj treści zapisane na tym urządzeniu",
+      "label": "Pobrane"
+    },
+    "providers": {
+      "description": "Połącz dostawców treści i wybierz folder ogłoszeń",
+      "label": "Dostawcy"
+    }
   },
   "splash": {
     "connecting": "Łączenie..."

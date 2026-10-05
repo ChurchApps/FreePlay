@@ -12,6 +12,7 @@
     "header": "İçeriğe Göz At",
     "loadingContent": "İçerik yükleniyor...",
     "noContent": "Kullanılabilir içerik yok",
+    "pickAnnouncements": "Duyurular Klasörünü Seçin",
     "tryDifferentFolder": "Farklı bir klasör deneyin"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Video yüklenemedi"
   },
   "nav": {
-    "downloads": "İndirilenler",
+    "announcements": "Duyurular",
+    "browse": "Göz At",
     "plan": "Bugünün Planı",
-    "providers": "Sağlayıcılar"
+    "settings": "Ayarlar"
   },
   "offline": {
     "canPlayDownloaded": "Önceden indirilen dersi yine de oynatabilirsiniz.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
     "waiting": "Yetkilendirme bekleniyor"
   },
+  "providerDiscovery": {
+    "connectFailed": "O FreeShow makinesine bağlanılamadı.",
+    "header": "{{name}} Bul",
+    "noneFound": "Hiç FreeShow makinesi bulunamadı.",
+    "notSupported": "Bu sağlayıcı ağ keşfini desteklemiyor.",
+    "rescan": "Tekrar Tara",
+    "scanFailed": "Ağ taranamadı. Tekrar deneyin.",
+    "scanning": "Ağınızda FreeShow aranıyor…",
+    "scanningHint": "FreeShow'un bu ağdaki bir bilgisayarda çalıştığından emin olun."
+  },
   "providerDownload": {
     "download": "İndir",
     "downloadingItem": "{{total}} öğeden {{current}}. öğe indiriliyor",
@@ -134,6 +146,18 @@
     "waiting": "Yetkilendirme bekleniyor"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Duyurular menüsünden döngüde oynatılacak bir klasörü bu sağlayıcıdan seçin",
+      "label": "Duyurular İçin Kullan",
+      "selected": "\"{{folder}}\" döngüde oynatılıyor — {{count}} slayt indirildi"
+    },
+    "announcementsUpdate": {
+      "checking": "Kontrol ediliyor…",
+      "description": "Yeni slaytları indirir ve silinenleri kaldırır. Uygulama her başladığında da çalışır.",
+      "failed": "Güncellenemedi. Bağlantıyı ve klasörde hâlâ slayt olup olmadığını kontrol edin.",
+      "label": "Duyuru Güncellemelerini Kontrol Et",
+      "updated": "Güncel — {{count}} slayt"
+    },
     "autoDownload": {
       "description": "Bu sağlayıcıyı bugünün dersinin kaynağı olarak kullanın ve dosyaları önceden indirin",
       "label": "Bugünün Dersini Otomatik İndir"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Bir Mesaj Seçin",
     "nowPlaying": "ŞİMDİ OYNATILIYOR"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Bu cihaza kaydedilen içeriği oynatın veya silin",
+      "label": "İndirilenler"
+    },
+    "providers": {
+      "description": "İçerik sağlayıcılarını bağlayın ve duyurular klasörünü seçin",
+      "label": "Sağlayıcılar"
+    }
   },
   "splash": {
     "connecting": "Bağlanıyor..."

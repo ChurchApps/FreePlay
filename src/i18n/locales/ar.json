@@ -12,6 +12,7 @@
     "header": "تصفح المحتوى",
     "loadingContent": "جاري تحميل المحتوى...",
     "noContent": "لا يوجد محتوى متاح",
+    "pickAnnouncements": "اختر مجلد الإعلانات",
     "tryDifferentFolder": "جرب مجلد مختلف"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "فشل تحميل الفيديو"
   },
   "nav": {
-    "downloads": "التنزيلات",
+    "announcements": "الإعلانات",
+    "browse": "تصفح",
     "plan": "خطة اليوم",
-    "providers": "الموفرون"
+    "settings": "الإعدادات"
   },
   "offline": {
     "canPlayDownloaded": "لا يزال بإمكانك تشغيل الدرس الذي تم تنزيله مسبقاً.",
@@ -86,6 +88,16 @@
     "unexpectedError": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
     "waiting": "في انتظار التفويض"
   },
+  "providerDiscovery": {
+    "connectFailed": "تعذر الاتصال بجهاز FreeShow هذا.",
+    "header": "البحث عن {{name}}",
+    "noneFound": "لم يتم العثور على أي أجهزة FreeShow.",
+    "notSupported": "هذا المزود لا يدعم الاكتشاف عبر الشبكة.",
+    "rescan": "البحث مرة أخرى",
+    "scanFailed": "تعذر فحص الشبكة. حاول مرة أخرى.",
+    "scanning": "جارٍ البحث عن FreeShow على شبكتك…",
+    "scanningHint": "تأكد من أن FreeShow يعمل على جهاز كمبيوتر متصل بهذه الشبكة."
+  },
   "providerDownload": {
     "download": "تنزيل",
     "downloadingItem": "جاري تنزيل العنصر {{current}} من {{total}}",
@@ -134,6 +146,18 @@
     "waiting": "في انتظار التفويض"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "اختر مجلدًا من هذا المزود لعرضه بشكل متكرر من قائمة الإعلانات",
+      "label": "استخدام للإعلانات",
+      "selected": "يتم عرض \"{{folder}}\" بشكل متكرر — تم تنزيل {{count}} شريحة"
+    },
+    "announcementsUpdate": {
+      "checking": "جارٍ التحقق…",
+      "description": "تنزيل الشرائح الجديدة وإزالة الشرائح المحذوفة. يتم ذلك أيضًا في كل مرة يبدأ فيها التطبيق.",
+      "failed": "تعذر التحديث. تحقق من الاتصال ومن أن المجلد لا يزال يحتوي على شرائح.",
+      "label": "التحقق من تحديثات الإعلانات",
+      "updated": "محدّث — {{count}} شريحة"
+    },
     "autoDownload": {
       "description": "استخدم هذا المزود كمصدر لدرس اليوم وقم بتنزيل الملفات مسبقًا",
       "label": "تنزيل درس اليوم تلقائيًا"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "اختر رسالة",
     "nowPlaying": "قيد التشغيل الآن"
+  },
+  "settings": {
+    "downloads": {
+      "description": "تشغيل المحتوى المحفوظ على هذا الجهاز أو حذفه",
+      "label": "التنزيلات"
+    },
+    "providers": {
+      "description": "ربط مزودي المحتوى واختيار مجلد الإعلانات",
+      "label": "الموفرون"
+    }
   },
   "splash": {
     "connecting": "جارٍ الاتصال..."

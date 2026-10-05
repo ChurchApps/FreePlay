@@ -12,6 +12,7 @@
     "header": "Prehliadať obsah",
     "loadingContent": "Načítavanie obsahu...",
     "noContent": "Nie je k dispozícii žiadny obsah",
+    "pickAnnouncements": "Vyberte Priečinok Oznámení",
     "tryDifferentFolder": "Skúste inú zložku"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Video sa nepodarilo načítať"
   },
   "nav": {
-    "downloads": "Stiahnuté súbory",
+    "announcements": "Oznámenia",
+    "browse": "Prehliadať",
     "plan": "Dnešný Plán",
-    "providers": "Poskytovatelia"
+    "settings": "Nastavenia"
   },
   "offline": {
     "canPlayDownloaded": "Stále môžete prehrať lekciu, ktorá bola stiahnutá vopred.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Vyskytla sa neočakávaná chyba. Skúste to znova.",
     "waiting": "Čaká sa na autorizáciu"
   },
+  "providerDiscovery": {
+    "connectFailed": "Nepodarilo sa pripojiť k tomuto zariadeniu FreeShow.",
+    "header": "Nájsť {{name}}",
+    "noneFound": "Nenašli sa žiadne zariadenia FreeShow.",
+    "notSupported": "Tento poskytovateľ nepodporuje vyhľadávanie v sieti.",
+    "rescan": "Hľadať Znova",
+    "scanFailed": "Sieť sa nepodarilo prehľadať. Skúste to znova.",
+    "scanning": "Hľadá sa FreeShow vo vašej sieti…",
+    "scanningHint": "Uistite sa, že FreeShow beží na počítači v tejto sieti."
+  },
   "providerDownload": {
     "download": "Stiahnuť",
     "downloadingItem": "Sťahovanie položky {{current}} z {{total}}",
@@ -134,6 +146,18 @@
     "waiting": "Čaká sa na autorizáciu"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Vyberte priečinok od tohto poskytovateľa, ktorý sa bude opakovane prehrávať z ponuky Oznámenia",
+      "label": "Použiť na Oznámenia",
+      "selected": "Opakuje sa „{{folder}}“ — stiahnuté snímky: {{count}}"
+    },
+    "announcementsUpdate": {
+      "checking": "Kontroluje sa…",
+      "description": "Stiahne nové snímky a odstráni vymazané. Spúšťa sa aj pri každom spustení aplikácie.",
+      "failed": "Aktualizácia zlyhala. Skontrolujte pripojenie a či priečinok stále obsahuje snímky.",
+      "label": "Skontrolovať Aktualizácie Oznámení",
+      "updated": "Aktuálne — snímky: {{count}}"
+    },
     "autoDownload": {
       "description": "Použite tohto poskytovateľa ako zdroj dnešnej lekcie a vopred stiahnite súbory",
       "label": "Automaticky Stiahnuť Dnešnú Lekciu"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Vyberte správu",
     "nowPlaying": "PRÁVE SA PREHRÁVA"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Prehrať alebo odstrániť obsah uložený v tomto zariadení",
+      "label": "Stiahnuté súbory"
+    },
+    "providers": {
+      "description": "Pripojte poskytovateľov obsahu a vyberte priečinok oznámení",
+      "label": "Poskytovatelia"
+    }
   },
   "splash": {
     "connecting": "Pripája sa..."

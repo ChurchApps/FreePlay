@@ -12,6 +12,7 @@
     "header": "Inhalte durchsuchen",
     "loadingContent": "Inhalt wird geladen...",
     "noContent": "Keine Inhalte verfügbar",
+    "pickAnnouncements": "Ankündigungsordner Auswählen",
     "tryDifferentFolder": "Versuchen Sie einen anderen Ordner"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Video konnte nicht geladen werden"
   },
   "nav": {
-    "downloads": "Downloads",
+    "announcements": "Ankündigungen",
+    "browse": "Durchsuchen",
     "plan": "Heutiger Plan",
-    "providers": "Anbieter"
+    "settings": "Einstellungen"
   },
   "offline": {
     "canPlayDownloaded": "Sie können die zuvor heruntergeladene Lektion weiterhin abspielen.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
     "waiting": "Warte auf Autorisierung"
   },
+  "providerDiscovery": {
+    "connectFailed": "Verbindung zu diesem FreeShow-Gerät nicht möglich.",
+    "header": "{{name}} Suchen",
+    "noneFound": "Es wurden keine FreeShow-Geräte gefunden.",
+    "notSupported": "Dieser Anbieter unterstützt keine Netzwerksuche.",
+    "rescan": "Erneut Suchen",
+    "scanFailed": "Das Netzwerk konnte nicht durchsucht werden. Bitte erneut versuchen.",
+    "scanning": "Suche nach FreeShow in Ihrem Netzwerk…",
+    "scanningHint": "Stellen Sie sicher, dass FreeShow auf einem Computer in diesem Netzwerk läuft."
+  },
   "providerDownload": {
     "download": "Herunterladen",
     "downloadingItem": "Element {{current}} von {{total}} wird heruntergeladen",
@@ -134,6 +146,18 @@
     "waiting": "Warte auf Autorisierung"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Wählen Sie einen Ordner dieses Anbieters, der im Ankündigungsmenü in Schleife abgespielt wird",
+      "label": "Für Ankündigungen Verwenden",
+      "selected": "„{{folder}}“ wird in Schleife abgespielt — {{count}} Folien heruntergeladen"
+    },
+    "announcementsUpdate": {
+      "checking": "Wird geprüft…",
+      "description": "Neue Folien herunterladen und gelöschte entfernen. Wird auch bei jedem Start der App ausgeführt.",
+      "failed": "Aktualisierung fehlgeschlagen. Prüfen Sie die Verbindung und ob der Ordner noch Folien enthält.",
+      "label": "Nach Ankündigungs-Updates Suchen",
+      "updated": "Aktuell — {{count}} Folien"
+    },
     "autoDownload": {
       "description": "Diesen Anbieter als Quelle für die heutige Lektion verwenden und Dateien vorab herunterladen",
       "label": "Heutige Lektion Automatisch Herunterladen"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Nachricht auswählen",
     "nowPlaying": "LÄUFT GERADE"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Auf diesem Gerät gespeicherte Inhalte abspielen oder löschen",
+      "label": "Downloads"
+    },
+    "providers": {
+      "description": "Inhaltsanbieter verbinden und den Ankündigungsordner auswählen",
+      "label": "Anbieter"
+    }
   },
   "splash": {
     "connecting": "Verbindung wird hergestellt..."

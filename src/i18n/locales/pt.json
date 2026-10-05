@@ -12,6 +12,7 @@
     "header": "Navegar pelo conteúdo",
     "loadingContent": "Carregando conteúdo...",
     "noContent": "Nenhum conteúdo disponível",
+    "pickAnnouncements": "Escolher a Pasta de Avisos",
     "tryDifferentFolder": "Tente uma pasta diferente"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Falha ao carregar o vídeo"
   },
   "nav": {
-    "downloads": "Downloads",
+    "announcements": "Avisos",
+    "browse": "Navegar",
     "plan": "Plano de Hoje",
-    "providers": "Provedores"
+    "settings": "Configurações"
   },
   "offline": {
     "canPlayDownloaded": "Você ainda pode reproduzir a lição que foi baixada antecipadamente.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Ocorreu um erro inesperado. Tente novamente.",
     "waiting": "Aguardando autorização"
   },
+  "providerDiscovery": {
+    "connectFailed": "Não foi possível conectar a essa máquina FreeShow.",
+    "header": "Encontrar {{name}}",
+    "noneFound": "Nenhuma máquina FreeShow foi encontrada.",
+    "notSupported": "Este provedor não oferece suporte à descoberta na rede.",
+    "rescan": "Procurar Novamente",
+    "scanFailed": "Não foi possível verificar a rede. Tente novamente.",
+    "scanning": "Procurando o FreeShow na sua rede…",
+    "scanningHint": "Verifique se o FreeShow está em execução em um computador nesta rede."
+  },
   "providerDownload": {
     "download": "Baixar",
     "downloadingItem": "Baixando item {{current}} de {{total}}",
@@ -134,6 +146,18 @@
     "waiting": "Aguardando autorização"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Escolha uma pasta deste provedor para reproduzir em loop a partir do menu Avisos",
+      "label": "Usar para Avisos",
+      "selected": "Reproduzindo \"{{folder}}\" em loop — {{count}} slides baixados"
+    },
+    "announcementsUpdate": {
+      "checking": "Verificando…",
+      "description": "Baixa novos slides e remove os excluídos. Também é executado sempre que o aplicativo é iniciado.",
+      "failed": "Não foi possível atualizar. Verifique a conexão e se a pasta ainda contém slides.",
+      "label": "Verificar Atualizações de Avisos",
+      "updated": "Atualizado — {{count}} slides"
+    },
     "autoDownload": {
       "description": "Use este provedor como fonte da lição de hoje e pré-carregue os arquivos",
       "label": "Baixar Automaticamente a Lição de Hoje"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Selecione uma mensagem",
     "nowPlaying": "TOCANDO AGORA"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Reproduza ou exclua o conteúdo salvo neste dispositivo",
+      "label": "Downloads"
+    },
+    "providers": {
+      "description": "Conecte provedores de conteúdo e escolha a pasta de avisos",
+      "label": "Provedores"
+    }
   },
   "splash": {
     "connecting": "Conectando..."

@@ -12,6 +12,7 @@
     "header": "Procházet obsah",
     "loadingContent": "Načítání obsahu...",
     "noContent": "Není k dispozici žádný obsah",
+    "pickAnnouncements": "Vyberte složku oznámení",
     "tryDifferentFolder": "Zkuste jinou složku"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Video se nepodařilo načíst"
   },
   "nav": {
-    "downloads": "Stažené soubory",
+    "announcements": "Oznámení",
+    "browse": "Procházet",
     "plan": "Dnešní Plán",
-    "providers": "Poskytovatelé"
+    "settings": "Nastavení"
   },
   "offline": {
     "canPlayDownloaded": "Stále můžete přehrát lekci, která byla stažena předem.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Došlo k neočekávané chybě. Zkuste to znovu.",
     "waiting": "Čekání na autorizaci"
   },
+  "providerDiscovery": {
+    "connectFailed": "Nelze se připojit k tomuto zařízení FreeShow.",
+    "header": "Najít {{name}}",
+    "noneFound": "Nebyla nalezena žádná zařízení FreeShow.",
+    "notSupported": "Tento poskytovatel nepodporuje vyhledávání v síti.",
+    "rescan": "Hledat znovu",
+    "scanFailed": "Síť nelze prohledat. Zkuste to znovu.",
+    "scanning": "Hledání FreeShow ve vaší síti…",
+    "scanningHint": "Ujistěte se, že FreeShow běží na počítači v této síti."
+  },
   "providerDownload": {
     "download": "Stáhnout",
     "downloadingItem": "Stahování položky {{current}} z {{total}}",
@@ -134,6 +146,18 @@
     "waiting": "Čekání na autorizaci"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Vyberte složku od tohoto poskytovatele, která se bude opakovaně přehrávat z nabídky Oznámení",
+      "label": "Použít pro oznámení",
+      "selected": "Opakuje se „{{folder}}“ — staženo snímků: {{count}}"
+    },
+    "announcementsUpdate": {
+      "checking": "Kontrola…",
+      "description": "Stáhne nové snímky a odstraní smazané. Spouští se také při každém spuštění aplikace.",
+      "failed": "Aktualizace se nezdařila. Zkontrolujte připojení a zda složka stále obsahuje snímky.",
+      "label": "Zkontrolovat aktualizace oznámení",
+      "updated": "Aktuální — snímků: {{count}}"
+    },
     "autoDownload": {
       "description": "Použijte tohoto poskytovatele jako zdroj dnešní lekce a předstáhněte soubory",
       "label": "Automaticky Stáhnout Dnešní Lekci"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Vyberte zprávu",
     "nowPlaying": "PRÁVĚ HRAJE"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Přehrát nebo smazat obsah uložený v tomto zařízení",
+      "label": "Stažené soubory"
+    },
+    "providers": {
+      "description": "Připojte poskytovatele obsahu a vyberte složku oznámení",
+      "label": "Poskytovatelé"
+    }
   },
   "splash": {
     "connecting": "Připojování..."

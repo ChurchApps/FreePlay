@@ -12,6 +12,7 @@
     "header": "Bläddra i innehåll",
     "loadingContent": "Laddar innehåll...",
     "noContent": "Inget innehåll tillgängligt",
+    "pickAnnouncements": "Välj Mappen för Meddelanden",
     "tryDifferentFolder": "Prova en annan mapp"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Videon kunde inte laddas"
   },
   "nav": {
-    "downloads": "Nedladdningar",
+    "announcements": "Meddelanden",
+    "browse": "Bläddra",
     "plan": "Dagens Plan",
-    "providers": "Leverantörer"
+    "settings": "Inställningar"
   },
   "offline": {
     "canPlayDownloaded": "Du kan fortfarande spela upp lektionen som laddades ner i förväg.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Ett oväntat fel uppstod. Försök igen.",
     "waiting": "Väntar på auktorisering"
   },
+  "providerDiscovery": {
+    "connectFailed": "Det gick inte att ansluta till den FreeShow-datorn.",
+    "header": "Hitta {{name}}",
+    "noneFound": "Inga FreeShow-datorer hittades.",
+    "notSupported": "Den här leverantören stöder inte nätverkssökning.",
+    "rescan": "Sök Igen",
+    "scanFailed": "Det gick inte att skanna nätverket. Försök igen.",
+    "scanning": "Letar efter FreeShow i ditt nätverk…",
+    "scanningHint": "Se till att FreeShow körs på en dator i det här nätverket."
+  },
   "providerDownload": {
     "download": "Ladda ner",
     "downloadingItem": "Laddar ner objekt {{current}} av {{total}}",
@@ -134,6 +146,18 @@
     "waiting": "Väntar på auktorisering"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Välj en mapp från den här leverantören som ska spelas i loop från menyn Meddelanden",
+      "label": "Använd för Meddelanden",
+      "selected": "Spelar \"{{folder}}\" i loop — {{count}} bilder nedladdade"
+    },
+    "announcementsUpdate": {
+      "checking": "Kontrollerar…",
+      "description": "Laddar ned nya bilder och tar bort raderade. Körs även varje gång appen startar.",
+      "failed": "Det gick inte att uppdatera. Kontrollera anslutningen och att mappen fortfarande innehåller bilder.",
+      "label": "Sök efter Uppdateringar av Meddelanden",
+      "updated": "Uppdaterad — {{count}} bilder"
+    },
     "autoDownload": {
       "description": "Använd denna leverantör som källa för dagens lektion och förhandsladda filer",
       "label": "Ladda Ner Dagens Lektion Automatiskt"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Välj ett meddelande",
     "nowPlaying": "SPELAS NU"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Spela upp eller ta bort innehåll som sparats på den här enheten",
+      "label": "Nedladdningar"
+    },
+    "providers": {
+      "description": "Anslut innehållsleverantörer och välj mappen för meddelanden",
+      "label": "Leverantörer"
+    }
   },
   "splash": {
     "connecting": "Ansluter..."

@@ -12,6 +12,7 @@
     "header": "Selaa sisältöä",
     "loadingContent": "Ladataan sisältöä...",
     "noContent": "Sisältöä ei ole saatavilla",
+    "pickAnnouncements": "Valitse tiedotteiden kansio",
     "tryDifferentFolder": "Kokeile eri kansiota"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Videon lataaminen epäonnistui"
   },
   "nav": {
-    "downloads": "Lataukset",
+    "announcements": "Tiedotteet",
+    "browse": "Selaa",
     "plan": "Tämän Päivän Suunnitelma",
-    "providers": "Tarjoajat"
+    "settings": "Asetukset"
   },
   "offline": {
     "canPlayDownloaded": "Voit silti toistaa oppitunnin, joka on ladattu etukäteen.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Tapahtui odottamaton virhe. Yritä uudelleen.",
     "waiting": "Odotetaan valtuutusta"
   },
+  "providerDiscovery": {
+    "connectFailed": "Yhteyttä kyseiseen FreeShow-laitteeseen ei voitu muodostaa.",
+    "header": "Etsi {{name}}",
+    "noneFound": "FreeShow-laitteita ei löytynyt.",
+    "notSupported": "Tämä palveluntarjoaja ei tue verkkohakua.",
+    "rescan": "Etsi uudelleen",
+    "scanFailed": "Verkkoa ei voitu skannata. Yritä uudelleen.",
+    "scanning": "Etsitään FreeShow'ta verkostasi…",
+    "scanningHint": "Varmista, että FreeShow on käynnissä tämän verkon tietokoneella."
+  },
   "providerDownload": {
     "download": "Lataa",
     "downloadingItem": "Ladataan kohdetta {{current}}/{{total}}",
@@ -134,6 +146,18 @@
     "waiting": "Odotetaan valtuutusta"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Valitse tämän palveluntarjoajan kansio, jota toistetaan silmukassa Tiedotteet-valikosta",
+      "label": "Käytä tiedotteisiin",
+      "selected": "Toistetaan silmukassa \"{{folder}}\" — {{count}} diaa ladattu"
+    },
+    "announcementsUpdate": {
+      "checking": "Tarkistetaan…",
+      "description": "Lataa uudet diat ja poista poistetut. Suoritetaan myös aina, kun sovellus käynnistyy.",
+      "failed": "Päivitys epäonnistui. Tarkista yhteys ja että kansiossa on yhä dioja.",
+      "label": "Tarkista tiedotteiden päivitykset",
+      "updated": "Ajan tasalla — {{count}} diaa"
+    },
     "autoDownload": {
       "description": "Käytä tätä palveluntarjoajaa päivän oppitunnin lähteenä ja esilataa tiedostot",
       "label": "Lataa Päivän Oppitunti Automaattisesti"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Valitse viesti",
     "nowPlaying": "SOI NYT"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Toista tai poista tälle laitteelle tallennettua sisältöä",
+      "label": "Lataukset"
+    },
+    "providers": {
+      "description": "Yhdistä sisällöntarjoajat ja valitse tiedotteiden kansio",
+      "label": "Tarjoajat"
+    }
   },
   "splash": {
     "connecting": "Yhdistetään..."

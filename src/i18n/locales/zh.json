@@ -12,6 +12,7 @@
     "header": "浏览内容",
     "loadingContent": "正在加载内容...",
     "noContent": "没有可用内容",
+    "pickAnnouncements": "选择公告文件夹",
     "tryDifferentFolder": "尝试其他文件夹"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "视频加载失败"
   },
   "nav": {
-    "downloads": "下载",
+    "announcements": "公告",
+    "browse": "浏览",
     "plan": "今日计划",
-    "providers": "提供商"
+    "settings": "设置"
   },
   "offline": {
     "canPlayDownloaded": "您仍然可以播放预先下载的课程。",
@@ -86,6 +88,16 @@
     "unexpectedError": "发生意外错误。请重试。",
     "waiting": "等待授权"
   },
+  "providerDiscovery": {
+    "connectFailed": "无法连接到该 FreeShow 计算机。",
+    "header": "查找 {{name}}",
+    "noneFound": "未找到任何 FreeShow 计算机。",
+    "notSupported": "此提供商不支持网络发现。",
+    "rescan": "重新扫描",
+    "scanFailed": "无法扫描网络。请重试。",
+    "scanning": "正在你的网络中查找 FreeShow…",
+    "scanningHint": "请确保此网络中的某台计算机正在运行 FreeShow。"
+  },
   "providerDownload": {
     "download": "下载",
     "downloadingItem": "正在下载第{{current}}项,共{{total}}项",
@@ -134,6 +146,18 @@
     "waiting": "等待授权"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "从此提供商中选择一个文件夹，在公告菜单中循环播放",
+      "label": "用于公告",
+      "selected": "正在循环播放“{{folder}}”— 已下载 {{count}} 张幻灯片"
+    },
+    "announcementsUpdate": {
+      "checking": "正在检查…",
+      "description": "下载新幻灯片并移除已删除的幻灯片。每次启动应用时也会运行。",
+      "failed": "无法更新。请检查连接以及文件夹中是否仍有幻灯片。",
+      "label": "检查公告更新",
+      "updated": "已是最新 — {{count}} 张幻灯片"
+    },
     "autoDownload": {
       "description": "使用此提供商作为今日课程的来源并预先下载文件",
       "label": "自动下载今日课程"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "选择消息",
     "nowPlaying": "正在播放"
+  },
+  "settings": {
+    "downloads": {
+      "description": "播放或删除保存在此设备上的内容",
+      "label": "下载"
+    },
+    "providers": {
+      "description": "连接内容提供商并选择公告文件夹",
+      "label": "提供商"
+    }
   },
   "splash": {
     "connecting": "正在连接..."

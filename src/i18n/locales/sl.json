@@ -12,6 +12,7 @@
     "header": "Brskaj po vsebini",
     "loadingContent": "Nalagam vsebino...",
     "noContent": "Vsebina ni na voljo",
+    "pickAnnouncements": "Izberite Mapo z Obvestili",
     "tryDifferentFolder": "Poskusite drugo mapo"
   },
   "downloads": {
@@ -30,9 +31,10 @@
     "videoFailed": "Videa ni bilo mogoče naložiti"
   },
   "nav": {
-    "downloads": "Prenosi",
+    "announcements": "Obvestila",
+    "browse": "Brskaj",
     "plan": "Današnji Načrt",
-    "providers": "Ponudniki"
+    "settings": "Nastavitve"
   },
   "offline": {
     "canPlayDownloaded": "Še vedno lahko predvajate lekcijo, ki je bila vnaprej prenesena.",
@@ -86,6 +88,16 @@
     "unexpectedError": "Prišlo je do nepričakovane napake. Poskusite znova.",
     "waiting": "Čakanje na avtorizacijo"
   },
+  "providerDiscovery": {
+    "connectFailed": "Povezave s tem računalnikom FreeShow ni bilo mogoče vzpostaviti.",
+    "header": "Poišči {{name}}",
+    "noneFound": "Ni bilo najdenih računalnikov FreeShow.",
+    "notSupported": "Ta ponudnik ne podpira odkrivanja v omrežju.",
+    "rescan": "Išči Znova",
+    "scanFailed": "Omrežja ni bilo mogoče pregledati. Poskusite znova.",
+    "scanning": "Iskanje FreeShow v vašem omrežju…",
+    "scanningHint": "Prepričajte se, da FreeShow teče na računalniku v tem omrežju."
+  },
   "providerDownload": {
     "download": "Prenesi",
     "downloadingItem": "Prenašanje elementa {{current}} od {{total}}",
@@ -134,6 +146,18 @@
     "waiting": "Čakanje na avtorizacijo"
   },
   "providerSettings": {
+    "announcements": {
+      "description": "Izberite mapo tega ponudnika, ki se bo ponavljala v meniju Obvestila",
+      "label": "Uporabi za Obvestila",
+      "selected": "Ponavljanje »{{folder}}« — prenesenih diapozitivov: {{count}}"
+    },
+    "announcementsUpdate": {
+      "checking": "Preverjanje…",
+      "description": "Prenese nove diapozitive in odstrani izbrisane. Zažene se tudi ob vsakem zagonu aplikacije.",
+      "failed": "Posodobitev ni uspela. Preverite povezavo in ali mapa še vsebuje diapozitive.",
+      "label": "Preveri Posodobitve Obvestil",
+      "updated": "Posodobljeno — diapozitivov: {{count}}"
+    },
     "autoDownload": {
       "description": "Uporabite tega ponudnika kot vir današnje lekcije in vnaprej prenesite datoteke",
       "label": "Samodejno Prenesi Današnjo Lekcijo"
@@ -163,6 +187,16 @@
   "selectMessage": {
     "header": "Izberite sporočilo",
     "nowPlaying": "SEDAJ PREDVAJA"
+  },
+  "settings": {
+    "downloads": {
+      "description": "Predvajajte ali izbrišite vsebino, shranjeno v tej napravi",
+      "label": "Prenosi"
+    },
+    "providers": {
+      "description": "Povežite ponudnike vsebine in izberite mapo z obvestili",
+      "label": "Ponudniki"
+    }
   },
   "splash": {
     "connecting": "Povezovanje..."
