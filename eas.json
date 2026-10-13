@@ -36,6 +36,9 @@
         "extends": "base",
         "autoIncrement": false,
         "environment": "production",
+        "env": {
+          "EXPO_TV": "1"
+        },
         "android": {
           "buildType": "apk"
         },
@@ -61,7 +64,12 @@
       }
     },
     "submit": {
-      "production": {},
+      "production": {
+        "android": {
+          "track": "production",
+          "releaseStatus": "completed"
+        }
+      },
       "tvos-production": {
         "ios": {
           "ascAppId": "6758970546",

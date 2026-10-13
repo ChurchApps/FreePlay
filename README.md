@@ -50,6 +50,8 @@ Android and Amazon release builds run locally by default (`yarn build:android:ea
 4. `yarn build:amazon` — Amazon Appstore apk at `android/app/build/outputs/apk/release/app-release.apk`
 5. Upload to the store consoles, or submit via `npx eas-cli submit -p android --path <file>`.
 
+`yarn publish:stores` bumps `branding.json` and ships through EAS. The procedure is `/publish-app-stores freeplay`.
+
 ## White-Labeling (Forking for Your Church / Org)
 
 FreePlay is designed to be forked and re-skinned. You can lock it to a single content provider (e.g. only `lifechurch`), give it your own name, icons, and colors, and ship it under your own developer accounts to the App Store, Google Play, and Amazon Appstore.
