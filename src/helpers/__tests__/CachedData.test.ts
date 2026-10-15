@@ -33,6 +33,26 @@ describe("CachedData.getFilePath", () => {
   });
 });
 
+describe("CachedData FreeShow images", () => {
+  beforeEach(() => jest.clearAllMocks());
+  const url = (path: string) => `http://10.0.0.5:5506/?action=get_thumbnail&data=${encodeURIComponent(JSON.stringify({ path }))}`;
+
+  it("gives each FreeShow image its own cache file with the source extension", () => {
+    const a = CachedData.getFilePath(url("C:\\Media\\a.jpg"));
+    const b = CachedData.getFilePath(url("C:\\Media\\b.jpg"));
+    expect(a).toMatch(/^\/cache\/freeshow\/\w+\.jpg$/);
+    expect(a).not.toBe(b);
+    expect(CachedData.needsRemoteSource(url("x.png"))).toBe(true);
+  });
+
+  it("writes the data URL payload to disk instead of downloading the JSON", async () => {
+    global.fetch = jest.fn(async () => ({ ok: true, status: 200, json: async () => ({ action: "get_thumbnail", data: "data:image/png;base64,QUJD" }) })) as unknown as typeof fetch;
+    await CachedData.load({ url: url("C:\\Media\\a.png") } as any);
+    expect(RNFS.writeFile).toHaveBeenCalledWith(expect.stringMatching(/\.png$/), "QUJD", "base64");
+    expect(RNFS.downloadFile).not.toHaveBeenCalled();
+  });
+});
+
 describe("CachedData.clearFocusMemory", () => {
   beforeEach(() => {
     CachedData.lastFocusedIndex = { browse: 1, browse_sub: 2, browser: 3, downloads: 4 };

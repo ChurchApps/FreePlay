@@ -89,6 +89,7 @@
     "waiting": "Waiting for confirmation"
   },
   "providerDiscovery": {
+    "apiHint": "In FreeShow, turn on Settings > Connection > WebSocket/REST, and allow FreeShow through the computer's firewall.",
     "connectFailed": "Could not connect to that FreeShow machine.",
     "header": "Find {{name}}",
     "noneFound": "No FreeShow machines were found.",

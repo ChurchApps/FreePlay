@@ -42,3 +42,8 @@ package-lock.json
 credentials.json
 google-service-account.json
 e2e/artifacts/
+
+# Local Expo module build output
+modules/*/android/build/
+!modules/*/android/
+!modules/*/ios/

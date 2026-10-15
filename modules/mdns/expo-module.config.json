@@ -1,0 +1,5 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": { "modules": ["MdnsModule"] },
+  "android": { "modules": ["church.freeplay.mdns.MdnsModule"] }
+}

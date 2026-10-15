@@ -1,9 +1,12 @@
 import { Branding } from "../branding";
-import { setProviderSecret } from "@churchapps/content-providers";
+import { browse } from "../../modules/mdns";
+import { freeShowServicesToInstances, getProvider, setProviderSecret, type FreeShowProvider } from "@churchapps/content-providers";
 
 setProviderSecret("gocurriculum", process.env.EXPO_PUBLIC_GOCURRICULUM_CLIENT_SECRET || "");
 setProviderSecret("googledrive", process.env.EXPO_PUBLIC_GOOGLEDRIVE_CLIENT_SECRET || "");
 setProviderSecret("onedrive", process.env.EXPO_PUBLIC_ONEDRIVE_CLIENT_SECRET || "");
+
+(getProvider("freeshow") as FreeShowProvider | null)?.setDiscoverer(async () => freeShowServicesToInstances(await browse("_freeshow._udp", 3000)));
 
 export {
   getProvider,

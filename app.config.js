@@ -65,7 +65,9 @@ const buildPlugins = () => [
   [
     "expo-build-properties",
     {
-      ios: { useFrameworks: "static" }
+      ios: { useFrameworks: "static" },
+      // FreeShow's LAN API is plain http
+      android: { usesCleartextTraffic: true }
     }
   ],
   "./plugins/withSoundAssets",
@@ -126,14 +128,17 @@ module.exports = () => {
         backgroundColor: "#000000"
       },
       infoPlist: {
-        ITSAppUsesNonExemptEncryption: false
+        ITSAppUsesNonExemptEncryption: false,
+        NSLocalNetworkUsageDescription: "FreePlay looks for FreeShow on your local network.",
+        NSBonjourServices: ["_freeshow._udp"],
+        NSAppTransportSecurity: { NSAllowsLocalNetworking: true }
       }
     },
     extra: {
       eas: { projectId: branding.eas.projectId },
       branding
     },
-    runtimeVersion: "1.2.0",
+    runtimeVersion: "1.4.0",
     updates: {
       url: branding.eas.updatesUrl,
       enabled: true,

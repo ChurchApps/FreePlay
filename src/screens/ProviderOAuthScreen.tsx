@@ -113,7 +113,7 @@ export const ProviderOAuthScreen = (props: Props) => {
 
       let pending = pendingSessions[props.providerId];
       if (!pending || pending.expiresAt - Date.now() < 60000) {
-        const relayData = await ApiHelper.post("/oauth/relay/sessions", { provider: props.providerId }, "MembershipApi");
+        const relayData = await ApiHelper.post("/oauth/relay/sessions", { provider: props.providerId }, "RelayApi");
         if (!relayData?.sessionCode || !relayData?.redirectUri) {
           setFlowState({ status: "error", error: t("providerOAuth.sessionFailed") });
           return;
@@ -154,7 +154,7 @@ export const ProviderOAuthScreen = (props: Props) => {
       }
 
       try {
-        const result = await ApiHelper.getAnonymous(`/oauth/relay/sessions/${sessionCode}`, "MembershipApi");
+        const result = await ApiHelper.getAnonymous(`/oauth/relay/sessions/${sessionCode}`, "RelayApi");
 
         if (generation !== pollGenerationRef.current) return;
 

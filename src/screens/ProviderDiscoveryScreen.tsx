@@ -144,7 +144,7 @@ export const ProviderDiscoveryScreen = (props: Props) => {
       return (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
           <ActivityIndicator size="large" color={Colors.primary} />
-          <Text style={{ color: Colors.textPrimary, fontSize: Typography.body, marginTop: 16 }}>
+          <Text style={{ color: Colors.textPrimary, fontSize: Typography.bodyMedium, marginTop: 16 }}>
             {t("providerDiscovery.scanning")}
           </Text>
           <Text style={{ color: Colors.textSecondary, fontSize: Typography.labelSmall, marginTop: 8 }}>
@@ -158,8 +158,11 @@ export const ProviderDiscoveryScreen = (props: Props) => {
       return (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center", paddingHorizontal: DimensionHelper.wp("8%") }}>
           <Icon name="wifi-off" size={48} color={Colors.textDimmed} />
-          <Text style={{ color: Colors.textPrimary, fontSize: Typography.body, marginTop: 16, textAlign: "center" }}>
+          <Text style={{ color: Colors.textPrimary, fontSize: Typography.bodyMedium, marginTop: 16, textAlign: "center" }}>
             {error || t("providerDiscovery.noneFound")}
+          </Text>
+          <Text style={{ color: Colors.textSecondary, fontSize: Typography.labelSmall, marginTop: 8, textAlign: "center" }}>
+            {t("providerDiscovery.apiHint")}
           </Text>
           <TouchableHighlight
             testID="providerDiscovery-rescan"
@@ -175,7 +178,7 @@ export const ProviderDiscoveryScreen = (props: Props) => {
             underlayColor={Colors.primary}
             onPress={scan}
             hasTVPreferredFocus={true}>
-            <Text style={{ color: Colors.textPrimary, fontSize: Typography.body }}>{t("providerDiscovery.rescan")}</Text>
+            <Text style={{ color: Colors.textPrimary, fontSize: Typography.bodyMedium }}>{t("providerDiscovery.rescan")}</Text>
           </TouchableHighlight>
         </View>
       );

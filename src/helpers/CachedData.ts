@@ -165,7 +165,7 @@ export class CachedData {
   }
 
   static needsRemoteSource(url: string): boolean {
-    return this.isGoogleDriveUrl(url) || !!this.oneDriveItemId(url);
+    return this.isGoogleDriveUrl(url) || !!this.oneDriveItemId(url) || !!this.freeShowImagePath(url);
   }
 
   static async remoteSource(url: string): Promise<{ uri: string; headers?: Record<string, string> }> {
@@ -174,6 +174,7 @@ export class CachedData {
       return { uri: this.googleDriveMediaUrl(url), headers: auth?.access_token ? { Authorization: `Bearer ${auth.access_token}` } : undefined };
     }
     if (this.oneDriveItemId(url)) return { uri: await this.oneDriveDownloadUrl(url) };
+    if (this.freeShowImagePath(url)) return { uri: await this.freeShowDataUrl(url) };
     return { uri: url };
   }
 
@@ -183,8 +184,26 @@ export class CachedData {
     return ".mp4";
   }
 
+  // FreeShow serves local images from its REST API as JSON-wrapped data URLs (content-providers FreeShowApi).
+  private static freeShowImagePath(url: string): string {
+    if (!url.includes("/?action=get_thumbnail&data=")) return "";
+    const ext = decodeURIComponent(url.split("&data=")[1] || "").match(/\.\w+(?="\}$)/)?.[0] || ".png";
+    let hash = 0;
+    for (let i = 0; i < url.length; i++) hash = (hash * 31 + url.charCodeAt(i)) | 0;
+    return RNFS.CachesDirectoryPath + "/freeshow/" + (hash >>> 0).toString(36) + ext;
+  }
+
+  private static async freeShowDataUrl(url: string): Promise<string> {
+    const response = await fetch(url);
+    const dataUrl = response.ok ? String((await response.json())?.data || "") : "";
+    if (!dataUrl.startsWith("data:")) throw new Error(`FreeShow image download failed with status ${response.status}`);
+    return dataUrl;
+  }
+
   static getFilePath(url: string, fileType?: string) {
     if (!url) return "";
+    const freeShowPath = this.freeShowImagePath(url);
+    if (freeShowPath) return freeShowPath;
     const driveId = this.googleDriveFileId(url);
     if (driveId && (url.includes("drive.google.com") || url.includes("googleapis.com/drive"))) {
       return RNFS.CachesDirectoryPath + "/drive/" + driveId + this.driveExtension(fileType);
@@ -230,6 +249,13 @@ export class CachedData {
     } catch (mkdirError) {
       // Directory might already exist or be created by another download
       console.log("mkdir warning:", mkdirError);
+    }
+
+    if (this.freeShowImagePath(file.url)) {
+      const dataUrl = await this.freeShowDataUrl(file.url);
+      await RNFS.writeFile(diskPath, dataUrl.slice(dataUrl.indexOf(",") + 1), "base64");
+      fileProgressCallback?.(1);
+      return;
     }
 
     const source = await this.remoteSource(file.url);
