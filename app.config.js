@@ -138,7 +138,7 @@ module.exports = () => {
       eas: { projectId: branding.eas.projectId },
       branding
     },
-    runtimeVersion: "1.4.0",
+    runtimeVersion: "1.5.0",
     updates: {
       url: branding.eas.updatesUrl,
       enabled: true,

@@ -3,14 +3,14 @@
   "slug": "freeplay",
   "scheme": "church.freeplay",
   "owner": "churchapps",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "android": {
     "package": "church.freeplay",
-    "versionCode": 18
+    "versionCode": 19
   },
   "ios": {
     "bundleIdentifier": "church.freeplay",
-    "buildNumber": "11"
+    "buildNumber": "12"
   },
   "eas": {
     "projectId": "b6cd99e1-8cc2-4fd6-b4e7-81d8a6f62507",
