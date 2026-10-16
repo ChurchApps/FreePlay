@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableHighlight, BackHandler } from "react-native";
+import { View, Text, TouchableHighlight, BackHandler, Alert } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { DimensionHelper } from "../helpers/DimensionHelper";
@@ -26,8 +26,16 @@ export const SettingsScreen = (props: Props) => {
     ? ScheduleSync.manifest?.screenGroupName || t("settings.calendar.paired")
     : t("settings.calendar.notPaired");
 
-  const rows: { key: string; icon: string; value?: string; page?: string }[] = [
-    { key: "calendar", icon: "calendar-month", value: calendarValue, page: ScheduleSync.isScheduled() ? "scheduledPlayer" : "schedulePairing" },
+  const changeCalendar = () => {
+    Alert.alert(t("settings.calendar.changeTitle", { group: calendarValue }), t("settings.calendar.changeMessage"), [
+      { text: t("settings.calendar.keep"), style: "cancel" },
+      { text: t("settings.calendar.unpair"), style: "destructive", onPress: async () => { await ScheduleSync.unpair(); props.navigateTo("providers"); } },
+      { text: t("settings.calendar.repair"), onPress: async () => { await ScheduleSync.unpair(); props.navigateTo("schedulePairing"); } }
+    ]);
+  };
+
+  const rows: { key: string; icon: string; value?: string; page?: string; onPress?: () => void }[] = [
+    { key: "calendar", icon: "calendar-month", value: calendarValue, page: "schedulePairing", onPress: ScheduleSync.isScheduled() ? changeCalendar : undefined },
     { key: "downloads", icon: "file-download" },
     // Locked forks have a single fixed provider, so there is no picker to open
     ...(isLocked ? [] : [{ key: "providers", icon: "extension" }])
@@ -42,7 +50,7 @@ export const SettingsScreen = (props: Props) => {
             key={row.key}
             testID={`settings-${row.key}`}
             underlayColor={Colors.focusBackground}
-            onPress={() => props.navigateTo(row.page || row.key)}
+            onPress={() => (row.onPress ? row.onPress() : props.navigateTo(row.page || row.key))}
             onFocus={() => setFocusedRow(row.key)}
             onBlur={() => setFocusedRow(prev => (prev === row.key ? null : prev))}
             hasTVPreferredFocus={!props.sidebarExpanded && index === 0}

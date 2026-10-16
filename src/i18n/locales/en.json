@@ -222,7 +222,12 @@
       "description": "Play what's scheduled for this screen at freeplay.church, with no one pressing Start",
       "label": "Pair to a calendar",
       "notPaired": "Not paired",
-      "paired": "Paired"
+      "paired": "Paired",
+      "changeTitle": "Paired to {{group}}",
+      "changeMessage": "Pair this screen to a different calendar, or stop following a schedule. Downloaded files for this calendar are removed.",
+      "keep": "Keep",
+      "unpair": "Unpair",
+      "repair": "Pair to a different calendar"
     },
     "downloads": {
       "description": "Play or delete content saved on this device",
