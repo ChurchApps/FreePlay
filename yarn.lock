@@ -1142,9 +1142,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@churchapps/helpers@npm:^2.7.0":
-  version: 2.7.0
-  resolution: "@churchapps/helpers@npm:2.7.0"
+"@churchapps/helpers@npm:^2.7.1":
+  version: 2.7.1
+  resolution: "@churchapps/helpers@npm:2.7.1"
   dependencies:
     dayjs: "npm:^1.11.20"
   peerDependencies:
@@ -1152,7 +1152,7 @@ __metadata:
   peerDependenciesMeta:
     rrule:
       optional: true
-  checksum: 10c0/12116b1d9e85f00173f9770dc51b023620e020895248c91a3541c5322444e8912787a78334cae77d34050271acd3a9934e12f27f327ca5930adc05dafa4a5b65
+  checksum: 10c0/db6e90b407b7cb177074ed8a125b7659a770f2374196250ccc4f82684ff5584ce8b9da670491ba8d3f9e22882ec205e17c2562d638d1c2faec537817c3a09558
   languageName: node
   linkType: hard
 
@@ -6480,7 +6480,7 @@ __metadata:
   resolution: "freeplay@workspace:."
   dependencies:
     "@churchapps/content-providers": "npm:^0.13.0"
-    "@churchapps/helpers": "npm:^2.7.0"
+    "@churchapps/helpers": "npm:^2.7.1"
     "@eslint/js": "npm:^10.0.1"
     "@expo/metro-runtime": "npm:~6.1.1"
     "@react-native-async-storage/async-storage": "npm:1.24.0"
