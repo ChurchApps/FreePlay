@@ -204,7 +204,7 @@
     "notReady": "Downloading",
     "nothingScheduled": "Nothing is scheduled right now",
     "pin": "Pin This Playlist",
-    "readyThrough": "{{day}} ready",
+    "readyThrough": "Ready through {{date}}",
     "scheduled": "Scheduled",
     "secondary": "We'll connect automatically once accepted · expires in {{time}}",
     "settings": "Settings",

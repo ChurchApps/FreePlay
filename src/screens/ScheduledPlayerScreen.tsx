@@ -137,6 +137,9 @@ export const ScheduledPlayerScreen = (props: Props) => {
     };
   }, []);
 
+  // A select that opens the panel must not also press the button that was focused when it last closed.
+  const guarded = (fn: () => void) => () => { if (panelVisibleRef.current) fn(); };
+
   const leave = (page: string, data?: any) => {
     hidePanel();
     props.navigateTo(page, data);
@@ -174,13 +177,13 @@ export const ScheduledPlayerScreen = (props: Props) => {
   const readiness = () => {
     const through = ScheduleClock.readyThrough(manifest, k => ScheduleSync.isCached(k), Date.now());
     if (!through) return t("schedule.notReady");
-    let day: string;
+    let date: string;
     try {
-      day = new Date(through).toLocaleDateString([], { weekday: "long", timeZone: manifest?.timeZone });
+      date = new Date(through).toLocaleDateString([], { weekday: "short", month: "short", day: "numeric", timeZone: manifest?.timeZone });
     } catch {
-      day = new Date(through).toLocaleDateString([], { weekday: "long" });
+      date = new Date(through).toLocaleDateString([], { weekday: "short", month: "short", day: "numeric" });
     }
-    return t("schedule.readyThrough", { day });
+    return t("schedule.readyThrough", { date });
   };
 
   const panelButton = (key: string, label: string, onPress: () => void, solid = false) => (
@@ -250,9 +253,9 @@ export const ScheduledPlayerScreen = (props: Props) => {
             <Text style={Styles.H2}>{title}</Text>
             <Text style={{ ...Styles.H3, color: Colors.textLight, marginBottom: DimensionHelper.hp("2.5%") }}>{subtitle()}</Text>
             <View style={{ flexDirection: "row" }}>
-              {panelButton("pin", pinned ? t("schedule.unpin") : t("schedule.pin"), togglePin, true)}
-              {panelButton("browse", t("schedule.browse"), browse)}
-              {panelButton("settings", t("schedule.settings"), () => leave("settings"))}
+              {panelButton("pin", pinned ? t("schedule.unpin") : t("schedule.pin"), guarded(togglePin), true)}
+              {panelButton("browse", t("schedule.browse"), guarded(browse))}
+              {panelButton("settings", t("schedule.settings"), guarded(() => leave("settings")))}
             </View>
             {manifest && minutesAgo !== null && (
               <Text style={{ color: Colors.textDimmed, fontSize: Typography.labelSmall, marginTop: DimensionHelper.hp("2%") }}>
