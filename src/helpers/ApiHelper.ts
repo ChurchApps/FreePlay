@@ -70,22 +70,22 @@ class ApiHelperClass {
     }
   }
 
-  async getAnonymous(path: string, keyName: string): Promise<any> {
+  async getAnonymous(path: string, keyName: string, headers?: Record<string, string>): Promise<any> {
     try {
       const config = this.getConfig(keyName);
-      const response = await axios.get(config.url + path, { timeout: 30000 });  // 30 second timeout to prevent ANR
+      const response = await axios.get(config.url + path, { timeout: 30000, headers });  // 30 second timeout to prevent ANR
       return response.data;
     } catch (error) {
       this.handleError(error, `GET_ANON ${path}`);
     }
   }
 
-  async post(path: string, data: any, keyName: string): Promise<any> {
+  async post(path: string, data: any, keyName: string, headers?: Record<string, string>): Promise<any> {
     try {
       const config = this.getConfig(keyName);
       const fullUrl = config.url + path;
       console.log("POST request to:", fullUrl);
-      const response = await axios.post(fullUrl, data, { timeout: 30000 });  // 30 second timeout to prevent ANR
+      const response = await axios.post(fullUrl, data, { timeout: 30000, headers });  // 30 second timeout to prevent ANR
       return response.data;
     } catch (error) {
       this.handleError(error, `POST ${path}`);

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { CachedData, Styles } from "../helpers";
-import { SplashScreen, PlayerScreen, SettingsScreen, PlanPairingScreen, PlanDownloadScreen, ContentBrowserScreen, ProviderDeviceAuthScreen, ProvidersScreen, ProviderSettingsScreen, ProviderFormLoginScreen, ProviderOAuthScreen, ProviderDiscoveryScreen, ProviderDownloadScreen, DownloadsScreen } from "../screens";
+import { SplashScreen, PlayerScreen, SettingsScreen, PlanPairingScreen, PlanDownloadScreen, ScheduledPlayerScreen, ContentBrowserScreen, ProviderDeviceAuthScreen, ProvidersScreen, ProviderSettingsScreen, ProviderFormLoginScreen, ProviderOAuthScreen, ProviderDiscoveryScreen, ProviderDownloadScreen, DownloadsScreen } from "../screens";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { View, Platform, TVEventControl, Animated } from "react-native";
 import { NavWrapper } from "./NavWrapper";
@@ -22,7 +22,7 @@ export const Navigator = () => {
     // Quick fade-in for screen transitions (skip for splash which has its own animation).
     // Player entry uses a longer 400ms fade so the menu→player transition feels less abrupt.
     if (currentScreen !== "splash") {
-      const duration = page === "player" ? 400 : 200;
+      const duration = page === "player" || page === "scheduledPlayer" ? 400 : 200;
       fadeAnim.stopAnimation();
       fadeAnim.setValue(0);
       Animated.timing(fadeAnim, { toValue: 1, duration, useNativeDriver: true }).start();
@@ -37,6 +37,8 @@ export const Navigator = () => {
   switch (currentScreen) {
     case "splash": screen = (<SplashScreen navigateTo={handleNavigate} />); break;
     case "planPairing": screen = (<PlanPairingScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
+    case "schedulePairing": screen = (<PlanPairingScreen scheduled navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
+    case "scheduledPlayer": screen = (<ScheduledPlayerScreen navigateTo={handleNavigate} />); break;
     case "planDownload": screen = (<PlanDownloadScreen navigateTo={handleNavigate} sidebarState={sidebarState} sidebarExpanded={sidebarExpanded} />); break;
     case "offline": screen = (<OfflineScreen navigateTo={handleNavigate} />); break;
     case "player": screen = (<PlayerScreen navigateTo={handleNavigate} providerId={currentData?.providerId} providerStartIndex={currentData?.providerStartIndex} streaming={currentData?.streaming} folderStack={currentData?.folderStack} downloadedLesson={currentData?.downloadedLesson || currentData?.announcements} />); break;
@@ -82,7 +84,7 @@ export const Navigator = () => {
   useEffect(init, []);
   if (dimensions !== "1,1") console.log(dimensions);
 
-  const fullScreenScreens = ["splash", "player", "providerDownload"];
+  const fullScreenScreens = ["splash", "player", "scheduledPlayer", "providerDownload"];
 
   if (fullScreenScreens.indexOf(currentScreen) > -1) {
     return (<View style={Styles.splashMaincontainer}>

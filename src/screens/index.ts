@@ -2,6 +2,7 @@ export { PlayerScreen } from "./PlayerScreen";
 export { SplashScreen } from "./SplashScreen";
 export { PlanPairingScreen } from "./PlanPairingScreen";
 export { PlanDownloadScreen } from "./PlanDownloadScreen";
+export { ScheduledPlayerScreen } from "./ScheduledPlayerScreen";
 export { ContentBrowserScreen } from "./ContentBrowserScreen";
 export { ProviderDeviceAuthScreen } from "./ProviderDeviceAuthScreen";
 export { ProviderFormLoginScreen } from "./ProviderFormLoginScreen";

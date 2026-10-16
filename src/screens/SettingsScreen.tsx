@@ -3,7 +3,7 @@ import { View, Text, TouchableHighlight, BackHandler } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { DimensionHelper } from "../helpers/DimensionHelper";
-import { Styles, Colors, Typography } from "../helpers";
+import { Styles, Colors, Typography, ScheduleSync } from "../helpers";
 import { MenuHeader } from "../components";
 import { isLocked } from "../branding";
 
@@ -22,7 +22,12 @@ export const SettingsScreen = (props: Props) => {
     return () => backHandler.remove();
   }, []);
 
-  const rows = [
+  const calendarValue = ScheduleSync.isScheduled()
+    ? ScheduleSync.manifest?.screenGroupName || t("settings.calendar.paired")
+    : t("settings.calendar.notPaired");
+
+  const rows: { key: string; icon: string; value?: string; page?: string }[] = [
+    { key: "calendar", icon: "calendar-month", value: calendarValue, page: ScheduleSync.isScheduled() ? "scheduledPlayer" : "schedulePairing" },
     { key: "downloads", icon: "file-download" },
     // Locked forks have a single fixed provider, so there is no picker to open
     ...(isLocked ? [] : [{ key: "providers", icon: "extension" }])
@@ -37,7 +42,7 @@ export const SettingsScreen = (props: Props) => {
             key={row.key}
             testID={`settings-${row.key}`}
             underlayColor={Colors.focusBackground}
-            onPress={() => props.navigateTo(row.key)}
+            onPress={() => props.navigateTo(row.page || row.key)}
             onFocus={() => setFocusedRow(row.key)}
             onBlur={() => setFocusedRow(prev => (prev === row.key ? null : prev))}
             hasTVPreferredFocus={!props.sidebarExpanded && index === 0}
@@ -55,6 +60,7 @@ export const SettingsScreen = (props: Props) => {
                 <Text style={{ color: Colors.textPrimary, fontSize: Typography.titleLarge }}>{t(`settings.${row.key}.label`)}</Text>
                 <Text style={{ color: Colors.textSubtle, fontSize: Typography.bodySmall, marginTop: 2 }}>{t(`settings.${row.key}.description`)}</Text>
               </View>
+              {row.value && <Text style={{ color: Colors.textSubtle, fontSize: Typography.labelMedium, marginLeft: DimensionHelper.wp("1.5%") }}>{row.value}</Text>}
             </View>
           </TouchableHighlight>
         ))}

@@ -5,11 +5,13 @@ import { EnvironmentHelper } from "./src/helpers/EnvironmentHelper";
 import { LogBox } from "react-native";
 import { ErrorHelper } from "./src/helpers/ErrorHelper";
 import { PlanSync } from "./src/helpers/PlanSync";
+import { ScheduleSync } from "./src/helpers/ScheduleSync";
 import * as Updates from "expo-updates";
 import * as Sentry from "@sentry/react-native";
 import "./src/i18n";
 
 const PLAN_SYNC_INTERVAL_MS = 6 * 60 * 60 * 1000;
+const SCHEDULE_SYNC_INTERVAL_MS = 5 * 60 * 1000;
 
 Sentry.init({
   dsn: "https://ac7ef4e2f5095b74c8e5bc623750fefe@o4510432524107776.ingest.us.sentry.io/4510848267190272",
@@ -51,8 +53,9 @@ const App = () => {
   useEffect(() => {
     ErrorHelper.init();
     checkForUpdates();
-    const planSyncInterval = setInterval(() => { PlanSync.syncCurrentPlan(); }, PLAN_SYNC_INTERVAL_MS);
-    return () => clearInterval(planSyncInterval);
+    const planSyncInterval = setInterval(() => { if (!ScheduleSync.isScheduled()) PlanSync.syncCurrentPlan(); }, PLAN_SYNC_INTERVAL_MS);
+    const scheduleSyncInterval = setInterval(() => { ScheduleSync.sync(); }, SCHEDULE_SYNC_INTERVAL_MS);
+    return () => { clearInterval(planSyncInterval); clearInterval(scheduleSyncInterval); };
   }, []);
 
   return <Navigator />;

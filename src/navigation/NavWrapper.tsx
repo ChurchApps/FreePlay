@@ -121,6 +121,7 @@ export const NavWrapper = (props: Props) => {
         highlightedItem = CachedData.activeProvider || "provider";
         break;
       case "settings":
+      case "schedulePairing":
       case "downloads":
       case "providers":
       case "providerSettings":

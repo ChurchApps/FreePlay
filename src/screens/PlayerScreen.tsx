@@ -39,14 +39,6 @@ export const PlayerScreen = (props: Props) => {
   const currentTimeRef = useRef(0);
   const durationRef = useRef(0);
 
-  const isVideoFile = (file: any) => {
-    if (!file || !file.url) return false;
-    if (file.fileType === "video" || file.fileType === "audio") return true;
-    const parts = file.url.split("?")[0].split(".");
-    const ext = parts[parts.length - 1].toLowerCase();
-    return ext === "webm" || ext === "mp4" || file.url.includes("externalVideos") || file.url.includes("stream.mux.com");
-  };
-
   const feedbackAnim = useRef(new Animated.Value(0)).current;
   const showFeedback = () => {
 
@@ -104,7 +96,7 @@ export const PlayerScreen = (props: Props) => {
 
   const handleLeft = () => {
     const currentFile = CachedData.messageFiles?.[messageIndex];
-    if (isVideoFile(currentFile)) {
+    if (PlayerHelper.isVideoFile(currentFile)) {
       const newTime = Math.max(0, currentTimeRef.current - 10);
       messageRef.current?.seek(newTime);
     } else {
@@ -113,7 +105,7 @@ export const PlayerScreen = (props: Props) => {
   };
   const handleRight = () => {
     const currentFile = CachedData.messageFiles?.[messageIndex];
-    if (isVideoFile(currentFile)) {
+    if (PlayerHelper.isVideoFile(currentFile)) {
       const newTime = Math.min(durationRef.current, currentTimeRef.current + 10);
       messageRef.current?.seek(newTime);
     } else {
@@ -176,10 +168,7 @@ export const PlayerScreen = (props: Props) => {
 
   const startTimer = () => {
     stopTimer();
-    const file = CachedData.messageFiles?.[messageIndex];
-    if (!file) return;
-    const video = isVideoFile(file);
-    const seconds = file.seconds && file.seconds > 0 ? file.seconds : (video ? 0 : 5);
+    const seconds = PlayerHelper.slideSeconds(CachedData.messageFiles?.[messageIndex]);
     if (seconds <= 0) return;
     PlayerHelper.timer = setTimeout(() => goForward(), seconds * 1000);
   };

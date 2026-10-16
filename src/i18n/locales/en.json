@@ -189,11 +189,41 @@
       "title": "Not Supported"
     }
   },
+  "schedule": {
+    "browse": "Browse Content",
+    "cancel": "Cancel",
+    "defaultLoop": "Default loop",
+    "filesDownloaded": "{{count}} of {{total}} files downloaded",
+    "instructions": "Scan with your phone, or go to",
+    "instructionsEnd": "and enter this code",
+    "itemOf": "item {{current}} of {{total}}",
+    "lastChecked": "Manifest #{{rev}} · last checked {{minutes}} min ago",
+    "loading": "Loading schedule...",
+    "loadingSchedule": "Loading your schedule...",
+    "nextAt": "next: {{title}} at {{time}}",
+    "notReady": "Downloading",
+    "nothingScheduled": "Nothing is scheduled right now",
+    "pin": "Pin This Playlist",
+    "readyThrough": "{{day}} ready",
+    "scheduled": "Scheduled",
+    "secondary": "We'll connect automatically once accepted · expires in {{time}}",
+    "settings": "Settings",
+    "title": "Pair this screen",
+    "unpin": "Unpin Playlist",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "Downloading {{count}} of {{total}} files"
+  },
   "selectMessage": {
     "header": "Select a Message",
     "nowPlaying": "NOW PLAYING"
   },
   "settings": {
+    "calendar": {
+      "description": "Play what's scheduled for this screen at freeplay.church, with no one pressing Start",
+      "label": "Pair to a calendar",
+      "notPaired": "Not paired",
+      "paired": "Paired"
+    },
     "downloads": {
       "description": "Play or delete content saved on this device",
       "label": "Downloads"

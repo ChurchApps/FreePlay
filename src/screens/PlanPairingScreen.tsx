@@ -1,18 +1,22 @@
 import React, { useEffect, useState, useRef } from "react";
 import { View, Text, TouchableHighlight, BackHandler, ActivityIndicator, Animated, Easing } from "react-native";
 import { useTranslation } from "react-i18next";
-import { ApiHelper, CachedData, DeviceHelper, Styles, Colors, Typography } from "../helpers";
+import { ApiHelper, CachedData, DeviceHelper, ScheduleSync, Styles, Colors, Typography } from "../helpers";
 import { SoundHelper } from "../helpers/SoundHelper";
 import { DeviceInterface } from "../interfaces";
 import { getProvider } from "../providers";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import LinearGradient from "react-native-linear-gradient";
+import QRCode from "react-native-qrcode-svg";
 import { PairingCode } from "../components";
+
+const CODE_LIFETIME_SECONDS = 15 * 60;
 
 type Props = {
   navigateTo(page: string): void;
   sidebarState(state: boolean): void;
   sidebarExpanded?: boolean;
+  scheduled?: boolean;
 };
 
 export const PlanPairingScreen = (props: Props) => {
@@ -21,6 +25,7 @@ export const PlanPairingScreen = (props: Props) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState(false);
+  const [secondsLeft, setSecondsLeft] = useState(CODE_LIFETIME_SECONDS);
   const pollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const deviceIdRef = useRef<string>("");
   const pollGenerationRef = useRef<number>(0);
@@ -79,7 +84,9 @@ export const PlanPairingScreen = (props: Props) => {
       );
 
       console.log("Enrolled with pairingCode:", result.pairingCode, "deviceId from response:", result.deviceId);
+      if (result.secret) await DeviceHelper.setSecret(result.secret);
       setPairingCode(result.pairingCode || "");
+      setSecondsLeft(CODE_LIFETIME_SECONDS);
       setLoading(false);
       fadeIn();
       startPulseAnimation();
@@ -110,8 +117,16 @@ export const PlanPairingScreen = (props: Props) => {
 
         console.log("Polling deviceId:", currentDeviceId, "status:", JSON.stringify(status));
 
-        // The Api echoes the pairing claim as contentType (providerId) + contentId (plan type)
-        if (status.paired && status.contentType) {
+        if (status.paired && status.contentType === "freeplayScreen") {
+          await ScheduleSync.setPaired(status.contentId || "");
+          ScheduleSync.sync();
+          pollGenerationRef.current += 1;
+          setSuccess(true);
+          SoundHelper.playChime();
+          setTimeout(() => props.navigateTo("scheduledPlayer"), 2000);
+        } else if (status.paired && status.contentType) {
+          // The Api echoes the pairing claim as contentType (providerId) + contentId (plan type)
+          if (ScheduleSync.isScheduled()) await ScheduleSync.unpair();
           CachedData.providerId = status.contentType;
           CachedData.pairingData = status.contentId ? { planTypeId: status.contentId } : null;
           await CachedData.setAsyncStorage("providerId", CachedData.providerId);
@@ -140,6 +155,12 @@ export const PlanPairingScreen = (props: Props) => {
     props.sidebarState(true);
   };
 
+  const handleCancel = () => {
+    pollGenerationRef.current += 1;
+    if (pollTimeoutRef.current) clearTimeout(pollTimeoutRef.current);
+    props.navigateTo("settings");
+  };
+
   const init = () => {
     initPairing();
     const backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
@@ -155,6 +176,106 @@ export const PlanPairingScreen = (props: Props) => {
   };
 
   useEffect(init, []);
+
+  useEffect(() => {
+    if (!props.scheduled || loading || success || error) return;
+    if (secondsLeft <= 0) { initPairing(); return; }
+    const timer = setTimeout(() => setSecondsLeft(s => s - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [props.scheduled, secondsLeft, loading, success, error]);
+
+  const countdown = Math.floor(secondsLeft / 60) + ":" + String(secondsLeft % 60).padStart(2, "0");
+
+  const outlineButton = (label: string, onPress: () => void, preferred: boolean) => (
+    <TouchableHighlight
+      onPress={onPress}
+      underlayColor="rgba(255, 255, 255, 0.1)"
+      hasTVPreferredFocus={preferred}
+      style={{
+        marginHorizontal: DimensionHelper.wp("0.6%"),
+        paddingVertical: DimensionHelper.hp("1.2%"),
+        paddingHorizontal: DimensionHelper.wp("2.5%"),
+        borderRadius: 6,
+        borderWidth: 1,
+        borderColor: "rgba(255, 255, 255, 0.15)"
+      }}
+    >
+      <Text style={{ color: "rgba(255, 255, 255, 0.5)", fontSize: Typography.labelMedium, letterSpacing: 0.3 }}>
+        {label}
+      </Text>
+    </TouchableHighlight>
+  );
+
+  const waitingIndicator = (
+    <Animated.View
+      style={{
+        marginTop: DimensionHelper.hp(props.scheduled ? "3%" : "5%"),
+        flexDirection: "row",
+        alignItems: "center",
+        opacity: pulseAnim
+      }}
+    >
+      <View
+        style={{
+          width: 8,
+          height: 8,
+          borderRadius: 4,
+          backgroundColor: Colors.primary,
+          marginRight: DimensionHelper.wp("1%")
+        }}
+      />
+      <Text
+        style={{
+          color: "rgba(255, 255, 255, 0.4)",
+          fontSize: Typography.labelMedium,
+          letterSpacing: 0.5
+        }}
+      >
+        {t("planPairing.waiting")}
+      </Text>
+    </Animated.View>
+  );
+
+  const scheduledContent = (
+    <>
+      <Text style={{ color: Colors.textPrimary, fontSize: Typography.titleLarge, fontWeight: "700", marginBottom: DimensionHelper.hp("1.5%") }}>
+        {t("schedule.title")}
+      </Text>
+      <Text
+        style={{
+          color: "rgba(255, 255, 255, 0.5)",
+          fontSize: DimensionHelper.wp("1.6%"),
+          letterSpacing: 0.5,
+          marginBottom: DimensionHelper.hp("3%"),
+          textAlign: "center",
+          paddingHorizontal: DimensionHelper.wp("6%")
+        }}
+      >
+        {t("schedule.instructions")} <Text style={{ color: Colors.primary, fontWeight: "700" }}>{t("schedule.url")}</Text> {t("schedule.instructionsEnd")}
+      </Text>
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <View style={{ backgroundColor: "#ffffff", padding: DimensionHelper.wp("1%"), borderRadius: 12, marginRight: DimensionHelper.wp("3.5%") }}>
+          <QRCode value={"https://freeplay.church/pair?code=" + encodeURIComponent(pairingCode)} size={DimensionHelper.wp("12%")} backgroundColor="#ffffff" color="#000000" />
+        </View>
+        <PairingCode code={pairingCode} />
+      </View>
+      {waitingIndicator}
+      <Text
+        style={{
+          color: "rgba(255, 255, 255, 0.5)",
+          fontSize: Typography.labelMedium,
+          marginTop: DimensionHelper.hp("1.5%"),
+          letterSpacing: 0.3
+        }}
+      >
+        {t("schedule.secondary", { time: countdown })}
+      </Text>
+      <View style={{ flexDirection: "row", marginTop: DimensionHelper.hp("3%") }}>
+        {outlineButton(t("planPairing.regenerate"), initPairing, true)}
+        {outlineButton(t("schedule.cancel"), handleCancel, false)}
+      </View>
+    </>
+  );
 
   if (loading) {
     return (
@@ -202,7 +323,7 @@ export const PlanPairingScreen = (props: Props) => {
               marginTop: DimensionHelper.hp("2%")
             }}
           >
-            {t("planPairing.loadingPlan")}
+            {props.scheduled ? t("schedule.loadingSchedule") : t("planPairing.loadingPlan")}
           </Text>
         </LinearGradient>
       </View>
@@ -268,81 +389,59 @@ export const PlanPairingScreen = (props: Props) => {
             paddingBottom: DimensionHelper.hp("8%")
           }}
         >
-          <Text
-            style={{
-              color: "rgba(255, 255, 255, 0.5)",
-              fontSize: DimensionHelper.wp("1.6%"),
-              letterSpacing: 0.5,
-              marginBottom: DimensionHelper.hp("2%")
-            }}
-          >
-            {t("planPairing.instructions")}
-          </Text>
+          {props.scheduled ? scheduledContent : (
+            <>
+              <Text
+                style={{
+                  color: "rgba(255, 255, 255, 0.5)",
+                  fontSize: DimensionHelper.wp("1.6%"),
+                  letterSpacing: 0.5,
+                  marginBottom: DimensionHelper.hp("2%")
+                }}
+              >
+                {t("planPairing.instructions")}
+              </Text>
 
-          <PairingCode code={pairingCode} />
+              <PairingCode code={pairingCode} />
 
-          <Animated.View
-            style={{
-              marginTop: DimensionHelper.hp("5%"),
-              flexDirection: "row",
-              alignItems: "center",
-              opacity: pulseAnim
-            }}
-          >
-            <View
-              style={{
-                width: 8,
-                height: 8,
-                borderRadius: 4,
-                backgroundColor: Colors.primary,
-                marginRight: DimensionHelper.wp("1%")
-              }}
-            />
-            <Text
-              style={{
-                color: "rgba(255, 255, 255, 0.4)",
-                fontSize: Typography.labelMedium,
-                letterSpacing: 0.5
-              }}
-            >
-              {t("planPairing.waiting")}
-            </Text>
-          </Animated.View>
+              {waitingIndicator}
 
-          <Text
-            style={{
-              color: "rgba(255, 255, 255, 0.5)",
-              fontSize: Typography.labelMedium,
-              marginTop: DimensionHelper.hp("1.5%"),
-              letterSpacing: 0.3
-            }}
-          >
-            {t("planPairing.secondary")}
-          </Text>
+              <Text
+                style={{
+                  color: "rgba(255, 255, 255, 0.5)",
+                  fontSize: Typography.labelMedium,
+                  marginTop: DimensionHelper.hp("1.5%"),
+                  letterSpacing: 0.3
+                }}
+              >
+                {t("planPairing.secondary")}
+              </Text>
 
-          <TouchableHighlight
-            onPress={initPairing}
-            underlayColor="rgba(255, 255, 255, 0.1)"
-            hasTVPreferredFocus={false}
-            style={{
-              marginTop: DimensionHelper.hp("4%"),
-              paddingVertical: DimensionHelper.hp("1.2%"),
-              paddingHorizontal: DimensionHelper.wp("2.5%"),
-              borderRadius: 6,
-              borderWidth: 1,
-              borderColor: "rgba(255, 255, 255, 0.15)"
-            }}
-          >
-            <Text
-              style={{
-                color: "rgba(255, 255, 255, 0.5)",
-                fontSize: Typography.labelMedium,
-                letterSpacing: 0.3
-              }}
-            >
-              {t("planPairing.regenerate")}
-            </Text>
-          </TouchableHighlight>
+              <TouchableHighlight
+                onPress={initPairing}
+                underlayColor="rgba(255, 255, 255, 0.1)"
+                hasTVPreferredFocus={false}
+                style={{
+                  marginTop: DimensionHelper.hp("4%"),
+                  paddingVertical: DimensionHelper.hp("1.2%"),
+                  paddingHorizontal: DimensionHelper.wp("2.5%"),
+                  borderRadius: 6,
+                  borderWidth: 1,
+                  borderColor: "rgba(255, 255, 255, 0.15)"
+                }}
+              >
+                <Text
+                  style={{
+                    color: "rgba(255, 255, 255, 0.5)",
+                    fontSize: Typography.labelMedium,
+                    letterSpacing: 0.3
+                  }}
+                >
+                  {t("planPairing.regenerate")}
+                </Text>
+              </TouchableHighlight>
+            </>
+          )}
         </Animated.View>
       </LinearGradient>
     </View>

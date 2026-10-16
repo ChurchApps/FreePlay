@@ -2,7 +2,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { View, Text, Animated, Easing } from "react-native";
 import { useTranslation } from "react-i18next";
-import { CachedData, Styles, Colors, Typography, PlanSync } from "../helpers";
+import { CachedData, Styles, Colors, Typography, PlanSync, ScheduleSync } from "../helpers";
 import { ProviderAuthHelper, ProviderSettingsHelper, AnnouncementsHelper } from "../helpers";
 import { getAvailableProviders, FREEPLAY_PROVIDER_IDS, getProvider } from "../providers";
 import { isLocked, lockedProviderId } from "../branding";
@@ -26,6 +26,7 @@ export const SplashScreen = (props: Props) => {
     CachedData.currentPlan = await CachedData.getAsyncStorage("currentPlan");
     await ProviderSettingsHelper.loadAll();
     await AnnouncementsHelper.load();
+    await ScheduleSync.load();
     if (CachedData.providerId && CachedData.pairingData) {
       const provider = getProvider(CachedData.providerId);
       provider?.setPairingData?.(CachedData.pairingData);
@@ -45,6 +46,10 @@ export const SplashScreen = (props: Props) => {
   };
 
   const navigate = (connectedProviders: string[]) => {
+    if (ScheduleSync.isScheduled()) {
+      props.navigateTo("scheduledPlayer");
+      return;
+    }
     if (connectedProviders.length > 0) {
       const firstProviderId = connectedProviders[0];
       CachedData.activeProvider = firstProviderId;
@@ -122,7 +127,8 @@ export const SplashScreen = (props: Props) => {
     const minDisplayTime = new Promise<void>(resolve => setTimeout(resolve, 1200));
     Promise.all([minDisplayTime, loadData()]).then(([, connectedProviders]) => {
       navigate(connectedProviders);
-      PlanSync.syncCurrentPlan();
+      if (ScheduleSync.isScheduled()) ScheduleSync.sync();
+      else PlanSync.syncCurrentPlan();
       AnnouncementsHelper.sync();
     });
 

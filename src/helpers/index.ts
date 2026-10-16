@@ -12,3 +12,5 @@ export { DownloadIndex } from "./DownloadIndex";
 export { StorageManager } from "./StorageManager";
 export { PlanSync } from "./PlanSync";
 export { AnnouncementsHelper } from "./AnnouncementsHelper";
+export { ScheduleClock } from "./ScheduleClock";
+export { ScheduleSync } from "./ScheduleSync";

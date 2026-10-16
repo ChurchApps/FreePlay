@@ -232,7 +232,7 @@ export class CachedData {
     }
   }
 
-  private static async download(
+  static async download(
     file: MessageFileInterface,
     diskPath: string,
     fileProgressCallback?: (progress: number) => void
