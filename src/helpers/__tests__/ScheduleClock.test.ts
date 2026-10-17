@@ -106,6 +106,18 @@ describe("ScheduleClock teacher paced", () => {
     expect(ScheduleClock.resolve(paced, at("08:30"), null, lesson).key).toBe("fallback");
   });
 
+  it("plays a schedule saved as hold last the same way as teacher paced", () => {
+    const saved = { ...manifest, occurrences: [occ("lesson", "09:00", "10:00", "holdLast"), occ("music", "10:00", "11:00")] };
+    const lesson = ScheduleClock.resolve(saved, at("09:10"));
+    expect(lesson.behavior).toBe("teacherPaced");
+    expect(ScheduleClock.keepsSlot(lesson, 0, [true, true], false)).toBe(true);
+    expect(ScheduleClock.resolve(saved, at("10:15")).occurrence?.id).toBe("music");
+    const kept = ScheduleClock.resolve(saved, at("10:15"), null, lesson);
+    expect(kept.key).toBe(lessonKey);
+    expect(kept.behavior).toBe("teacherPaced");
+    expect(ScheduleClock.autoAdvance(false, false, lesson.behavior, true)).toBe(false);
+  });
+
   it("lets the slot go only once the teacher is on the last item and it is done", () => {
     const slot = ScheduleClock.resolve(paced, at("09:10"));
     expect(ScheduleClock.keepsSlot(slot, 0, [true, true], false)).toBe(true);
@@ -167,7 +179,7 @@ describe("ScheduleClock remote control", () => {
 describe("ScheduleClock.autoAdvance", () => {
   it("moves a timed slide on only when it is playing, not teacher paced, and the overview is closed", () => {
     expect(ScheduleClock.autoAdvance(false, false, "loop", true)).toBe(true);
-    expect(ScheduleClock.autoAdvance(false, false, "holdLast", true)).toBe(true);
+    expect(ScheduleClock.autoAdvance(false, false, "holdLast", true)).toBe(false);
     expect(ScheduleClock.autoAdvance(false, false, "fallback", true)).toBe(true);
     expect(ScheduleClock.autoAdvance(true, false, "loop", true)).toBe(false);
     expect(ScheduleClock.autoAdvance(false, true, "loop", true)).toBe(false);
