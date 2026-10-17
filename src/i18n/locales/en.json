@@ -136,14 +136,18 @@
     "initializing": "Initializing authentication...",
     "instructionsLine1": "Scan the QR code with your phone to authorize access.",
     "instructionsLine2": "Your TV will connect automatically once you approve.",
+    "invalidGrant": "Authorization could not be completed. Please try again.",
+    "invalidRequest": "The sign-in request was rejected. Please try again.",
     "loadingContent": "Loading your content...",
     "providerNotFound": "Provider not found.",
     "secondary": "Check your phone to confirm",
+    "serverError": "Sign-in is temporarily unavailable. Please try again later.",
     "sessionExpired": "Authorization session expired. Please try again.",
     "sessionFailed": "Failed to create authorization session. Please try again.",
     "tokenExchangeFailed": "Token exchange failed. Please try again.",
     "tryAgain": "Try Again",
     "unexpectedError": "An unexpected error occurred. Please try again.",
+    "unsupportedProvider": "This provider cannot be connected this way.",
     "waiting": "Waiting for confirmation"
   },
   "providerSettings": {
