@@ -11,7 +11,7 @@ export interface DeviceInterface {
   secret?: string;
 }
 
-export type ScheduleEndBehavior = "loop" | "holdLast" | "fallback";
+export type ScheduleEndBehavior = "loop" | "holdLast" | "fallback" | "teacherPaced";
 
 export interface ScheduleItem {
   cacheKey: string;

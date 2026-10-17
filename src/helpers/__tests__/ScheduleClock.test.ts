@@ -74,3 +74,69 @@ describe("ScheduleClock.readyThrough", () => {
     expect(ScheduleClock.readyThrough(manifest, () => true, at("08:00"))).toBe(manifest.validUntil);
   });
 });
+
+describe("ScheduleClock teacher paced", () => {
+  const paced = { ...manifest, occurrences: [occ("lesson", "09:00", "10:00", "teacherPaced"), occ("music", "10:00", "11:00")] };
+  const lessonKey = "lesson|2026-10-18T09:00:00Z";
+
+  it("holds the last item instead of looping or finishing", () => {
+    expect(ScheduleClock.nextStep(0, [true, true], "teacherPaced")).toEqual({ index: 1 });
+    expect(ScheduleClock.nextStep(1, [true, true], "teacherPaced")).toEqual({ hold: true });
+  });
+
+  const lesson = ScheduleClock.resolve(paced, at("09:10"));
+
+  it("keeps a teacher paced lesson on screen past its end time until the teacher lets it go", () => {
+    expect(lesson.key).toBe(lessonKey);
+    expect(ScheduleClock.resolve(paced, at("10:15")).occurrence?.id).toBe("music");
+    expect(ScheduleClock.resolve(paced, at("10:15"), null, lesson).key).toBe(lessonKey);
+    expect(ScheduleClock.resolve(paced, at("12:00"), null, lesson).behavior).toBe("teacherPaced");
+  });
+
+  it("keeps the lesson after a refreshed manifest drops the ended occurrence", () => {
+    const refreshed = { ...paced, occurrences: [paced.occurrences[1]] };
+    const kept = ScheduleClock.resolve(refreshed, at("10:15"), null, lesson);
+    expect(kept.key).toBe(lessonKey);
+    expect(kept.items.map(i => i.cacheKey)).toEqual(["lesson-a", "lesson-b"]);
+  });
+
+  it("only stays on slots that are teacher paced and have started", () => {
+    const service = ScheduleClock.resolve(manifest, at("09:10"));
+    expect(ScheduleClock.resolve(manifest, at("10:15"), null, service).key).toBe("fallback");
+    expect(ScheduleClock.resolve(paced, at("08:30"), null, lesson).key).toBe("fallback");
+  });
+
+  it("lets the slot go only once the teacher is on the last item and it is done", () => {
+    const slot = ScheduleClock.resolve(paced, at("09:10"));
+    expect(ScheduleClock.keepsSlot(slot, 0, [true, true], false)).toBe(true);
+    expect(ScheduleClock.keepsSlot(slot, 1, [true, true], false)).toBe(true);
+    expect(ScheduleClock.keepsSlot(slot, 1, [true, true], true)).toBe(false);
+    expect(ScheduleClock.keepsSlot(slot, 0, [true, false], true)).toBe(false);
+    expect(ScheduleClock.keepsSlot(ScheduleClock.resolve(paced, at("10:10")), 0, [true, true], false)).toBe(false);
+  });
+});
+
+describe("ScheduleClock remote control", () => {
+  it("maps the remote the same way the manual player does, with select and up opening the panel", () => {
+    expect(ScheduleClock.remoteAction("playPause", false)).toBe("playPause");
+    expect(ScheduleClock.remoteAction("right", false)).toBe("next");
+    expect(ScheduleClock.remoteAction("left", false)).toBe("previous");
+    expect(ScheduleClock.remoteAction("select", false)).toBe("panel");
+    expect(ScheduleClock.remoteAction("up", false)).toBe("panel");
+    expect(ScheduleClock.remoteAction("down", false)).toBeNull();
+  });
+
+  it("leaves the remote to the panel while it is open", () => {
+    expect(ScheduleClock.remoteAction("right", true)).toBe("panel");
+    expect(ScheduleClock.remoteAction("playPause", true)).toBe("panel");
+  });
+
+  it("steps to the next or previous playable item inside the slot", () => {
+    expect(ScheduleClock.skip(0, [true, false, true], 1, "teacherPaced")).toBe(2);
+    expect(ScheduleClock.skip(2, [true, false, true], -1, "teacherPaced")).toBe(0);
+    expect(ScheduleClock.skip(2, [true, false, true], 1, "teacherPaced")).toBe(2);
+    expect(ScheduleClock.skip(0, [true, true], -1, "holdLast")).toBe(0);
+    expect(ScheduleClock.skip(1, [true, true], 1, "loop")).toBe(0);
+    expect(ScheduleClock.skip(0, [true, true], -1, "loop")).toBe(1);
+  });
+});
