@@ -171,7 +171,7 @@ export class ScheduleSync {
     if (!provider?.getPlaylist || !item.providerPath) return "";
     if (!playlists.has(item.providerPath)) {
       playlists.set(item.providerPath, (async () => {
-        let auth = await ProviderAuthHelper.getAuth(provider.id);
+        let auth = await ProviderAuthHelper.refreshIfNeeded(provider.id);
         if (!auth && provider.discoverInstances) {
           const [instance] = await provider.discoverInstances();
           if (instance) auth = networkInstanceToAuth(instance);
