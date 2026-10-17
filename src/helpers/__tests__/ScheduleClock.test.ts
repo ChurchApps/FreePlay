@@ -126,6 +126,12 @@ describe("ScheduleClock remote control", () => {
     expect(ScheduleClock.remoteAction("down", false)).toBeNull();
   });
 
+  it("maps fast forward and rewind to a seek within the video", () => {
+    expect(ScheduleClock.remoteAction("fastForward", false)).toBe("seekForward");
+    expect(ScheduleClock.remoteAction("rewind", false)).toBe("seekBack");
+    expect(ScheduleClock.remoteAction("fastForward", true)).toBe("panel");
+  });
+
   it("leaves the remote to the panel while it is open", () => {
     expect(ScheduleClock.remoteAction("right", true)).toBe("panel");
     expect(ScheduleClock.remoteAction("playPause", true)).toBe("panel");

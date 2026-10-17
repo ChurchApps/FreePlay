@@ -8,7 +8,7 @@ export interface ScheduleSlot {
 }
 
 export type ScheduleStep = { index: number } | { hold: true } | { finished: true };
-export type RemoteAction = "panel" | "playPause" | "next" | "previous";
+export type RemoteAction = "panel" | "playPause" | "next" | "previous" | "seekForward" | "seekBack";
 
 const time = (iso: string) => Date.parse(iso);
 const NO_ITEMS: ScheduleItem[] = [];
@@ -74,6 +74,8 @@ export class ScheduleClock {
       case "playPause": return "playPause";
       case "right": return "next";
       case "left": return "previous";
+      case "fastForward": return "seekForward";
+      case "rewind": return "seekBack";
       default: return null;
     }
   }
