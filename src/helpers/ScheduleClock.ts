@@ -8,7 +8,7 @@ export interface ScheduleSlot {
 }
 
 export type ScheduleStep = { index: number } | { hold: true } | { finished: true };
-export type RemoteAction = "panel" | "overview" | "playPause" | "next" | "previous";
+export type RemoteAction = "panel" | "overview" | "playPause" | "next" | "previous" | "seekForward" | "seekBack";
 
 const time = (iso: string) => Date.parse(iso);
 const NO_ITEMS: ScheduleItem[] = [];
@@ -76,8 +76,15 @@ export class ScheduleClock {
       case "playPause": return "playPause";
       case "right": return "next";
       case "left": return "previous";
+      case "fastForward": return "seekForward";
+      case "rewind": return "seekBack";
       default: return null;
     }
+  }
+
+  // A timed slide moves on by itself unless it is paused, teacher paced, or the slide overview is open.
+  static autoAdvance(overviewVisible: boolean, paused: boolean, behavior: ScheduleEndBehavior, hasTimedSlide: boolean): boolean {
+    return hasTimedSlide && !paused && behavior !== "teacherPaced" && !overviewVisible;
   }
 
   // Manual next/previous stays inside the slot; only a looping slot wraps around.

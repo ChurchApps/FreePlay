@@ -126,6 +126,12 @@ describe("ScheduleClock remote control", () => {
     expect(ScheduleClock.remoteAction("down", false)).toBeNull();
   });
 
+  it("maps fast forward and rewind to a seek within the video", () => {
+    expect(ScheduleClock.remoteAction("fastForward", false)).toBe("seekForward");
+    expect(ScheduleClock.remoteAction("rewind", false)).toBe("seekBack");
+    expect(ScheduleClock.remoteAction("fastForward", true)).toBe("panel");
+  });
+
   it("leaves the remote to the panel while it is open", () => {
     expect(ScheduleClock.remoteAction("right", true)).toBe("panel");
     expect(ScheduleClock.remoteAction("playPause", true)).toBe("panel");
@@ -136,6 +142,8 @@ describe("ScheduleClock remote control", () => {
     expect(ScheduleClock.remoteAction("select", false, true)).toBeNull();
     expect(ScheduleClock.remoteAction("right", false, true)).toBeNull();
     expect(ScheduleClock.remoteAction("playPause", false, true)).toBeNull();
+    expect(ScheduleClock.remoteAction("fastForward", false, true)).toBeNull();
+    expect(ScheduleClock.remoteAction("rewind", false, true)).toBeNull();
   });
 
   it("jumps to the chosen slide, clamped to the slot", () => {
@@ -153,5 +161,18 @@ describe("ScheduleClock remote control", () => {
     expect(ScheduleClock.skip(0, [true, true], -1, "holdLast")).toBe(0);
     expect(ScheduleClock.skip(1, [true, true], 1, "loop")).toBe(0);
     expect(ScheduleClock.skip(0, [true, true], -1, "loop")).toBe(1);
+  });
+});
+
+describe("ScheduleClock.autoAdvance", () => {
+  it("moves a timed slide on only when it is playing, not teacher paced, and the overview is closed", () => {
+    expect(ScheduleClock.autoAdvance(false, false, "loop", true)).toBe(true);
+    expect(ScheduleClock.autoAdvance(false, false, "holdLast", true)).toBe(true);
+    expect(ScheduleClock.autoAdvance(false, false, "fallback", true)).toBe(true);
+    expect(ScheduleClock.autoAdvance(true, false, "loop", true)).toBe(false);
+    expect(ScheduleClock.autoAdvance(false, true, "loop", true)).toBe(false);
+    expect(ScheduleClock.autoAdvance(false, false, "teacherPaced", true)).toBe(false);
+    expect(ScheduleClock.autoAdvance(false, false, "loop", false)).toBe(false);
+    expect(ScheduleClock.autoAdvance(true, true, "teacherPaced", false)).toBe(false);
   });
 });

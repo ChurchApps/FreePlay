@@ -21,4 +21,10 @@ export class PlayerHelper {
     return this.isVideoFile(file) ? 0 : 5;
   }
 
+  // Duration is 0 or missing until the video reports it, so only clamp at the end once it is known.
+  static seekTarget(position: number, delta: number, duration?: number): number {
+    const target = Math.max(0, position + delta);
+    return duration > 0 ? Math.min(duration, target) : target;
+  }
+
 }
