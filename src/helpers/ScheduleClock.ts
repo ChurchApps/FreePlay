@@ -87,6 +87,11 @@ export class ScheduleClock {
     return hasTimedSlide && !paused && behavior !== "teacherPaced" && !overviewVisible;
   }
 
+  // The player is unmounted under the slide overview, so nothing plays or ends there; closing it restarts the item.
+  static showPlayer(hasFile: boolean, overviewVisible: boolean): boolean {
+    return hasFile && !overviewVisible;
+  }
+
   // Manual next/previous stays inside the slot; only a looping slot wraps around.
   static skip(index: number, playable: boolean[], direction: 1 | -1, behavior: ScheduleEndBehavior): number {
     const n = playable.length;

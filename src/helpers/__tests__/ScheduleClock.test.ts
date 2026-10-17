@@ -176,3 +176,12 @@ describe("ScheduleClock.autoAdvance", () => {
     expect(ScheduleClock.autoAdvance(true, true, "teacherPaced", false)).toBe(false);
   });
 });
+
+describe("ScheduleClock.showPlayer", () => {
+  it("unmounts the player while the slide overview is open", () => {
+    expect(ScheduleClock.showPlayer(true, true)).toBe(false);
+    expect(ScheduleClock.showPlayer(true, false)).toBe(true);
+    expect(ScheduleClock.showPlayer(false, false)).toBe(false);
+    expect(ScheduleClock.showPlayer(false, true)).toBe(false);
+  });
+});

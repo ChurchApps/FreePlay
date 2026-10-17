@@ -177,9 +177,6 @@ export const ScheduledPlayerScreen = (props: Props) => {
     messageRef.current?.seek(PlayerHelper.seekTarget(positionRef.current, delta, durationRef.current));
   };
 
-  // The slide stays put under the overview, so a video that ends there does not move on.
-  const handleEnd = () => { if (!overviewVisibleRef.current) advance(); };
-
   const handleProgress = (data: { currentTime: number; playableDuration: number }) => {
     positionRef.current = data.currentTime;
     durationRef.current = data.playableDuration;
@@ -318,7 +315,7 @@ export const ScheduledPlayerScreen = (props: Props) => {
   return (
     <View style={{ flex: 1, width: "100%", backgroundColor: "#000" }} testID="scheduled-player-root">
       <PlayerErrorBoundary onBack={showPanel}>
-        {file ? <Message ref={messageRef} key={slot.key + "|" + cycle} file={file} downloaded={false} paused={paused} onProgress={handleProgress} onEnd={handleEnd} /> : placeholder()}
+        {ScheduleClock.showPlayer(!!file, overviewVisible) ? <Message ref={messageRef} key={slot.key + "|" + cycle} file={file!} downloaded={false} paused={paused} onProgress={handleProgress} onEnd={advance} /> : !file && placeholder()}
       </PlayerErrorBoundary>
 
       {paused && file && (
