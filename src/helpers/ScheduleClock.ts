@@ -34,18 +34,25 @@ export class ScheduleClock {
     return upcoming[0] || null;
   }
 
+  // "Play once, then hold the last slide" is retired. A saved holdLast row plays as teacher paced.
+  static playbackBehavior(behavior: ScheduleEndBehavior): ScheduleEndBehavior {
+    return behavior === "holdLast" ? "teacherPaced" : behavior;
+  }
+
   // An occurrence whose endBehavior is "fallback" hands over to the fallback loop once it has played through.
   // stayOn is a teacher paced slot the teacher has not finished; it stays on screen past its end time,
   // even after a refreshed manifest has dropped the ended occurrence.
   static resolve(manifest: ScheduleManifest | null, now: number, finishedKey: string | null = null, stayOn: ScheduleSlot | null = null): ScheduleSlot {
-    if (stayOn?.occurrence && stayOn.behavior === "teacherPaced" && time(stayOn.occurrence.start) <= now) {
+    if (stayOn?.occurrence && this.playbackBehavior(stayOn.behavior) === "teacherPaced" && time(stayOn.occurrence.start) <= now) {
       const fresh = (manifest?.occurrences || []).find(o => o.id + "|" + o.start === stayOn.key);
-      return fresh ? { key: stayOn.key, occurrence: fresh, items: fresh.items || NO_ITEMS, behavior: fresh.endBehavior } : stayOn;
+      return fresh
+        ? { key: stayOn.key, occurrence: fresh, items: fresh.items || NO_ITEMS, behavior: this.playbackBehavior(fresh.endBehavior) }
+        : { ...stayOn, behavior: this.playbackBehavior(stayOn.behavior) };
     }
     const occ = this.activeOccurrence(manifest, now);
     const key = occ ? occ.id + "|" + occ.start : "fallback";
     if (occ && !(occ.endBehavior === "fallback" && finishedKey === key)) {
-      return { key, occurrence: occ, items: occ.items || NO_ITEMS, behavior: occ.endBehavior };
+      return { key, occurrence: occ, items: occ.items || NO_ITEMS, behavior: this.playbackBehavior(occ.endBehavior) };
     }
     return { key: "fallback", occurrence: null, items: manifest?.fallback || NO_ITEMS, behavior: "loop" };
   }
@@ -61,7 +68,7 @@ export class ScheduleClock {
 
   // A teacher paced slot holds the screen until the teacher is on its last item and that item is done.
   static keepsSlot(slot: ScheduleSlot, index: number, playable: boolean[], lastDone: boolean): boolean {
-    if (slot.behavior !== "teacherPaced" || index < 0) return false;
+    if (this.playbackBehavior(slot.behavior) !== "teacherPaced" || index < 0) return false;
     const onLast = !playable.slice(index + 1).some(Boolean);
     return !(onLast && lastDone);
   }
@@ -84,7 +91,7 @@ export class ScheduleClock {
 
   // A timed slide moves on by itself unless it is paused, teacher paced, or the slide overview is open.
   static autoAdvance(overviewVisible: boolean, paused: boolean, behavior: ScheduleEndBehavior, hasTimedSlide: boolean): boolean {
-    return hasTimedSlide && !paused && behavior !== "teacherPaced" && !overviewVisible;
+    return hasTimedSlide && !paused && this.playbackBehavior(behavior) !== "teacherPaced" && !overviewVisible;
   }
 
   // The player is unmounted under the slide overview, so nothing plays or ends there; closing it restarts the item.
