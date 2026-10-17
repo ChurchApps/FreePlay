@@ -34,6 +34,8 @@ export class ScheduleSync {
   static lastChecked = 0;
   static missing: string[] = [];
   static nowPlaying: { occurrenceId: string | null; cacheKey: string; title: string } | null = null;
+  // Files of a teacher paced lesson still on screen past its end time; kept out of eviction until it lets go.
+  static holding: ScheduleItem[] = [];
   private static cached = new Set<string>();
   private static listeners = new Set<() => void>();
 
@@ -121,7 +123,7 @@ export class ScheduleSync {
 
     const items = this.allItems();
     if (items.some(i => !this.cached.has(i.cacheKey))) await this.downloadAll(items);
-    await this.evict(items);
+    await this.evict(items.concat(this.holding));
     this.missing = items.filter(i => !this.cached.has(i.cacheKey)).map(i => i.cacheKey);
     this.emit();
     await this.postStatus(deviceId, headers);

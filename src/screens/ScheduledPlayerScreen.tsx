@@ -3,9 +3,11 @@ import { View, Text, TouchableHighlight, BackHandler, ActivityIndicator, HWEvent
 import { useTranslation } from "react-i18next";
 import { useKeepAwake } from "expo-keep-awake";
 import LinearGradient from "react-native-linear-gradient";
+import Icon from "react-native-vector-icons/MaterialIcons";
 import { CachedData, Colors, ScheduleClock, ScheduleSync, Styles, Typography } from "../helpers";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { PlayerHelper } from "../helpers/PlayerHelper";
+import { SoundHelper } from "../helpers/SoundHelper";
 import { MessageFileInterface } from "../interfaces";
 import { Message, PlayerErrorBoundary } from "../components";
 import type { ScheduleSlot } from "../helpers/ScheduleClock";
@@ -33,11 +35,13 @@ export const ScheduledPlayerScreen = (props: Props) => {
   const [pinned, setPinned] = useState(false);
   const [panelVisible, setPanelVisible] = useState(false);
   const [focused, setFocused] = useState("pin");
+  const [paused, setPaused] = useState(false);
 
   const slotRef = useRef(slot);
   const indexRef = useRef(index);
   const pinnedRef = useRef(pinned);
   const finishedRef = useRef<string | null>(null);
+  const videoEndedRef = useRef(false);
   const panelVisibleRef = useRef(false);
   const panelTimer = useRef<NodeJS.Timeout | null>(null);
   const slideTimer = useRef<NodeJS.Timeout | null>(null);
@@ -48,18 +52,33 @@ export const ScheduledPlayerScreen = (props: Props) => {
 
   const playable = (items = slotRef.current.items) => items.map(i => ScheduleSync.isCached(i.cacheKey));
 
+  const goTo = (i: number) => {
+    indexRef.current = i;
+    videoEndedRef.current = false;
+    setIndex(i);
+    setCycle(c => c + 1);
+    setPaused(false);
+  };
+
   const cutTo = (next: ScheduleSlot) => {
     const step = ScheduleClock.nextStep(-1, playable(next.items), "loop");
     slotRef.current = next;
-    indexRef.current = "index" in step ? step.index : -1;
     setSlot(next);
-    setIndex(indexRef.current);
-    setCycle(c => c + 1);
+    goTo("index" in step ? step.index : -1);
+  };
+
+  // A teacher paced slot stays up past its end time until the teacher is through its last item.
+  const stayOn = () => {
+    const current = slotRef.current;
+    const lastDone = current.items[indexRef.current]?.mediaType === "image" || videoEndedRef.current;
+    const kept = ScheduleClock.keepsSlot(current, indexRef.current, playable(), lastDone) ? current : null;
+    ScheduleSync.holding = kept ? kept.items : [];
+    return kept;
   };
 
   const tick = () => {
     if (pinnedRef.current) return;
-    const next = ScheduleClock.resolve(ScheduleSync.manifest, Date.now(), finishedRef.current);
+    const next = ScheduleClock.resolve(ScheduleSync.manifest, Date.now(), finishedRef.current, stayOn());
     if (next.key !== slotRef.current.key) cutTo(next);
     else if (next.items !== slotRef.current.items) {
       slotRef.current = next;
@@ -73,9 +92,9 @@ export const ScheduledPlayerScreen = (props: Props) => {
     const step = ScheduleClock.nextStep(indexRef.current, playable(), pinnedRef.current ? "loop" : current.behavior);
     if ("index" in step) {
       if (step.index === -1 && indexRef.current === -1) return;
-      indexRef.current = step.index;
-      setIndex(step.index);
-      setCycle(c => c + 1);
+      goTo(step.index);
+    } else if ("hold" in step) {
+      videoEndedRef.current = true;
     } else if ("finished" in step && indexRef.current >= 0) {
       finishedRef.current = current.key;
       tick();
@@ -96,9 +115,10 @@ export const ScheduledPlayerScreen = (props: Props) => {
     ScheduleSync.nowPlaying = item ? { occurrenceId: slot.occurrence?.id || null, cacheKey: item.cacheKey, title: item.title } : null;
     if (slideTimer.current) clearTimeout(slideTimer.current);
     const seconds = PlayerHelper.slideSeconds(file);
-    if (file && seconds > 0) slideTimer.current = setTimeout(advance, seconds * 1000);
+    // Teacher paced slides wait for the remote.
+    if (file && seconds > 0 && !paused && slot.behavior !== "teacherPaced") slideTimer.current = setTimeout(advance, seconds * 1000);
     return () => { if (slideTimer.current) clearTimeout(slideTimer.current); };
-  }, [file]);
+  }, [file, paused, slot.behavior]);
 
   const hidePanel = () => {
     if (panelTimer.current) clearTimeout(panelTimer.current);
@@ -111,9 +131,26 @@ export const ScheduledPlayerScreen = (props: Props) => {
     setPanelVisible(true);
   };
 
+  const togglePause = () => {
+    if (indexRef.current < 0) return;
+    SoundHelper.playClick();
+    setPaused(p => !p);
+  };
+
+  const skip = (direction: 1 | -1) => {
+    if (indexRef.current < 0) return;
+    const behavior = pinnedRef.current ? "loop" : slotRef.current.behavior;
+    const i = ScheduleClock.skip(indexRef.current, playable(), direction, behavior);
+    if (i !== indexRef.current) goTo(i);
+  };
+
   useTVEventHandler((evt: HWEvent) => {
-    if (panelVisibleRef.current) showPanel();
-    else if (evt.eventType === "select" || evt.eventType === "up") showPanel();
+    switch (ScheduleClock.remoteAction(evt.eventType, panelVisibleRef.current)) {
+      case "panel": showPanel(); break;
+      case "playPause": togglePause(); break;
+      case "next": skip(1); break;
+      case "previous": skip(-1); break;
+    }
   });
 
   useEffect(() => {
@@ -229,8 +266,14 @@ export const ScheduledPlayerScreen = (props: Props) => {
   return (
     <View style={{ flex: 1, width: "100%", backgroundColor: "#000" }} testID="scheduled-player-root">
       <PlayerErrorBoundary onBack={showPanel}>
-        {file ? <Message key={slot.key + "|" + cycle} file={file} downloaded={false} paused={false} onEnd={advance} /> : placeholder()}
+        {file ? <Message key={slot.key + "|" + cycle} file={file} downloaded={false} paused={paused} onEnd={advance} /> : placeholder()}
       </PlayerErrorBoundary>
+
+      {paused && file && (
+        <View pointerEvents="none" style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, alignItems: "center", justifyContent: "center", backgroundColor: "rgba(0, 0, 0, 0.5)" }} testID="scheduled-player-paused">
+          <Icon name="play-circle-outline" size={DimensionHelper.hp("11%")} color="#fff" />
+        </View>
+      )}
 
       {panelVisible && (
         <LinearGradient
