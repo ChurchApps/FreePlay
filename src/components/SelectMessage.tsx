@@ -6,8 +6,9 @@ import { CachedData } from "../helpers";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import { MenuHeader } from "./MenuHeader";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import { MessageFileInterface } from "../interfaces";
 
-type Props = { onSelect: (index: number) => void; currentIndex?: number };
+type Props = { onSelect: (index: number) => void; currentIndex?: number; files?: MessageFileInterface[] };
 
 type MessageItem = { index: number; name: string; image?: string; url?: string; fileType?: string };
 
@@ -73,15 +74,16 @@ export const SelectMessage = (props: Props) => {
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
 
   const messages = useMemo(() => {
-    if (!CachedData.messageFiles) return [];
-    return CachedData.messageFiles.map((m, idx) => ({
+    const files = props.files || CachedData.messageFiles;
+    if (!files) return [];
+    return files.map((m, idx) => ({
       index: idx,
       name: m.name || "",
       image: m.image,
       url: m.url,
       fileType: m.fileType
     }));
-  }, []);
+  }, [props.files]);
 
   const handleSelect = useCallback((index: number) => {
     props.onSelect(index);

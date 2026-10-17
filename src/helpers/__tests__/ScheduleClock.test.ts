@@ -117,18 +117,33 @@ describe("ScheduleClock teacher paced", () => {
 });
 
 describe("ScheduleClock remote control", () => {
-  it("maps the remote the same way the manual player does, with select and up opening the panel", () => {
+  it("maps the remote the same way the manual player does, with select opening the panel and up the slide overview", () => {
     expect(ScheduleClock.remoteAction("playPause", false)).toBe("playPause");
     expect(ScheduleClock.remoteAction("right", false)).toBe("next");
     expect(ScheduleClock.remoteAction("left", false)).toBe("previous");
     expect(ScheduleClock.remoteAction("select", false)).toBe("panel");
-    expect(ScheduleClock.remoteAction("up", false)).toBe("panel");
+    expect(ScheduleClock.remoteAction("up", false)).toBe("overview");
     expect(ScheduleClock.remoteAction("down", false)).toBeNull();
   });
 
   it("leaves the remote to the panel while it is open", () => {
     expect(ScheduleClock.remoteAction("right", true)).toBe("panel");
     expect(ScheduleClock.remoteAction("playPause", true)).toBe("panel");
+  });
+
+  it("leaves the remote to the slide overview while it is open", () => {
+    expect(ScheduleClock.remoteAction("up", false, true)).toBeNull();
+    expect(ScheduleClock.remoteAction("select", false, true)).toBeNull();
+    expect(ScheduleClock.remoteAction("right", false, true)).toBeNull();
+    expect(ScheduleClock.remoteAction("playPause", false, true)).toBeNull();
+  });
+
+  it("jumps to the chosen slide, clamped to the slot", () => {
+    const slot = ScheduleClock.resolve(manifest, at("09:15"));
+    expect(ScheduleClock.jumpTo(slot, 1)).toBe(1);
+    expect(ScheduleClock.jumpTo(slot, 5)).toBe(1);
+    expect(ScheduleClock.jumpTo(slot, -2)).toBe(0);
+    expect(ScheduleClock.jumpTo({ ...slot, items: [] }, 3)).toBe(-1);
   });
 
   it("steps to the next or previous playable item inside the slot", () => {
