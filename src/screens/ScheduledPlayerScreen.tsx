@@ -10,11 +10,13 @@ import { PlayerHelper } from "../helpers/PlayerHelper";
 import { SoundHelper } from "../helpers/SoundHelper";
 import { MessageFileInterface } from "../interfaces";
 import { Message, PlayerErrorBoundary } from "../components";
+import type { MessageHandle } from "../components/Message";
 import type { ScheduleSlot } from "../helpers/ScheduleClock";
 
 type Props = { navigateTo(page: string, data?: any): void; };
 
 const PANEL_SECONDS = 8;
+const SEEK_SECONDS = 10;
 
 const formatTime = (iso: string, timeZone?: string) => {
   const options: Intl.DateTimeFormatOptions = { hour: "numeric", minute: "2-digit" };
@@ -45,6 +47,10 @@ export const ScheduledPlayerScreen = (props: Props) => {
   const panelVisibleRef = useRef(false);
   const panelTimer = useRef<NodeJS.Timeout | null>(null);
   const slideTimer = useRef<NodeJS.Timeout | null>(null);
+  const messageRef = useRef<MessageHandle>(null);
+  const positionRef = useRef(0);
+  const durationRef = useRef(0);
+  const fileRef = useRef<MessageFileInterface | null>(null);
   slotRef.current = slot;
   indexRef.current = index;
   pinnedRef.current = pinned;
@@ -55,6 +61,8 @@ export const ScheduledPlayerScreen = (props: Props) => {
   const goTo = (i: number) => {
     indexRef.current = i;
     videoEndedRef.current = false;
+    positionRef.current = 0;
+    durationRef.current = 0;
     setIndex(i);
     setCycle(c => c + 1);
     setPaused(false);
@@ -110,6 +118,7 @@ export const ScheduledPlayerScreen = (props: Props) => {
     seconds: item.seconds,
     loopVideo: item.loopVideo
   }, [item?.cacheKey, cycle]);
+  fileRef.current = file;
 
   useEffect(() => {
     ScheduleSync.nowPlaying = item ? { occurrenceId: slot.occurrence?.id || null, cacheKey: item.cacheKey, title: item.title } : null;
@@ -144,12 +153,25 @@ export const ScheduledPlayerScreen = (props: Props) => {
     if (i !== indexRef.current) goTo(i);
   };
 
+  // Seeks within a video only; on a slide fast forward and rewind do nothing.
+  const seek = (delta: number) => {
+    if (!PlayerHelper.isVideoFile(fileRef.current)) return;
+    messageRef.current?.seek(PlayerHelper.seekTarget(positionRef.current, delta, durationRef.current));
+  };
+
+  const handleProgress = (data: { currentTime: number; playableDuration: number }) => {
+    positionRef.current = data.currentTime;
+    durationRef.current = data.playableDuration;
+  };
+
   useTVEventHandler((evt: HWEvent) => {
     switch (ScheduleClock.remoteAction(evt.eventType, panelVisibleRef.current)) {
       case "panel": showPanel(); break;
       case "playPause": togglePause(); break;
       case "next": skip(1); break;
       case "previous": skip(-1); break;
+      case "seekForward": seek(SEEK_SECONDS); break;
+      case "seekBack": seek(-SEEK_SECONDS); break;
     }
   });
 
@@ -266,7 +288,7 @@ export const ScheduledPlayerScreen = (props: Props) => {
   return (
     <View style={{ flex: 1, width: "100%", backgroundColor: "#000" }} testID="scheduled-player-root">
       <PlayerErrorBoundary onBack={showPanel}>
-        {file ? <Message key={slot.key + "|" + cycle} file={file} downloaded={false} paused={paused} onEnd={advance} /> : placeholder()}
+        {file ? <Message ref={messageRef} key={slot.key + "|" + cycle} file={file} downloaded={false} paused={paused} onProgress={handleProgress} onEnd={advance} /> : placeholder()}
       </PlayerErrorBoundary>
 
       {paused && file && (
