@@ -9,7 +9,7 @@ import { DimensionHelper } from "../helpers/DimensionHelper";
 import { PlayerHelper } from "../helpers/PlayerHelper";
 import { SoundHelper } from "../helpers/SoundHelper";
 import { MessageFileInterface } from "../interfaces";
-import { Message, PlayerErrorBoundary } from "../components";
+import { Message, PlayerErrorBoundary, SelectMessage } from "../components";
 import type { MessageHandle } from "../components/Message";
 import type { ScheduleSlot } from "../helpers/ScheduleClock";
 
@@ -38,6 +38,7 @@ export const ScheduledPlayerScreen = (props: Props) => {
   const [panelVisible, setPanelVisible] = useState(false);
   const [focused, setFocused] = useState("pin");
   const [paused, setPaused] = useState(false);
+  const [overviewVisible, setOverviewVisible] = useState(false);
 
   const slotRef = useRef(slot);
   const indexRef = useRef(index);
@@ -45,6 +46,7 @@ export const ScheduledPlayerScreen = (props: Props) => {
   const finishedRef = useRef<string | null>(null);
   const videoEndedRef = useRef(false);
   const panelVisibleRef = useRef(false);
+  const overviewVisibleRef = useRef(false);
   const panelTimer = useRef<NodeJS.Timeout | null>(null);
   const slideTimer = useRef<NodeJS.Timeout | null>(null);
   const messageRef = useRef<MessageHandle>(null);
@@ -55,6 +57,7 @@ export const ScheduledPlayerScreen = (props: Props) => {
   indexRef.current = index;
   pinnedRef.current = pinned;
   panelVisibleRef.current = panelVisible;
+  overviewVisibleRef.current = overviewVisible;
 
   const playable = (items = slotRef.current.items) => items.map(i => ScheduleSync.isCached(i.cacheKey));
 
@@ -124,10 +127,9 @@ export const ScheduledPlayerScreen = (props: Props) => {
     ScheduleSync.nowPlaying = item ? { occurrenceId: slot.occurrence?.id || null, cacheKey: item.cacheKey, title: item.title } : null;
     if (slideTimer.current) clearTimeout(slideTimer.current);
     const seconds = PlayerHelper.slideSeconds(file);
-    // Teacher paced slides wait for the remote.
-    if (file && seconds > 0 && !paused && slot.behavior !== "teacherPaced") slideTimer.current = setTimeout(advance, seconds * 1000);
+    if (file && ScheduleClock.autoAdvance(overviewVisible, paused, slot.behavior, seconds > 0)) slideTimer.current = setTimeout(advance, seconds * 1000);
     return () => { if (slideTimer.current) clearTimeout(slideTimer.current); };
-  }, [file, paused, slot.behavior]);
+  }, [file, paused, slot.behavior, overviewVisible]);
 
   const hidePanel = () => {
     if (panelTimer.current) clearTimeout(panelTimer.current);
@@ -153,6 +155,22 @@ export const ScheduledPlayerScreen = (props: Props) => {
     if (i !== indexRef.current) goTo(i);
   };
 
+  const showOverview = () => {
+    hidePanel();
+    if (slideTimer.current) clearTimeout(slideTimer.current);
+    overviewVisibleRef.current = true;
+    setOverviewVisible(true);
+  };
+
+  // The ref clears on the next render, so the select that picked a slide does not also open the panel.
+  const hideOverview = () => setOverviewVisible(false);
+
+  const jumpTo = (i: number) => {
+    hideOverview();
+    const target = ScheduleClock.jumpTo(slotRef.current, i);
+    if (target >= 0) goTo(target);
+  };
+
   // Seeks within a video only; on a slide fast forward and rewind do nothing.
   const seek = (delta: number) => {
     if (!PlayerHelper.isVideoFile(fileRef.current)) return;
@@ -165,8 +183,9 @@ export const ScheduledPlayerScreen = (props: Props) => {
   };
 
   useTVEventHandler((evt: HWEvent) => {
-    switch (ScheduleClock.remoteAction(evt.eventType, panelVisibleRef.current)) {
+    switch (ScheduleClock.remoteAction(evt.eventType, panelVisibleRef.current, overviewVisibleRef.current)) {
       case "panel": showPanel(); break;
+      case "overview": showOverview(); break;
       case "playPause": togglePause(); break;
       case "next": skip(1); break;
       case "previous": skip(-1); break;
@@ -184,7 +203,8 @@ export const ScheduledPlayerScreen = (props: Props) => {
       tick();
     });
     const backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
-      if (panelVisibleRef.current) hidePanel();
+      if (overviewVisibleRef.current) hideOverview();
+      else if (panelVisibleRef.current) hidePanel();
       else showPanel();
       return true;
     });
@@ -283,12 +303,19 @@ export const ScheduledPlayerScreen = (props: Props) => {
     );
   };
 
+  const overviewFiles: MessageFileInterface[] = useMemo(() => slot.items.map(i => ({
+    id: i.cacheKey,
+    name: i.title,
+    url: ScheduleSync.isCached(i.cacheKey) ? "file://" + ScheduleSync.localPath(i) : undefined,
+    fileType: i.mediaType
+  })), [slot.items, overviewVisible]);
+
   const minutesAgo = ScheduleSync.lastChecked ? Math.round((Date.now() - ScheduleSync.lastChecked) / 60000) : null;
 
   return (
     <View style={{ flex: 1, width: "100%", backgroundColor: "#000" }} testID="scheduled-player-root">
       <PlayerErrorBoundary onBack={showPanel}>
-        {file ? <Message ref={messageRef} key={slot.key + "|" + cycle} file={file} downloaded={false} paused={paused} onProgress={handleProgress} onEnd={advance} /> : placeholder()}
+        {ScheduleClock.showPlayer(!!file, overviewVisible) ? <Message ref={messageRef} key={slot.key + "|" + cycle} file={file!} downloaded={false} paused={paused} onProgress={handleProgress} onEnd={advance} /> : !file && placeholder()}
       </PlayerErrorBoundary>
 
       {paused && file && (
@@ -329,6 +356,12 @@ export const ScheduledPlayerScreen = (props: Props) => {
             )}
           </View>
         </LinearGradient>
+      )}
+
+      {overviewVisible && (
+        <View style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }} testID="scheduled-player-overview">
+          <SelectMessage files={overviewFiles} currentIndex={index} onSelect={jumpTo} />
+        </View>
       )}
     </View>
   );

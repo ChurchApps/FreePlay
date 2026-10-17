@@ -117,12 +117,12 @@ describe("ScheduleClock teacher paced", () => {
 });
 
 describe("ScheduleClock remote control", () => {
-  it("maps the remote the same way the manual player does, with select and up opening the panel", () => {
+  it("maps the remote the same way the manual player does, with select opening the panel and up the slide overview", () => {
     expect(ScheduleClock.remoteAction("playPause", false)).toBe("playPause");
     expect(ScheduleClock.remoteAction("right", false)).toBe("next");
     expect(ScheduleClock.remoteAction("left", false)).toBe("previous");
     expect(ScheduleClock.remoteAction("select", false)).toBe("panel");
-    expect(ScheduleClock.remoteAction("up", false)).toBe("panel");
+    expect(ScheduleClock.remoteAction("up", false)).toBe("overview");
     expect(ScheduleClock.remoteAction("down", false)).toBeNull();
   });
 
@@ -137,6 +137,23 @@ describe("ScheduleClock remote control", () => {
     expect(ScheduleClock.remoteAction("playPause", true)).toBe("panel");
   });
 
+  it("leaves the remote to the slide overview while it is open", () => {
+    expect(ScheduleClock.remoteAction("up", false, true)).toBeNull();
+    expect(ScheduleClock.remoteAction("select", false, true)).toBeNull();
+    expect(ScheduleClock.remoteAction("right", false, true)).toBeNull();
+    expect(ScheduleClock.remoteAction("playPause", false, true)).toBeNull();
+    expect(ScheduleClock.remoteAction("fastForward", false, true)).toBeNull();
+    expect(ScheduleClock.remoteAction("rewind", false, true)).toBeNull();
+  });
+
+  it("jumps to the chosen slide, clamped to the slot", () => {
+    const slot = ScheduleClock.resolve(manifest, at("09:15"));
+    expect(ScheduleClock.jumpTo(slot, 1)).toBe(1);
+    expect(ScheduleClock.jumpTo(slot, 5)).toBe(1);
+    expect(ScheduleClock.jumpTo(slot, -2)).toBe(0);
+    expect(ScheduleClock.jumpTo({ ...slot, items: [] }, 3)).toBe(-1);
+  });
+
   it("steps to the next or previous playable item inside the slot", () => {
     expect(ScheduleClock.skip(0, [true, false, true], 1, "teacherPaced")).toBe(2);
     expect(ScheduleClock.skip(2, [true, false, true], -1, "teacherPaced")).toBe(0);
@@ -144,5 +161,27 @@ describe("ScheduleClock remote control", () => {
     expect(ScheduleClock.skip(0, [true, true], -1, "holdLast")).toBe(0);
     expect(ScheduleClock.skip(1, [true, true], 1, "loop")).toBe(0);
     expect(ScheduleClock.skip(0, [true, true], -1, "loop")).toBe(1);
+  });
+});
+
+describe("ScheduleClock.autoAdvance", () => {
+  it("moves a timed slide on only when it is playing, not teacher paced, and the overview is closed", () => {
+    expect(ScheduleClock.autoAdvance(false, false, "loop", true)).toBe(true);
+    expect(ScheduleClock.autoAdvance(false, false, "holdLast", true)).toBe(true);
+    expect(ScheduleClock.autoAdvance(false, false, "fallback", true)).toBe(true);
+    expect(ScheduleClock.autoAdvance(true, false, "loop", true)).toBe(false);
+    expect(ScheduleClock.autoAdvance(false, true, "loop", true)).toBe(false);
+    expect(ScheduleClock.autoAdvance(false, false, "teacherPaced", true)).toBe(false);
+    expect(ScheduleClock.autoAdvance(false, false, "loop", false)).toBe(false);
+    expect(ScheduleClock.autoAdvance(true, true, "teacherPaced", false)).toBe(false);
+  });
+});
+
+describe("ScheduleClock.showPlayer", () => {
+  it("unmounts the player while the slide overview is open", () => {
+    expect(ScheduleClock.showPlayer(true, true)).toBe(false);
+    expect(ScheduleClock.showPlayer(true, false)).toBe(true);
+    expect(ScheduleClock.showPlayer(false, false)).toBe(false);
+    expect(ScheduleClock.showPlayer(false, true)).toBe(false);
   });
 });

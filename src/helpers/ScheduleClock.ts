@@ -8,7 +8,7 @@ export interface ScheduleSlot {
 }
 
 export type ScheduleStep = { index: number } | { hold: true } | { finished: true };
-export type RemoteAction = "panel" | "playPause" | "next" | "previous" | "seekForward" | "seekBack";
+export type RemoteAction = "panel" | "overview" | "playPause" | "next" | "previous" | "seekForward" | "seekBack";
 
 const time = (iso: string) => Date.parse(iso);
 const NO_ITEMS: ScheduleItem[] = [];
@@ -66,11 +66,13 @@ export class ScheduleClock {
     return !(onLast && lastDone);
   }
 
-  static remoteAction(eventType: string, panelVisible: boolean): RemoteAction | null {
+  // The slide overview handles its own focus, so the player ignores the remote while it is open.
+  static remoteAction(eventType: string, panelVisible: boolean, overviewVisible = false): RemoteAction | null {
+    if (overviewVisible) return null;
     if (panelVisible) return "panel";
     switch (eventType) {
-      case "select":
-      case "up": return "panel";
+      case "select": return "panel";
+      case "up": return "overview";
       case "playPause": return "playPause";
       case "right": return "next";
       case "left": return "previous";
@@ -78,6 +80,16 @@ export class ScheduleClock {
       case "rewind": return "seekBack";
       default: return null;
     }
+  }
+
+  // A timed slide moves on by itself unless it is paused, teacher paced, or the slide overview is open.
+  static autoAdvance(overviewVisible: boolean, paused: boolean, behavior: ScheduleEndBehavior, hasTimedSlide: boolean): boolean {
+    return hasTimedSlide && !paused && behavior !== "teacherPaced" && !overviewVisible;
+  }
+
+  // The player is unmounted under the slide overview, so nothing plays or ends there; closing it restarts the item.
+  static showPlayer(hasFile: boolean, overviewVisible: boolean): boolean {
+    return hasFile && !overviewVisible;
   }
 
   // Manual next/previous stays inside the slot; only a looping slot wraps around.
@@ -92,6 +104,11 @@ export class ScheduleClock {
       } else if (playable[i]) return i;
     }
     return index;
+  }
+
+  static jumpTo(slot: ScheduleSlot, index: number): number {
+    if (slot.items.length === 0) return -1;
+    return Math.min(Math.max(index, 0), slot.items.length - 1);
   }
 
   static readyThrough(manifest: ScheduleManifest | null, isCached: (cacheKey: string) => boolean, now: number): string | null {
