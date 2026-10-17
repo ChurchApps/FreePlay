@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ContentProviderAuthData, getProvider, TokenHelper } from "@churchapps/content-providers";
+import { readOAuthRelayError, refreshRelayToken, usesServerTokenExchange } from "./OAuthRelay";
 
 const tokenHelper = new TokenHelper();
 
@@ -104,7 +105,7 @@ export class ProviderAuthHelper {
     if (!auth) return null;
     if (!authIsExpired(auth)) return auth;
 
-    const newAuth = await tokenHelper.refreshToken(provider.config, auth);
+    const newAuth = usesServerTokenExchange(providerId) ? await this.refreshViaRelay(providerId, auth) : await tokenHelper.refreshToken(provider.config, auth);
     if (newAuth) {
       await this.setAuth(providerId, newAuth);
       return newAuth;
@@ -113,5 +114,16 @@ export class ProviderAuthHelper {
     const latest = await this.getAuth(providerId);
     if (latest && latest.refresh_token !== auth.refresh_token && !authIsExpired(latest)) return latest;
     return null;
+  }
+
+  private static async refreshViaRelay(providerId: string, auth: ContentProviderAuthData): Promise<ContentProviderAuthData | null> {
+    if (!auth.refresh_token) return null;
+    try {
+      return await refreshRelayToken(providerId, auth.refresh_token);
+    } catch (error) {
+      const relayError = readOAuthRelayError(error);
+      console.error(`Token refresh failed for ${providerId}:`, relayError.error || (error as Error)?.message, relayError.error_description || "");
+      return null;
+    }
   }
 }

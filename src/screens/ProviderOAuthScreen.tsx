@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import { Styles, CachedData, ProviderAuthHelper, Colors, Typography } from "../helpers";
 import { SoundHelper } from "../helpers/SoundHelper";
 import { ApiHelper } from "../helpers/ApiHelper";
+import { createRelaySession, exchangeRelaySession, interpretExchangeBody, oauthRelayErrorKey, readOAuthRelayError, usesServerTokenExchange } from "../helpers/OAuthRelay";
 import { ContentProviderAuthData } from "../interfaces";
 import { DimensionHelper } from "../helpers/DimensionHelper";
 import LinearGradient from "react-native-linear-gradient";
@@ -34,7 +35,7 @@ type FlowState =
   | { status: "error"; error: string }
   | { status: "expired"; error: string };
 
-type PendingSession = { sessionCode: string; redirectUri: string; codeVerifier: string; authUrl: string; expiresAt: number };
+type PendingSession = { sessionCode: string; redirectUri: string; codeVerifier: string; authUrl: string; expiresAt: number; serverExchange: boolean; interval: number };
 const pendingSessions: Record<string, PendingSession> = {};
 
 export const ProviderOAuthScreen = (props: Props) => {
@@ -111,17 +112,34 @@ export const ProviderOAuthScreen = (props: Props) => {
         return;
       }
 
+      const serverExchange = usesServerTokenExchange(props.providerId);
       let pending = pendingSessions[props.providerId];
-      if (!pending || pending.expiresAt - Date.now() < 60000) {
-        const relayData = await ApiHelper.post("/oauth/relay/sessions", { provider: props.providerId }, "RelayApi");
+      if (!pending || pending.expiresAt - Date.now() < 60000 || pending.serverExchange !== serverExchange) {
+        let codeVerifier = "";
+        let codeChallenge = "";
+        if (serverExchange) {
+          codeVerifier = generateCodeVerifier();
+          codeChallenge = await generateCodeChallenge(codeVerifier);
+        }
+        const relayData = await createRelaySession(props.providerId, serverExchange ? codeChallenge : undefined);
         if (!relayData?.sessionCode || !relayData?.redirectUri) {
           setFlowState({ status: "error", error: t("providerOAuth.sessionFailed") });
           return;
         }
-        const codeVerifier = generateCodeVerifier();
-        const codeChallenge = await generateCodeChallenge(codeVerifier);
+        if (!serverExchange) {
+          codeVerifier = generateCodeVerifier();
+          codeChallenge = await generateCodeChallenge(codeVerifier);
+        }
         const authUrl = provider.buildAuthUrlFromChallenge(codeChallenge, relayData.redirectUri, relayData.sessionCode);
-        pending = { sessionCode: relayData.sessionCode, redirectUri: relayData.redirectUri, codeVerifier, authUrl, expiresAt: Date.now() + relayData.expiresIn * 1000 };
+        pending = {
+          sessionCode: relayData.sessionCode,
+          redirectUri: relayData.redirectUri,
+          codeVerifier,
+          authUrl,
+          expiresAt: Date.now() + relayData.expiresIn * 1000,
+          serverExchange,
+          interval: relayData.interval || 5
+        };
         pendingSessions[props.providerId] = pending;
       }
 
@@ -134,11 +152,87 @@ export const ProviderOAuthScreen = (props: Props) => {
       fadeIn();
       startPulseAnimation();
 
-      startPolling(sessionCode, expiresIn, currentGeneration);
+      // GET /sessions/:code returns the auth code and deletes the session, so confidential providers poll the exchange instead.
+      if (pending.serverExchange) startExchangePolling(sessionCode, codeVerifier, expiresIn, pending.interval || 5, currentGeneration);
+      else startPolling(sessionCode, expiresIn, currentGeneration);
     } catch (error) {
       console.error("OAuth flow init error:", error);
-      setFlowState({ status: "error", error: t("providerOAuth.unexpectedError") });
+      setFlowState({ status: "error", error: t(oauthRelayErrorKey(error) || "providerOAuth.unexpectedError") });
     }
+  };
+
+  const finishAuth = async (authData: ContentProviderAuthData | null) => {
+    if (!authData?.access_token) {
+      setFlowState({ status: "error", error: t("providerOAuth.exchangeFailed") });
+      return;
+    }
+
+    await ProviderAuthHelper.setAuth(props.providerId, authData);
+    await ProviderAuthHelper.setConnectionState(props.providerId, true);
+    setFlowState({ status: "success" });
+    SoundHelper.playChime();
+
+    if (!CachedData.connectedProviders.includes(props.providerId)) {
+      CachedData.connectedProviders.push(props.providerId);
+    }
+    CachedData.activeProvider = props.providerId;
+
+    setTimeout(() => {
+      props.navigateTo("contentBrowser", { providerId: props.providerId, folderStack: [] });
+    }, 2000);
+  };
+
+  const startExchangePolling = (sessionCode: string, codeVerifier: string, expiresIn: number, intervalSec: number, generation: number) => {
+    let expiresAt = Date.now() + expiresIn * 1000;
+    const delayMs = Math.max(1, intervalSec || 5) * 1000;
+
+    const poll = async () => {
+      if (generation !== pollGenerationRef.current) return;
+
+      if (Date.now() >= expiresAt) {
+        delete pendingSessions[props.providerId];
+        setFlowState({ status: "expired", error: t("providerOAuth.sessionExpired") });
+        return;
+      }
+
+      try {
+        const result = await exchangeRelaySession(sessionCode, codeVerifier);
+        if (generation !== pollGenerationRef.current) return;
+
+        const outcome = interpretExchangeBody(result);
+        if (outcome.kind === "pending") {
+          if (typeof outcome.expiresIn === "number" && outcome.expiresIn <= 0) {
+            delete pendingSessions[props.providerId];
+            setFlowState({ status: "expired", error: t("providerOAuth.sessionExpired") });
+            return;
+          }
+          if (typeof outcome.expiresIn === "number") expiresAt = Date.now() + outcome.expiresIn * 1000;
+          pollTimeoutRef.current = setTimeout(poll, delayMs);
+          return;
+        }
+
+        delete pendingSessions[props.providerId];
+        if (outcome.kind === "invalid") {
+          setFlowState({ status: "error", error: t("providerOAuth.exchangeFailed") });
+          return;
+        }
+        setFlowState({ status: "exchanging" });
+        await finishAuth(outcome.auth);
+      } catch (error) {
+        if (generation !== pollGenerationRef.current) return;
+        const relayError = readOAuthRelayError(error);
+        if (relayError.error || relayError.status) {
+          delete pendingSessions[props.providerId];
+          const expired = relayError.error === "not_found" || relayError.status === 404;
+          setFlowState({ status: expired ? "expired" : "error", error: t(oauthRelayErrorKey(error) || "providerOAuth.tokenExchangeFailed") });
+          return;
+        }
+        console.error("Polling error:", error);
+        pollTimeoutRef.current = setTimeout(poll, delayMs);
+      }
+    };
+
+    pollTimeoutRef.current = setTimeout(poll, delayMs);
   };
 
   const startPolling = (sessionCode: string, expiresIn: number, generation: number) => {
@@ -193,25 +287,7 @@ export const ProviderOAuthScreen = (props: Props) => {
         codeVerifierRef.current,
         redirectUriRef.current
       );
-
-      if (!authData) {
-        setFlowState({ status: "error", error: t("providerOAuth.exchangeFailed") });
-        return;
-      }
-
-      await ProviderAuthHelper.setAuth(props.providerId, authData);
-      await ProviderAuthHelper.setConnectionState(props.providerId, true);
-      setFlowState({ status: "success" });
-      SoundHelper.playChime();
-
-      if (!CachedData.connectedProviders.includes(props.providerId)) {
-        CachedData.connectedProviders.push(props.providerId);
-      }
-      CachedData.activeProvider = props.providerId;
-
-      setTimeout(() => {
-        props.navigateTo("contentBrowser", { providerId: props.providerId, folderStack: [] });
-      }, 2000);
+      await finishAuth(authData);
     } catch (error) {
       console.error("Token exchange error:", error);
       setFlowState({ status: "error", error: t("providerOAuth.tokenExchangeFailed") });

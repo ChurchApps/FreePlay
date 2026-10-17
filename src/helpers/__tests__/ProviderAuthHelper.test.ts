@@ -1,6 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getProvider, __tokenHelperMock } from "@churchapps/content-providers";
+import { ApiHelper } from "../ApiHelper";
 import { ProviderAuthHelper, authIsExpired } from "../ProviderAuthHelper";
+
+jest.mock("../ApiHelper", () => ({ ApiHelper: { post: jest.fn() } }));
 
 const tokenHelper = __tokenHelperMock as { isAuthValid: jest.Mock; refreshToken: jest.Mock };
 
@@ -156,5 +159,61 @@ describe("refreshIfNeeded", () => {
     expect(await a).toEqual(next);
     expect(await b).toEqual(next);
     expect(tokenHelper.refreshToken).toHaveBeenCalledTimes(1);
+  });
+
+  it("leaves a live OneDrive token on the device", async () => {
+    (getProvider as jest.Mock).mockReturnValue({ config: {} });
+    const auth = liveAuth();
+    await ProviderAuthHelper.setAuth("onedrive", auth);
+    expect(await ProviderAuthHelper.refreshIfNeeded("onedrive")).toEqual(auth);
+    expect(ApiHelper.post).not.toHaveBeenCalled();
+    expect(tokenHelper.refreshToken).not.toHaveBeenCalled();
+  });
+
+  it("refreshes OneDrive and Google Drive through the relay and stores the rotated refresh token", async () => {
+    (getProvider as jest.Mock).mockReturnValue({ config: { clientId: "cid", clientSecret: "secret" } });
+    (ApiHelper.post as jest.Mock).mockResolvedValue({
+      access_token: "new",
+      refresh_token: "rotated",
+      token_type: "Bearer",
+      expires_in: 3600,
+      scope: "Files.Read.All offline_access",
+      created_at: 1710000000
+    });
+    for (const providerId of ["onedrive", "googledrive"]) {
+      await ProviderAuthHelper.setAuth(providerId, expiredAuth());
+      const stored = await ProviderAuthHelper.refreshIfNeeded(providerId);
+      expect(stored).toMatchObject({ access_token: "new", refresh_token: "rotated", created_at: 1710000000 });
+      expect(await ProviderAuthHelper.getAuth(providerId)).toEqual(stored);
+    }
+    expect(ApiHelper.post).toHaveBeenCalledWith("/oauth/relay/refresh", { provider: "onedrive", refreshToken: "rt" }, "RelayApi");
+    expect(ApiHelper.post).toHaveBeenCalledWith("/oauth/relay/refresh", { provider: "googledrive", refreshToken: "rt" }, "RelayApi");
+    expect(tokenHelper.refreshToken).not.toHaveBeenCalled();
+  });
+
+  it("refreshes Dropbox and Go Curriculum on the device", async () => {
+    (getProvider as jest.Mock).mockReturnValue({ config: {} });
+    const newAuth = liveAuth({ access_token: "device" });
+    tokenHelper.refreshToken.mockResolvedValue(newAuth);
+    for (const providerId of ["dropbox", "gocurriculum"]) {
+      await ProviderAuthHelper.setAuth(providerId, expiredAuth());
+      expect(await ProviderAuthHelper.refreshIfNeeded(providerId)).toEqual(newAuth);
+    }
+    expect(ApiHelper.post).not.toHaveBeenCalled();
+    expect(tokenHelper.refreshToken).toHaveBeenCalledTimes(2);
+  });
+
+  it("keeps the stored token when the relay rejects the refresh", async () => {
+    (getProvider as jest.Mock).mockReturnValue({ config: {} });
+    const auth = expiredAuth();
+    await ProviderAuthHelper.setAuth("onedrive", auth);
+    const error = new Error("Request failed with status code 400");
+    (error as any).originalError = { response: { status: 400, data: { error: "invalid_grant", error_description: "provider rejected the refresh" } } };
+    (ApiHelper.post as jest.Mock).mockRejectedValue(error);
+    const spy = jest.spyOn(console, "error").mockImplementation(() => {});
+    expect(await ProviderAuthHelper.refreshIfNeeded("onedrive")).toBeNull();
+    expect(await ProviderAuthHelper.getAuth("onedrive")).toEqual(auth);
+    expect(spy).toHaveBeenCalledWith("Token refresh failed for onedrive:", "invalid_grant", "provider rejected the refresh");
+    spy.mockRestore();
   });
 });
