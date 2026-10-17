@@ -24,6 +24,8 @@
         "distribution": "internal"
       },
       "production": {
+        "corepack": true,
+        "environment": "production",
         "env": {
           "EXPO_TV": "1"
         },
@@ -32,6 +34,7 @@
         }
       },
       "amazon": {
+        "corepack": true,
         "developmentClient": false,
         "extends": "base",
         "autoIncrement": false,
@@ -58,6 +61,8 @@
         }
       },
       "tvos-production": {
+        "corepack": true,
+        "environment": "production",
         "env": {
           "EXPO_TV": "1"
         }
@@ -66,7 +71,7 @@
     "submit": {
       "production": {
         "android": {
-          "track": "production",
+          "track": "tv:beta",
           "releaseStatus": "completed"
         }
       },

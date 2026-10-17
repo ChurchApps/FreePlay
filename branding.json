@@ -6,11 +6,11 @@
   "version": "1.5.0",
   "android": {
     "package": "church.freeplay",
-    "versionCode": 19
+    "versionCode": 21
   },
   "ios": {
     "bundleIdentifier": "church.freeplay",
-    "buildNumber": "12"
+    "buildNumber": "14"
   },
   "eas": {
     "projectId": "b6cd99e1-8cc2-4fd6-b4e7-81d8a6f62507",
@@ -28,9 +28,7 @@
     "dropbox",
     "jesusfilm",
     "gocurriculum",
-    "googledrive",
-    "onedrive",
-    "freeshow"
+    "onedrive"
   ],
   "colors": {
     "primary": "#E91E63",
