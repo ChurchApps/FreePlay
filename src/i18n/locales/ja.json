@@ -23,6 +23,7 @@
     "back": "戻る"
   },
   "message": {
+    "imageFailed": "画像を読み込めませんでした",
     "loadingImage": "画像を読み込み中...",
     "loadingVideo": "動画を読み込み中...",
     "playbackFailed": "再生に失敗しました",

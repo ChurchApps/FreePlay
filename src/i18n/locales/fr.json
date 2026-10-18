@@ -23,6 +23,7 @@
     "back": "Retour"
   },
   "message": {
+    "imageFailed": "Échec du chargement de l'image",
     "loadingImage": "Chargement de l'image...",
     "loadingVideo": "Chargement de la vidéo...",
     "playbackFailed": "Échec de la lecture",

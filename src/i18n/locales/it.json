@@ -23,6 +23,7 @@
     "back": "Indietro"
   },
   "message": {
+    "imageFailed": "Caricamento immagine non riuscito",
     "loadingImage": "Caricamento immagine...",
     "loadingVideo": "Caricamento video...",
     "playbackFailed": "Riproduzione non riuscita",

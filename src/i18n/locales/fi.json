@@ -23,6 +23,7 @@
     "back": "Takaisin"
   },
   "message": {
+    "imageFailed": "Kuvan lataaminen epäonnistui",
     "loadingImage": "Ladataan kuvaa...",
     "loadingVideo": "Ladataan videota...",
     "playbackFailed": "Toisto epäonnistui",

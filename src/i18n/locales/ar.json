@@ -23,6 +23,7 @@
     "back": "رجوع"
   },
   "message": {
+    "imageFailed": "فشل تحميل الصورة",
     "loadingImage": "جارٍ تحميل الصورة...",
     "loadingVideo": "جاري تحميل الفيديو...",
     "playbackFailed": "فشل التشغيل",

@@ -23,6 +23,7 @@
     "back": "Zpět"
   },
   "message": {
+    "imageFailed": "Obrázek se nepodařilo načíst",
     "loadingImage": "Načítání obrázku...",
     "loadingVideo": "Načítání videa...",
     "playbackFailed": "Přehrávání selhalo",

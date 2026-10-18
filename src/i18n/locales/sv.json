@@ -23,6 +23,7 @@
     "back": "Tillbaka"
   },
   "message": {
+    "imageFailed": "Bilden kunde inte läsas in",
     "loadingImage": "Laddar bild...",
     "loadingVideo": "Laddar video...",
     "playbackFailed": "Uppspelning misslyckades",

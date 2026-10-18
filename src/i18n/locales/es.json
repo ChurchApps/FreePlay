@@ -23,6 +23,7 @@
     "back": "Atrás"
   },
   "message": {
+    "imageFailed": "Error al cargar la imagen",
     "loadingImage": "Cargando imagen...",
     "loadingVideo": "Cargando video...",
     "playbackFailed": "Reproducción fallida",
