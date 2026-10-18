@@ -52,6 +52,14 @@ Android and Amazon release builds run locally by default (`yarn build:android:ea
 
 `yarn publish:stores` bumps `branding.json` and ships through EAS. The procedure is `/publish-app-stores freeplay`.
 
+## Over-the-air updates
+
+JS-only changes ship as an EAS Update instead of a store build. Every push to `main` runs the **EAS Update** GitHub Action, which publishes to the `production` branch/channel; installed builds with the matching `runtimeVersion` (see `app.config.js`) pick it up on next launch. The action skips itself when a push touches native files (`app.config.js`, `branding.json`, `eas.json`, `patches/`, `android/`, `ios/`) or changes a runtime dependency other than `@churchapps/*`; those need a store build with a bumped `runtimeVersion`.
+
+- Catch-up or forced publish: `gh workflow run "EAS Update" --repo ChurchApps/FreePlay --ref main` (add `-f force=true` to bypass the guard).
+- From a terminal: `yarn update --message "..."` (needs `eas login` or `EXPO_TOKEN`).
+- The action needs the `EXPO_TOKEN` repository secret, an access token from https://expo.dev/accounts/churchapps/settings/access-tokens.
+
 ## White-Labeling (Forking for Your Church / Org)
 
 FreePlay is designed to be forked and re-skinned. You can lock it to a single content provider (e.g. only `lifechurch`), give it your own name, icons, and colors, and ship it under your own developer accounts to the App Store, Google Play, and Amazon Appstore.
