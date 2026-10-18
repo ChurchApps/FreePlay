@@ -23,6 +23,7 @@
     "back": "Atgal"
   },
   "message": {
+    "imageFailed": "Nepavyko įkelti paveikslėlio",
     "loadingImage": "Kraunamas vaizdas...",
     "loadingVideo": "Įkeliamas vaizdo įrašas...",
     "playbackFailed": "Atkūrimas nepavyko",

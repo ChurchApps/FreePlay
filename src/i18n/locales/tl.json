@@ -23,6 +23,7 @@
     "back": "Bumalik"
   },
   "message": {
+    "imageFailed": "Nabigong i-load ang larawan",
     "loadingImage": "Naglo-load ng larawan...",
     "loadingVideo": "Naglo-load ng video...",
     "playbackFailed": "Nabigo ang pag-playback",

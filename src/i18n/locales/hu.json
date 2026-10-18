@@ -23,6 +23,7 @@
     "back": "Vissza"
   },
   "message": {
+    "imageFailed": "A kép nem töltődött be",
     "loadingImage": "Kép betöltése...",
     "loadingVideo": "Videó betöltése...",
     "playbackFailed": "A lejátszás sikertelen",

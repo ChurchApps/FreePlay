@@ -23,6 +23,7 @@
     "back": "Kembali"
   },
   "message": {
+    "imageFailed": "Gambar gagal dimuat",
     "loadingImage": "Memuat gambar...",
     "loadingVideo": "Memuat video...",
     "playbackFailed": "Pemutaran gagal",

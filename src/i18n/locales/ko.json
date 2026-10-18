@@ -23,6 +23,7 @@
     "back": "뒤로"
   },
   "message": {
+    "imageFailed": "이미지를 불러오지 못했습니다",
     "loadingImage": "이미지 로딩 중...",
     "loadingVideo": "동영상 로드 중...",
     "playbackFailed": "재생 실패",

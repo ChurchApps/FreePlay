@@ -23,6 +23,7 @@
     "back": "Wstecz"
   },
   "message": {
+    "imageFailed": "Nie udało się załadować obrazu",
     "loadingImage": "Ładowanie obrazu...",
     "loadingVideo": "Ładowanie wideo...",
     "playbackFailed": "Odtwarzanie nie powiodło się",

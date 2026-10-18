@@ -23,6 +23,7 @@
     "back": "Terug"
   },
   "message": {
+    "imageFailed": "Afbeelding kon niet worden geladen",
     "loadingImage": "Afbeelding laden...",
     "loadingVideo": "Video laden...",
     "playbackFailed": "Afspelen mislukt",

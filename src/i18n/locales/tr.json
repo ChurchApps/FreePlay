@@ -23,6 +23,7 @@
     "back": "Geri"
   },
   "message": {
+    "imageFailed": "Görsel yüklenemedi",
     "loadingImage": "Görsel yükleniyor...",
     "loadingVideo": "Video yükleniyor...",
     "playbackFailed": "Oynatma başarısız oldu",

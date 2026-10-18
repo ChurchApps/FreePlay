@@ -14,7 +14,8 @@ type Props = {
   downloaded: boolean,
   paused: boolean,
   onProgress?: (data: { currentTime: number; playableDuration: number }) => void,
-  onEnd?: () => void
+  onEnd?: () => void,
+  onError?: () => void
 };
 
 export type MessageHandle = {
@@ -29,6 +30,7 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   const [showError, setShowError] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
   const [showLoadingOverlay, setShowLoadingOverlay] = React.useState(false);
+  const errorTimer = React.useRef<NodeJS.Timeout | null>(null);
 
   React.useImperativeHandle(ref, () => ({ seek: (time: number) => { videoRef.current?.seek(time); } }));
 
@@ -42,6 +44,7 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
     setShowError(false);
     setIsLoading(true);
     setShowLoadingOverlay(false);
+    return () => { if (errorTimer.current) clearTimeout(errorTimer.current); errorTimer.current = null; };
   }, [props.file]);
 
   // Delay showing loading overlay by 1 second to avoid flashing on quick transitions
@@ -68,13 +71,15 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   }, [needsRemoteSource, sourceUrl]);
 
   const handleVideoError = (_error: any) => {
+    if (errorTimer.current) return;
     setIsLoading(false);
     setHasError(true);
     setShowError(true);
     // Show error briefly, then auto-advance
-    setTimeout(() => {
+    errorTimer.current = setTimeout(() => {
       setShowError(false);
-      if (props.onEnd) props.onEnd();
+      const done = props.onError || props.onEnd;
+      if (done) done();
     }, 3000);
   };
 
@@ -195,7 +200,7 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
   const errorOverlay = (
     <View style={styles.errorOverlay}>
       <Icon name="error-outline" size={48} color={Colors.error} />
-      <Text style={styles.errorTitle}>{t("message.videoFailed")}</Text>
+      <Text style={styles.errorTitle}>{getMessageType() === "video" ? t("message.videoFailed") : t("message.imageFailed")}</Text>
       <Text style={styles.errorSubtitle}>{t("message.skippingNext")}</Text>
     </View>
   );

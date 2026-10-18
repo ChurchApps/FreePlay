@@ -60,6 +60,14 @@ export class ScheduleSync {
     return this.cached.has(cacheKey);
   }
 
+  // A file that is on disk but will not play: take it out of rotation and download it again.
+  static markBroken(item: ScheduleItem): Promise<void> {
+    this.cached.delete(item.cacheKey);
+    if (!this.missing.includes(item.cacheKey)) this.missing = [...this.missing, item.cacheKey];
+    this.emit();
+    return RNFS.unlink(this.localPath(item)).catch(() => {}).then(() => this.sync());
+  }
+
   static allItems(manifest: ScheduleManifest | null = this.manifest): ScheduleItem[] {
     if (!manifest) return [];
     const now = Date.now();

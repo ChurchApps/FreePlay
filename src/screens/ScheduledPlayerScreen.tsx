@@ -17,6 +17,7 @@ type Props = { navigateTo(page: string, data?: any): void; };
 
 const PANEL_SECONDS = 8;
 const SEEK_SECONDS = 10;
+const RESYNC_MINUTES = 10;
 
 const formatTime = (iso: string, timeZone?: string) => {
   const options: Intl.DateTimeFormatOptions = { hour: "numeric", minute: "2-digit" };
@@ -168,7 +169,15 @@ export const ScheduledPlayerScreen = (props: Props) => {
   const jumpTo = (i: number) => {
     hideOverview();
     const target = ScheduleClock.jumpTo(slotRef.current, i);
-    if (target >= 0) goTo(target);
+    if (target >= 0 && ScheduleSync.isCached(slotRef.current.items[target].cacheKey)) goTo(target);
+  };
+
+  // markBroken notifies the subscription, whose tick already moves off the item unless the slot is pinned.
+  const handleError = () => {
+    const failedIndex = indexRef.current;
+    const failed = slotRef.current.items[failedIndex];
+    if (failed) ScheduleSync.markBroken(failed);
+    if (indexRef.current === failedIndex) advance();
   };
 
   // Seeks within a video only; on a slide fast forward and rewind do nothing.
@@ -197,6 +206,7 @@ export const ScheduledPlayerScreen = (props: Props) => {
   useEffect(() => {
     tick();
     const clock = setInterval(tick, 1000);
+    const resync = setInterval(() => ScheduleSync.sync(), RESYNC_MINUTES * 60 * 1000);
     const unsubscribe = ScheduleSync.subscribe(() => {
       if (!ScheduleSync.isScheduled()) return props.navigateTo("schedulePairing");
       refresh();
@@ -210,6 +220,7 @@ export const ScheduledPlayerScreen = (props: Props) => {
     });
     return () => {
       clearInterval(clock);
+      clearInterval(resync);
       unsubscribe();
       backHandler.remove();
       if (panelTimer.current) clearTimeout(panelTimer.current);
@@ -315,7 +326,7 @@ export const ScheduledPlayerScreen = (props: Props) => {
   return (
     <View style={{ flex: 1, width: "100%", backgroundColor: "#000" }} testID="scheduled-player-root">
       <PlayerErrorBoundary onBack={showPanel}>
-        {ScheduleClock.showPlayer(!!file, overviewVisible) ? <Message ref={messageRef} key={slot.key + "|" + cycle} file={file!} downloaded={false} paused={paused} onProgress={handleProgress} onEnd={advance} /> : !file && placeholder()}
+        {ScheduleClock.showPlayer(!!file, overviewVisible) ? <Message ref={messageRef} key={slot.key + "|" + cycle} file={file!} downloaded={false} paused={paused} onProgress={handleProgress} onEnd={advance} onError={handleError} /> : !file && placeholder()}
       </PlayerErrorBoundary>
 
       {paused && file && (

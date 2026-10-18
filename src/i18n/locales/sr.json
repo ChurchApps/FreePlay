@@ -23,6 +23,7 @@
     "back": "Назад"
   },
   "message": {
+    "imageFailed": "Учитавање слике није успело",
     "loadingImage": "Учитавање слике...",
     "loadingVideo": "Учитавање видеа...",
     "playbackFailed": "Репродукција није успела",

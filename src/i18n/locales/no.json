@@ -23,6 +23,7 @@
     "back": "Tilbake"
   },
   "message": {
+    "imageFailed": "Bildet kunne ikke lastes inn",
     "loadingImage": "Laster bilde...",
     "loadingVideo": "Laster video...",
     "playbackFailed": "Avspilling mislyktes",

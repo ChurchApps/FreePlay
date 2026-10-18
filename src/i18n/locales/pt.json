@@ -23,6 +23,7 @@
     "back": "Voltar"
   },
   "message": {
+    "imageFailed": "Falha ao carregar a imagem",
     "loadingImage": "Carregando imagem...",
     "loadingVideo": "Carregando vídeo...",
     "playbackFailed": "Falha na reprodução",

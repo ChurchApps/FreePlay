@@ -23,6 +23,7 @@
     "back": "Nazaj"
   },
   "message": {
+    "imageFailed": "Slike ni bilo mogoče naložiti",
     "loadingImage": "Nalaganje slike...",
     "loadingVideo": "Nalaganje videa...",
     "playbackFailed": "Predvajanje ni uspelo",

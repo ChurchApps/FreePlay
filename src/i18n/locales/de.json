@@ -23,6 +23,7 @@
     "back": "Zurück"
   },
   "message": {
+    "imageFailed": "Bild konnte nicht geladen werden",
     "loadingImage": "Bild wird geladen...",
     "loadingVideo": "Video wird geladen...",
     "playbackFailed": "Wiedergabe fehlgeschlagen",

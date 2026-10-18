@@ -23,6 +23,7 @@
     "back": "Quay lại"
   },
   "message": {
+    "imageFailed": "Không tải được hình ảnh",
     "loadingImage": "Đang tải hình ảnh...",
     "loadingVideo": "Đang tải video...",
     "playbackFailed": "Phát lại thất bại",

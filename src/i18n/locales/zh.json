@@ -23,6 +23,7 @@
     "back": "返回"
   },
   "message": {
+    "imageFailed": "图片加载失败",
     "loadingImage": "正在加载图片...",
     "loadingVideo": "正在加载视频...",
     "playbackFailed": "播放失败",

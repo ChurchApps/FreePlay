@@ -23,6 +23,7 @@
     "back": "Tilbage"
   },
   "message": {
+    "imageFailed": "Billedet kunne ikke indlæses",
     "loadingImage": "Indlæser billede...",
     "loadingVideo": "Indlæser video...",
     "playbackFailed": "Afspilning mislykkedes",

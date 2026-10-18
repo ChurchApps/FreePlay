@@ -23,6 +23,7 @@
     "back": "वापस"
   },
   "message": {
+    "imageFailed": "छवि लोड होने में विफल",
     "loadingImage": "छवि लोड हो रही है...",
     "loadingVideo": "वीडियो लोड हो रहा है...",
     "playbackFailed": "प्लेबैक विफल",
