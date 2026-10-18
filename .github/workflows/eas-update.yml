@@ -1,0 +1,116 @@
+name: EAS Update
+
+# Publishes an over-the-air JS update to the "production" branch/channel so
+# installed FreePlay builds (Fire TV, Google TV, Apple TV) pick it up on next
+# launch. Runs on every push to main and on demand.
+#
+# OTA updates can only carry JS changes. Native changes (new native modules,
+# app.config.js / branding.json / eas.json edits, patches) need a store build
+# with a bumped runtimeVersion. The guard step below skips the publish when a
+# push touches those files; dispatch with force=true to publish anyway.
+#
+# Needs the EXPO_TOKEN repository secret (an expo.dev access token for the
+# churchapps account). Catch-up from a terminal:
+#   gh workflow run "EAS Update" --repo ChurchApps/FreePlay --ref main
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      message:
+        description: Update message shown in the EAS dashboard
+        required: false
+        default: ""
+      force:
+        description: Publish even if the guard sees native changes
+        type: boolean
+        default: false
+
+concurrency:
+  group: eas-update-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  EXPO_TV: "1"
+  YARN_ENABLE_HARDENED_MODE: "1"
+
+jobs:
+  update:
+    name: Publish OTA update to production
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check EXPO_TOKEN is configured
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          if [ -z "$EXPO_TOKEN" ]; then
+            echo "::error::EXPO_TOKEN secret is not set. Create an access token at https://expo.dev/accounts/churchapps/settings/access-tokens and run: gh secret set EXPO_TOKEN --repo ChurchApps/FreePlay"
+            exit 1
+          fi
+
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          fetch-depth: 0
+
+      - name: Guard against native changes
+        id: guard
+        env:
+          BEFORE: ${{ github.event.before }}
+          FORCE: ${{ inputs.force }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT" != "push" ] || [ "$FORCE" = "true" ]; then
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ -z "$BEFORE" ] || ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            echo "No usable base commit; publishing."
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          native_files=$(git diff --name-only "$BEFORE" "$GITHUB_SHA" -- \
+            app.config.js branding.json eas.json metro.config.js babel.config.js \
+            patches plugins android ios || true)
+          # Runtime dependencies added, removed or re-versioned, other than our own JS-only packages.
+          native_deps=$(diff \
+            <(git show "$BEFORE:package.json" | jq -S '.dependencies') \
+            <(git show "$GITHUB_SHA:package.json" | jq -S '.dependencies') \
+            | grep -E '^[<>]' | grep -v '"@churchapps/' || true)
+          if [ -n "$native_files" ] || [ -n "$native_deps" ]; then
+            echo "::warning::Skipping OTA publish: this push changed files that may need a native build."
+            printf '%s\n%s\n' "$native_files" "$native_deps"
+            echo "::notice::If the change is JS-only, re-run with: gh workflow run \"EAS Update\" --repo ChurchApps/FreePlay --ref main -f force=true. Otherwise bump runtimeVersion in app.config.js and do a store build."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Enable Corepack
+        if: steps.guard.outputs.skip != 'true'
+        run: corepack enable
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        if: steps.guard.outputs.skip != 'true'
+        with:
+          node-version: 22
+          cache: yarn
+
+      - run: yarn install --immutable
+        if: steps.guard.outputs.skip != 'true'
+
+      - name: Publish update
+        if: steps.guard.outputs.skip != 'true'
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          INPUT_MESSAGE: ${{ inputs.message }}
+          HEAD_MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          message="${INPUT_MESSAGE:-${HEAD_MESSAGE:-manual update}}"
+          message="${message%%$'\n'*}"
+          yarn update --non-interactive --message "${message:0:200} (${GITHUB_SHA:0:7})"
