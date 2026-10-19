@@ -90,6 +90,7 @@
     "waiting": "Warte auf Autorisierung"
   },
   "providerDiscovery": {
+    "apiHint": "Aktivieren Sie in FreeShow Einstellungen > Verbindung > WebSocket/REST und lassen Sie FreeShow durch die Firewall des Computers zu.",
     "connectFailed": "Verbindung zu diesem FreeShow-Gerät nicht möglich.",
     "header": "{{name}} Suchen",
     "noneFound": "Es wurden keine FreeShow-Geräte gefunden.",
@@ -136,14 +137,18 @@
     "initializing": "Authentifizierung wird initialisiert...",
     "instructionsLine1": "Scannen Sie den QR-Code mit Ihrem Telefon, um den Zugriff zu autorisieren.",
     "instructionsLine2": "Ihr Fernseher verbindet sich automatisch, sobald Sie zustimmen.",
+    "invalidGrant": "Die Autorisierung konnte nicht abgeschlossen werden. Bitte versuchen Sie es erneut.",
+    "invalidRequest": "Die Anmeldeanfrage wurde abgelehnt. Bitte versuchen Sie es erneut.",
     "loadingContent": "Ihre Inhalte werden geladen...",
     "providerNotFound": "Anbieter nicht gefunden.",
     "secondary": "Überprüfen Sie Ihr Telefon zur Bestätigung",
+    "serverError": "Die Anmeldung ist vorübergehend nicht verfügbar. Bitte versuchen Sie es später erneut.",
     "sessionExpired": "Autorisierungssitzung abgelaufen. Bitte versuchen Sie es erneut.",
     "sessionFailed": "Autorisierungssitzung konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
     "tokenExchangeFailed": "Token-Austausch fehlgeschlagen. Bitte versuchen Sie es erneut.",
     "tryAgain": "Erneut versuchen",
     "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+    "unsupportedProvider": "Dieser Anbieter kann nicht auf diese Weise verbunden werden.",
     "waiting": "Warte auf Autorisierung"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "Nicht unterstützt"
     }
   },
+  "schedule": {
+    "browse": "Inhalte durchsuchen",
+    "cancel": "Abbrechen",
+    "defaultLoop": "Standardschleife",
+    "filesDownloaded": "{{count}} von {{total}} Dateien heruntergeladen",
+    "instructions": "Scannen Sie mit Ihrem Telefon oder besuchen Sie",
+    "instructionsEnd": "und geben Sie diesen Code ein",
+    "itemOf": "Element {{current}} von {{total}}",
+    "lastChecked": "Manifest #{{rev}} · zuletzt geprüft vor {{minutes}} Min.",
+    "loading": "Zeitplan wird geladen...",
+    "loadingSchedule": "Ihr Zeitplan wird geladen...",
+    "nextAt": "als Nächstes: {{title}} um {{time}}",
+    "notReady": "Wird heruntergeladen",
+    "nothingScheduled": "Derzeit ist nichts geplant",
+    "pin": "Playlist anheften",
+    "readyThrough": "Bereit bis {{date}}",
+    "scheduled": "Geplant",
+    "secondary": "Wir verbinden uns automatisch, sobald akzeptiert · läuft ab in {{time}}",
+    "settings": "Einstellungen",
+    "title": "Diesen Bildschirm koppeln",
+    "unpin": "Playlist lösen",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "{{count}} von {{total}} Dateien werden heruntergeladen"
+  },
   "selectMessage": {
     "header": "Nachricht auswählen",
     "nowPlaying": "LÄUFT GERADE"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "Koppeln Sie diesen Bildschirm mit einem anderen Kalender oder folgen Sie keinem Zeitplan mehr. Heruntergeladene Dateien für diesen Kalender werden entfernt.",
+      "changeTitle": "Gekoppelt mit {{group}}",
+      "description": "Abspielen, was für diesen Bildschirm auf freeplay.church geplant ist, ohne dass jemand auf Start drücken muss",
+      "keep": "Behalten",
+      "label": "Mit einem Kalender koppeln",
+      "notPaired": "Nicht gekoppelt",
+      "paired": "Gekoppelt",
+      "repair": "Mit anderem Kalender koppeln",
+      "unpair": "Entkoppeln"
+    },
     "downloads": {
       "description": "Auf diesem Gerät gespeicherte Inhalte abspielen oder löschen",
       "label": "Downloads"

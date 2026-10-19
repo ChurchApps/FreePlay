@@ -90,6 +90,7 @@
     "waiting": "In attesa di autorizzazione"
   },
   "providerDiscovery": {
+    "apiHint": "In FreeShow, attiva Impostazioni > Connessione > WebSocket/REST e consenti FreeShow nel firewall del computer.",
     "connectFailed": "Impossibile connettersi a quel computer FreeShow.",
     "header": "Trova {{name}}",
     "noneFound": "Nessun computer FreeShow trovato.",
@@ -136,14 +137,18 @@
     "initializing": "Inizializzazione dell'autenticazione...",
     "instructionsLine1": "Scansiona il codice QR con il telefono per autorizzare l'accesso.",
     "instructionsLine2": "La tua TV si connetterà automaticamente una volta approvato.",
+    "invalidGrant": "Impossibile completare l'autorizzazione. Riprova.",
+    "invalidRequest": "La richiesta di accesso è stata rifiutata. Riprova.",
     "loadingContent": "Caricamento dei tuoi contenuti...",
     "providerNotFound": "Fornitore non trovato.",
     "secondary": "Controlla il tuo telefono per confermare",
+    "serverError": "L'accesso è temporaneamente non disponibile. Riprova più tardi.",
     "sessionExpired": "Sessione di autorizzazione scaduta. Riprova.",
     "sessionFailed": "Creazione della sessione di autorizzazione non riuscita. Riprova.",
     "tokenExchangeFailed": "Scambio dei token non riuscito. Riprova.",
     "tryAgain": "Riprova",
     "unexpectedError": "Si è verificato un errore imprevisto. Riprova.",
+    "unsupportedProvider": "Questo provider non può essere collegato in questo modo.",
     "waiting": "In attesa di autorizzazione"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "Non supportato"
     }
   },
+  "schedule": {
+    "browse": "Sfoglia contenuti",
+    "cancel": "Annulla",
+    "defaultLoop": "Loop predefinito",
+    "filesDownloaded": "{{count}} di {{total}} file scaricati",
+    "instructions": "Scansiona con il telefono oppure vai su",
+    "instructionsEnd": "e inserisci questo codice",
+    "itemOf": "elemento {{current}} di {{total}}",
+    "lastChecked": "Manifest #{{rev}} · ultimo controllo {{minutes}} min fa",
+    "loading": "Caricamento programmazione...",
+    "loadingSchedule": "Caricamento della tua programmazione...",
+    "nextAt": "prossimo: {{title}} alle {{time}}",
+    "notReady": "Download in corso",
+    "nothingScheduled": "Al momento non c'è nulla in programma",
+    "pin": "Fissa questa playlist",
+    "readyThrough": "Pronto fino al {{date}}",
+    "scheduled": "In programma",
+    "secondary": "Ci connetteremo automaticamente una volta accettato · scade tra {{time}}",
+    "settings": "Impostazioni",
+    "title": "Abbina questo schermo",
+    "unpin": "Sblocca playlist",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "Download di {{count}} di {{total}} file"
+  },
   "selectMessage": {
     "header": "Seleziona un messaggio",
     "nowPlaying": "IN RIPRODUZIONE ORA"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "Abbina questo schermo a un altro calendario o smetti di seguire una programmazione. I file scaricati per questo calendario verranno rimossi.",
+      "changeTitle": "Abbinato a {{group}}",
+      "description": "Riproduci ciò che è programmato per questo schermo su freeplay.church, senza che nessuno debba premere Avvia",
+      "keep": "Mantieni",
+      "label": "Abbina a un calendario",
+      "notPaired": "Non abbinato",
+      "paired": "Abbinato",
+      "repair": "Abbina a un altro calendario",
+      "unpair": "Disabbina"
+    },
     "downloads": {
       "description": "Riproduci o elimina i contenuti salvati su questo dispositivo",
       "label": "Download"

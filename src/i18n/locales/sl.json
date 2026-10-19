@@ -90,6 +90,7 @@
     "waiting": "Čakanje na avtorizacijo"
   },
   "providerDiscovery": {
+    "apiHint": "V FreeShow vklopite Nastavitve > Povezava > WebSocket/REST in dovolite FreeShow v požarnem zidu računalnika.",
     "connectFailed": "Povezave s tem računalnikom FreeShow ni bilo mogoče vzpostaviti.",
     "header": "Poišči {{name}}",
     "noneFound": "Ni bilo najdenih računalnikov FreeShow.",
@@ -136,14 +137,18 @@
     "initializing": "Inicializacija preverjanja pristnosti...",
     "instructionsLine1": "Skenirajte QR kodo s telefonom za odobritev dostopa.",
     "instructionsLine2": "Vaš TV se bo samodejno povezal, ko boste odobrili.",
+    "invalidGrant": "Avtorizacije ni bilo mogoče dokončati. Poskusite znova.",
+    "invalidRequest": "Zahteva za prijavo je bila zavrnjena. Poskusite znova.",
     "loadingContent": "Nalaganje vaše vsebine...",
     "providerNotFound": "Ponudnik ni bil najden.",
     "secondary": "Preverite telefon za potrditev",
+    "serverError": "Prijava trenutno ni na voljo. Poskusite znova pozneje.",
     "sessionExpired": "Avtorizacijska seja je potekla. Poskusite znova.",
     "sessionFailed": "Ustvarjanje avtorizacijske seje ni uspelo. Poskusite znova.",
     "tokenExchangeFailed": "Zamenjava žetonov ni uspela. Poskusite znova.",
     "tryAgain": "Poskusi znova",
     "unexpectedError": "Prišlo je do nepričakovane napake. Poskusite znova.",
+    "unsupportedProvider": "Tega ponudnika ni mogoče povezati na ta način.",
     "waiting": "Čakanje na avtorizacijo"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "Ni podprto"
     }
   },
+  "schedule": {
+    "browse": "Brskaj po vsebini",
+    "cancel": "Prekliči",
+    "defaultLoop": "Privzeta zanka",
+    "filesDownloaded": "Prenesenih {{count}} od {{total}} datotek",
+    "instructions": "Skenirajte s telefonom ali obiščite",
+    "instructionsEnd": "in vnesite to kodo",
+    "itemOf": "element {{current}} od {{total}}",
+    "lastChecked": "Manifest #{{rev}} · nazadnje preverjeno pred {{minutes}} min",
+    "loading": "Nalaganje urnika...",
+    "loadingSchedule": "Nalaganje vašega urnika...",
+    "nextAt": "naslednje: {{title}} ob {{time}}",
+    "notReady": "Prenašanje",
+    "nothingScheduled": "Trenutno ni nič načrtovano",
+    "pin": "Pripni ta seznam predvajanja",
+    "readyThrough": "Pripravljeno do {{date}}",
+    "scheduled": "Načrtovano",
+    "secondary": "Samodejno se bomo povezali, ko bo sprejeto · poteče čez {{time}}",
+    "settings": "Nastavitve",
+    "title": "Seznanite ta zaslon",
+    "unpin": "Odpni seznam predvajanja",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "Prenašanje {{count}} od {{total}} datotek"
+  },
   "selectMessage": {
     "header": "Izberite sporočilo",
     "nowPlaying": "SEDAJ PREDVAJA"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "Seznanite ta zaslon z drugim koledarjem ali prenehajte slediti urniku. Prenesene datoteke za ta koledar bodo odstranjene.",
+      "changeTitle": "Seznanjeno z {{group}}",
+      "description": "Predvajajte, kar je za ta zaslon načrtovano na freeplay.church, ne da bi kdo pritisnil Začni",
+      "keep": "Obdrži",
+      "label": "Seznani s koledarjem",
+      "notPaired": "Ni seznanjeno",
+      "paired": "Seznanjeno",
+      "repair": "Seznani z drugim koledarjem",
+      "unpair": "Prekini seznanitev"
+    },
     "downloads": {
       "description": "Predvajajte ali izbrišite vsebino, shranjeno v tej napravi",
       "label": "Prenosi"

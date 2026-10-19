@@ -90,6 +90,7 @@
     "waiting": "Čaká sa na autorizáciu"
   },
   "providerDiscovery": {
+    "apiHint": "Vo FreeShow zapnite Nastavenia > Pripojenie > WebSocket/REST a povoľte FreeShow vo firewalle počítača.",
     "connectFailed": "Nepodarilo sa pripojiť k tomuto zariadeniu FreeShow.",
     "header": "Nájsť {{name}}",
     "noneFound": "Nenašli sa žiadne zariadenia FreeShow.",
@@ -136,14 +137,18 @@
     "initializing": "Inicializuje sa overovanie...",
     "instructionsLine1": "Naskenujte QR kód telefónom na autorizáciu prístupu.",
     "instructionsLine2": "Vaša TV sa po schválení automaticky pripojí.",
+    "invalidGrant": "Autorizáciu sa nepodarilo dokončiť. Skúste to znova.",
+    "invalidRequest": "Žiadosť o prihlásenie bola zamietnutá. Skúste to znova.",
     "loadingContent": "Načítava sa obsah...",
     "providerNotFound": "Poskytovateľ nebol nájdený.",
     "secondary": "Skontrolujte telefón na potvrdenie",
+    "serverError": "Prihlásenie je dočasne nedostupné. Skúste to znova neskôr.",
     "sessionExpired": "Autorizačná relácia vypršala. Skúste to znova.",
     "sessionFailed": "Nepodarilo sa vytvoriť autorizačnú reláciu. Skúste to znova.",
     "tokenExchangeFailed": "Výmena tokenov zlyhala. Skúste to znova.",
     "tryAgain": "Skúsiť znova",
     "unexpectedError": "Vyskytla sa neočakávaná chyba. Skúste to znova.",
+    "unsupportedProvider": "Tohto poskytovateľa nie je možné pripojiť týmto spôsobom.",
     "waiting": "Čaká sa na autorizáciu"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "Nepodporované"
     }
   },
+  "schedule": {
+    "browse": "Prehliadať obsah",
+    "cancel": "Zrušiť",
+    "defaultLoop": "Predvolená slučka",
+    "filesDownloaded": "Stiahnuté {{count}} z {{total}} súborov",
+    "instructions": "Naskenujte telefónom alebo prejdite na",
+    "instructionsEnd": "a zadajte tento kód",
+    "itemOf": "položka {{current}} z {{total}}",
+    "lastChecked": "Manifest #{{rev}} · naposledy skontrolované pred {{minutes}} min",
+    "loading": "Načítava sa rozvrh...",
+    "loadingSchedule": "Načítava sa váš rozvrh...",
+    "nextAt": "ďalej: {{title}} o {{time}}",
+    "notReady": "Sťahuje sa",
+    "nothingScheduled": "Momentálne nie je nič naplánované",
+    "pin": "Pripnúť tento playlist",
+    "readyThrough": "Pripravené do {{date}}",
+    "scheduled": "Naplánované",
+    "secondary": "Po prijatí sa automaticky pripojíme · vyprší o {{time}}",
+    "settings": "Nastavenia",
+    "title": "Spárujte túto obrazovku",
+    "unpin": "Odopnúť playlist",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "Sťahuje sa {{count}} z {{total}} súborov"
+  },
   "selectMessage": {
     "header": "Vyberte správu",
     "nowPlaying": "PRÁVE SA PREHRÁVA"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "Spárujte túto obrazovku s iným kalendárom alebo prestaňte sledovať rozvrh. Stiahnuté súbory pre tento kalendár sa odstránia.",
+      "changeTitle": "Spárované s {{group}}",
+      "description": "Prehrávajte to, čo je pre túto obrazovku naplánované na freeplay.church, bez toho, aby niekto stláčal Štart",
+      "keep": "Ponechať",
+      "label": "Spárovať s kalendárom",
+      "notPaired": "Nespárované",
+      "paired": "Spárované",
+      "repair": "Spárovať s iným kalendárom",
+      "unpair": "Zrušiť spárovanie"
+    },
     "downloads": {
       "description": "Prehrať alebo odstrániť obsah uložený v tomto zariadení",
       "label": "Stiahnuté súbory"

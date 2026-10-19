@@ -90,6 +90,7 @@
     "waiting": "Yetkilendirme bekleniyor"
   },
   "providerDiscovery": {
+    "apiHint": "FreeShow'da Ayarlar > Bağlantı > WebSocket/REST seçeneğini açın ve FreeShow'un bilgisayarın güvenlik duvarından geçmesine izin verin.",
     "connectFailed": "O FreeShow makinesine bağlanılamadı.",
     "header": "{{name}} Bul",
     "noneFound": "Hiç FreeShow makinesi bulunamadı.",
@@ -136,14 +137,18 @@
     "initializing": "Kimlik doğrulama başlatılıyor...",
     "instructionsLine1": "Erişimi yetkilendirmek için QR kodunu telefonunuzla tarayın.",
     "instructionsLine2": "Onayladığınızda TV'niz otomatik olarak bağlanacaktır.",
+    "invalidGrant": "Yetkilendirme tamamlanamadı. Lütfen tekrar deneyin.",
+    "invalidRequest": "Oturum açma isteği reddedildi. Lütfen tekrar deneyin.",
     "loadingContent": "İçeriğiniz yükleniyor...",
     "providerNotFound": "Sağlayıcı bulunamadı.",
     "secondary": "Onaylamak için telefonunuzu kontrol edin",
+    "serverError": "Oturum açma geçici olarak kullanılamıyor. Lütfen daha sonra tekrar deneyin.",
     "sessionExpired": "Yetkilendirme oturumunun süresi doldu. Lütfen tekrar deneyin.",
     "sessionFailed": "Yetkilendirme oturumu oluşturulamadı. Lütfen tekrar deneyin.",
     "tokenExchangeFailed": "Belirteç değişimi başarısız oldu. Lütfen tekrar deneyin.",
     "tryAgain": "Tekrar Dene",
     "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
+    "unsupportedProvider": "Bu sağlayıcı bu şekilde bağlanamaz.",
     "waiting": "Yetkilendirme bekleniyor"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "Desteklenmiyor"
     }
   },
+  "schedule": {
+    "browse": "İçeriğe Göz At",
+    "cancel": "İptal",
+    "defaultLoop": "Varsayılan döngü",
+    "filesDownloaded": "{{count}}/{{total}} dosya indirildi",
+    "instructions": "Telefonunuzla tarayın veya",
+    "instructionsEnd": "adresine gidip bu kodu girin",
+    "itemOf": "öğe {{current}}/{{total}}",
+    "lastChecked": "Manifest #{{rev}} · son kontrol {{minutes}} dk önce",
+    "loading": "Program yükleniyor...",
+    "loadingSchedule": "Programınız yükleniyor...",
+    "nextAt": "sonraki: {{title}}, saat {{time}}",
+    "notReady": "İndiriliyor",
+    "nothingScheduled": "Şu anda planlanmış bir şey yok",
+    "pin": "Bu Listeyi Sabitle",
+    "readyThrough": "{{date}} tarihine kadar hazır",
+    "scheduled": "Planlandı",
+    "secondary": "Kabul edildikten sonra otomatik olarak bağlanacağız · {{time}} içinde sona erer",
+    "settings": "Ayarlar",
+    "title": "Bu ekranı eşleştir",
+    "unpin": "Listeyi Çöz",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "{{count}}/{{total}} dosya indiriliyor"
+  },
   "selectMessage": {
     "header": "Bir Mesaj Seçin",
     "nowPlaying": "ŞİMDİ OYNATILIYOR"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "Bu ekranı farklı bir takvimle eşleştirin veya programı takip etmeyi bırakın. Bu takvim için indirilen dosyalar kaldırılır.",
+      "changeTitle": "{{group}} ile eşleştirildi",
+      "description": "Bu ekran için freeplay.church'te planlananları, kimsenin Başlat'a basmasına gerek kalmadan oynatın",
+      "keep": "Koru",
+      "label": "Bir takvimle eşleştir",
+      "notPaired": "Eşleştirilmedi",
+      "paired": "Eşleştirildi",
+      "repair": "Farklı bir takvimle eşleştir",
+      "unpair": "Eşleştirmeyi Kaldır"
+    },
     "downloads": {
       "description": "Bu cihaza kaydedilen içeriği oynatın veya silin",
       "label": "İndirilenler"

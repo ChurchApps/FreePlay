@@ -90,6 +90,7 @@
     "waiting": "Naghihintay ng awtorisasyon"
   },
   "providerDiscovery": {
+    "apiHint": "Sa FreeShow, i-on ang Mga Setting > Koneksyon > WebSocket/REST, at payagan ang FreeShow sa firewall ng computer.",
     "connectFailed": "Hindi makakonekta sa FreeShow machine na iyon.",
     "header": "Hanapin ang {{name}}",
     "noneFound": "Walang nakitang FreeShow machine.",
@@ -136,14 +137,18 @@
     "initializing": "Sinisimulan ang authentication...",
     "instructionsLine1": "I-scan ang QR code gamit ang iyong telepono upang awtorisahin ang access.",
     "instructionsLine2": "Awtomatikong kokonekta ang iyong TV kapag inaprubahan mo na.",
+    "invalidGrant": "Hindi makumpleto ang awtorisasyon. Pakisubukan muli.",
+    "invalidRequest": "Tinanggihan ang kahilingan sa pag-sign in. Pakisubukan muli.",
     "loadingContent": "Naglo-load ng iyong nilalaman...",
     "providerNotFound": "Hindi nahanap ang provider.",
     "secondary": "Tingnan ang iyong telepono para kumpirmahin",
+    "serverError": "Pansamantalang hindi available ang pag-sign in. Pakisubukan muli mamaya.",
     "sessionExpired": "Nag-expire na ang sesyon ng awtorisasyon. Pakisubukan muli.",
     "sessionFailed": "Nabigong gumawa ng sesyon ng awtorisasyon. Pakisubukan muli.",
     "tokenExchangeFailed": "Nabigo ang pagpapalit ng token. Pakisubukan muli.",
     "tryAgain": "Subukan Muli",
     "unexpectedError": "Naganap ang hindi inaasahang error. Pakisubukan muli.",
+    "unsupportedProvider": "Hindi maikokonekta ang provider na ito sa ganitong paraan.",
     "waiting": "Naghihintay ng awtorisasyon"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "Hindi Sinusuportahan"
     }
   },
+  "schedule": {
+    "browse": "Mag-browse ng Nilalaman",
+    "cancel": "Kanselahin",
+    "defaultLoop": "Default na loop",
+    "filesDownloaded": "Na-download ang {{count}} sa {{total}} file",
+    "instructions": "I-scan gamit ang iyong telepono, o pumunta sa",
+    "instructionsEnd": "at ilagay ang code na ito",
+    "itemOf": "item {{current}} sa {{total}}",
+    "lastChecked": "Manifest #{{rev}} · huling sinuri {{minutes}} min ang nakalipas",
+    "loading": "Nilo-load ang iskedyul...",
+    "loadingSchedule": "Nilo-load ang iyong iskedyul...",
+    "nextAt": "susunod: {{title}} sa {{time}}",
+    "notReady": "Nagda-download",
+    "nothingScheduled": "Walang naka-iskedyul sa ngayon",
+    "pin": "I-pin ang Playlist",
+    "readyThrough": "Handa hanggang {{date}}",
+    "scheduled": "Naka-iskedyul",
+    "secondary": "Awtomatiko kaming kokonekta kapag natanggap na · mag-e-expire sa loob ng {{time}}",
+    "settings": "Mga Setting",
+    "title": "I-pair ang screen na ito",
+    "unpin": "I-unpin ang Playlist",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "Dina-download ang {{count}} sa {{total}} file"
+  },
   "selectMessage": {
     "header": "Pumili ng Mensahe",
     "nowPlaying": "PINAPATUGTOG NGAYON"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "I-pair ang screen na ito sa ibang kalendaryo, o ihinto ang pagsunod sa iskedyul. Aalisin ang mga na-download na file para sa kalendaryong ito.",
+      "changeTitle": "Naka-pair sa {{group}}",
+      "description": "I-play ang naka-iskedyul para sa screen na ito sa freeplay.church, nang walang kailangang pumindot ng Start",
+      "keep": "Panatilihin",
+      "label": "I-pair sa isang kalendaryo",
+      "notPaired": "Hindi naka-pair",
+      "paired": "Naka-pair",
+      "repair": "I-pair sa ibang kalendaryo",
+      "unpair": "I-unpair"
+    },
     "downloads": {
       "description": "I-play o burahin ang nilalamang naka-save sa device na ito",
       "label": "Mga Download"

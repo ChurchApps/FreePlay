@@ -90,6 +90,7 @@
     "waiting": "Oczekiwanie na autoryzację"
   },
   "providerDiscovery": {
+    "apiHint": "W FreeShow włącz Ustawienia > Połączenie > WebSocket/REST i zezwól FreeShow na dostęp przez zaporę komputera.",
     "connectFailed": "Nie można połączyć się z tym komputerem FreeShow.",
     "header": "Znajdź {{name}}",
     "noneFound": "Nie znaleziono żadnych komputerów FreeShow.",
@@ -136,14 +137,18 @@
     "initializing": "Inicjowanie uwierzytelniania...",
     "instructionsLine1": "Zeskanuj kod QR telefonem, aby autoryzować dostęp.",
     "instructionsLine2": "Twój telewizor połączy się automatycznie po zatwierdzeniu.",
+    "invalidGrant": "Nie udało się dokończyć autoryzacji. Spróbuj ponownie.",
+    "invalidRequest": "Żądanie logowania zostało odrzucone. Spróbuj ponownie.",
     "loadingContent": "Ładowanie treści...",
     "providerNotFound": "Nie znaleziono dostawcy.",
     "secondary": "Sprawdź telefon, aby potwierdzić",
+    "serverError": "Logowanie jest tymczasowo niedostępne. Spróbuj ponownie później.",
     "sessionExpired": "Sesja autoryzacji wygasła. Spróbuj ponownie.",
     "sessionFailed": "Nie udało się utworzyć sesji autoryzacji. Spróbuj ponownie.",
     "tokenExchangeFailed": "Wymiana tokenów nie powiodła się. Spróbuj ponownie.",
     "tryAgain": "Spróbuj ponownie",
     "unexpectedError": "Wystąpił nieoczekiwany błąd. Spróbuj ponownie.",
+    "unsupportedProvider": "Tego dostawcy nie można połączyć w ten sposób.",
     "waiting": "Oczekiwanie na autoryzację"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "Nieobsługiwane"
     }
   },
+  "schedule": {
+    "browse": "Przeglądaj treści",
+    "cancel": "Anuluj",
+    "defaultLoop": "Domyślna pętla",
+    "filesDownloaded": "Pobrano {{count}} z {{total}} plików",
+    "instructions": "Zeskanuj telefonem lub przejdź do",
+    "instructionsEnd": "i wprowadź ten kod",
+    "itemOf": "element {{current}} z {{total}}",
+    "lastChecked": "Manifest #{{rev}} · ostatnio sprawdzono {{minutes}} min temu",
+    "loading": "Ładowanie harmonogramu...",
+    "loadingSchedule": "Ładowanie twojego harmonogramu...",
+    "nextAt": "następnie: {{title}} o {{time}}",
+    "notReady": "Pobieranie",
+    "nothingScheduled": "W tej chwili nic nie jest zaplanowane",
+    "pin": "Przypnij tę playlistę",
+    "readyThrough": "Gotowe do {{date}}",
+    "scheduled": "Zaplanowane",
+    "secondary": "Połączymy się automatycznie po zaakceptowaniu · wygasa za {{time}}",
+    "settings": "Ustawienia",
+    "title": "Sparuj ten ekran",
+    "unpin": "Odepnij playlistę",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "Pobieranie {{count}} z {{total}} plików"
+  },
   "selectMessage": {
     "header": "Wybierz wiadomość",
     "nowPlaying": "TERAZ ODTWARZANE"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "Sparuj ten ekran z innym kalendarzem lub przestań śledzić harmonogram. Pobrane pliki dla tego kalendarza zostaną usunięte.",
+      "changeTitle": "Sparowano z {{group}}",
+      "description": "Odtwarzaj to, co zaplanowano dla tego ekranu na freeplay.church, bez potrzeby naciskania Start",
+      "keep": "Zachowaj",
+      "label": "Sparuj z kalendarzem",
+      "notPaired": "Niesparowany",
+      "paired": "Sparowany",
+      "repair": "Sparuj z innym kalendarzem",
+      "unpair": "Rozparuj"
+    },
     "downloads": {
       "description": "Odtwarzaj lub usuwaj treści zapisane na tym urządzeniu",
       "label": "Pobrane"

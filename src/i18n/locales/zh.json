@@ -90,6 +90,7 @@
     "waiting": "等待授权"
   },
   "providerDiscovery": {
+    "apiHint": "在 FreeShow 中，开启 设置 > 连接 > WebSocket/REST，并允许 FreeShow 通过计算机的防火墙。",
     "connectFailed": "无法连接到该 FreeShow 计算机。",
     "header": "查找 {{name}}",
     "noneFound": "未找到任何 FreeShow 计算机。",
@@ -136,14 +137,18 @@
     "initializing": "正在初始化身份验证...",
     "instructionsLine1": "使用手机扫描二维码以授权访问。",
     "instructionsLine2": "您批准后,电视将自动连接。",
+    "invalidGrant": "无法完成授权。请重试。",
+    "invalidRequest": "登录请求被拒绝。请重试。",
     "loadingContent": "正在加载您的内容...",
     "providerNotFound": "未找到提供商。",
     "secondary": "请查看手机以确认",
+    "serverError": "登录暂时不可用。请稍后重试。",
     "sessionExpired": "授权会话已过期。请重试。",
     "sessionFailed": "无法创建授权会话。请重试。",
     "tokenExchangeFailed": "令牌交换失败。请重试。",
     "tryAgain": "重试",
     "unexpectedError": "发生意外错误。请重试。",
+    "unsupportedProvider": "无法以此方式连接该提供商。",
     "waiting": "等待授权"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "不支持"
     }
   },
+  "schedule": {
+    "browse": "浏览内容",
+    "cancel": "取消",
+    "defaultLoop": "默认循环",
+    "filesDownloaded": "已下载 {{count}}/{{total}} 个文件",
+    "instructions": "用手机扫描，或访问",
+    "instructionsEnd": "并输入此代码",
+    "itemOf": "第 {{current}} 项，共 {{total}} 项",
+    "lastChecked": "清单 #{{rev}} · 上次检查于 {{minutes}} 分钟前",
+    "loading": "正在加载日程...",
+    "loadingSchedule": "正在加载您的日程...",
+    "nextAt": "下一个：{{title}}，{{time}}",
+    "notReady": "正在下载",
+    "nothingScheduled": "目前没有安排任何内容",
+    "pin": "固定此播放列表",
+    "readyThrough": "已就绪至 {{date}}",
+    "scheduled": "已安排",
+    "secondary": "接受后我们将自动连接 · {{time}} 后过期",
+    "settings": "设置",
+    "title": "配对此屏幕",
+    "unpin": "取消固定播放列表",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "正在下载 {{count}}/{{total}} 个文件"
+  },
   "selectMessage": {
     "header": "选择消息",
     "nowPlaying": "正在播放"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "将此屏幕与其他日历配对，或停止跟随日程。此日历的已下载文件将被删除。",
+      "changeTitle": "已与 {{group}} 配对",
+      "description": "无需任何人按下开始，即可播放 freeplay.church 上为此屏幕安排的内容",
+      "keep": "保留",
+      "label": "与日历配对",
+      "notPaired": "未配对",
+      "paired": "已配对",
+      "repair": "与其他日历配对",
+      "unpair": "取消配对"
+    },
     "downloads": {
       "description": "播放或删除保存在此设备上的内容",
       "label": "下载"

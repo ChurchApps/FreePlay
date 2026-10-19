@@ -90,6 +90,7 @@
     "waiting": "認証を待機中"
   },
   "providerDiscovery": {
+    "apiHint": "FreeShow で 設定 > 接続 > WebSocket/REST をオンにし、コンピューターのファイアウォールで FreeShow を許可してください。",
     "connectFailed": "その FreeShow マシンに接続できませんでした。",
     "header": "{{name}} を検索",
     "noneFound": "FreeShow マシンが見つかりませんでした。",
@@ -136,14 +137,18 @@
     "initializing": "認証を初期化中...",
     "instructionsLine1": "アクセスを承認するために携帯電話でQRコードをスキャンしてください。",
     "instructionsLine2": "承認するとTVが自動的に接続されます。",
+    "invalidGrant": "認証を完了できませんでした。再度お試しください。",
+    "invalidRequest": "サインインのリクエストが拒否されました。再度お試しください。",
     "loadingContent": "コンテンツを読み込み中...",
     "providerNotFound": "プロバイダーが見つかりません。",
     "secondary": "確認のため電話をご確認ください",
+    "serverError": "サインインは一時的に利用できません。しばらくしてから再度お試しください。",
     "sessionExpired": "認証セッションの有効期限が切れました。再度お試しください。",
     "sessionFailed": "認証セッションの作成に失敗しました。再度お試しください。",
     "tokenExchangeFailed": "トークン交換に失敗しました。再度お試しください。",
     "tryAgain": "再試行",
     "unexpectedError": "予期しないエラーが発生しました。再度お試しください。",
+    "unsupportedProvider": "このプロバイダーはこの方法では接続できません。",
     "waiting": "認証を待機中"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "サポートされていません"
     }
   },
+  "schedule": {
+    "browse": "コンテンツを閲覧",
+    "cancel": "キャンセル",
+    "defaultLoop": "デフォルトのループ",
+    "filesDownloaded": "{{total}}個中{{count}}個のファイルをダウンロード済み",
+    "instructions": "スマートフォンでスキャンするか、",
+    "instructionsEnd": "にアクセスしてこのコードを入力してください",
+    "itemOf": "{{total}}件中{{current}}件目",
+    "lastChecked": "マニフェスト #{{rev}} · {{minutes}}分前に確認",
+    "loading": "スケジュールを読み込み中...",
+    "loadingSchedule": "スケジュールを読み込み中...",
+    "nextAt": "次: {{time}} に {{title}}",
+    "notReady": "ダウンロード中",
+    "nothingScheduled": "現在予定されているものはありません",
+    "pin": "このプレイリストを固定",
+    "readyThrough": "{{date}}まで準備完了",
+    "scheduled": "予定済み",
+    "secondary": "承認されると自動的に接続します · 有効期限: あと{{time}}",
+    "settings": "設定",
+    "title": "この画面をペアリング",
+    "unpin": "プレイリストの固定を解除",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "{{total}}個中{{count}}個のファイルをダウンロード中"
+  },
   "selectMessage": {
     "header": "メッセージを選択",
     "nowPlaying": "再生中"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "この画面を別のカレンダーとペアリングするか、スケジュールの追従を停止します。このカレンダー用にダウンロードされたファイルは削除されます。",
+      "changeTitle": "{{group}} とペアリング済み",
+      "description": "freeplay.church でこの画面に予定されている内容を、誰も開始を押さずに再生します",
+      "keep": "維持",
+      "label": "カレンダーとペアリング",
+      "notPaired": "ペアリングされていません",
+      "paired": "ペアリング済み",
+      "repair": "別のカレンダーとペアリング",
+      "unpair": "ペアリング解除"
+    },
     "downloads": {
       "description": "このデバイスに保存されたコンテンツを再生または削除します",
       "label": "ダウンロード"

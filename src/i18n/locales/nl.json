@@ -90,6 +90,7 @@
     "waiting": "Wachten op autorisatie"
   },
   "providerDiscovery": {
+    "apiHint": "Schakel in FreeShow Instellingen > Verbinding > WebSocket/REST in en sta FreeShow toe in de firewall van de computer.",
     "connectFailed": "Kan geen verbinding maken met die FreeShow-computer.",
     "header": "{{name}} Zoeken",
     "noneFound": "Er zijn geen FreeShow-computers gevonden.",
@@ -136,14 +137,18 @@
     "initializing": "Authenticatie wordt geïnitialiseerd...",
     "instructionsLine1": "Scan de QR-code met uw telefoon om toegang te autoriseren.",
     "instructionsLine2": "Uw tv maakt automatisch verbinding zodra u akkoord gaat.",
+    "invalidGrant": "Autorisatie kon niet worden voltooid. Probeer het opnieuw.",
+    "invalidRequest": "Het aanmeldverzoek is geweigerd. Probeer het opnieuw.",
     "loadingContent": "Uw inhoud wordt geladen...",
     "providerNotFound": "Aanbieder niet gevonden.",
     "secondary": "Controleer je telefoon om te bevestigen",
+    "serverError": "Aanmelden is tijdelijk niet beschikbaar. Probeer het later opnieuw.",
     "sessionExpired": "Autorisatiesessie verlopen. Probeer het opnieuw.",
     "sessionFailed": "Kan autorisatiesessie niet aanmaken. Probeer het opnieuw.",
     "tokenExchangeFailed": "Token-uitwisseling mislukt. Probeer het opnieuw.",
     "tryAgain": "Opnieuw proberen",
     "unexpectedError": "Er is een onverwachte fout opgetreden. Probeer het opnieuw.",
+    "unsupportedProvider": "Deze aanbieder kan niet op deze manier worden verbonden.",
     "waiting": "Wachten op autorisatie"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "Niet ondersteund"
     }
   },
+  "schedule": {
+    "browse": "Inhoud doorzoeken",
+    "cancel": "Annuleren",
+    "defaultLoop": "Standaardlus",
+    "filesDownloaded": "{{count}} van {{total}} bestanden gedownload",
+    "instructions": "Scan met je telefoon, of ga naar",
+    "instructionsEnd": "en voer deze code in",
+    "itemOf": "item {{current}} van {{total}}",
+    "lastChecked": "Manifest #{{rev}} · {{minutes}} min geleden gecontroleerd",
+    "loading": "Planning laden...",
+    "loadingSchedule": "Je planning wordt geladen...",
+    "nextAt": "volgende: {{title}} om {{time}}",
+    "notReady": "Bezig met downloaden",
+    "nothingScheduled": "Er is momenteel niets gepland",
+    "pin": "Afspeellijst vastzetten",
+    "readyThrough": "Klaar tot en met {{date}}",
+    "scheduled": "Gepland",
+    "secondary": "We maken automatisch verbinding zodra geaccepteerd · verloopt over {{time}}",
+    "settings": "Instellingen",
+    "title": "Koppel dit scherm",
+    "unpin": "Afspeellijst losmaken",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "{{count}} van {{total}} bestanden downloaden"
+  },
   "selectMessage": {
     "header": "Selecteer een bericht",
     "nowPlaying": "NU AAN HET SPELEN"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "Koppel dit scherm aan een andere agenda of stop met het volgen van een planning. Gedownloade bestanden voor deze agenda worden verwijderd.",
+      "changeTitle": "Gekoppeld aan {{group}}",
+      "description": "Speel af wat er op freeplay.church voor dit scherm is gepland, zonder dat iemand op Start hoeft te drukken",
+      "keep": "Behouden",
+      "label": "Koppelen aan een agenda",
+      "notPaired": "Niet gekoppeld",
+      "paired": "Gekoppeld",
+      "repair": "Koppelen aan andere agenda",
+      "unpair": "Ontkoppelen"
+    },
     "downloads": {
       "description": "Inhoud die op dit apparaat is opgeslagen afspelen of verwijderen",
       "label": "Downloads"

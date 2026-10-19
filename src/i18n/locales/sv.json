@@ -90,6 +90,7 @@
     "waiting": "Väntar på auktorisering"
   },
   "providerDiscovery": {
+    "apiHint": "I FreeShow, aktivera Inställningar > Anslutning > WebSocket/REST och tillåt FreeShow genom datorns brandvägg.",
     "connectFailed": "Det gick inte att ansluta till den FreeShow-datorn.",
     "header": "Hitta {{name}}",
     "noneFound": "Inga FreeShow-datorer hittades.",
@@ -136,14 +137,18 @@
     "initializing": "Initierar autentisering...",
     "instructionsLine1": "Skanna QR-koden med din telefon för att auktorisera åtkomst.",
     "instructionsLine2": "Din TV ansluter automatiskt när du godkänner.",
+    "invalidGrant": "Auktoriseringen kunde inte slutföras. Försök igen.",
+    "invalidRequest": "Inloggningsbegäran avvisades. Försök igen.",
     "loadingContent": "Laddar ditt innehåll...",
     "providerNotFound": "Leverantör hittades inte.",
     "secondary": "Kontrollera din telefon för att bekräfta",
+    "serverError": "Inloggning är tillfälligt otillgänglig. Försök igen senare.",
     "sessionExpired": "Auktoriseringssessionen har gått ut. Försök igen.",
     "sessionFailed": "Det gick inte att skapa auktoriseringssession. Försök igen.",
     "tokenExchangeFailed": "Tokenutbyte misslyckades. Försök igen.",
     "tryAgain": "Försök igen",
     "unexpectedError": "Ett oväntat fel uppstod. Försök igen.",
+    "unsupportedProvider": "Den här leverantören kan inte anslutas på det här sättet.",
     "waiting": "Väntar på auktorisering"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "Stöds inte"
     }
   },
+  "schedule": {
+    "browse": "Bläddra i innehåll",
+    "cancel": "Avbryt",
+    "defaultLoop": "Standardslinga",
+    "filesDownloaded": "{{count}} av {{total}} filer nedladdade",
+    "instructions": "Skanna med din telefon, eller gå till",
+    "instructionsEnd": "och ange den här koden",
+    "itemOf": "objekt {{current}} av {{total}}",
+    "lastChecked": "Manifest #{{rev}} · senast kontrollerad för {{minutes}} min sedan",
+    "loading": "Laddar schema...",
+    "loadingSchedule": "Laddar ditt schema...",
+    "nextAt": "nästa: {{title}} kl. {{time}}",
+    "notReady": "Laddar ner",
+    "nothingScheduled": "Inget är schemalagt just nu",
+    "pin": "Fäst spellistan",
+    "readyThrough": "Klar till och med {{date}}",
+    "scheduled": "Schemalagd",
+    "secondary": "Vi ansluter automatiskt när det har accepterats · går ut om {{time}}",
+    "settings": "Inställningar",
+    "title": "Parkoppla den här skärmen",
+    "unpin": "Lossa spellistan",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "Laddar ner {{count}} av {{total}} filer"
+  },
   "selectMessage": {
     "header": "Välj ett meddelande",
     "nowPlaying": "SPELAS NU"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "Parkoppla den här skärmen med en annan kalender, eller sluta följa ett schema. Nedladdade filer för den här kalendern tas bort.",
+      "changeTitle": "Parkopplad med {{group}}",
+      "description": "Spela upp det som är schemalagt för den här skärmen på freeplay.church, utan att någon behöver trycka på Start",
+      "keep": "Behåll",
+      "label": "Parkoppla med en kalender",
+      "notPaired": "Inte parkopplad",
+      "paired": "Parkopplad",
+      "repair": "Parkoppla med en annan kalender",
+      "unpair": "Koppla från"
+    },
     "downloads": {
       "description": "Spela upp eller ta bort innehåll som sparats på den här enheten",
       "label": "Nedladdningar"

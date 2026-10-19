@@ -90,6 +90,7 @@
     "waiting": "Esperando autorización"
   },
   "providerDiscovery": {
+    "apiHint": "En FreeShow, active Configuración > Conexión > WebSocket/REST y permita FreeShow en el firewall del equipo.",
     "connectFailed": "No se pudo conectar con ese equipo de FreeShow.",
     "header": "Buscar {{name}}",
     "noneFound": "No se encontraron equipos de FreeShow.",
@@ -136,14 +137,18 @@
     "initializing": "Inicializando autenticación...",
     "instructionsLine1": "Escanee el código QR con su teléfono para autorizar el acceso.",
     "instructionsLine2": "Su TV se conectará automáticamente una vez que apruebe.",
+    "invalidGrant": "No se pudo completar la autorización. Inténtelo de nuevo.",
+    "invalidRequest": "La solicitud de inicio de sesión fue rechazada. Inténtelo de nuevo.",
     "loadingContent": "Cargando su contenido...",
     "providerNotFound": "Proveedor no encontrado.",
     "secondary": "Revisa tu teléfono para confirmar",
+    "serverError": "El inicio de sesión no está disponible temporalmente. Inténtelo de nuevo más tarde.",
     "sessionExpired": "Sesión de autorización caducada. Inténtelo de nuevo.",
     "sessionFailed": "Error al crear la sesión de autorización. Inténtelo de nuevo.",
     "tokenExchangeFailed": "Error en el intercambio de tokens. Inténtelo de nuevo.",
     "tryAgain": "Intentar de nuevo",
     "unexpectedError": "Se produjo un error inesperado. Inténtelo de nuevo.",
+    "unsupportedProvider": "Este proveedor no se puede conectar de esta manera.",
     "waiting": "Esperando autorización"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "No compatible"
     }
   },
+  "schedule": {
+    "browse": "Explorar contenido",
+    "cancel": "Cancelar",
+    "defaultLoop": "Bucle predeterminado",
+    "filesDownloaded": "{{count}} de {{total}} archivos descargados",
+    "instructions": "Escanee con su teléfono o visite",
+    "instructionsEnd": "e ingrese este código",
+    "itemOf": "elemento {{current}} de {{total}}",
+    "lastChecked": "Manifiesto #{{rev}} · última comprobación hace {{minutes}} min",
+    "loading": "Cargando programación...",
+    "loadingSchedule": "Cargando su programación...",
+    "nextAt": "siguiente: {{title}} a las {{time}}",
+    "notReady": "Descargando",
+    "nothingScheduled": "No hay nada programado en este momento",
+    "pin": "Fijar esta lista",
+    "readyThrough": "Listo hasta el {{date}}",
+    "scheduled": "Programado",
+    "secondary": "Nos conectaremos automáticamente una vez aceptado · caduca en {{time}}",
+    "settings": "Configuración",
+    "title": "Emparejar esta pantalla",
+    "unpin": "Desfijar lista",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "Descargando {{count}} de {{total}} archivos"
+  },
   "selectMessage": {
     "header": "Seleccione un mensaje",
     "nowPlaying": "REPRODUCIENDO AHORA"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "Empareje esta pantalla con otro calendario o deje de seguir una programación. Se eliminarán los archivos descargados de este calendario.",
+      "changeTitle": "Emparejado con {{group}}",
+      "description": "Reproduce lo programado para esta pantalla en freeplay.church, sin que nadie tenga que pulsar Iniciar",
+      "keep": "Mantener",
+      "label": "Emparejar con un calendario",
+      "notPaired": "No emparejado",
+      "paired": "Emparejado",
+      "repair": "Emparejar con otro calendario",
+      "unpair": "Desemparejar"
+    },
     "downloads": {
       "description": "Reproduce o elimina el contenido guardado en este dispositivo",
       "label": "Descargas"

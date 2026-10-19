@@ -90,6 +90,7 @@
     "waiting": "Menunggu otorisasi"
   },
   "providerDiscovery": {
+    "apiHint": "Di FreeShow, aktifkan Pengaturan > Koneksi > WebSocket/REST, dan izinkan FreeShow melalui firewall komputer.",
     "connectFailed": "Tidak dapat terhubung ke mesin FreeShow tersebut.",
     "header": "Cari {{name}}",
     "noneFound": "Tidak ada mesin FreeShow yang ditemukan.",
@@ -136,14 +137,18 @@
     "initializing": "Menginisialisasi otentikasi...",
     "instructionsLine1": "Pindai kode QR dengan ponsel Anda untuk mengotorisasi akses.",
     "instructionsLine2": "TV Anda akan terhubung secara otomatis setelah Anda menyetujui.",
+    "invalidGrant": "Otorisasi tidak dapat diselesaikan. Silakan coba lagi.",
+    "invalidRequest": "Permintaan masuk ditolak. Silakan coba lagi.",
     "loadingContent": "Memuat konten Anda...",
     "providerNotFound": "Penyedia tidak ditemukan.",
     "secondary": "Periksa ponsel Anda untuk konfirmasi",
+    "serverError": "Masuk untuk sementara tidak tersedia. Silakan coba lagi nanti.",
     "sessionExpired": "Sesi otorisasi kedaluwarsa. Silakan coba lagi.",
     "sessionFailed": "Gagal membuat sesi otorisasi. Silakan coba lagi.",
     "tokenExchangeFailed": "Pertukaran token gagal. Silakan coba lagi.",
     "tryAgain": "Coba Lagi",
     "unexpectedError": "Terjadi kesalahan tak terduga. Silakan coba lagi.",
+    "unsupportedProvider": "Penyedia ini tidak dapat dihubungkan dengan cara ini.",
     "waiting": "Menunggu otorisasi"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "Tidak Didukung"
     }
   },
+  "schedule": {
+    "browse": "Jelajahi Konten",
+    "cancel": "Batal",
+    "defaultLoop": "Loop default",
+    "filesDownloaded": "{{count}} dari {{total}} file diunduh",
+    "instructions": "Pindai dengan ponsel Anda, atau buka",
+    "instructionsEnd": "dan masukkan kode ini",
+    "itemOf": "item {{current}} dari {{total}}",
+    "lastChecked": "Manifest #{{rev}} · terakhir diperiksa {{minutes}} menit lalu",
+    "loading": "Memuat jadwal...",
+    "loadingSchedule": "Memuat jadwal Anda...",
+    "nextAt": "berikutnya: {{title}} pukul {{time}}",
+    "notReady": "Mengunduh",
+    "nothingScheduled": "Tidak ada yang dijadwalkan saat ini",
+    "pin": "Sematkan Playlist Ini",
+    "readyThrough": "Siap hingga {{date}}",
+    "scheduled": "Terjadwal",
+    "secondary": "Kami akan terhubung otomatis setelah diterima · kedaluwarsa dalam {{time}}",
+    "settings": "Pengaturan",
+    "title": "Pasangkan layar ini",
+    "unpin": "Lepas Sematan Playlist",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "Mengunduh {{count}} dari {{total}} file"
+  },
   "selectMessage": {
     "header": "Pilih Pesan",
     "nowPlaying": "SEDANG DIPUTAR"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "Pasangkan layar ini ke kalender lain, atau berhenti mengikuti jadwal. File yang diunduh untuk kalender ini akan dihapus.",
+      "changeTitle": "Dipasangkan ke {{group}}",
+      "description": "Putar apa yang dijadwalkan untuk layar ini di freeplay.church, tanpa perlu ada yang menekan Mulai",
+      "keep": "Simpan",
+      "label": "Pasangkan ke kalender",
+      "notPaired": "Belum dipasangkan",
+      "paired": "Dipasangkan",
+      "repair": "Pasangkan ke kalender lain",
+      "unpair": "Lepas Pasangan"
+    },
     "downloads": {
       "description": "Putar atau hapus konten yang disimpan di perangkat ini",
       "label": "Unduhan"

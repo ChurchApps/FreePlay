@@ -90,6 +90,7 @@
     "waiting": "En attente d'autorisation"
   },
   "providerDiscovery": {
+    "apiHint": "Dans FreeShow, activez Paramètres > Connexion > WebSocket/REST et autorisez FreeShow dans le pare-feu de l'ordinateur.",
     "connectFailed": "Impossible de se connecter à cette machine FreeShow.",
     "header": "Rechercher {{name}}",
     "noneFound": "Aucune machine FreeShow n'a été trouvée.",
@@ -136,14 +137,18 @@
     "initializing": "Initialisation de l'authentification...",
     "instructionsLine1": "Scannez le code QR avec votre téléphone pour autoriser l'accès.",
     "instructionsLine2": "Votre télévision se connectera automatiquement une fois que vous aurez approuvé.",
+    "invalidGrant": "L'autorisation n'a pas pu être finalisée. Veuillez réessayer.",
+    "invalidRequest": "La demande de connexion a été refusée. Veuillez réessayer.",
     "loadingContent": "Chargement de votre contenu...",
     "providerNotFound": "Fournisseur introuvable.",
     "secondary": "Vérifiez votre téléphone pour confirmer",
+    "serverError": "La connexion est temporairement indisponible. Veuillez réessayer plus tard.",
     "sessionExpired": "Session d'autorisation expirée. Veuillez réessayer.",
     "sessionFailed": "Échec de la création de la session d'autorisation. Veuillez réessayer.",
     "tokenExchangeFailed": "Échec de l'échange de jetons. Veuillez réessayer.",
     "tryAgain": "Réessayer",
     "unexpectedError": "Une erreur inattendue s'est produite. Veuillez réessayer.",
+    "unsupportedProvider": "Ce fournisseur ne peut pas être connecté de cette manière.",
     "waiting": "En attente d'autorisation"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "Non pris en charge"
     }
   },
+  "schedule": {
+    "browse": "Parcourir le contenu",
+    "cancel": "Annuler",
+    "defaultLoop": "Boucle par défaut",
+    "filesDownloaded": "{{count}} fichiers sur {{total}} téléchargés",
+    "instructions": "Scannez avec votre téléphone ou rendez-vous sur",
+    "instructionsEnd": "et saisissez ce code",
+    "itemOf": "élément {{current}} sur {{total}}",
+    "lastChecked": "Manifeste #{{rev}} · dernière vérification il y a {{minutes}} min",
+    "loading": "Chargement du programme...",
+    "loadingSchedule": "Chargement de votre programme...",
+    "nextAt": "ensuite : {{title}} à {{time}}",
+    "notReady": "Téléchargement",
+    "nothingScheduled": "Rien n'est programmé pour le moment",
+    "pin": "Épingler cette playlist",
+    "readyThrough": "Prêt jusqu'au {{date}}",
+    "scheduled": "Programmé",
+    "secondary": "Nous nous connecterons automatiquement une fois accepté · expire dans {{time}}",
+    "settings": "Paramètres",
+    "title": "Appairer cet écran",
+    "unpin": "Désépingler la playlist",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "Téléchargement de {{count}} fichiers sur {{total}}"
+  },
   "selectMessage": {
     "header": "Sélectionner un message",
     "nowPlaying": "EN COURS DE LECTURE"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "Appairez cet écran à un autre calendrier ou cessez de suivre un programme. Les fichiers téléchargés pour ce calendrier seront supprimés.",
+      "changeTitle": "Appairé à {{group}}",
+      "description": "Diffuser ce qui est programmé pour cet écran sur freeplay.church, sans que personne n'ait à appuyer sur Démarrer",
+      "keep": "Conserver",
+      "label": "Appairer à un calendrier",
+      "notPaired": "Non appairé",
+      "paired": "Appairé",
+      "repair": "Appairer à un autre calendrier",
+      "unpair": "Dissocier"
+    },
     "downloads": {
       "description": "Lire ou supprimer le contenu enregistré sur cet appareil",
       "label": "Téléchargements"

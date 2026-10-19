@@ -90,6 +90,7 @@
     "waiting": "Đang chờ ủy quyền"
   },
   "providerDiscovery": {
+    "apiHint": "Trong FreeShow, bật Cài đặt > Kết nối > WebSocket/REST và cho phép FreeShow qua tường lửa của máy tính.",
     "connectFailed": "Không thể kết nối với máy FreeShow đó.",
     "header": "Tìm {{name}}",
     "noneFound": "Không tìm thấy máy FreeShow nào.",
@@ -136,14 +137,18 @@
     "initializing": "Đang khởi tạo xác thực...",
     "instructionsLine1": "Quét mã QR bằng điện thoại của bạn để ủy quyền truy cập.",
     "instructionsLine2": "TV của bạn sẽ tự động kết nối khi bạn phê duyệt.",
+    "invalidGrant": "Không thể hoàn tất ủy quyền. Vui lòng thử lại.",
+    "invalidRequest": "Yêu cầu đăng nhập đã bị từ chối. Vui lòng thử lại.",
     "loadingContent": "Đang tải nội dung của bạn...",
     "providerNotFound": "Không tìm thấy nhà cung cấp.",
     "secondary": "Kiểm tra điện thoại của bạn để xác nhận",
+    "serverError": "Đăng nhập tạm thời không khả dụng. Vui lòng thử lại sau.",
     "sessionExpired": "Phiên ủy quyền đã hết hạn. Vui lòng thử lại.",
     "sessionFailed": "Không thể tạo phiên ủy quyền. Vui lòng thử lại.",
     "tokenExchangeFailed": "Trao đổi token không thành công. Vui lòng thử lại.",
     "tryAgain": "Thử lại",
     "unexpectedError": "Đã xảy ra lỗi không mong muốn. Vui lòng thử lại.",
+    "unsupportedProvider": "Không thể kết nối nhà cung cấp này theo cách này.",
     "waiting": "Đang chờ ủy quyền"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "Không được hỗ trợ"
     }
   },
+  "schedule": {
+    "browse": "Duyệt nội dung",
+    "cancel": "Hủy",
+    "defaultLoop": "Vòng lặp mặc định",
+    "filesDownloaded": "Đã tải xuống {{count}}/{{total}} tệp",
+    "instructions": "Quét bằng điện thoại của bạn hoặc truy cập",
+    "instructionsEnd": "và nhập mã này",
+    "itemOf": "mục {{current}}/{{total}}",
+    "lastChecked": "Manifest #{{rev}} · kiểm tra lần cuối {{minutes}} phút trước",
+    "loading": "Đang tải lịch...",
+    "loadingSchedule": "Đang tải lịch của bạn...",
+    "nextAt": "tiếp theo: {{title}} lúc {{time}}",
+    "notReady": "Đang tải xuống",
+    "nothingScheduled": "Hiện không có gì được lên lịch",
+    "pin": "Ghim danh sách phát",
+    "readyThrough": "Sẵn sàng đến {{date}}",
+    "scheduled": "Đã lên lịch",
+    "secondary": "Chúng tôi sẽ tự động kết nối sau khi được chấp nhận · hết hạn sau {{time}}",
+    "settings": "Cài đặt",
+    "title": "Ghép nối màn hình này",
+    "unpin": "Bỏ ghim danh sách phát",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "Đang tải xuống {{count}}/{{total}} tệp"
+  },
   "selectMessage": {
     "header": "Chọn một tin nhắn",
     "nowPlaying": "ĐANG PHÁT"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "Ghép nối màn hình này với một lịch khác hoặc ngừng theo dõi lịch. Các tệp đã tải xuống cho lịch này sẽ bị xóa.",
+      "changeTitle": "Đã ghép nối với {{group}}",
+      "description": "Phát nội dung đã lên lịch cho màn hình này trên freeplay.church mà không cần ai nhấn Bắt đầu",
+      "keep": "Giữ lại",
+      "label": "Ghép nối với lịch",
+      "notPaired": "Chưa ghép nối",
+      "paired": "Đã ghép nối",
+      "repair": "Ghép nối với lịch khác",
+      "unpair": "Hủy ghép nối"
+    },
     "downloads": {
       "description": "Phát hoặc xóa nội dung đã lưu trên thiết bị này",
       "label": "Tải xuống"

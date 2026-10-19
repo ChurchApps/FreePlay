@@ -90,6 +90,7 @@
     "waiting": "Laukiama autorizavimo"
   },
   "providerDiscovery": {
+    "apiHint": "FreeShow programoje įjunkite Nustatymai > Ryšys > WebSocket/REST ir leiskite FreeShow per kompiuterio užkardą.",
     "connectFailed": "Nepavyko prisijungti prie to FreeShow kompiuterio.",
     "header": "Rasti {{name}}",
     "noneFound": "FreeShow kompiuterių nerasta.",
@@ -136,14 +137,18 @@
     "initializing": "Inicijuojamas autentifikavimas...",
     "instructionsLine1": "Nuskaitykite QR kodą telefonu, kad autorizuotumėte prieigą.",
     "instructionsLine2": "Jūsų televizorius automatiškai prisijungs, kai patvirtinsite.",
+    "invalidGrant": "Nepavyko užbaigti autorizacijos. Bandykite dar kartą.",
+    "invalidRequest": "Prisijungimo užklausa atmesta. Bandykite dar kartą.",
     "loadingContent": "Įkeliamas turinys...",
     "providerNotFound": "Tiekėjas nerastas.",
     "secondary": "Patikrinkite telefoną, kad patvirtintumėte",
+    "serverError": "Prisijungimas laikinai nepasiekiamas. Bandykite vėliau.",
     "sessionExpired": "Autorizavimo sesijos galiojimas baigėsi. Bandykite dar kartą.",
     "sessionFailed": "Nepavyko sukurti autorizavimo sesijos. Bandykite dar kartą.",
     "tokenExchangeFailed": "Žetonų keitimas nepavyko. Bandykite dar kartą.",
     "tryAgain": "Bandyti dar kartą",
     "unexpectedError": "Įvyko netikėta klaida. Bandykite dar kartą.",
+    "unsupportedProvider": "Šio teikėjo negalima prijungti tokiu būdu.",
     "waiting": "Laukiama autorizavimo"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "Nepalaikoma"
     }
   },
+  "schedule": {
+    "browse": "Naršyti turinį",
+    "cancel": "Atšaukti",
+    "defaultLoop": "Numatytasis ciklas",
+    "filesDownloaded": "Atsisiųsta failų: {{count}} iš {{total}}",
+    "instructions": "Nuskenuokite telefonu arba eikite į",
+    "instructionsEnd": "ir įveskite šį kodą",
+    "itemOf": "elementas {{current}} iš {{total}}",
+    "lastChecked": "Manifestas #{{rev}} · paskutinį kartą tikrinta prieš {{minutes}} min.",
+    "loading": "Įkeliamas tvarkaraštis...",
+    "loadingSchedule": "Įkeliamas jūsų tvarkaraštis...",
+    "nextAt": "kitas: {{title}} {{time}}",
+    "notReady": "Atsisiunčiama",
+    "nothingScheduled": "Šiuo metu nieko nesuplanuota",
+    "pin": "Prisegti šį grojaraštį",
+    "readyThrough": "Paruošta iki {{date}}",
+    "scheduled": "Suplanuota",
+    "secondary": "Prisijungsime automatiškai, kai bus patvirtinta · baigsis po {{time}}",
+    "settings": "Nustatymai",
+    "title": "Susieti šį ekraną",
+    "unpin": "Atsegti grojaraštį",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "Atsisiunčiama failų: {{count}} iš {{total}}"
+  },
   "selectMessage": {
     "header": "Pasirinkite žinutę",
     "nowPlaying": "DABAR GROJAMA"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "Susiekite šį ekraną su kitu kalendoriumi arba nustokite sekti tvarkaraštį. Šiam kalendoriui atsisiųsti failai bus pašalinti.",
+      "changeTitle": "Susieta su {{group}}",
+      "description": "Leisti tai, kas šiam ekranui suplanuota freeplay.church, niekam nespaudžiant Pradėti",
+      "keep": "Palikti",
+      "label": "Susieti su kalendoriumi",
+      "notPaired": "Nesusieta",
+      "paired": "Susieta",
+      "repair": "Susieti su kitu kalendoriumi",
+      "unpair": "Atsieti"
+    },
     "downloads": {
       "description": "Paleiskite arba ištrinkite šiame įrenginyje išsaugotą turinį",
       "label": "Atsisiuntimai"

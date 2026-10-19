@@ -90,6 +90,7 @@
     "waiting": "Venter på godkendelse"
   },
   "providerDiscovery": {
+    "apiHint": "I FreeShow skal du slå Indstillinger > Forbindelse > WebSocket/REST til og tillade FreeShow gennem computerens firewall.",
     "connectFailed": "Kunne ikke oprette forbindelse til den FreeShow-maskine.",
     "header": "Find {{name}}",
     "noneFound": "Der blev ikke fundet nogen FreeShow-maskiner.",
@@ -136,14 +137,18 @@
     "initializing": "Initialiserer godkendelse...",
     "instructionsLine1": "Scan QR-koden med din telefon for at godkende adgang.",
     "instructionsLine2": "Dit TV vil automatisk forbinde, når du godkender.",
+    "invalidGrant": "Godkendelsen kunne ikke fuldføres. Prøv igen.",
+    "invalidRequest": "Login-anmodningen blev afvist. Prøv igen.",
     "loadingContent": "Indlæser dit indhold...",
     "providerNotFound": "Udbyder blev ikke fundet.",
     "secondary": "Tjek din telefon for at bekræfte",
+    "serverError": "Login er midlertidigt utilgængeligt. Prøv igen senere.",
     "sessionExpired": "Godkendelsessession udløbet. Prøv igen.",
     "sessionFailed": "Kunne ikke oprette godkendelsessession. Prøv igen.",
     "tokenExchangeFailed": "Tokenudveksling mislykkedes. Prøv igen.",
     "tryAgain": "Prøv igen",
     "unexpectedError": "Der opstod en uventet fejl. Prøv igen.",
+    "unsupportedProvider": "Denne udbyder kan ikke tilsluttes på denne måde.",
     "waiting": "Venter på godkendelse"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "Ikke understøttet"
     }
   },
+  "schedule": {
+    "browse": "Gennemse indhold",
+    "cancel": "Annuller",
+    "defaultLoop": "Standardloop",
+    "filesDownloaded": "{{count}} af {{total}} filer downloadet",
+    "instructions": "Scan med din telefon, eller gå til",
+    "instructionsEnd": "og indtast denne kode",
+    "itemOf": "element {{current}} af {{total}}",
+    "lastChecked": "Manifest #{{rev}} · sidst kontrolleret for {{minutes}} min. siden",
+    "loading": "Indlæser tidsplan...",
+    "loadingSchedule": "Indlæser din tidsplan...",
+    "nextAt": "næste: {{title}} kl. {{time}}",
+    "notReady": "Downloader",
+    "nothingScheduled": "Intet er planlagt lige nu",
+    "pin": "Fastgør denne playliste",
+    "readyThrough": "Klar til og med {{date}}",
+    "scheduled": "Planlagt",
+    "secondary": "Vi opretter automatisk forbindelse, når det er accepteret · udløber om {{time}}",
+    "settings": "Indstillinger",
+    "title": "Par denne skærm",
+    "unpin": "Frigør playliste",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "Downloader {{count}} af {{total}} filer"
+  },
   "selectMessage": {
     "header": "Vælg en besked",
     "nowPlaying": "AFSPILLES NU"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "Par denne skærm med en anden kalender, eller stop med at følge en tidsplan. Downloadede filer for denne kalender fjernes.",
+      "changeTitle": "Parret med {{group}}",
+      "description": "Afspil det, der er planlagt for denne skærm på freeplay.church, uden at nogen skal trykke på Start",
+      "keep": "Behold",
+      "label": "Par med en kalender",
+      "notPaired": "Ikke parret",
+      "paired": "Parret",
+      "repair": "Par med en anden kalender",
+      "unpair": "Ophæv parring"
+    },
     "downloads": {
       "description": "Afspil eller slet indhold, der er gemt på denne enhed",
       "label": "Downloads"

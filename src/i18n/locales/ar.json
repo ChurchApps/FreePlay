@@ -90,6 +90,7 @@
     "waiting": "في انتظار التفويض"
   },
   "providerDiscovery": {
+    "apiHint": "في FreeShow، فعّل الإعدادات > الاتصال > WebSocket/REST، واسمح لـ FreeShow عبر جدار الحماية في الكمبيوتر.",
     "connectFailed": "تعذر الاتصال بجهاز FreeShow هذا.",
     "header": "البحث عن {{name}}",
     "noneFound": "لم يتم العثور على أي أجهزة FreeShow.",
@@ -136,14 +137,18 @@
     "initializing": "جاري تهيئة المصادقة...",
     "instructionsLine1": "امسح رمز QR بهاتفك للسماح بالوصول.",
     "instructionsLine2": "سيتصل تلفازك تلقائياً بمجرد موافقتك.",
+    "invalidGrant": "تعذر إكمال التفويض. يرجى المحاولة مرة أخرى.",
+    "invalidRequest": "تم رفض طلب تسجيل الدخول. يرجى المحاولة مرة أخرى.",
     "loadingContent": "جاري تحميل المحتوى الخاص بك...",
     "providerNotFound": "الموفر غير موجود.",
     "secondary": "تحقق من هاتفك للتأكيد",
+    "serverError": "تسجيل الدخول غير متاح مؤقتًا. يرجى المحاولة مرة أخرى لاحقًا.",
     "sessionExpired": "انتهت جلسة التفويض. يرجى المحاولة مرة أخرى.",
     "sessionFailed": "فشل في إنشاء جلسة التفويض. يرجى المحاولة مرة أخرى.",
     "tokenExchangeFailed": "فشل تبادل الرموز المميزة. يرجى المحاولة مرة أخرى.",
     "tryAgain": "حاول مرة أخرى",
     "unexpectedError": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
+    "unsupportedProvider": "لا يمكن ربط هذا الموفر بهذه الطريقة.",
     "waiting": "في انتظار التفويض"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "غير مدعوم"
     }
   },
+  "schedule": {
+    "browse": "تصفح المحتوى",
+    "cancel": "إلغاء",
+    "defaultLoop": "التكرار الافتراضي",
+    "filesDownloaded": "تم تنزيل {{count}} من {{total}} ملفات",
+    "instructions": "امسح بهاتفك، أو انتقل إلى",
+    "instructionsEnd": "وأدخل هذا الرمز",
+    "itemOf": "العنصر {{current}} من {{total}}",
+    "lastChecked": "البيان #{{rev}} · آخر تحقق قبل {{minutes}} دقيقة",
+    "loading": "جارٍ تحميل الجدول...",
+    "loadingSchedule": "جارٍ تحميل جدولك...",
+    "nextAt": "التالي: {{title}} في {{time}}",
+    "notReady": "جارٍ التنزيل",
+    "nothingScheduled": "لا يوجد شيء مجدول الآن",
+    "pin": "تثبيت قائمة التشغيل",
+    "readyThrough": "جاهز حتى {{date}}",
+    "scheduled": "مجدول",
+    "secondary": "سنتصل تلقائيًا بمجرد القبول · تنتهي الصلاحية خلال {{time}}",
+    "settings": "الإعدادات",
+    "title": "إقران هذه الشاشة",
+    "unpin": "إلغاء تثبيت قائمة التشغيل",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "جارٍ تنزيل {{count}} من {{total}} ملفات"
+  },
   "selectMessage": {
     "header": "اختر رسالة",
     "nowPlaying": "قيد التشغيل الآن"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "أقرن هذه الشاشة بتقويم آخر، أو توقف عن متابعة الجدول. ستتم إزالة الملفات التي تم تنزيلها لهذا التقويم.",
+      "changeTitle": "مقترن بـ {{group}}",
+      "description": "شغّل ما هو مجدول لهذه الشاشة على freeplay.church، دون أن يضغط أحد على بدء",
+      "keep": "إبقاء",
+      "label": "الإقران بتقويم",
+      "notPaired": "غير مقترن",
+      "paired": "مقترن",
+      "repair": "الإقران بتقويم آخر",
+      "unpair": "إلغاء الإقران"
+    },
     "downloads": {
       "description": "تشغيل المحتوى المحفوظ على هذا الجهاز أو حذفه",
       "label": "التنزيلات"

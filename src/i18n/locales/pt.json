@@ -90,6 +90,7 @@
     "waiting": "Aguardando autorização"
   },
   "providerDiscovery": {
+    "apiHint": "No FreeShow, ative Configurações > Conexão > WebSocket/REST e permita o FreeShow no firewall do computador.",
     "connectFailed": "Não foi possível conectar a essa máquina FreeShow.",
     "header": "Encontrar {{name}}",
     "noneFound": "Nenhuma máquina FreeShow foi encontrada.",
@@ -136,14 +137,18 @@
     "initializing": "Inicializando autenticação...",
     "instructionsLine1": "Leia o código QR com o telefone para autorizar o acesso.",
     "instructionsLine2": "Sua TV se conectará automaticamente assim que você aprovar.",
+    "invalidGrant": "Não foi possível concluir a autorização. Tente novamente.",
+    "invalidRequest": "A solicitação de login foi rejeitada. Tente novamente.",
     "loadingContent": "Carregando seu conteúdo...",
     "providerNotFound": "Provedor não encontrado.",
     "secondary": "Verifique seu telefone para confirmar",
+    "serverError": "O login está temporariamente indisponível. Tente novamente mais tarde.",
     "sessionExpired": "Sessão de autorização expirada. Tente novamente.",
     "sessionFailed": "Falha ao criar a sessão de autorização. Tente novamente.",
     "tokenExchangeFailed": "Falha na troca de tokens. Tente novamente.",
     "tryAgain": "Tentar novamente",
     "unexpectedError": "Ocorreu um erro inesperado. Tente novamente.",
+    "unsupportedProvider": "Este provedor não pode ser conectado dessa forma.",
     "waiting": "Aguardando autorização"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "Não suportado"
     }
   },
+  "schedule": {
+    "browse": "Navegar pelo conteúdo",
+    "cancel": "Cancelar",
+    "defaultLoop": "Loop padrão",
+    "filesDownloaded": "{{count}} de {{total}} arquivos baixados",
+    "instructions": "Leia com o telefone ou acesse",
+    "instructionsEnd": "e digite este código",
+    "itemOf": "item {{current}} de {{total}}",
+    "lastChecked": "Manifesto #{{rev}} · verificado há {{minutes}} min",
+    "loading": "Carregando programação...",
+    "loadingSchedule": "Carregando sua programação...",
+    "nextAt": "a seguir: {{title}} às {{time}}",
+    "notReady": "Baixando",
+    "nothingScheduled": "Nada programado no momento",
+    "pin": "Fixar esta playlist",
+    "readyThrough": "Pronto até {{date}}",
+    "scheduled": "Programado",
+    "secondary": "Conectaremos automaticamente assim que aceito · expira em {{time}}",
+    "settings": "Configurações",
+    "title": "Parear esta tela",
+    "unpin": "Desafixar playlist",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "Baixando {{count}} de {{total}} arquivos"
+  },
   "selectMessage": {
     "header": "Selecione uma mensagem",
     "nowPlaying": "TOCANDO AGORA"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "Pareie esta tela com outro calendário ou pare de seguir uma programação. Os arquivos baixados deste calendário serão removidos.",
+      "changeTitle": "Pareado com {{group}}",
+      "description": "Reproduza o que está programado para esta tela em freeplay.church, sem ninguém precisar pressionar Iniciar",
+      "keep": "Manter",
+      "label": "Parear com um calendário",
+      "notPaired": "Não pareado",
+      "paired": "Pareado",
+      "repair": "Parear com outro calendário",
+      "unpair": "Desparear"
+    },
     "downloads": {
       "description": "Reproduza ou exclua o conteúdo salvo neste dispositivo",
       "label": "Downloads"

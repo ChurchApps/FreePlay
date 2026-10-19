@@ -90,6 +90,7 @@
     "waiting": "Odotetaan valtuutusta"
   },
   "providerDiscovery": {
+    "apiHint": "Ota FreeShow'ssa käyttöön Asetukset > Yhteys > WebSocket/REST ja salli FreeShow tietokoneen palomuurissa.",
     "connectFailed": "Yhteyttä kyseiseen FreeShow-laitteeseen ei voitu muodostaa.",
     "header": "Etsi {{name}}",
     "noneFound": "FreeShow-laitteita ei löytynyt.",
@@ -136,14 +137,18 @@
     "initializing": "Alustetaan todennusta...",
     "instructionsLine1": "Skannaa QR-koodi puhelimellasi käytön valtuuttamiseksi.",
     "instructionsLine2": "Televisiosi yhdistyy automaattisesti, kun hyväksyt.",
+    "invalidGrant": "Valtuutusta ei voitu suorittaa loppuun. Yritä uudelleen.",
+    "invalidRequest": "Kirjautumispyyntö hylättiin. Yritä uudelleen.",
     "loadingContent": "Ladataan sisältöäsi...",
     "providerNotFound": "Tarjoajaa ei löytynyt.",
     "secondary": "Tarkista puhelimesi vahvistaaksesi",
+    "serverError": "Kirjautuminen ei ole tilapäisesti käytettävissä. Yritä myöhemmin uudelleen.",
     "sessionExpired": "Valtuutusistunto vanhentunut. Yritä uudelleen.",
     "sessionFailed": "Valtuutusistunnon luominen epäonnistui. Yritä uudelleen.",
     "tokenExchangeFailed": "Tunnuksen vaihto epäonnistui. Yritä uudelleen.",
     "tryAgain": "Yritä uudelleen",
     "unexpectedError": "Tapahtui odottamaton virhe. Yritä uudelleen.",
+    "unsupportedProvider": "Tätä tarjoajaa ei voi yhdistää tällä tavalla.",
     "waiting": "Odotetaan valtuutusta"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "Ei tuettu"
     }
   },
+  "schedule": {
+    "browse": "Selaa sisältöä",
+    "cancel": "Peruuta",
+    "defaultLoop": "Oletussilmukka",
+    "filesDownloaded": "{{count}}/{{total}} tiedostoa ladattu",
+    "instructions": "Skannaa puhelimellasi tai siirry osoitteeseen",
+    "instructionsEnd": "ja syötä tämä koodi",
+    "itemOf": "kohde {{current}}/{{total}}",
+    "lastChecked": "Manifesti #{{rev}} · tarkistettu viimeksi {{minutes}} min sitten",
+    "loading": "Ladataan aikataulua...",
+    "loadingSchedule": "Ladataan aikatauluasi...",
+    "nextAt": "seuraavaksi: {{title}} klo {{time}}",
+    "notReady": "Ladataan",
+    "nothingScheduled": "Mitään ei ole ajoitettu juuri nyt",
+    "pin": "Kiinnitä soittolista",
+    "readyThrough": "Valmis {{date}} asti",
+    "scheduled": "Ajoitettu",
+    "secondary": "Yhdistämme automaattisesti hyväksymisen jälkeen · vanhenee {{time}} kuluttua",
+    "settings": "Asetukset",
+    "title": "Pariuta tämä näyttö",
+    "unpin": "Irrota soittolista",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "Ladataan {{count}}/{{total}} tiedostoa"
+  },
   "selectMessage": {
     "header": "Valitse viesti",
     "nowPlaying": "SOI NYT"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "Pariuta tämä näyttö toiseen kalenteriin tai lopeta aikataulun seuraaminen. Tämän kalenterin ladatut tiedostot poistetaan.",
+      "changeTitle": "Pariutettu: {{group}}",
+      "description": "Toista tälle näytölle freeplay.churchissa ajoitettu sisältö ilman, että kenenkään tarvitsee painaa Aloita",
+      "keep": "Säilytä",
+      "label": "Pariuta kalenteriin",
+      "notPaired": "Ei pariutettu",
+      "paired": "Pariutettu",
+      "repair": "Pariuta toiseen kalenteriin",
+      "unpair": "Pura pariutus"
+    },
     "downloads": {
       "description": "Toista tai poista tälle laitteelle tallennettua sisältöä",
       "label": "Lataukset"

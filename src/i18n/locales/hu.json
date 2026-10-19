@@ -90,6 +90,7 @@
     "waiting": "Várakozás engedélyezésre"
   },
   "providerDiscovery": {
+    "apiHint": "A FreeShow-ban kapcsolja be a Beállítások > Kapcsolat > WebSocket/REST opciót, és engedélyezze a FreeShow-t a számítógép tűzfalán.",
     "connectFailed": "Nem sikerült csatlakozni ehhez a FreeShow-géphez.",
     "header": "{{name}} Keresése",
     "noneFound": "Nem található FreeShow-gép.",
@@ -136,14 +137,18 @@
     "initializing": "Hitelesítés inicializálása...",
     "instructionsLine1": "Olvassa be a QR-kódot a telefonjával a hozzáférés engedélyezéséhez.",
     "instructionsLine2": "A TV automatikusan csatlakozik, miután jóváhagyja.",
+    "invalidGrant": "Az engedélyezést nem sikerült befejezni. Próbálja újra.",
+    "invalidRequest": "A bejelentkezési kérést elutasították. Próbálja újra.",
     "loadingContent": "Tartalom betöltése...",
     "providerNotFound": "A szolgáltató nem található.",
     "secondary": "Ellenőrizze telefonját a megerősítéshez",
+    "serverError": "A bejelentkezés átmenetileg nem érhető el. Próbálja újra később.",
     "sessionExpired": "Az engedélyezési munkamenet lejárt. Próbálja újra.",
     "sessionFailed": "Nem sikerült létrehozni az engedélyezési munkamenetet. Próbálja újra.",
     "tokenExchangeFailed": "A token csere sikertelen. Próbálja újra.",
     "tryAgain": "Próbálja újra",
     "unexpectedError": "Váratlan hiba történt. Próbálja újra.",
+    "unsupportedProvider": "Ez a szolgáltató nem csatlakoztatható ezen a módon.",
     "waiting": "Várakozás engedélyezésre"
   },
   "providerSettings": {
@@ -185,11 +190,46 @@
       "title": "Nem támogatott"
     }
   },
+  "schedule": {
+    "browse": "Tartalom böngészése",
+    "cancel": "Mégse",
+    "defaultLoop": "Alapértelmezett ismétlés",
+    "filesDownloaded": "{{total}} fájlból {{count}} letöltve",
+    "instructions": "Olvassa be a telefonjával, vagy nyissa meg ezt az oldalt:",
+    "instructionsEnd": "és adja meg ezt a kódot",
+    "itemOf": "{{current}}. elem / {{total}}",
+    "lastChecked": "Manifest #{{rev}} · utoljára ellenőrizve {{minutes}} perce",
+    "loading": "Ütemezés betöltése...",
+    "loadingSchedule": "Az ütemezése betöltése...",
+    "nextAt": "következő: {{title}}, {{time}}",
+    "notReady": "Letöltés",
+    "nothingScheduled": "Jelenleg nincs semmi ütemezve",
+    "pin": "Lejátszási lista rögzítése",
+    "readyThrough": "Kész eddig: {{date}}",
+    "scheduled": "Ütemezve",
+    "secondary": "Elfogadás után automatikusan csatlakozunk · lejár: {{time}}",
+    "settings": "Beállítások",
+    "title": "Képernyő párosítása",
+    "unpin": "Rögzítés feloldása",
+    "url": "freeplay.church/pair",
+    "waitingForFiles": "{{total}} fájlból {{count}} letöltése"
+  },
   "selectMessage": {
     "header": "Válasszon üzenetet",
     "nowPlaying": "MOST JÁTSSZIK"
   },
   "settings": {
+    "calendar": {
+      "changeMessage": "Párosítsa ezt a képernyőt egy másik naptárral, vagy hagyja abba az ütemezés követését. A naptárhoz letöltött fájlok törlődnek.",
+      "changeTitle": "Párosítva: {{group}}",
+      "description": "A freeplay.church oldalon erre a képernyőre ütemezett tartalom lejátszása anélkül, hogy bárkinek meg kellene nyomnia a Start gombot",
+      "keep": "Megtartás",
+      "label": "Párosítás naptárral",
+      "notPaired": "Nincs párosítva",
+      "paired": "Párosítva",
+      "repair": "Párosítás másik naptárral",
+      "unpair": "Párosítás bontása"
+    },
     "downloads": {
       "description": "Az eszközön mentett tartalom lejátszása vagy törlése",
       "label": "Letöltések"
