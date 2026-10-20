@@ -222,14 +222,36 @@ export class CachedData {
     return fullPath;
   }
 
-  static async load(file: MessageFileInterface, fileProgressCallback?: (progress: number) => void) {
-    if (!file.url) return;
-    let fullPath = this.getFilePath(file.url, file.fileType);
-    fullPath = decodeURIComponent(fullPath);
-    const exists = await RNFS.exists(fullPath);
-    if (!exists) {
-      await this.download(file, fullPath, fileProgressCallback);
+  private static inFlight = new Map<string, Promise<void>>();
+
+  // A second request for a file that is still downloading waits for that download instead of treating the partial file as cached.
+  static load(file: MessageFileInterface, fileProgressCallback?: (progress: number) => void): Promise<void> {
+    if (!file.url) return Promise.resolve();
+    const fullPath = decodeURIComponent(this.getFilePath(file.url, file.fileType));
+    const pending = this.inFlight.get(fullPath);
+    if (pending) return pending;
+    const job = this.loadOnce(file, fullPath, fileProgressCallback).finally(() => this.inFlight.delete(fullPath));
+    this.inFlight.set(fullPath, job);
+    return job;
+  }
+
+  // Download to a .part file and move it into place only when complete, so an interrupted download is never mistaken for a cached file.
+  private static async loadOnce(file: MessageFileInterface, fullPath: string, fileProgressCallback?: (progress: number) => void) {
+    if (await RNFS.exists(fullPath)) return;
+    const part = fullPath + ".part";
+    try {
+      await this.download(file, part, fileProgressCallback);
+      await RNFS.moveFile(part, fullPath);
+    } catch (e) {
+      await RNFS.unlink(part).catch(() => {});
+      throw e;
     }
+  }
+
+  // A cached file that will not display: delete it so the next download fetches it again.
+  static async discard(file: MessageFileInterface) {
+    if (!file?.url) return;
+    await RNFS.unlink(decodeURIComponent(this.getFilePath(file.url, file.fileType))).catch(() => {});
   }
 
   static async download(
