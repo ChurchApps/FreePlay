@@ -179,6 +179,13 @@ export const PlayerScreen = (props: Props) => {
     }
   };
 
+  // An image that will not decode is likely a damaged download; delete it so the next plan download fetches it again.
+  const handleMediaError = () => {
+    const file = CachedData.messageFiles?.[messageIndex];
+    if (!props.streaming && file && !PlayerHelper.isVideoFile(file)) CachedData.discard(file);
+    handleVideoEnd();
+  };
+
   const handleMessageSelect = (index: number) => {
     if (paused) setPaused(false);
     feedbackAnim.setValue(0);
@@ -251,6 +258,7 @@ export const PlayerScreen = (props: Props) => {
             paused={paused}
             onProgress={handleProgress}
             onEnd={handleVideoEnd}
+            onError={handleMediaError}
           />
           <TextInput autoFocus style={{ display: "none" }} showSoftInputOnFocus={false} returnKeyType="none" />
 

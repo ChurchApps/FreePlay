@@ -48,7 +48,7 @@ describe("CachedData FreeShow images", () => {
   it("writes the data URL payload to disk instead of downloading the JSON", async () => {
     global.fetch = jest.fn(async () => ({ ok: true, status: 200, json: async () => ({ action: "get_thumbnail", data: "data:image/png;base64,QUJD" }) })) as unknown as typeof fetch;
     await CachedData.load({ url: url("C:\\Media\\a.png") } as any);
-    expect(RNFS.writeFile).toHaveBeenCalledWith(expect.stringMatching(/\.png$/), "QUJD", "base64");
+    expect(RNFS.writeFile).toHaveBeenCalledWith(expect.stringMatching(/\.png\.part$/), "QUJD", "base64");
     expect(RNFS.downloadFile).not.toHaveBeenCalled();
   });
 });
@@ -129,7 +129,7 @@ describe("CachedData.prefetch", () => {
     expect(RNFS.downloadFile).toHaveBeenCalledWith(expect.objectContaining({
       fromUrl: "https://www.googleapis.com/drive/v3/files/vid1?alt=media&supportsAllDrives=true",
       headers: { Authorization: "Bearer tok" },
-      toFile: "/cache/drive/vid1.mp4"
+      toFile: "/cache/drive/vid1.mp4.part"
     }));
   });
 
@@ -154,7 +154,7 @@ describe("CachedData.prefetch", () => {
       expect(RNFS.downloadFile).toHaveBeenCalledWith(expect.objectContaining({
         fromUrl: "https://dl.example/abc",
         headers: undefined,
-        toFile: "/cache/onedrive/A!1.mp4"
+        toFile: "/cache/onedrive/A!1.mp4.part"
       }));
     } finally {
       global.fetch = realFetch;
@@ -179,5 +179,37 @@ describe("CachedData.allFilesCached", () => {
   it("false when any file is missing", async () => {
     (RNFS.exists as jest.Mock).mockResolvedValue(false);
     expect(await CachedData.allFilesCached([{ url: "https://a.com/x/y/f.mp4" }] as any)).toBe(false);
+  });
+});
+
+describe("CachedData.load partial downloads (#1311)", () => {
+  beforeEach(() => jest.clearAllMocks());
+
+  it("downloads to a .part file and only moves it into place after a 200", async () => {
+    await CachedData.load({ url: "https://a.com/x/y/slide.jpg" } as any);
+    expect(RNFS.downloadFile).toHaveBeenCalledWith(expect.objectContaining({ toFile: "/cache/x/y/slide.jpg.part" }));
+    expect(RNFS.moveFile).toHaveBeenCalledWith("/cache/x/y/slide.jpg.part", "/cache/x/y/slide.jpg");
+  });
+
+  it("leaves no file at the final path when the download fails", async () => {
+    (RNFS.downloadFile as jest.Mock).mockReturnValueOnce({ promise: Promise.resolve({ statusCode: 500 }) });
+    await expect(CachedData.load({ url: "https://a.com/x/y/slide.jpg" } as any)).rejects.toThrow();
+    expect(RNFS.moveFile).not.toHaveBeenCalled();
+    expect(RNFS.unlink).toHaveBeenCalledWith("/cache/x/y/slide.jpg.part");
+  });
+
+  it("a second load of a file still downloading waits for the first instead of starting another", async () => {
+    let finish: (v: { statusCode: number }) => void = () => {};
+    (RNFS.downloadFile as jest.Mock).mockReturnValueOnce({ promise: new Promise(r => { finish = r; }) });
+    const file = { url: "https://a.com/x/y/title.jpg" } as any;
+    const first = CachedData.load(file);
+    await new Promise(r => setImmediate(r));
+    let secondDone = false;
+    const second = CachedData.load(file).then(() => { secondDone = true; });
+    await new Promise(r => setImmediate(r));
+    expect(secondDone).toBe(false);
+    finish({ statusCode: 200 });
+    await Promise.all([first, second]);
+    expect(RNFS.downloadFile).toHaveBeenCalledTimes(1);
   });
 });

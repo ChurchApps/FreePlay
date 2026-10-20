@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { View, Text, TouchableHighlight, ActivityIndicator, BackHandler, ImageBackground } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -136,8 +136,12 @@ export const PlanDownloadScreen = (props: Props) => {
     }
   };
 
+  // The stored plan and the freshly fetched one can both start a download; only the latest one may mark the plan ready.
+  const downloadRun = useRef(0);
+
   const startDownload = async () => {
     if (!plan) return;
+    const run = ++downloadRun.current;
     const files = plan.files || [];
     if (files.length === 0) {
       CachedData.messageFiles = [];
@@ -149,6 +153,7 @@ export const PlanDownloadScreen = (props: Props) => {
     setReady(false);
     await StorageManager.ensureFreeSpace([downloadKey]);
     CachedData.prefetch(files, updateCounts).then(() => {
+      if (run !== downloadRun.current) return;
       setReady(true);
       DownloadIndex.addEntry({
         downloadKey,
