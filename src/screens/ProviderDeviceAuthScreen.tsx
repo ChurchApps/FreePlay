@@ -337,8 +337,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
             flex: 1,
             alignItems: "center",
             justifyContent: "center",
-            opacity: fadeAnim,
-            paddingBottom: DimensionHelper.hp("5%")
+            opacity: fadeAnim
           }}>
           <Text
             style={{
@@ -369,11 +368,11 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
               backgroundColor: "#ffffff",
               padding: DimensionHelper.wp("1%"),
               borderRadius: 12,
-              marginBottom: DimensionHelper.hp("3%")
+              marginBottom: DimensionHelper.hp("2%")
             }}>
             <QRCode
               value={verificationUrl}
-              size={DimensionHelper.wp("12%")}
+              size={DimensionHelper.wp("10%")}
               backgroundColor="#ffffff"
               color="#000000"
             />
@@ -393,7 +392,7 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
 
           <Animated.View
             style={{
-              marginTop: DimensionHelper.hp("5%"),
+              marginTop: DimensionHelper.hp("2.5%"),
               flexDirection: "row",
               alignItems: "center",
               opacity: pulseAnim
@@ -427,27 +426,55 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
             {t("providerDeviceAuth.secondary")}
           </Text>
 
-          <TouchableHighlight
-            onPress={initDeviceFlow}
-            underlayColor="rgba(255, 255, 255, 0.1)"
-            hasTVPreferredFocus={false}
+          <View
             style={{
               marginTop: DimensionHelper.hp("3%"),
-              paddingVertical: DimensionHelper.hp("1.2%"),
-              paddingHorizontal: DimensionHelper.wp("2.5%"),
-              borderRadius: 6,
-              borderWidth: 1,
-              borderColor: "rgba(255, 255, 255, 0.15)"
+              flexDirection: "row",
+              alignItems: "center"
             }}>
-            <Text
+            <TouchableHighlight
+              onPress={initDeviceFlow}
+              underlayColor="rgba(255, 255, 255, 0.1)"
+              hasTVPreferredFocus={false}
               style={{
-                color: "rgba(255, 255, 255, 0.5)",
-                fontSize: Typography.labelMedium,
-                letterSpacing: 0.3
+                paddingVertical: DimensionHelper.hp("1.2%"),
+                paddingHorizontal: DimensionHelper.wp("2.5%"),
+                borderRadius: 6,
+                borderWidth: 1,
+                borderColor: "rgba(255, 255, 255, 0.15)"
               }}>
-              {t("providerDeviceAuth.regenerate")}
-            </Text>
-          </TouchableHighlight>
+              <Text
+                style={{
+                  color: "rgba(255, 255, 255, 0.5)",
+                  fontSize: Typography.labelMedium,
+                  letterSpacing: 0.3
+                }}>
+                {t("providerDeviceAuth.regenerate")}
+              </Text>
+            </TouchableHighlight>
+            <TouchableHighlight
+              testID="provider-device-auth-cancel"
+              onPress={handleBack}
+              underlayColor="rgba(255, 255, 255, 0.1)"
+              hasTVPreferredFocus={false}
+              style={{
+                marginLeft: DimensionHelper.wp("1.5%"),
+                paddingVertical: DimensionHelper.hp("1.2%"),
+                paddingHorizontal: DimensionHelper.wp("2.5%"),
+                borderRadius: 6,
+                borderWidth: 1,
+                borderColor: "rgba(255, 255, 255, 0.15)"
+              }}>
+              <Text
+                style={{
+                  color: "rgba(255, 255, 255, 0.5)",
+                  fontSize: Typography.labelMedium,
+                  letterSpacing: 0.3
+                }}>
+                {t("providerDeviceAuth.cancel")}
+              </Text>
+            </TouchableHighlight>
+          </View>
 
           <Text
             style={{
@@ -458,35 +485,6 @@ export const ProviderDeviceAuthScreen = (props: Props) => {
             {t("providerDeviceAuth.expiresIn", { minutes: Math.floor(deviceAuth.expires_in / 60) })}
           </Text>
         </Animated.View>
-
-        <View
-          style={{
-            position: "absolute",
-            bottom: DimensionHelper.hp("4%"),
-            left: 0,
-            right: 0,
-            alignItems: "center"
-          }}>
-          <TouchableHighlight
-            testID="provider-device-auth-cancel"
-            onPress={handleBack}
-            underlayColor="rgba(255, 255, 255, 0.1)"
-            hasTVPreferredFocus={false}
-            style={{
-              paddingVertical: DimensionHelper.hp("1%"),
-              paddingHorizontal: DimensionHelper.wp("2%"),
-              borderRadius: 4
-            }}>
-            <Text
-              style={{
-                color: "rgba(255, 255, 255, 0.35)",
-                fontSize: DimensionHelper.wp("1.2%"),
-                letterSpacing: 0.3
-              }}>
-              {t("providerDeviceAuth.cancel")}
-            </Text>
-          </TouchableHighlight>
-        </View>
       </LinearGradient>
     </View>
   );
