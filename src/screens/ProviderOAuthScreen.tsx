@@ -518,35 +518,28 @@ export const ProviderOAuthScreen = (props: Props) => {
             }}>
             {t("providerOAuth.expiresIn", { minutes: Math.floor(flowState.expiresIn / 60) })}
           </Text>
-        </Animated.View>
-
-        <View
-          style={{
-            position: "absolute",
-            bottom: DimensionHelper.hp("4%"),
-            left: 0,
-            right: 0,
-            alignItems: "center"
-          }}>
           <TouchableHighlight
             onPress={handleBack}
             underlayColor="rgba(255, 255, 255, 0.1)"
             hasTVPreferredFocus={false}
             style={{
-              paddingVertical: DimensionHelper.hp("1%"),
-              paddingHorizontal: DimensionHelper.wp("2%"),
-              borderRadius: 4
+              marginTop: DimensionHelper.hp("3%"),
+              paddingVertical: DimensionHelper.hp("1.2%"),
+              paddingHorizontal: DimensionHelper.wp("2.5%"),
+              borderRadius: 6,
+              borderWidth: 1,
+              borderColor: "rgba(255, 255, 255, 0.15)"
             }}>
             <Text
               style={{
-                color: "rgba(255, 255, 255, 0.35)",
-                fontSize: DimensionHelper.wp("1.2%"),
+                color: "rgba(255, 255, 255, 0.5)",
+                fontSize: Typography.labelMedium,
                 letterSpacing: 0.3
               }}>
               {t("providerOAuth.cancel")}
             </Text>
           </TouchableHighlight>
-        </View>
+        </Animated.View>
       </LinearGradient>
     </View>
   );
