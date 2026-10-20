@@ -88,7 +88,7 @@ export const Navigator = () => {
 
   if (fullScreenScreens.indexOf(currentScreen) > -1) {
     return (<View style={Styles.splashMaincontainer}>
-      <Animated.View style={[viewStyle, { opacity: fadeAnim, flex: 1 }]}>
+      <Animated.View style={[viewStyle, { opacity: fadeAnim, flex: 1, width: "100%" }]}>
         {screen}
       </Animated.View>
     </View>);

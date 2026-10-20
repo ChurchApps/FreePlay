@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useReducer, useRef, useState } from "react";
-import { View, Text, TouchableHighlight, BackHandler, ActivityIndicator, HWEvent, useTVEventHandler } from "react-native";
+import { View, Text, Pressable, TouchableHighlight, BackHandler, ActivityIndicator, HWEvent, useTVEventHandler } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useKeepAwake } from "expo-keep-awake";
 import LinearGradient from "react-native-linear-gradient";
@@ -334,6 +334,9 @@ export const ScheduledPlayerScreen = (props: Props) => {
           <Icon name="play-circle-outline" size={DimensionHelper.hp("11%")} color="#fff" />
         </View>
       )}
+
+      {/* Remote keys only reach JS while something is focused, and the panel buttons unmount when it closes. */}
+      {!panelVisible && !overviewVisible && <Pressable focusable hasTVPreferredFocus style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }} testID="scheduled-player-focus" />}
 
       {panelVisible && (
         <LinearGradient
