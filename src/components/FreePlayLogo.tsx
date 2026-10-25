@@ -43,14 +43,6 @@ export const FreePlayLogo = ({
   );
 };
 
-// White version for dark backgrounds (same as default since we use white logo)
-export const FreePlayLogoWhite = ({
-  size = "medium",
-  showText = true
-}: Omit<Props, "color">) => {
-  return <FreePlayLogo size={size} showText={showText} />;
-};
-
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",

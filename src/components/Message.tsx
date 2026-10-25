@@ -100,23 +100,6 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
     return () => clearTimeout(safetyTimer);
   }, [isLoading, hasError, props.file]);
 
-  // const getMessageType = () => {
-  //   const parts = props.file.url.split("?")[0].split(".");
-  //   const ext = parts[parts.length - 1];
-  //   let result = "image"
-  //   switch (ext.toLocaleLowerCase()) {
-  //     case "webm":
-  //     case "mp4":
-  //       result = "video"
-  //       break;
-  //   }
-
-  //   if (props.file.url.indexOf("externalVideos") > -1) result = "video";
-
-  //   //console.log("Message Type:", result, props.file.url.split("?")[0])
-  //   return result;
-  // }
-
   const getMessageType = (): "image" | "video" => {
     if (props.file.fileType === "video" || props.file.fileType === "audio") return "video";
 
@@ -128,19 +111,6 @@ export const Message = React.forwardRef<MessageHandle, Props>((props, ref) => {
     }
     return "image";
   };
-
-  // const getContent = () => {
-  //   let result = <></>
-  //   switch (getMessageType()) {
-  //     case "image":
-  //       result = getImage();
-  //       break;
-  //     case "video":
-  //       result = getVideo();
-  //       break;
-  //   }
-  //   return result
-  // }
 
   const mediaSource = (): { uri: string; headers?: Record<string, string> } | null => {
     if (props.downloaded) {
