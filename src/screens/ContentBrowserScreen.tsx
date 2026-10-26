@@ -99,7 +99,8 @@ export const ContentBrowserScreen = (props: Props) => {
     const data = await provider.browse(currentFolder?.path ?? null, auth);
     if (version !== requestVersionRef.current) return;
 
-    setItems(data);
+    // Go's Small Group guides are text-only — nothing to present on a TV
+    setItems(props.providerId === "gocurriculum" ? data.filter(i => i.id !== "small-group") : data);
     setLoading(false);
     // Allow sidebar to expand via focus now that content is loaded
     CachedData.preventSidebarExpand = false;
