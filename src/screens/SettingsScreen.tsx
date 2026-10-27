@@ -28,7 +28,7 @@ export const SettingsScreen = (props: Props) => {
 
   const changeCalendar = () => {
     Alert.alert(t("settings.calendar.changeTitle", { group: calendarValue }), t("settings.calendar.changeMessage"), [
-      { text: t("settings.calendar.keep"), style: "cancel" },
+      { text: t("settings.calendar.backToSchedule"), onPress: () => props.navigateTo("scheduledPlayer") },
       { text: t("settings.calendar.unpair"), style: "destructive", onPress: async () => { await ScheduleSync.unpair(); props.navigateTo("providers"); } },
       { text: t("settings.calendar.repair"), onPress: async () => { await ScheduleSync.unpair(); props.navigateTo("schedulePairing"); } }
     ]);

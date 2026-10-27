@@ -226,7 +226,7 @@
       "paired": "Paired",
       "changeTitle": "Paired to {{group}}",
       "changeMessage": "Pair this screen to a different calendar, or stop following a schedule. Downloaded files for this calendar are removed.",
-      "keep": "Keep",
+      "backToSchedule": "Back to schedule",
       "unpair": "Unpair",
       "repair": "Pair to a different calendar"
     },

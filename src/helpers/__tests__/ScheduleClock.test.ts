@@ -197,3 +197,19 @@ describe("ScheduleClock.showPlayer", () => {
     expect(ScheduleClock.showPlayer(false, true)).toBe(false);
   });
 });
+
+describe("ScheduleClock.returnsToSchedule", () => {
+  it("sends a paired TV that comes back to the foreground to its schedule", () => {
+    expect(ScheduleClock.returnsToSchedule(true, "contentBrowser", "background", "active")).toBe(true);
+    expect(ScheduleClock.returnsToSchedule(true, "player", "inactive", "active")).toBe(true);
+  });
+
+  it("leaves the screen alone when unpaired, pairing, already scheduled, or not resuming", () => {
+    expect(ScheduleClock.returnsToSchedule(false, "contentBrowser", "background", "active")).toBe(false);
+    expect(ScheduleClock.returnsToSchedule(true, "scheduledPlayer", "background", "active")).toBe(false);
+    expect(ScheduleClock.returnsToSchedule(true, "schedulePairing", "background", "active")).toBe(false);
+    expect(ScheduleClock.returnsToSchedule(true, "splash", "background", "active")).toBe(false);
+    expect(ScheduleClock.returnsToSchedule(true, "", "background", "active")).toBe(false);
+    expect(ScheduleClock.returnsToSchedule(true, "contentBrowser", "active", "background")).toBe(false);
+  });
+});

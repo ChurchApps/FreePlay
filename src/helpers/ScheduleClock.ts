@@ -113,6 +113,12 @@ export class ScheduleClock {
     return index;
   }
 
+  // A paired TV that comes back to the foreground returns to its schedule, unless it is pairing or still starting up.
+  static returnsToSchedule(scheduled: boolean, currentScreen: string, prevState: string, nextState: string): boolean {
+    if (!scheduled || !currentScreen || nextState !== "active" || !/inactive|background/.test(prevState)) return false;
+    return ["scheduledPlayer", "schedulePairing", "splash"].indexOf(currentScreen) === -1;
+  }
+
   static jumpTo(slot: ScheduleSlot, index: number): number {
     if (slot.items.length === 0) return -1;
     return Math.min(Math.max(index, 0), slot.items.length - 1);
