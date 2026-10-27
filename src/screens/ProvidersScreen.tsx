@@ -13,7 +13,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import LinearGradient from "react-native-linear-gradient";
 import { SvgUri } from "react-native-svg";
 import { DimensionHelper } from "../helpers/DimensionHelper";
-import { Styles, CachedData, ProviderAuthHelper, ProviderSettingsHelper, Colors, Typography, PlanSync } from "../helpers";
+import { Styles, CachedData, ProviderAuthHelper, ProviderSettingsHelper, Colors, Typography, PlanSync, ScheduleSync } from "../helpers";
 import { MenuHeader, SkeletonCard } from "../components";
 import { getProvider, getAvailableProviders, FREEPLAY_PROVIDER_IDS } from "../providers";
 import { ProviderInfo } from "../interfaces";
@@ -295,7 +295,7 @@ export const ProvidersScreen = (props: Props) => {
   };
 
   const handleBack = () => {
-    props.navigateTo("settings");
+    props.navigateTo(ScheduleSync.isScheduled() ? "scheduledPlayer" : "settings");
     return true;
   };
 

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import { CachedData, Styles } from "../helpers";
+import { CachedData, Styles, ScheduleClock, ScheduleSync } from "../helpers";
 import { SplashScreen, PlayerScreen, SettingsScreen, PlanPairingScreen, PlanDownloadScreen, ScheduledPlayerScreen, ContentBrowserScreen, ProviderDeviceAuthScreen, ProvidersScreen, ProviderSettingsScreen, ProviderFormLoginScreen, ProviderOAuthScreen, ProviderDiscoveryScreen, ProviderDownloadScreen, DownloadsScreen } from "../screens";
 import { DimensionHelper } from "../helpers/DimensionHelper";
-import { View, Platform, TVEventControl, Animated } from "react-native";
+import { View, Platform, TVEventControl, Animated, AppState } from "react-native";
 import { NavWrapper } from "./NavWrapper";
 import { OfflineScreen } from "../screens/OfflineScreen";
 import PrivacyPolicyScreen from "../screens/PrivacyPolicyScreen";
@@ -13,6 +13,7 @@ export const Navigator = () => {
   const [dimensions, setDimensions] = React.useState("1,1");
   const [sidebarExpanded, setSidebarState] = React.useState(false);
   const fadeAnim = useRef(new Animated.Value(1)).current;
+  const appState = useRef(AppState.currentState as string);
 
   const handleNavigate = (page: string, data?:any) => {
     if (data) setCurrentData(data); else setCurrentData(null);
@@ -82,6 +83,15 @@ export const Navigator = () => {
   };
 
   useEffect(init, []);
+
+  // Fire TV resumes the app on whatever screen was showing; a paired TV goes back to its schedule.
+  useEffect(() => {
+    const sub = AppState.addEventListener("change", next => {
+      if (ScheduleClock.returnsToSchedule(ScheduleSync.isScheduled(), CachedData.currentScreen, appState.current, next)) handleNavigate("scheduledPlayer");
+      appState.current = next;
+    });
+    return () => sub.remove();
+  }, []);
   if (dimensions !== "1,1") console.log(dimensions);
 
   const fullScreenScreens = ["splash", "player", "scheduledPlayer", "providerDownload"];
