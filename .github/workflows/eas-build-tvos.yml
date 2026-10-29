@@ -19,10 +19,10 @@ on:
         description: Upload the finished build to App Store Connect
         type: boolean
         default: true
-      what_to_test:
-        description: TestFlight "What to Test" note
+      build_id:
+        description: Existing EAS build id to submit. Leave empty to start a new build.
         required: false
-        default: "Dropbox sign-in uses the FreePlay.church Dropbox app. Confirm you can link Dropbox from the provider list."
+        default: ""
 
 concurrency:
   group: eas-build-tvos
@@ -68,11 +68,17 @@ jobs:
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
           SUBMIT: ${{ inputs.submit }}
-          WHAT_TO_TEST: ${{ inputs.what_to_test }}
+          BUILD_ID: ${{ inputs.build_id }}
         run: |
           set -euo pipefail
+          # --what-to-test sends a TestFlight changelog, which EAS rejects
+          # unless the account is on the Enterprise plan. Leave it off.
+          if [ -n "$BUILD_ID" ]; then
+            yarn eas submit --platform ios --profile tvos-production --id "$BUILD_ID" --non-interactive --wait
+            exit 0
+          fi
           args=(build --platform ios --profile tvos-production --non-interactive --wait --message "Apple TV 1.5.1 build 15 (${GITHUB_SHA:0:7})")
           if [ "$SUBMIT" != "false" ]; then
-            args+=(--auto-submit --what-to-test "$WHAT_TO_TEST")
+            args+=(--auto-submit)
           fi
           yarn eas "${args[@]}"
