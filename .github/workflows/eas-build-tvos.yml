@@ -1,0 +1,78 @@
+name: EAS Build tvOS
+
+# Builds the Apple TV app on EAS and uploads it to App Store Connect, where it
+# shows up in TestFlight. Dispatch only. A push to main does not run this.
+#
+# Bump ios.buildNumber in branding.json before each dispatch. App Store Connect
+# rejects a repeated build number. runtimeVersion stays put so the binary still
+# matches the production over-the-air updates.
+#
+#   gh workflow run "EAS Build tvOS" --repo ChurchApps/FreePlay --ref main
+#
+# Needs the EXPO_TOKEN repository secret. Apple credentials are the ones
+# already stored on the churchapps EAS project.
+
+on:
+  workflow_dispatch:
+    inputs:
+      submit:
+        description: Upload the finished build to App Store Connect
+        type: boolean
+        default: true
+      what_to_test:
+        description: TestFlight "What to Test" note
+        required: false
+        default: "Dropbox sign-in uses the FreePlay.church Dropbox app. Confirm you can link Dropbox from the provider list."
+
+concurrency:
+  group: eas-build-tvos
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  EXPO_TV: "1"
+  YARN_ENABLE_HARDENED_MODE: "1"
+
+jobs:
+  build:
+    name: Build and submit tvOS
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Check EXPO_TOKEN is configured
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          if [ -z "$EXPO_TOKEN" ]; then
+            echo "::error::EXPO_TOKEN secret is not set. Create an access token at https://expo.dev/accounts/churchapps/settings/access-tokens and run: gh secret set EXPO_TOKEN --repo ChurchApps/FreePlay"
+            exit 1
+          fi
+
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          fetch-depth: 0
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: yarn
+
+      - run: yarn install --immutable
+
+      - name: Build tvOS on EAS
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          SUBMIT: ${{ inputs.submit }}
+          WHAT_TO_TEST: ${{ inputs.what_to_test }}
+        run: |
+          set -euo pipefail
+          args=(build --platform ios --profile tvos-production --non-interactive --wait --message "Apple TV 1.5.1 build 15 (${GITHUB_SHA:0:7})")
+          if [ "$SUBMIT" != "false" ]; then
+            args+=(--auto-submit --what-to-test "$WHAT_TO_TEST")
+          fi
+          yarn eas "${args[@]}"

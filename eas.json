@@ -65,7 +65,8 @@
         "environment": "production",
         "env": {
           "EXPO_TV": "1"
-        }
+        },
+        "channel": "production"
       }
     },
     "submit": {
