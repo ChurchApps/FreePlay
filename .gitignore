@@ -26,7 +26,6 @@ notes.md
 
 expo-env.d.ts
 # @end expo-cli
-.env
 
 # Yarn Berry (Corepack-managed, node-modules linker + global cache)
 .yarn/*
@@ -47,3 +46,4 @@ e2e/artifacts/
 modules/*/android/build/
 !modules/*/android/
 !modules/*/ios/
+config.bat
