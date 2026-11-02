@@ -168,7 +168,7 @@ export const PlayerScreen = (props: Props) => {
 
   const startTimer = () => {
     stopTimer();
-    const seconds = PlayerHelper.slideSeconds(CachedData.messageFiles?.[messageIndex]);
+    const seconds = PlayerHelper.manualSlideSeconds(CachedData.messageFiles?.[messageIndex]);
     if (seconds <= 0) return;
     PlayerHelper.timer = setTimeout(() => goForward(), seconds * 1000);
   };
