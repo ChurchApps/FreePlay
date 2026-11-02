@@ -21,6 +21,12 @@ export class PlayerHelper {
     return this.isVideoFile(file) ? 0 : 5;
   }
 
+  // A looping video has no onEnd, so with no countdown it repeats until the teacher moves on.
+  static manualSlideSeconds(file: MessageFileInterface): number {
+    if (file?.loopVideo && this.isVideoFile(file)) return 0;
+    return this.slideSeconds(file);
+  }
+
   // Duration is 0 or missing until the video reports it, so only clamp at the end once it is known.
   static seekTarget(position: number, delta: number, duration?: number): number {
     const target = Math.max(0, position + delta);

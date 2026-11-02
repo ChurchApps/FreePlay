@@ -19,3 +19,19 @@ describe("PlayerHelper.seekTarget", () => {
     expect(PlayerHelper.seekTarget(115, 10, 0)).toBe(125);
   });
 });
+
+describe("PlayerHelper.manualSlideSeconds", () => {
+  const clip = { url: "https://x/title.mp4", seconds: 50 } as any;
+
+  it("gives a looping video no countdown so it repeats until the teacher moves on", () => {
+    expect(PlayerHelper.manualSlideSeconds({ ...clip, loopVideo: true })).toBe(0);
+  });
+
+  it("keeps the clip's own length when it does not loop", () => {
+    expect(PlayerHelper.manualSlideSeconds({ ...clip, loopVideo: false })).toBe(50);
+  });
+
+  it("keeps the timer on an image, even one flagged to loop", () => {
+    expect(PlayerHelper.manualSlideSeconds({ url: "https://x/slide.png", seconds: 8, loopVideo: true } as any)).toBe(8);
+  });
+});
