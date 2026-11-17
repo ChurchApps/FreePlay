@@ -213,7 +213,7 @@ export const ContentBrowserScreen = (props: Props) => {
   };
 
   const getFolderCard = (folder: ContentFolder, index: number) => {
-    const savedIndex = CachedData.lastFocusedIndex[screenKey];
+    const savedIndex = CachedData.savedFocusIndex(screenKey, items.length);
     const shouldFocus = !props.sidebarExpanded && !initialFocusSet.current
       && (savedIndex !== undefined ? index === savedIndex : index === 0);
     const folderImage = folder.thumbnail || currentFolder?.thumbnail || provider?.logos.dark;
@@ -329,7 +329,7 @@ export const ContentBrowserScreen = (props: Props) => {
 
   const getFileCard = (file: ContentFile, index: number) => {
     const isVideo = file.mediaType === "video";
-    const savedIndex = CachedData.lastFocusedIndex[screenKey];
+    const savedIndex = CachedData.savedFocusIndex(screenKey, items.length);
     const shouldFocus = !props.sidebarExpanded && !initialFocusSet.current
       && (savedIndex !== undefined ? index === savedIndex : index === 0);
     const isFocused = focusedItemId === file.id;
@@ -461,7 +461,7 @@ export const ContentBrowserScreen = (props: Props) => {
       return <EmptyState icon="folder-open" message={t("contentBrowser.noContent")} subMessage={t("contentBrowser.tryDifferentFolder")} />;
     }
 
-    const savedIndex = CachedData.lastFocusedIndex[screenKey];
+    const savedIndex = CachedData.savedFocusIndex(screenKey, items.length);
     // FlatList initialScrollIndex works on rows, so divide by numColumns
     const initialRow = savedIndex !== undefined ? Math.floor(savedIndex / 3) : undefined;
 
@@ -474,6 +474,8 @@ export const ContentBrowserScreen = (props: Props) => {
           renderItem={getCard}
           keyExtractor={item => item.id}
           initialScrollIndex={initialRow}
+          // Android's subview clipping crashes ("Invalid clipping state") when the list scrolls past its end.
+          removeClippedSubviews={false}
           getItemLayout={(_data, idx) => ({
             length: DimensionHelper.hp("35%"),
             offset: DimensionHelper.hp("35%") * idx,
