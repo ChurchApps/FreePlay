@@ -35,6 +35,12 @@ export class CachedData {
   // Focus memory: stores last focused item index per screen key
   static lastFocusedIndex: { [screenKey: string]: number } = {};
 
+  // A remembered index that no longer fits the list (it changed since the last visit) is ignored.
+  static savedFocusIndex(screenKey: string, count: number): number | undefined {
+    const saved = this.lastFocusedIndex[screenKey];
+    return saved !== undefined && saved >= 0 && saved < count ? saved : undefined;
+  }
+
   // Clear focus memory for a specific screen or all screens matching a prefix
   static clearFocusMemory(screenKeyOrPrefix?: string) {
     if (!screenKeyOrPrefix) {

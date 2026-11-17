@@ -69,6 +69,26 @@ describe("CachedData.clearFocusMemory", () => {
   });
 });
 
+// A saved index past the end made the lesson list scroll beyond its content and crash on Android.
+describe("CachedData.savedFocusIndex", () => {
+  beforeEach(() => {
+    CachedData.lastFocusedIndex = { lessons: 13, programs: 2 };
+  });
+
+  it("returns the saved index while it still fits the list", () => {
+    expect(CachedData.savedFocusIndex("programs", 3)).toBe(2);
+  });
+
+  it("ignores a saved index that is past the end of a shorter list", () => {
+    expect(CachedData.savedFocusIndex("lessons", 9)).toBeUndefined();
+    expect(CachedData.savedFocusIndex("programs", 2)).toBeUndefined();
+  });
+
+  it("returns undefined when nothing was saved", () => {
+    expect(CachedData.savedFocusIndex("other", 5)).toBeUndefined();
+  });
+});
+
 describe("CachedData async storage", () => {
   beforeEach(() => jest.clearAllMocks());
 
