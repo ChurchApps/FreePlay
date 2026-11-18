@@ -446,6 +446,8 @@ export const ContentBrowserScreen = (props: Props) => {
           <FlatList
             data={skeletonData}
             numColumns={3}
+            // Must match the real list below: React reuses this native list, and flipping the flag on it drops every tile.
+            removeClippedSubviews={false}
             keyExtractor={item => item.id}
             renderItem={() => (
               <View style={{ ...styles.item, padding: 10 }}>
