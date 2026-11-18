@@ -1157,10 +1157,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@churchapps/content-providers@npm:^0.16.1":
-  version: 0.16.1
-  resolution: "@churchapps/content-providers@npm:0.16.1"
-  checksum: 10c0/6e450406c835744caed3653374ec3adbf77d42b2fd2890674a3ab563ef6a1550608f378370079df1879794650dc5a6597c57536b955be6ca6ec08b30d2543642
+"@churchapps/content-providers@npm:^0.17.0":
+  version: 0.17.0
+  resolution: "@churchapps/content-providers@npm:0.17.0"
+  checksum: 10c0/5521c0e3f97f8606d9e66d9a2f6a845e0f70a6cdf5f4363f63f943c406ea299e468e8fb2ee13107ab9cb34d1b34f42f720e32a9d7e22c9029ead80ea97186f4a
   languageName: node
   linkType: hard
 
@@ -7804,7 +7804,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "freeplay@workspace:."
   dependencies:
-    "@churchapps/content-providers": "npm:^0.16.1"
+    "@churchapps/content-providers": "npm:^0.17.0"
     "@eslint/js": "npm:^10.0.1"
     "@expo/metro-runtime": "npm:~6.1.1"
     "@react-native-async-storage/async-storage": "npm:1.24.0"
