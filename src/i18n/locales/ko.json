@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "일정으로 돌아가기",
       "changeMessage": "이 화면을 다른 캘린더와 페어링하거나 일정 따르기를 중지합니다. 이 캘린더용으로 다운로드된 파일은 삭제됩니다.",
       "changeTitle": "{{group}}에 페어링됨",
       "description": "아무도 시작을 누르지 않아도 freeplay.church에서 이 화면에 예약된 콘텐츠를 재생합니다",
-      "keep": "유지",
       "label": "캘린더와 페어링",
       "notPaired": "페어링되지 않음",
       "paired": "페어링됨",

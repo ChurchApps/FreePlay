@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Retour au programme",
       "changeMessage": "Appairez cet écran à un autre calendrier ou cessez de suivre un programme. Les fichiers téléchargés pour ce calendrier seront supprimés.",
       "changeTitle": "Appairé à {{group}}",
       "description": "Diffuser ce qui est programmé pour cet écran sur freeplay.church, sans que personne n'ait à appuyer sur Démarrer",
-      "keep": "Conserver",
       "label": "Appairer à un calendrier",
       "notPaired": "Non appairé",
       "paired": "Appairé",

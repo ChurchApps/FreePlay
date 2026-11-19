@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Zurück zum Zeitplan",
       "changeMessage": "Koppeln Sie diesen Bildschirm mit einem anderen Kalender oder folgen Sie keinem Zeitplan mehr. Heruntergeladene Dateien für diesen Kalender werden entfernt.",
       "changeTitle": "Gekoppelt mit {{group}}",
       "description": "Abspielen, was für diesen Bildschirm auf freeplay.church geplant ist, ohne dass jemand auf Start drücken muss",
-      "keep": "Behalten",
       "label": "Mit einem Kalender koppeln",
       "notPaired": "Nicht gekoppelt",
       "paired": "Gekoppelt",

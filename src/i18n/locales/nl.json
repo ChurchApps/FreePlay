@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Terug naar planning",
       "changeMessage": "Koppel dit scherm aan een andere agenda of stop met het volgen van een planning. Gedownloade bestanden voor deze agenda worden verwijderd.",
       "changeTitle": "Gekoppeld aan {{group}}",
       "description": "Speel af wat er op freeplay.church voor dit scherm is gepland, zonder dat iemand op Start hoeft te drukken",
-      "keep": "Behouden",
       "label": "Koppelen aan een agenda",
       "notPaired": "Niet gekoppeld",
       "paired": "Gekoppeld",

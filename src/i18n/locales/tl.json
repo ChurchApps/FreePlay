@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Bumalik sa iskedyul",
       "changeMessage": "I-pair ang screen na ito sa ibang kalendaryo, o ihinto ang pagsunod sa iskedyul. Aalisin ang mga na-download na file para sa kalendaryong ito.",
       "changeTitle": "Naka-pair sa {{group}}",
       "description": "I-play ang naka-iskedyul para sa screen na ito sa freeplay.church, nang walang kailangang pumindot ng Start",
-      "keep": "Panatilihin",
       "label": "I-pair sa isang kalendaryo",
       "notPaired": "Hindi naka-pair",
       "paired": "Naka-pair",

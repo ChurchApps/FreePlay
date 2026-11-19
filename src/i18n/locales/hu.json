@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Vissza az ütemezéshez",
       "changeMessage": "Párosítsa ezt a képernyőt egy másik naptárral, vagy hagyja abba az ütemezés követését. A naptárhoz letöltött fájlok törlődnek.",
       "changeTitle": "Párosítva: {{group}}",
       "description": "A freeplay.church oldalon erre a képernyőre ütemezett tartalom lejátszása anélkül, hogy bárkinek meg kellene nyomnia a Start gombot",
-      "keep": "Megtartás",
       "label": "Párosítás naptárral",
       "notPaired": "Nincs párosítva",
       "paired": "Párosítva",

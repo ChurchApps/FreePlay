@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "スケジュールに戻る",
       "changeMessage": "この画面を別のカレンダーとペアリングするか、スケジュールの追従を停止します。このカレンダー用にダウンロードされたファイルは削除されます。",
       "changeTitle": "{{group}} とペアリング済み",
       "description": "freeplay.church でこの画面に予定されている内容を、誰も開始を押さずに再生します",
-      "keep": "維持",
       "label": "カレンダーとペアリング",
       "notPaired": "ペアリングされていません",
       "paired": "ペアリング済み",

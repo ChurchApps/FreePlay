@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Grįžti į tvarkaraštį",
       "changeMessage": "Susiekite šį ekraną su kitu kalendoriumi arba nustokite sekti tvarkaraštį. Šiam kalendoriui atsisiųsti failai bus pašalinti.",
       "changeTitle": "Susieta su {{group}}",
       "description": "Leisti tai, kas šiam ekranui suplanuota freeplay.church, niekam nespaudžiant Pradėti",
-      "keep": "Palikti",
       "label": "Susieti su kalendoriumi",
       "notPaired": "Nesusieta",
       "paired": "Susieta",

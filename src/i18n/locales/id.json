@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Kembali ke jadwal",
       "changeMessage": "Pasangkan layar ini ke kalender lain, atau berhenti mengikuti jadwal. File yang diunduh untuk kalender ini akan dihapus.",
       "changeTitle": "Dipasangkan ke {{group}}",
       "description": "Putar apa yang dijadwalkan untuk layar ini di freeplay.church, tanpa perlu ada yang menekan Mulai",
-      "keep": "Simpan",
       "label": "Pasangkan ke kalender",
       "notPaired": "Belum dipasangkan",
       "paired": "Dipasangkan",

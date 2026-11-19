@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Tilbage til tidsplanen",
       "changeMessage": "Par denne skærm med en anden kalender, eller stop med at følge en tidsplan. Downloadede filer for denne kalender fjernes.",
       "changeTitle": "Parret med {{group}}",
       "description": "Afspil det, der er planlagt for denne skærm på freeplay.church, uden at nogen skal trykke på Start",
-      "keep": "Behold",
       "label": "Par med en kalender",
       "notPaired": "Ikke parret",
       "paired": "Parret",

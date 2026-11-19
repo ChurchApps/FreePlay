@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Quay lại lịch",
       "changeMessage": "Ghép nối màn hình này với một lịch khác hoặc ngừng theo dõi lịch. Các tệp đã tải xuống cho lịch này sẽ bị xóa.",
       "changeTitle": "Đã ghép nối với {{group}}",
       "description": "Phát nội dung đã lên lịch cho màn hình này trên freeplay.church mà không cần ai nhấn Bắt đầu",
-      "keep": "Giữ lại",
       "label": "Ghép nối với lịch",
       "notPaired": "Chưa ghép nối",
       "paired": "Đã ghép nối",

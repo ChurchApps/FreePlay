@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Nazaj na urnik",
       "changeMessage": "Seznanite ta zaslon z drugim koledarjem ali prenehajte slediti urniku. Prenesene datoteke za ta koledar bodo odstranjene.",
       "changeTitle": "Seznanjeno z {{group}}",
       "description": "Predvajajte, kar je za ta zaslon načrtovano na freeplay.church, ne da bi kdo pritisnil Začni",
-      "keep": "Obdrži",
       "label": "Seznani s koledarjem",
       "notPaired": "Ni seznanjeno",
       "paired": "Seznanjeno",
