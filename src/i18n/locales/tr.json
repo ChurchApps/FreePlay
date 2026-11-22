@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Programa geri dön",
       "changeMessage": "Bu ekranı farklı bir takvimle eşleştirin veya programı takip etmeyi bırakın. Bu takvim için indirilen dosyalar kaldırılır.",
       "changeTitle": "{{group}} ile eşleştirildi",
       "description": "Bu ekran için freeplay.church'te planlananları, kimsenin Başlat'a basmasına gerek kalmadan oynatın",
-      "keep": "Koru",
       "label": "Bir takvimle eşleştir",
       "notPaired": "Eşleştirilmedi",
       "paired": "Eşleştirildi",

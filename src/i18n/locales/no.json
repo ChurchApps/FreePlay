@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Tilbake til tidsplanen",
       "changeMessage": "Par denne skjermen med en annen kalender, eller slutt å følge en tidsplan. Nedlastede filer for denne kalenderen fjernes.",
       "changeTitle": "Paret med {{group}}",
       "description": "Spill av det som er planlagt for denne skjermen på freeplay.church, uten at noen trenger å trykke Start",
-      "keep": "Behold",
       "label": "Par med en kalender",
       "notPaired": "Ikke paret",
       "paired": "Paret",

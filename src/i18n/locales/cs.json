@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Zpět na rozvrh",
       "changeMessage": "Spárujte tuto obrazovku s jiným kalendářem nebo přestaňte sledovat rozvrh. Stažené soubory pro tento kalendář budou odstraněny.",
       "changeTitle": "Spárováno s {{group}}",
       "description": "Přehrávat to, co je pro tuto obrazovku naplánováno na freeplay.church, aniž by kdokoli musel stisknout Spustit",
-      "keep": "Ponechat",
       "label": "Spárovat s kalendářem",
       "notPaired": "Nespárováno",
       "paired": "Spárováno",

@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "返回日程",
       "changeMessage": "将此屏幕与其他日历配对，或停止跟随日程。此日历的已下载文件将被删除。",
       "changeTitle": "已与 {{group}} 配对",
       "description": "无需任何人按下开始，即可播放 freeplay.church 上为此屏幕安排的内容",
-      "keep": "保留",
       "label": "与日历配对",
       "notPaired": "未配对",
       "paired": "已配对",

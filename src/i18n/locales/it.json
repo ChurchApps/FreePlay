@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Torna alla programmazione",
       "changeMessage": "Abbina questo schermo a un altro calendario o smetti di seguire una programmazione. I file scaricati per questo calendario verranno rimossi.",
       "changeTitle": "Abbinato a {{group}}",
       "description": "Riproduci ciò che è programmato per questo schermo su freeplay.church, senza che nessuno debba premere Avvia",
-      "keep": "Mantieni",
       "label": "Abbina a un calendario",
       "notPaired": "Non abbinato",
       "paired": "Abbinato",

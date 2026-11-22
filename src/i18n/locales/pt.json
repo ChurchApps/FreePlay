@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Voltar à programação",
       "changeMessage": "Pareie esta tela com outro calendário ou pare de seguir uma programação. Os arquivos baixados deste calendário serão removidos.",
       "changeTitle": "Pareado com {{group}}",
       "description": "Reproduza o que está programado para esta tela em freeplay.church, sem ninguém precisar pressionar Iniciar",
-      "keep": "Manter",
       "label": "Parear com um calendário",
       "notPaired": "Não pareado",
       "paired": "Pareado",

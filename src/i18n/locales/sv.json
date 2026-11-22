@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Tillbaka till schemat",
       "changeMessage": "Parkoppla den här skärmen med en annan kalender, eller sluta följa ett schema. Nedladdade filer för den här kalendern tas bort.",
       "changeTitle": "Parkopplad med {{group}}",
       "description": "Spela upp det som är schemalagt för den här skärmen på freeplay.church, utan att någon behöver trycka på Start",
-      "keep": "Behåll",
       "label": "Parkoppla med en kalender",
       "notPaired": "Inte parkopplad",
       "paired": "Parkopplad",

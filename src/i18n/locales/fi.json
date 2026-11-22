@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Takaisin aikatauluun",
       "changeMessage": "Pariuta tämä näyttö toiseen kalenteriin tai lopeta aikataulun seuraaminen. Tämän kalenterin ladatut tiedostot poistetaan.",
       "changeTitle": "Pariutettu: {{group}}",
       "description": "Toista tälle näytölle freeplay.churchissa ajoitettu sisältö ilman, että kenenkään tarvitsee painaa Aloita",
-      "keep": "Säilytä",
       "label": "Pariuta kalenteriin",
       "notPaired": "Ei pariutettu",
       "paired": "Pariutettu",

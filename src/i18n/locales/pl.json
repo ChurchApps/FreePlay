@@ -220,10 +220,10 @@
   },
   "settings": {
     "calendar": {
+      "backToSchedule": "Wróć do harmonogramu",
       "changeMessage": "Sparuj ten ekran z innym kalendarzem lub przestań śledzić harmonogram. Pobrane pliki dla tego kalendarza zostaną usunięte.",
       "changeTitle": "Sparowano z {{group}}",
       "description": "Odtwarzaj to, co zaplanowano dla tego ekranu na freeplay.church, bez potrzeby naciskania Start",
-      "keep": "Zachowaj",
       "label": "Sparuj z kalendarzem",
       "notPaired": "Niesparowany",
       "paired": "Sparowany",
